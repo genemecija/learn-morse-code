@@ -37,10 +37,13 @@ function App() {
         clearInterval(gapTimer)
         
         o = context.createOscillator()
+        let g = context.createGain()
+        g.gain.exponentialRampToValueAtTime(0.08, context.currentTime)
         o.type = "sine"
         let frequency = 550.0
         o.frequency.value = frequency
-        o.connect(context.destination)
+        o.connect(g)
+        g.connect(context.destination)
         o.start()
 
         startCharTimer()
