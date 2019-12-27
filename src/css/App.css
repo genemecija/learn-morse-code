@@ -1,0 +1,197 @@
+html, body {
+  margin: 0px;
+  padding: 0px;
+  height: 100%;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+#root {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+}
+
+#mode-picker {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#mode-picker div {
+  margin: 15px;
+  padding: 5px;
+  -webkit-box-shadow: 0px 0px 15px #000;
+          box-shadow: 0px 0px 15px #000;
+}
+
+#main-content {
+  width: 95vw;
+  border: 1px solid red;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+#morseButton {
+  width: 200px !important;
+  height: 200px;
+  margin: 30px;
+  background: goldenrod;
+  border-radius: 50%;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+#morseBufferDisplay {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border: 1px solid green;
+  width: 100%;
+  height: 40px;
+}
+
+#morseBufferDisplay #ditDahs {
+  width: 50%;
+  padding-right: 5px;
+  border-right: 2px solid #000;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+#morseBufferDisplay #ditDahs .ditDah {
+  background: #DDD;
+  height: 40px;
+  width: 30px !important;
+  margin-left: 3px;
+  -webkit-box-shadow: 0px 1px 0px #000;
+          box-shadow: 0px 1px 0px #000;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 35px;
+  font-family: 'Courier';
+  font-weight: bold;
+}
+
+#morseBufferDisplay #alphanumeric {
+  padding-left: 5px;
+  border-left: 2px solid #000;
+  width: 50%;
+  font-size: 40px;
+  font-family: 'Courier';
+  font-weight: bold;
+}
+
+.space {
+  font-size: 20px;
+}
+
+.morseError {
+  background: rgba(255, 0, 0, 0.4);
+}
+
+#morseDisplay {
+  /* border: 1px solid blue; */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+#morseDisplay .morseCard:nth-child(1) {
+  opacity: 100%;
+}
+
+#morseDisplay .morseCard:nth-child(2) {
+  opacity: 70%;
+}
+
+#morseDisplay .morseCard:nth-child(3) {
+  opacity: 50%;
+}
+
+#morseDisplay .morseCard:nth-child(4) {
+  opacity: 30%;
+}
+
+#morseDisplay .morseCard:nth-child(5) {
+  opacity: 10%;
+}
+
+.morseCard {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal !important;
+  -webkit-box-direction: normal !important;
+      -ms-flex-direction: row !important;
+          flex-direction: row !important;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  /* border: 1px solid orange; */
+  margin-bottom: 2px;
+  font-size: 40px;
+  font-family: 'Courier';
+  font-weight: bold;
+  /* width: 100%; */
+}
+
+.morseCard div {
+  /* border: 1px solid purple; */
+  padding: 5px;
+  margin: 2px;
+  background: #EEE;
+  width: 50%;
+  white-space: nowrap;
+}
+
+.morseCard .ditDahs {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  overflow-wrap: break-word;
+}
+/*# sourceMappingURL=App.css.map */

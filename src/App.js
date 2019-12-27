@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import './App.css';
+import './css/App.css';
 import MorseDisplay from './components/MorseDisplay'
 import MorseBufferDisplay from './components/MorseBufferDisplay'
 import MorseButton from './components/MorseButton'
+import ModePicker from './components/ModePicker'
 // import LettersDisplay from './components/LettersDisplay'
 
 function App() {
@@ -21,30 +22,46 @@ function App() {
     const ditMaxTime = 5  // default: 3
     const letterGapMinTime = ditMaxTime*3
     const wordGapMaxTime = ditMaxTime*7
-    const morseHistorySize = 3
+    const morseHistorySize = 1
 
-    let context = new AudioContext()
+    // Tone Setup
+    let AudioContext = window.AudioContext || window.webkitAudioContext || false
+    let context
+    window.AudioContext = window.AudioContext || window.webkitAudioContext;
+    if (AudioContext) {
+        context = new AudioContext()
+    } else {
+        context = null
+    }
+
     let o
+    let frequency = 550.0
     
 
     function handleInputStart(event) {
+        event.preventDefault()
         if ((event.keyCode !== 32 && event.target.id !== "morseButton") ||
         (event.repeat)) {
             return
         }
+        if (context.state === 'interrupted') {
+            context.resume()
+        }
+        
+        o = context.createOscillator()
+        o.frequency.value = frequency
+        o.type = "sine"
+        
+        let g = context.createGain()
+        g.gain.exponentialRampToValueAtTime(0.08, context.currentTime)
+        o.connect(g)
+        g.connect(context.destination)
+        o.start()
+
         // if (gapTimer===0) { setMorseLettersBuffer('') }
         checkGapBetweenInputs()
         clearInterval(gapTimer)
         
-        o = context.createOscillator()
-        let g = context.createGain()
-        g.gain.exponentialRampToValueAtTime(0.08, context.currentTime)
-        o.type = "sine"
-        let frequency = 550.0
-        o.frequency.value = frequency
-        o.connect(g)
-        g.connect(context.destination)
-        o.start()
 
         startCharTimer()
     }
@@ -58,6 +75,7 @@ function App() {
     }
 
     function handleInputEnd(event) {
+        event.preventDefault()
         if ((event.keyCode !== 32 && event.target.id !== "morseButton") ||
         (event.repeat)) {
             return
@@ -111,7 +129,9 @@ function App() {
         document.addEventListener('keydown', handleInputStart)
         document.addEventListener('keyup', handleInputEnd)
         document.getElementById('morseButton').addEventListener('mousedown', handleInputStart)
+        document.getElementById('morseButton').addEventListener('touchstart', handleInputStart)
         document.getElementById('morseButton').addEventListener('mouseup', handleInputEnd)
+        document.getElementById('morseButton').addEventListener('touchend', handleInputEnd)
         // eslint-disable-next-line
     }, [])
 
@@ -139,12 +159,12 @@ function App() {
     }, [morseCharBuffer])
 
     return (
-        <div>charTime: {charTime}<br/>
-            <MorseButton />
+        <div id='main-content'>
+            <ModePicker />
             morseCharBuffer:<br/>
             <MorseBufferDisplay buffer={morseCharBuffer} /><br/>
             <MorseDisplay morseWords={morseWords}/>
-            
+            <MorseButton />
         </div>
     );
 }

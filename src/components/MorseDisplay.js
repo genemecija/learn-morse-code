@@ -7,9 +7,7 @@ function MorseDisplay(props) {
     
     return (
         <div id="morseDisplay">
-            <div id="cardContainer">
-                <div>{morseCards}</div>
-            </div>
+            {morseCards}
         </div>
     )
 }

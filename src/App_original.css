@@ -11,8 +11,17 @@ html, body {
     align-items: center;
     width: 100%;
 }
-#root div {
+#mode-picker {
+    display: flex;
+}
+#mode-picker div {
+    margin: 15px;
+    padding: 5px;
+    box-shadow: 0px 0px 15px #000;
+}
+#main-content {
     width: 95vw;
+    border: 1px solid red;
 }
 
 #morseButton {
@@ -25,7 +34,7 @@ html, body {
 #morseBufferDisplay {
     display: flex;
     justify-content: center;
-    /* border: 1px solid green; */
+    border: 1px solid green;
     width: 100%;
     height: 40px;
 }
@@ -71,42 +80,46 @@ html, body {
     font-weight: bold;
 }
 #morseDisplay {
-    /* border: 2px solid red; */
+    /* border: 1px solid blue; */
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
-#cardContainer div .morseCard:nth-child(1){
+#morseDisplay .morseCard:nth-child(1){
     opacity: 100%;
 }
-#cardContainer div .morseCard:nth-child(2){
+#morseDisplay .morseCard:nth-child(2){
     opacity: 70%;
 }
-#cardContainer div .morseCard:nth-child(3){
+#morseDisplay .morseCard:nth-child(3){
     opacity: 50%;
 }
-#cardContainer div .morseCard:nth-child(4){
+#morseDisplay .morseCard:nth-child(4){
     opacity: 30%;
 }
-#cardContainer div .morseCard:nth-child(5){
+#morseDisplay .morseCard:nth-child(5){
     opacity: 10%;
 }
 .morseCard {
     display: flex;
     flex-direction: row !important;
     justify-content: center;
-    /* border: 1px solid blue; */
+    /* border: 1px solid orange; */
     margin-bottom: 2px;
     font-size: 40px;
     font-family: 'Courier';
     font-weight: bold;
+    /* width: 100%; */
 }
 .morseCard div {
     /* border: 1px solid green; */
     padding: 5px;
     margin: 2px;
-    /* border: 1px solid #EEE; */
+    /* border: 1px solid purple; */
     background: #EEE;
+    /* background-image: linear-gradient(90deg, transparent, #EEE); */
     /* box-shadow: 0px 2px 2px -2px #666; */
+    /* justify-content: space-around; */
+    width: 50%;
 }
 .morseCard .ditDahs {
     display: flex;
