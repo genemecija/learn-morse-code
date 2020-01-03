@@ -3,7 +3,7 @@ import DitDahDisplay from "./DitDahDisplay"
 import morseCode from '../data/morse-reverse.json'
 
 function MorseBufferDisplay(props) {
-
+    console.log('MorseBufferDisplay rendered');
     let ditDahs = props.buffer.split('').map((ditdah,index) => <DitDahDisplay key={index} dd={ditdah} />)
 
     let alphanumeric = ''
@@ -34,11 +34,13 @@ function MorseBufferDisplay(props) {
             <div id="ditDahs">
                 {ditDahs}
             </div>
-            <div id="alphanumeric">
-                {alphanumeric.toUpperCase()}
+            <div id="alphanumeric-container">
+                <div id="alphanumeric">
+                    {alphanumeric.toUpperCase()}
+                </div>
             </div>
         </div>
     )
 }
 
-export default MorseBufferDisplay
+export default React.memo(MorseBufferDisplay)

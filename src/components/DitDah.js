@@ -2,7 +2,7 @@ import React from "react"
 import morseCode from '../data/morse-reverse.json'
 
 function DitDah(props) {
-    
+    console.log('DitDah rendered');
     if (props.morseLetter === '') {
         return (
             <span className='space'>&nbsp;</span>
@@ -20,4 +20,4 @@ function DitDah(props) {
     }
 }
 
-export default DitDah
+export default React.memo(DitDah)

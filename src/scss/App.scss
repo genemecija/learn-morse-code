@@ -1,9 +1,15 @@
+$main-bg-color: #FFF;
+$main-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
+$main-border-radius: 5px;
+// $border-radius-neumorphic: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.15);
+
 html, body {
     margin: 0px;
     padding: 0px;
     height: 100%;
     width: 100%;
     box-sizing: border-box;
+    background: $main-bg-color;
 }
 #root {
     height: 100%;
@@ -14,11 +20,12 @@ html, body {
 }
 #mode-picker {
     display: flex;
-
     div {
+        background: #fcfcfc;
         margin: 15px;
         padding: 5px;
-        box-shadow: 0px 0px 15px #000;
+        box-shadow: $main-box-shadow;
+        border-radius: $main-border-radius;
     }
 }
 #main-content {
@@ -40,9 +47,10 @@ html, body {
 #morseBufferDisplay {
     display: flex;
     justify-content: center;
-    border: 1px solid green;
+    // border: 1px solid green;
     width: 100%;
     height: 40px;
+    margin-bottom: 20px;
 
     #ditDahs {
         width: 50%;
@@ -57,7 +65,9 @@ html, body {
             height: 40px;
             width: 30px !important;
             margin-left: 3px;
-            box-shadow: 0px 1px 0px #000;
+            // box-shadow: 0px 1px 0px #000;
+            border-radius: $main-border-radius;
+            box-shadow: $main-box-shadow;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -67,13 +77,24 @@ html, body {
         }
     }
 
-    #alphanumeric {
-        padding-left: 5px;
+    #alphanumeric-container {
         border-left: 2px solid #000;
+        padding-left: 5px;
         width: 50%;
-        font-size: 40px;
-        font-family: 'Courier';
-        font-weight: bold;
+        display: flex;
+        
+        #alphanumeric {
+            font-size: 40px;
+            font-family: 'Courier';
+            font-weight: bold;
+            background-color: transparent;
+            
+            &:first-child {
+                padding-left: 5px;
+                padding-right: 5px;
+                // box-shadow: $main-box-shadow;
+            }
+        }
     }
 }
 
@@ -82,6 +103,8 @@ html, body {
 }
 .morseError {
     background: rgba(255,0,0,0.4);
+    color: rgb(120, 0, 0);
+    border-radius: 5px;
 }
 
 #morseDisplay {
@@ -112,21 +135,33 @@ html, body {
     justify-content: center;
     /* border: 1px solid orange; */
     margin-bottom: 2px;
-    font-size: 40px;
+    font-size: 2.5rem;
     font-family: 'Courier';
     font-weight: bold;
     /* width: 100%; */
 
-    div {
-        /* border: 1px solid purple; */
+
+    div div {
+        // border: 1px solid purple;
+        cursor: default;
         padding: 5px;
-        margin: 2px;
+        margin: 3px;
         background: #EEE;
-        width: 50%;
+        // width: 50%;
         white-space: nowrap;
+        border-radius: $main-border-radius;
+        box-shadow: $main-box-shadow;
+        line-height: 2rem;
     }
-    
+    .ditDahs-container, .alphanumeric-container {
+        display: flex;
+        width: 50%;
+    }
+    .ditDahs-container {
+        justify-content: flex-end;
+    }
     .ditDahs {
+        // border: 1px solid red;
         display: flex;
         justify-content: flex-end;
         align-items: center;

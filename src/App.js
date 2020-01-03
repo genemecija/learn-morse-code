@@ -9,7 +9,6 @@ import ModePicker from './components/ModePicker'
 function App() {
 
     const [morseCharBuffer, setMorseCharBuffer] = useState('') // e.g. '-..'
-    // const [morseLettersBuffer, setMorseLettersBuffer] = useState([]) // e.g. ['-..','.','-,']
     const [morseWords, setMorseWords] = useState([]) // e.g. [['-..','.','-,'], ['...','---','...']]
     
     let charTimer = 0
@@ -22,7 +21,7 @@ function App() {
     const ditMaxTime = 5  // default: 3
     const letterGapMinTime = ditMaxTime*3
     const wordGapMaxTime = ditMaxTime*7
-    const morseHistorySize = 1
+    const morseHistorySize = 5
 
     // Tone Setup
     let AudioContext = window.AudioContext || window.webkitAudioContext || false
@@ -157,6 +156,7 @@ function App() {
         // setMorseLettersBuffer(prev => [...prev, morseCharBuffer])
         // eslint-disable-next-line
     }, [morseCharBuffer])
+    console.log('App.js rendered')
 
     return (
         <div id='main-content'>
@@ -169,4 +169,4 @@ function App() {
     );
 }
 
-export default App;
+export default React.memo(App);

@@ -2,7 +2,7 @@ import React from "react"
 import MorseCard from './MorseCard'
 
 function MorseDisplay(props) {
-    
+    console.log('MorseDisplay rendered');
     let morseCards = props.morseWords.map((word,index) => <MorseCard key={index} morse={word} />)
     
     return (
@@ -12,4 +12,4 @@ function MorseDisplay(props) {
     )
 }
 
-export default MorseDisplay
+export default React.memo(MorseDisplay)

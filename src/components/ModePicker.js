@@ -9,6 +9,9 @@ function ModePicker() {
             <div id="timed">
                 Timed Mode
             </div>
+            <div id="challenge">
+                Challenge Mode
+            </div>
         </div>
     )
 }

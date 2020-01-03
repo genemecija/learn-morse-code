@@ -3,7 +3,7 @@ import AlphaNumeric from './AlphaNumeric'
 import DitDah from './DitDah'
 
 function MorseCard(props) {
-
+    console.log('MorseCard rendered');
     let morseComponent
     let alphaNumericsComponent
 
@@ -22,14 +22,18 @@ function MorseCard(props) {
 
     return (
         <div className='morseCard'>
-            <div className='ditDahs'>
-                {morseComponent}
+            <div className='ditDahs-container'>
+                <div className='ditDahs'>
+                    {morseComponent}
+                </div>
             </div>
-            <div className='alphanumeric'>
-                {alphaNumericsComponent}
+            <div className='alphanumeric-container'>
+                <div className='alphanumeric'>
+                    {alphaNumericsComponent}
+                </div>
             </div>
         </div>
     )
 }
 
-export default MorseCard
+export default React.memo(MorseCard)
