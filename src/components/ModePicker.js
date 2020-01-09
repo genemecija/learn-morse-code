@@ -1,18 +1,27 @@
-import React from "react"
+import React, {useContext} from "react"
+import {GameModeContext} from "../gameContext"
 
 function ModePicker() {
+
+    const {switchGameModeTo} = useContext(GameModeContext)
+
+    function handleClick(e) {
+        switchGameModeTo(e.target.id)
+        console.log("Switched to " + e.target.id + " mode.");
+    }
+
     return (
-        <div id="mode-picker">
-            <div id="practice">
-                Practice
+            <div id="mode-picker">
+                <button id="practice" onClick={handleClick}>
+                    Practice
+                </button>
+                <button id="timed" onClick={handleClick}>
+                    Timed Mode
+                </button>
+                <button id="challenge" onClick={handleClick}>
+                    Challenge Mode
+                </button>
             </div>
-            <div id="timed">
-                Timed Mode
-            </div>
-            <div id="challenge">
-                Challenge Mode
-            </div>
-        </div>
     )
 }
 

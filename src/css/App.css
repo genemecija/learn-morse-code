@@ -26,15 +26,18 @@ html, body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-item-align: center;
+      align-self: center;
 }
 
-#mode-picker div {
+#mode-picker button {
   background: #fcfcfc;
   margin: 15px;
   padding: 5px;
   -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
           box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
-  border-radius: 5px;
+  border: 0px;
+  border-radius: 0px;
 }
 
 #main-content {
@@ -57,6 +60,33 @@ html, body {
   border-radius: 50%;
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
+      align-self: center;
+}
+
+#challengeWord {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 50px;
+  margin-bottom: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: flex;
+  font-size: 40px;
+  font-family: 'Courier';
+  font-weight: bold;
+  background: #EEE;
+  text-transform: uppercase;
+  -ms-flex-item-align: center;
       align-self: center;
 }
 
@@ -93,7 +123,7 @@ html, body {
   height: 40px;
   width: 30px !important;
   margin-left: 3px;
-  border-radius: 5px;
+  border-radius: 0px;
   -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
           box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
   display: -webkit-box;
@@ -197,7 +227,7 @@ html, body {
   margin: 3px;
   background: #EEE;
   white-space: nowrap;
-  border-radius: 5px;
+  border-radius: 0px;
   -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
           box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
   line-height: 2rem;

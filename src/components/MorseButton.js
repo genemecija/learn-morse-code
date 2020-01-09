@@ -7,4 +7,4 @@ function MorseButton() {
     )
 }
 
-export default MorseButton
+export default React.memo(MorseButton)
