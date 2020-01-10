@@ -109,7 +109,9 @@ function useTelegraph(mode = 'practice') {
 
     function checkGapBetweenInputs() {
         // Check Gap between letters
-        if ((gapTime >= letterGapMinTime) && (gapTime < wordGapMaxTime)) {
+
+        if ((gapTime >= letterGapMinTime) &&
+            ((gapTime < wordGapMaxTime) || (mode === 'challenge'))) { // Practice mode || Challenge mode
             setMorseCharBuffer(prev => prev + ' ')
             clearInterval(gapTimer)
             gapTimer = 0
@@ -129,24 +131,29 @@ function useTelegraph(mode = 'practice') {
         return function cleanup() {
             document.removeEventListener('keydown', handleInputStart)
             document.removeEventListener('keyup', handleInputEnd)
+            clearHistory()
         }
         // eslint-disable-next-line
     }, [])
 
     useEffect(() => {
-        if (morseCharBuffer.slice(-1) === '/') {
+        // PRACTICE MODE
+        if (morseCharBuffer.slice(-1) === '/' && mode === 'practice') {
             // Remove forward slash
             let val = morseCharBuffer.slice(0,morseCharBuffer.length-1)
-            console.log('val: ', val);
 
             setMorseWords(prev => [val, ...prev])
 
             if (morseWords.length >= morseHistorySize) {
                 setMorseWords(prev => prev.slice(0,prev.length-1))
             }
-            
             setMorseCharBuffer('')
         }
+        
+        // CHALLENGE MODE: leave forward slash there; to be parsed by ChallengeDisplay.js
+        // else if (morseCharBuffer.slice(-1) === '/' && mode === 'challenge') {
+            
+        // }
 
         // eslint-disable-next-line
     }, [morseCharBuffer])

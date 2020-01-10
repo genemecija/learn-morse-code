@@ -7,7 +7,7 @@ import MorseDisplay from '../components/MorseDisplay'
 
 function TimedMode() {
 
-    const {morseCharBuffer, morseWords} = useTelegraph()
+    const {morseCharBuffer, morseWords} = useTelegraph('timed')
     
     console.log('TimedMode.js rendered')
     

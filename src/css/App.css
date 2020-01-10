@@ -171,6 +171,11 @@ html, body {
   border-radius: 5px;
 }
 
+.correct {
+  background: rgba(0, 255, 0, 0.4);
+  border-radius: 5px;
+}
+
 #morseDisplay {
   /* border: 1px solid blue; */
   display: -webkit-box;

@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import '../css/App.css';
 import useTelegraph from '../hooks/useTelegraph';
 import MorseBufferDisplay from '../components/MorseBufferDisplay'
@@ -6,9 +6,7 @@ import MorseDisplay from '../components/MorseDisplay'
 
 function PracticeMode() {
 
-    const {morseCharBuffer, morseWords, clearHistory} = useTelegraph()
-    
-    console.log('PracticeMode.js rendered')
+    const {morseCharBuffer, morseWords, clearHistory} = useTelegraph('practice')
     
     return (
         <>
