@@ -12,6 +12,7 @@ function ChallengeMode() {
     return (
         <>
             <ChallengeDisplay buffer={morseCharBuffer} word="Morse" setMorseCharBuffer={setMorseCharBuffer}/>
+            <button onClick={() => console.log(morseCharBuffer)}>morseCharBuffer</button>
         </>
     );
 

@@ -1,15 +1,16 @@
 import React from "react"
 // import DitDahDisplay from "./DitDahDisplay"
 import morseCode from '../data/morse-reverse.json'
-import MorseBufferDisplay from "./MorseBufferDisplay";
+import ChallengeBufferDisplay from "./ChallengeBufferDisplay";
 // import ChallengeWord from "./ChallengeWord";
 
 function ChallengeDisplay(props) {
     console.log('props.buffer:', props.buffer, '|END');
-    let morseLetters = props.buffer.split(' ')
+    let morseLetters = props.buffer.split('_').filter(l => l !== '')
     console.log('morseLetters:', morseLetters, morseLetters.length);
     let challengeLetters = props.word.split('')
     let correctIndexes = []
+    let incorrectIndex = null
     
     morseLetters.forEach((morseLetter, index) => {
         let morseAlpha = morseCode[morseLetter]
@@ -19,8 +20,12 @@ function ChallengeDisplay(props) {
             correctIndexes.push(index)
             console.log('MATCH', correctIndexes);
         } else {
-            console.log('MISMATCH: should be', challengeLetter, 'instead of', morseAlpha);
-            
+            if (props.buffer.slice(-1) === "_") {
+                incorrectIndex = index
+                console.log('MISMATCH:', incorrectIndex, 'should be', challengeLetter, 'instead of', morseAlpha, '>', morseLetter);
+                // props.setMorseCharBuffer(morseLetters.slice(0,-1).join('_') + '_')
+            }
+
         }
         // else {
         //     let onlyCorrectMorse = morseLetters.splice(0,index+1).join(' ')
@@ -49,10 +54,13 @@ function ChallengeDisplay(props) {
     //     }
     // }
 
+    
     let spannedWord = challengeLetters.map((letter,index) => {
         // console.log('correctIndexes',correctIndexes);
         // console.log('index',index);
-        let className = (correctIndexes.includes(index)) ? 'cLetter correct' : 'cLetter'
+        let className = 'cLetter'
+        className += (correctIndexes.includes(index)) ? ' correct' : ''
+        className += (incorrectIndex === index) ? ' morseError' : ''
         return (
             <span key={index} className={className} id={"chal"+index}>{letter}</span>
         )
@@ -63,7 +71,7 @@ function ChallengeDisplay(props) {
     return (
         <>
             <div id="challengeWord">{spannedWord}</div>
-            <MorseBufferDisplay buffer={props.buffer.replace(/\//g, ' ')} />
+            <ChallengeBufferDisplay buffer={props.buffer.slice(0,-1).replace(/_/g, ' ')} incorrectIndex={incorrectIndex} />
         </>
     )
 }

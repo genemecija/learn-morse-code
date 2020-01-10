@@ -90,7 +90,7 @@ html, body {
       align-self: center;
 }
 
-#morseBufferDisplay {
+#morseBufferDisplay, #challengeBufferDisplay {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -102,7 +102,7 @@ html, body {
   margin-bottom: 20px;
 }
 
-#morseBufferDisplay #ditDahs {
+#morseBufferDisplay #ditDahs, #challengeBufferDisplay #ditDahs {
   width: 50%;
   padding-right: 5px;
   border-right: 2px solid #000;
@@ -118,7 +118,7 @@ html, body {
           justify-content: flex-end;
 }
 
-#morseBufferDisplay #ditDahs .ditDah {
+#morseBufferDisplay #ditDahs .ditDah, #challengeBufferDisplay #ditDahs .ditDah {
   background: #DDD;
   height: 40px;
   width: 30px !important;
@@ -140,7 +140,7 @@ html, body {
   font-weight: bold;
 }
 
-#morseBufferDisplay #alphanumeric-container {
+#morseBufferDisplay #alphanumeric-container, #challengeBufferDisplay #alphanumeric-container {
   border-left: 2px solid #000;
   padding-left: 5px;
   width: 50%;
@@ -149,14 +149,14 @@ html, body {
   display: flex;
 }
 
-#morseBufferDisplay #alphanumeric-container #alphanumeric {
+#morseBufferDisplay #alphanumeric-container #alphanumeric, #challengeBufferDisplay #alphanumeric-container #alphanumeric {
   font-size: 40px;
   font-family: 'Courier';
   font-weight: bold;
   background-color: transparent;
 }
 
-#morseBufferDisplay #alphanumeric-container #alphanumeric:first-child {
+#morseBufferDisplay #alphanumeric-container #alphanumeric:first-child, #challengeBufferDisplay #alphanumeric-container #alphanumeric:first-child {
   padding-left: 5px;
   padding-right: 5px;
 }

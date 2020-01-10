@@ -63,7 +63,7 @@ html, body {
     text-transform: uppercase;
     align-self: center;
 }
-#morseBufferDisplay {
+#morseBufferDisplay, #challengeBufferDisplay {
     display: flex;
     justify-content: center;
     // border: 1px solid green;

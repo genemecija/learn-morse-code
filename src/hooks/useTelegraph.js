@@ -98,8 +98,14 @@ function useTelegraph(mode = 'practice') {
             gapTime += 1
 
             // Gap between words
-            if (gapTime >= wordGapMaxTime && mode === 'practice') {
+            if (mode === 'practice' && gapTime >= wordGapMaxTime) {
                 setMorseCharBuffer(prev => prev + '/')
+                clearInterval(gapTimer)
+                gapTimer = 0
+                gapTime = 0
+            }
+            if (mode === 'challenge' && gapTime >= letterGapMinTime) {
+                setMorseCharBuffer(prev => prev + '_')
                 clearInterval(gapTimer)
                 gapTimer = 0
                 gapTime = 0
@@ -110,9 +116,12 @@ function useTelegraph(mode = 'practice') {
     function checkGapBetweenInputs() {
         // Check Gap between letters
 
-        if ((gapTime >= letterGapMinTime) &&
-            ((gapTime < wordGapMaxTime) || (mode === 'challenge'))) { // Practice mode || Challenge mode
-            setMorseCharBuffer(prev => prev + ' ')
+        if (gapTime >= letterGapMinTime && gapTime < wordGapMaxTime) {
+            if (mode === 'practice') {
+                setMorseCharBuffer(prev => prev + ' ')
+            } else if (mode === 'challenge') {
+                setMorseCharBuffer(prev => prev + '_')
+            }
             clearInterval(gapTimer)
             gapTimer = 0
         }
@@ -149,7 +158,7 @@ function useTelegraph(mode = 'practice') {
             }
             setMorseCharBuffer('')
         }
-        
+        console.log('morseCharBuffer:', morseCharBuffer, '|');
         // CHALLENGE MODE: leave forward slash there; to be parsed by ChallengeDisplay.js
         // else if (morseCharBuffer.slice(-1) === '/' && mode === 'challenge') {
             
