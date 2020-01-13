@@ -3,32 +3,45 @@ import DitDahDisplay from "./DitDahDisplay"
 import morseCode from '../data/morse-reverse.json'
 
 function ChallengeBufferDisplay(props) {
-    
+    // INCREMENTING COUNTER TO MONITOR COMPONENT RELOADING
+    // console.log('ChallengeMode')
+    if (!document.getElementById('counter')) {
+        let counter = document.createElement('h1')
+        let holder = document.createElement('h3')
+        counter.id = 'counter'
+        holder.id = 'holder'
+        counter.innerText = "0"
+        document.querySelector('#main-content').appendChild(counter)
+        document.querySelector('#main-content').appendChild(holder)
+    } else {
+        let num = document.getElementById('counter').innerText
+        document.getElementById('counter').innerText = Number(num) + 1
+        document.getElementById('holder').innerText = props.buffer
+
+    }
+    //
+
     let ditDahs = []
     let incorrectIndex = props.incorrectIndex
     
     let morseLetters = props.buffer.split(' ')
     if (incorrectIndex) {
-        console.log('incorrectIndex:', incorrectIndex);
+        
         for (let i in morseLetters) {
             let letter = morseLetters[i]
 
             if (Number(i) === incorrectIndex) {
                 ditDahs.push(letter.split('').map((ditdah,index) => <DitDahDisplay key={index} dd={ditdah}  className={"morseError"}/>))
             } else {
-                console.log('i === incorrectIndex', i, incorrectIndex);
                 ditDahs.push(letter.split('').map((ditdah,index) => <DitDahDisplay key={index} dd={ditdah} className={""}/>))
             }
         }
     } else {
         ditDahs = props.buffer.split('').map((ditdah,index) => <DitDahDisplay key={index} dd={ditdah} />)
-        console.log('ditDahs:', typeof ditDahs, ditDahs.length, ditDahs);
     }
 
 
     let alphanumeric = ''
-    // if (props.buffer.includes(' ')) {
-
     let letters = props.buffer.split(' ')
 
     if (props.buffer === '') {}

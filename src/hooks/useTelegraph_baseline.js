@@ -29,49 +29,36 @@ function useTelegraph(mode = 'practice') {
 
     let o
     let frequency = 550.0
-
-    let isRunning = false
     
     function clearHistory() {
         setMorseWords([])
     }
 
     function handleInputStart(event) {
+        
         event.preventDefault()
-
-        if (isRunning) {
-            console.log("isRunning True:", isRunning);
+        if ((event.keyCode !== 32 && event.target.id !== "morseButton") ||
+        (event.repeat)) {
             return
-        } else {
-            console.log("isRunning False:", isRunning);
-            isRunning = true
-
-            // TODO:
-            // Make sure only one touchdown event registered at a time
-            if ((event.keyCode !== 32 && event.target.id !== "morseButton") ||
-            (event.repeat)) {
-                return
-            }
-            if (context.state === 'interrupted') {
-                context.resume()
-            }
-            
-            o = context.createOscillator()
-            o.frequency.value = frequency
-            o.type = "sine"
-            
-            let g = context.createGain()
-            g.gain.exponentialRampToValueAtTime(0.08, context.currentTime)
-            o.connect(g)
-            g.connect(context.destination)
-            o.start()
-            
-            checkGapBetweenInputs()
-            clearInterval(gapTimer)
-
-            startCharTimer()
+        }
+        if (context.state === 'interrupted') {
+            context.resume()
         }
         
+        o = context.createOscillator()
+        o.frequency.value = frequency
+        o.type = "sine"
+        
+        let g = context.createGain()
+        g.gain.exponentialRampToValueAtTime(0.08, context.currentTime)
+        o.connect(g)
+        g.connect(context.destination)
+        o.start()
+        
+        checkGapBetweenInputs()
+        clearInterval(gapTimer)
+
+        startCharTimer()
     }
     function startCharTimer() {
         // Reset character time
@@ -84,25 +71,20 @@ function useTelegraph(mode = 'practice') {
 
     function handleInputEnd(event) {
         event.preventDefault()
+        if ((event.keyCode !== 32 && event.target.id !== "morseButton") ||
+        (event.repeat)) {
+            return
+        }
 
-        if (isRunning) {
-            isRunning = false
-            if ((event.keyCode !== 32 && event.target.id !== "morseButton") ||
-            (event.repeat)) {
-                return
-            }
-    
-            if (charTime <= ditMaxTime) {
-                setMorseCharBuffer(prev => prev + '.')
-            } else {
-                setMorseCharBuffer(prev => prev + '-')
-            }
-    
-            stopCharTimer()
-            startGapTimer()
-            console.log("o.context.state:", o.context.state);
-            if (o.context.state === 'running') {o.stop()}
-        } else { return }
+        if (charTime <= ditMaxTime) {
+            setMorseCharBuffer(prev => prev + '.')
+        } else {
+            setMorseCharBuffer(prev => prev + '-')
+        }
+
+        stopCharTimer()
+        startGapTimer()
+        o.stop()
     }
 
     function stopCharTimer() {    

@@ -7,7 +7,7 @@ import MorseDisplay from '../components/MorseDisplay'
 function PracticeMode() {
 
     const {morseCharBuffer, morseWords, clearHistory} = useTelegraph('practice')
-    
+
     return (
         <>
             <MorseBufferDisplay buffer={morseCharBuffer} /><br/>
