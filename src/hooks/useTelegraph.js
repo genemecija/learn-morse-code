@@ -1,18 +1,19 @@
 import {useState, useEffect} from 'react'
+import config from '../config.json'
 
 function useTelegraph(mode = 'practice') {
 
     const [morseCharBuffer, setMorseCharBuffer] = useState('') // e.g. '-..'
     const [morseWords, setMorseWords] = useState([]) // e.g. [['-..','.','-,'], ['...','---','...']]
-    
+
     let charTimer = 0
     let charTime = 0
     let gapTimer = 0
     let gapTime = 0
-
-    const timingUnit = 15 // default: 25
-
-    const ditMaxTime = 5  // default: 3
+    
+    const timingUnit = config.timingUnit
+    
+    const ditMaxTime = config.practiceSpeed.normal
     const letterGapMinTime = ditMaxTime*3
     const wordGapMaxTime = ditMaxTime*7
     const morseHistorySize = 5
@@ -27,7 +28,8 @@ function useTelegraph(mode = 'practice') {
         context = null
     }
 
-    let o
+    let o // Oscillator Node
+    let g // Gain Node
     let frequency = 550.0
 
     let isRunning = false
@@ -39,11 +41,11 @@ function useTelegraph(mode = 'practice') {
     function handleInputStart(event) {
         event.preventDefault()
 
+        console.log('ditmaxtime:', ditMaxTime);
+
         if (isRunning) {
-            console.log("isRunning True:", isRunning);
             return
         } else {
-            console.log("isRunning False:", isRunning);
             isRunning = true
 
             // TODO:
@@ -60,8 +62,8 @@ function useTelegraph(mode = 'practice') {
             o.frequency.value = frequency
             o.type = "sine"
             
-            let g = context.createGain()
-            g.gain.exponentialRampToValueAtTime(0.08, context.currentTime)
+            g = context.createGain()
+            g.gain.exponentialRampToValueAtTime(config.mainVolume, context.currentTime)
             o.connect(g)
             g.connect(context.destination)
             o.start()
@@ -73,6 +75,7 @@ function useTelegraph(mode = 'practice') {
         }
         
     }
+    
     function startCharTimer() {
         // Reset character time
         charTime = 0
@@ -91,6 +94,9 @@ function useTelegraph(mode = 'practice') {
             (event.repeat)) {
                 return
             }
+            // if (event.repeat) {
+            //     return
+            // }
     
             if (charTime <= ditMaxTime) {
                 setMorseCharBuffer(prev => prev + '.')
@@ -100,8 +106,11 @@ function useTelegraph(mode = 'practice') {
     
             stopCharTimer()
             startGapTimer()
-            console.log("o.context.state:", o.context.state);
-            if (o.context.state === 'running') {o.stop()}
+            
+            if (o.context.state === 'running') {
+                g.gain.setTargetAtTime(0.0001, context.currentTime, 0.001)
+                o.stop(context.currentTime + 0.01)
+            }
         } else { return }
     }
 

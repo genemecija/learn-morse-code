@@ -3,7 +3,6 @@ import AlphaNumeric from './AlphaNumeric'
 import DitDah from './DitDah'
 
 function MorseCard(props) {
-    console.log('MorseCard rendered');
     let morseComponent
     let alphaNumericsComponent
 

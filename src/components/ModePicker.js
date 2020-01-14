@@ -25,4 +25,4 @@ function ModePicker() {
     )
 }
 
-export default ModePicker
+export default React.memo(ModePicker)

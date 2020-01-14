@@ -10,6 +10,7 @@ import {GameModeContext} from "./gameContext"
 import PracticeMode from './app-modes/PracticeMode';
 import TimedMode from './app-modes/TimedMode'
 import ChallengeMode from './app-modes/ChallengeMode'
+import Legend from './components/Legend';
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
 
     return (
         <div id='main-content'>
+            <Legend />
             <ModePicker />
             
             {gameMode === 'practice' && <PracticeMode />}

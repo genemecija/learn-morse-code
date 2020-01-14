@@ -5,7 +5,7 @@ import MorseBufferDisplay from '../components/MorseBufferDisplay'
 import MorseDisplay from '../components/MorseDisplay'
 
 function PracticeMode() {
-
+    console.log("PracticeMode loaded");
     const {morseCharBuffer, morseWords, clearHistory} = useTelegraph('practice')
 
     return (
