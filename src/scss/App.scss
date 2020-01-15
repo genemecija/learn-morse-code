@@ -31,6 +31,27 @@ html, body {
         border-radius: $main-border-radius;
     }
 }
+
+#legend {
+    width: 450px;
+    display: flex;
+    justify-content: space-evenly;
+    align-self: center;
+    flex-wrap: wrap;
+
+    div {
+        width: 80px;
+        display: flex;
+        flex-wrap: nowrap;
+        
+        button {
+            width: 40px;
+            margin: 4px;
+        }
+    }
+
+}
+
 #main-content {
     width: 95vw;
     border: 1px solid red;
@@ -39,8 +60,8 @@ html, body {
 }
 
 #morseButton {
-    width: 200px !important;
-    height: 200px;
+    width: 100px !important;
+    height: 100px;
     margin: 30px;
     background: goldenrod;
     border-radius: 50%;

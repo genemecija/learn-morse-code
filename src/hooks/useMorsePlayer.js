@@ -2,7 +2,7 @@ import config from '../config.json'
 
 function useMorsePlayer() {
 
-    const ditMaxTime = config.ditMaxTime
+    const ditMaxTime = 85 //config.ditMaxTime
 
     // Tone Setup
     let AudioContext = window.AudioContext || window.webkitAudioContext
@@ -43,7 +43,6 @@ function useMorsePlayer() {
             
             g.gain.setTargetAtTime(0.0001, startTime + length/1000, 0.001)
             o.stop(startTime + length/1000 + 0.05)
-            console.log("length/1000", length/1000);
         })
     }
 

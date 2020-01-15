@@ -7,7 +7,7 @@ import useTelegraph from '../hooks/useTelegraph';
 // import ChallengeDisplay from '../components/ChallengeDisplay';
 import ChallengeBufferDisplay from '../components/ChallengeBufferDisplay';
 
-function ChallengeMode() {
+function ChallengeMode() { console.log("ChallengeMode loaded");
 
     let word = "morse"
     

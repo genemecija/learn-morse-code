@@ -1,6 +1,8 @@
 import {useState, useEffect} from 'react'
 import config from '../config.json'
 
+// STRAIGHT KEY TELEGRAPH
+
 function useTelegraph(mode = 'practice') {
 
     const [morseCharBuffer, setMorseCharBuffer] = useState('') // e.g. '-..'
@@ -30,7 +32,7 @@ function useTelegraph(mode = 'practice') {
 
     let o // Oscillator Node
     let g // Gain Node
-    let frequency = 550.0
+    let frequency = config.frequency
 
     let isRunning = false
     

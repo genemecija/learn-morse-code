@@ -14,10 +14,9 @@ function Legend() {
         let newWord = convertWordToMorse(word)
         console.log(newWord);
 
-        let name = '--._._-._.'
         playMorseWord(newWord)        
-
     }
+
     function convertWordToMorse(word) {
         let morse = ''
         for (let i in word) {
@@ -27,9 +26,16 @@ function Legend() {
         return morse
     }
 
+    const legend = Object.keys(morseCode).map((morse, index) =>
+        <div key={"legend_item_"+index}>
+            <button key={"legend_btn_"+index} onClick={handleClick}>{morse.toUpperCase()}</button>
+            <span key={"legend_spn_"+index}>{morseCode[morse]}</span>
+        </div>
+    )
+
     return (
             <div id="legend">
-                <button id="test" onClick={handleClick}>Gene</button>
+                {legend}
                 <button id="test" onClick={handleClick}>Anya</button>
                 <button id="test" onClick={handleClick}>Alexandra</button>
             </div>

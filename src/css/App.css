@@ -40,6 +40,34 @@ html, body {
   border-radius: 0px;
 }
 
+#legend {
+  width: 450px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -ms-flex-item-align: center;
+      align-self: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+#legend div {
+  width: 80px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+}
+
+#legend div button {
+  width: 40px;
+  margin: 4px;
+}
+
 #main-content {
   width: 95vw;
   border: 1px solid red;
@@ -53,8 +81,8 @@ html, body {
 }
 
 #morseButton {
-  width: 200px !important;
-  height: 200px;
+  width: 100px !important;
+  height: 100px;
   margin: 30px;
   background: goldenrod;
   border-radius: 50%;
