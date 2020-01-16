@@ -1,5 +1,5 @@
 import React, {useContext} from "react"
-import {GameModeContext} from "../gameContext"
+import {GameModeContext} from "../contexts/gameContext"
 
 function ModePicker() {
 

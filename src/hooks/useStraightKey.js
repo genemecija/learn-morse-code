@@ -1,12 +1,15 @@
-import {useState, useEffect} from 'react'
+import {useEffect, useContext} from 'react'
+import {MorseBufferContext} from '../contexts/morseBufferContext'
 import config from '../config.json'
 
 // STRAIGHT KEY TELEGRAPH
 
-function useTelegraph(mode = 'practice') {
+function useStraightKey(mode = 'practice') {
 
-    const [morseCharBuffer, setMorseCharBuffer] = useState('') // e.g. '-..'
-    const [morseWords, setMorseWords] = useState([]) // e.g. [['-..','.','-,'], ['...','---','...']]
+    const {morseCharBuffer, setMorseCharBuffer, morseWords, setMorseWords} = useContext(MorseBufferContext)
+    // const [morseCharBuffer, setMorseCharBuffer] = useState('') // e.g. '-..'
+    // const [morseWords, setMorseWords] = useState([]) // e.g. [['-..','.','-,'], ['...','---','...']]
+    
 
     let charTimer = 0
     let charTime = 0
@@ -18,7 +21,7 @@ function useTelegraph(mode = 'practice') {
     const ditMaxTime = config.practiceSpeed.normal
     const letterGapMinTime = ditMaxTime*3
     const wordGapMaxTime = ditMaxTime*7
-    const morseHistorySize = 5
+    const morseHistorySize = config.historySize
 
     // Tone Setup
     let AudioContext = window.AudioContext || window.webkitAudioContext || false
@@ -169,6 +172,11 @@ function useTelegraph(mode = 'practice') {
         return function cleanup() {
             document.removeEventListener('keydown', handleInputStart)
             document.removeEventListener('keyup', handleInputEnd)
+            const morseButton = document.getElementById('morseButton')
+            morseButton.removeEventListener('mousedown', handleInputStart)
+            morseButton.removeEventListener('touchstart', handleInputStart)
+            morseButton.removeEventListener('mouseup', handleInputEnd)
+            morseButton.removeEventListener('touchend', handleInputEnd)
             clearHistory()
         }
         // eslint-disable-next-line
@@ -199,4 +207,4 @@ function useTelegraph(mode = 'practice') {
     return {morseCharBuffer, morseWords, clearHistory, setMorseCharBuffer, setMorseWords}
 }
 
-export default useTelegraph
+export default useStraightKey

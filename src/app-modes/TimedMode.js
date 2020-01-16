@@ -1,13 +1,13 @@
 import React from 'react';
 import '../css/App.css';
-import useTelegraph from '../hooks/useTelegraph';
+import useStraightKey from '../hooks/useStraightKey';
 import GameClock from '../components/GameClock'
 import MorseBufferDisplay from '../components/MorseBufferDisplay'
 import MorseDisplay from '../components/MorseDisplay'
 
 function TimedMode() {
 
-    const {morseCharBuffer, morseWords} = useTelegraph('timed')
+    const {morseCharBuffer, morseWords} = useStraightKey('timed')
     
     console.log('TimedMode.js rendered')
     

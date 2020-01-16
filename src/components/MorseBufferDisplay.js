@@ -3,7 +3,7 @@ import DitDahDisplay from "./DitDahDisplay"
 import morseCode from '../data/morse-reverse.json'
 
 function MorseBufferDisplay(props) {
-    
+
     let ditDahs = props.buffer.split('').map((ditdah,index) => <DitDahDisplay key={index} dd={ditdah} />)
 
     let alphanumeric = ''

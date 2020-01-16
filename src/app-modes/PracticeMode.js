@@ -1,23 +1,28 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import '../css/App.css';
-// import useTelegraph from '../hooks/useTelegraph';
-import usePaddleTelegraph from '../hooks/usePaddleTelegraph';
+import useStraightKey from '../hooks/useStraightKey';
+import useElectronicKey from '../hooks/useElectronicKey';
 import MorseBufferDisplay from '../components/MorseBufferDisplay'
 import MorseDisplay from '../components/MorseDisplay'
+import {MorseBufferContext} from "../contexts/morseBufferContext"
+
 
 function PracticeMode() {
-    console.log("PracticeMode loaded");
-    // const {morseCharBuffer, morseWords, clearHistory} = useTelegraph('practice')
-    usePaddleTelegraph()
     
+    // const [telegraphType, setTelegraphType] = useState('electronic')
+
+    // useElectronicKey()
+    // const {morseCharBuffer, morseWords, clearHistory} = useStraightKey('practice')
+    const {morseCharBuffer, morseWords} = useContext(MorseBufferContext)
+
     return (
         <>
-            {/* <MorseBufferDisplay buffer={morseCharBuffer} /><br/>
-            <MorseDisplay morseWords={morseWords} /><br/> */}
-            <button onClick={console.log('hi')}>Clear Morse History</button><br/>
+            <MorseBufferDisplay buffer={morseCharBuffer} /><br/>
+            <MorseDisplay morseWords={morseWords} /><br/>
         </>
     );
 
+  
 }
 
 export default React.memo(PracticeMode);

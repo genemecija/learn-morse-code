@@ -1,7 +1,7 @@
 import React from 'react';
 import '../css/App.css';
 import morseCode from '../data/morse-reverse.json'
-import useTelegraph from '../hooks/useTelegraph';
+import useStraightKey from '../hooks/useStraightKey';
 // import ChallengeWord from '../components/ChallengeWord'
 // import MorseBufferDisplay from '../components/MorseBufferDisplay'
 // import ChallengeDisplay from '../components/ChallengeDisplay';
@@ -11,7 +11,7 @@ function ChallengeMode() { console.log("ChallengeMode loaded");
 
     let word = "morse"
     
-    const {morseCharBuffer} = useTelegraph('challenge')
+    const {morseCharBuffer} = useStraightKey('challenge')
     // console.log('morseCharBuffer:', morseCharBuffer, '|END');
     let morseLetters = morseCharBuffer.split('_').filter(l => l !== '')
     // console.log('morseLetters:', morseLetters, morseLetters.length);

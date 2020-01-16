@@ -7,5 +7,6 @@
         "slow": 40,
         "normal": 24,
         "fast": 17
-    }
+    },
+    "historySize": 5
 }
