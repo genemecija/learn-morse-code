@@ -1,24 +1,19 @@
-import React, {Component} from "react"
+import React, {useState} from "react"
 
 const KeyTypeContext = React.createContext()
 
-class KeyTypeContextProvider extends Component {
-    state = {
-        keyType: "electronic"
-    }
-    
-    switchKeyType = (type) => {
-        this.setState({keyType: type})
-    }
+function KeyTypeContextProvider(props) {
 
-    render() {
-        return (
-            <KeyTypeContext.Provider value={{keyType: this.state.keyType, switchKeyType: this.switchKeyType}}>
-                {this.props.children}
-            </KeyTypeContext.Provider>
-        )
-    }
+    const [keyType, setKeyType] = useState('straight')
 
+    return (
+        <KeyTypeContext.Provider value={{
+            keyType: keyType,
+            setKeyType: setKeyType
+            }}>
+            {props.children}
+        </KeyTypeContext.Provider>
+    )
 }
 
 export {KeyTypeContextProvider, KeyTypeContext}

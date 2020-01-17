@@ -5,7 +5,7 @@ import config from '../config.json'
 // STRAIGHT KEY TELEGRAPH
 
 function useStraightKey() {
-
+    
     const {morseCharBuffer, setMorseCharBuffer, morseWords, setMorseWords} = useContext(MorseBufferContext)
 
     let charTimer = 0
@@ -172,7 +172,7 @@ function useStraightKey() {
             morseButton.removeEventListener('touchstart', handleInputStart)
             morseButton.removeEventListener('mouseup', handleInputEnd)
             morseButton.removeEventListener('touchend', handleInputEnd)
-            clearHistory()
+            // clearHistory()
         }
         // eslint-disable-next-line
     }, [])
@@ -198,7 +198,6 @@ function useStraightKey() {
         // eslint-disable-next-line
     }, [morseCharBuffer])
 
-    return {morseCharBuffer, morseWords, clearHistory, setMorseCharBuffer, setMorseWords}
 }
 
 export default useStraightKey

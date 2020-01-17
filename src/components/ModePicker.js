@@ -11,7 +11,7 @@ function ModePicker() {
     }
 
     return (
-            <div id="mode-picker">
+            <div id="gameMode" className="mode-picker">
                 <button id="practice" onClick={handleClick}>
                     Practice
                 </button>

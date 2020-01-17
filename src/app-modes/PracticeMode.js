@@ -7,22 +7,15 @@ import MorseBufferDisplay from '../components/MorseBufferDisplay'
 import MorseDisplay from '../components/MorseDisplay'
 
 
-export default React.memo(function PracticeMode(props) {
-    console.log("COMPONENT LOADED: PracticeMode");
-    const {keyType} = useContext(KeyTypeContext)
-    // const [telegraphType, setTelegraphType] = useState('electronic')
+export default React.memo(function PracticeMode() {
 
-    // useElectronicKey()
-    // const {morseCharBuffer, morseWords, clearHistory} = useStraightKey('practice')
-    
+    const {keyType} = useContext(KeyTypeContext)
 
     return (
         <>
             {keyType === "straight" ? <StraightKey /> : <ElectronicKey />}
             <MorseBufferDisplay /><br/>
             <MorseDisplay /><br/>
-            {/* <MorseBufferDisplay buffer={morseCharBuffer} /><br/>
-            <MorseDisplay morseWords={morseWords} /><br/> */}
         </>
     );
 

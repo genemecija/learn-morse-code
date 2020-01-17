@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import './css/App.css';
 import MorseButton from './components/MorseButton'
 import ModePicker from './components/ModePicker'
@@ -15,11 +15,20 @@ import TimedMode from './app-modes/TimedMode'
 import ChallengeMode from './app-modes/ChallengeMode'
 import Legend from './components/Legend';
 
+import MorseBufferDisplay from './components/MorseBufferDisplay'
+import MorseDisplay from './components/MorseDisplay'
+
 function App() {
 
     console.log('App.js rendered')
     const {gameMode} = useContext(GameModeContext)
     
+    // const [keyType, setKeyType] = useState('straight')
+    
+    // function handleClick(e) {
+    //     setKeyType(e.target.id)
+    //     console.log("Switched to " + e.target.id + " keyType.");
+    // }
 
     return (
         <div id='main-content'>
@@ -29,8 +38,8 @@ function App() {
                 <KeyTypeContextProvider>
                     <KeyTypePicker />
                     {gameMode === 'practice' && <PracticeMode />}
-                    {gameMode === 'timed' && <TimedMode />}
-                    {gameMode === 'challenge' && <ChallengeMode />}
+                    {/* {gameMode === 'timed' && <TimedMode />}
+                    {gameMode === 'challenge' && <ChallengeMode />} */}
                 </KeyTypeContextProvider>
             </MorseBufferContextProvider>
             

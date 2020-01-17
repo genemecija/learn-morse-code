@@ -238,7 +238,6 @@ function useElectronicKey() {
             else { stopDepressSyncTimer() }
         }
     }
-
     
     function startDepressSyncTimer() {
         depressSyncTimerRunning = true
@@ -264,40 +263,11 @@ function useElectronicKey() {
         }
         depressSyncTime = 0
     }
-    // function startGapTimer() {
-    //     gapTime = 0
-    //     gapTimer = setInterval(() => {
-    //         gapTime += 1
-
-    //         // Gap between words
-    //         if (mode === 'practice' && gapTime >= wordGapMaxTime) {
-    //             setMorseCharBuffer(prev => prev + '/')
-    //             clearInterval(gapTimer)
-    //             gapTimer = 0
-    //             gapTime = 0
-    //         }
-    //         if (mode === 'challenge' && gapTime >= letterGapMinTime) {
-    //             setMorseCharBuffer(prev => prev + '_')
-    //             clearInterval(gapTimer)
-    //             gapTimer = 0
-    //             gapTime = 0
-    //         }
-    //     }, timingUnit);
-    // }
     function checkGapBetweenInputs() {
         // Check Gap between letters
-        // console.log('gapTime', gapTime);
-        // console.log('letterGapMinTime', letterGapMinTime);
-        // console.log('wordGapMaxTime', wordGapMaxTime);
         if (gapTime >= letterGapMinTime && gapTime < wordGapMaxTime) {
-            // console.log('letterGapMinTime <= gapTime < wordGapMaxTime:',letterGapMinTime, gapTime, wordGapMaxTime);
-            // if (mode === 'practice') {
                 setMorseCharBuffer(prev => prev + ' ')
                 gapTime = 0
-            // } else if (mode === 'challenge') {
-            //     console.log("UNDERSCORE ADDED");
-            //     setMorseCharBuffer(prev => prev + '_')
-            // }
             clearInterval(gapTimer)
             gapTimer = 0
         }
@@ -341,7 +311,6 @@ function useElectronicKey() {
         // eslint-disable-next-line
     }, [morseCharBuffer])
 
-    return {morseCharBuffer, morseWords, setMorseCharBuffer, setMorseWords}
 }
 
 export default useElectronicKey
