@@ -4,10 +4,10 @@ const KeyTypeContext = React.createContext()
 
 class KeyTypeContextProvider extends Component {
     state = {
-        keyType: "straight"
+        keyType: "electronic"
     }
     
-    switchKeyType = (type = "straight") => {
+    switchKeyType = (type) => {
         this.setState({keyType: type})
     }
 

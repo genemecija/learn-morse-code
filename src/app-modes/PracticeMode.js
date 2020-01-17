@@ -1,28 +1,30 @@
 import React, {useContext} from 'react';
 import '../css/App.css';
-import useStraightKey from '../hooks/useStraightKey';
-import useElectronicKey from '../hooks/useElectronicKey';
+import {KeyTypeContext} from "../contexts/keyTypeContext"
+import StraightKey from '../components/StraightKey'
+import ElectronicKey from '../components/ElectronicKey'
 import MorseBufferDisplay from '../components/MorseBufferDisplay'
 import MorseDisplay from '../components/MorseDisplay'
-import {MorseBufferContext} from "../contexts/morseBufferContext"
 
 
-function PracticeMode() {
-    
+export default React.memo(function PracticeMode(props) {
+    console.log("COMPONENT LOADED: PracticeMode");
+    const {keyType} = useContext(KeyTypeContext)
     // const [telegraphType, setTelegraphType] = useState('electronic')
 
     // useElectronicKey()
     // const {morseCharBuffer, morseWords, clearHistory} = useStraightKey('practice')
-    const {morseCharBuffer, morseWords} = useContext(MorseBufferContext)
+    
 
     return (
         <>
-            <MorseBufferDisplay buffer={morseCharBuffer} /><br/>
-            <MorseDisplay morseWords={morseWords} /><br/>
+            {keyType === "straight" ? <StraightKey /> : <ElectronicKey />}
+            <MorseBufferDisplay /><br/>
+            <MorseDisplay /><br/>
+            {/* <MorseBufferDisplay buffer={morseCharBuffer} /><br/>
+            <MorseDisplay morseWords={morseWords} /><br/> */}
         </>
     );
 
   
-}
-
-export default React.memo(PracticeMode);
+})

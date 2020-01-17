@@ -8,12 +8,8 @@ import KeyTypePicker from './components/KeyTypePicker'
 // import GameClock from "./components/GameClock"
 // import ChallengeWord from "./components/ChallengeWord"
 import {GameModeContext} from "./contexts/gameContext"
-import {KeyTypeContext} from "./contexts/keyTypeContext"
+import {KeyTypeContextProvider} from "./contexts/keyTypeContext"
 import {MorseBufferContextProvider} from "./contexts/morseBufferContext"
-
-import StraightKey from './components/StraightKey'
-import ElectronicKey from './components/ElectronicKey'
-
 import PracticeMode from './app-modes/PracticeMode';
 import TimedMode from './app-modes/TimedMode'
 import ChallengeMode from './app-modes/ChallengeMode'
@@ -23,22 +19,19 @@ function App() {
 
     console.log('App.js rendered')
     const {gameMode} = useContext(GameModeContext)
-    const {keyType} = useContext(KeyTypeContext)
     
 
     return (
         <div id='main-content'>
             <Legend />
             <ModePicker />
-            <KeyTypePicker />
-        
             <MorseBufferContextProvider>
-                {keyType === "straight" && <StraightKey />}
-                {keyType === "electronic" && <ElectronicKey />}
-            
-                {gameMode === 'practice' && <PracticeMode />}
-                {gameMode === 'timed' && <TimedMode />}
-                {gameMode === 'challenge' && <ChallengeMode />}
+                <KeyTypeContextProvider>
+                    <KeyTypePicker />
+                    {gameMode === 'practice' && <PracticeMode />}
+                    {gameMode === 'timed' && <TimedMode />}
+                    {gameMode === 'challenge' && <ChallengeMode />}
+                </KeyTypeContextProvider>
             </MorseBufferContextProvider>
             
             <MorseButton />

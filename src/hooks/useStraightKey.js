@@ -4,12 +4,9 @@ import config from '../config.json'
 
 // STRAIGHT KEY TELEGRAPH
 
-function useStraightKey(mode = 'practice') {
+function useStraightKey() {
 
     const {morseCharBuffer, setMorseCharBuffer, morseWords, setMorseWords} = useContext(MorseBufferContext)
-    // const [morseCharBuffer, setMorseCharBuffer] = useState('') // e.g. '-..'
-    // const [morseWords, setMorseWords] = useState([]) // e.g. [['-..','.','-,'], ['...','---','...']]
-    
 
     let charTimer = 0
     let charTime = 0
@@ -45,8 +42,6 @@ function useStraightKey(mode = 'practice') {
 
     function handleInputStart(event) {
         event.preventDefault()
-
-        console.log('ditmaxtime:', ditMaxTime);
 
         if (isRunning) {
             return
@@ -130,18 +125,18 @@ function useStraightKey(mode = 'practice') {
             gapTime += 1
 
             // Gap between words
-            if (mode === 'practice' && gapTime >= wordGapMaxTime) {
+            if (gapTime >= wordGapMaxTime) {
                 setMorseCharBuffer(prev => prev + '/')
                 clearInterval(gapTimer)
                 gapTimer = 0
                 gapTime = 0
             }
-            if (mode === 'challenge' && gapTime >= letterGapMinTime) {
-                setMorseCharBuffer(prev => prev + '_')
-                clearInterval(gapTimer)
-                gapTimer = 0
-                gapTime = 0
-            }
+            // if (mode === 'challenge' && gapTime >= letterGapMinTime) {
+            //     setMorseCharBuffer(prev => prev + '_')
+            //     clearInterval(gapTimer)
+            //     gapTimer = 0
+            //     gapTime = 0
+            // }
         }, timingUnit);
     }
 
@@ -149,11 +144,11 @@ function useStraightKey(mode = 'practice') {
         // Check Gap between letters
 
         if (gapTime >= letterGapMinTime && gapTime < wordGapMaxTime) {
-            if (mode === 'practice') {
+            // if (mode === 'practice') {
                 setMorseCharBuffer(prev => prev + ' ')
-            } else if (mode === 'challenge') {
-                setMorseCharBuffer(prev => prev + '_')
-            }
+            // } else if (mode === 'challenge') {
+            //     setMorseCharBuffer(prev => prev + '_')
+            // }
             clearInterval(gapTimer)
             gapTimer = 0
         }
@@ -184,7 +179,7 @@ function useStraightKey(mode = 'practice') {
 
     useEffect(() => {
         // PRACTICE MODE
-        if (morseCharBuffer.slice(-1) === '/' && mode === 'practice') {
+        if (morseCharBuffer.slice(-1) === '/') {
             // Remove forward slash
             let val = morseCharBuffer.slice(0,morseCharBuffer.length-1)
 
@@ -195,7 +190,6 @@ function useStraightKey(mode = 'practice') {
             }
             setMorseCharBuffer('')
         }
-        console.log('morseCharBuffer:', morseCharBuffer, '|');
         // CHALLENGE MODE: leave forward slash there; to be parsed by ChallengeDisplay.js
         // else if (morseCharBuffer.slice(-1) === '/' && mode === 'challenge') {
             

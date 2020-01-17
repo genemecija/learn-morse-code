@@ -1,10 +1,10 @@
 import {useEffect, useContext} from 'react'
-import config from '../config.json'
 import {MorseBufferContext} from '../contexts/morseBufferContext'
+import config from '../config.json'
 
-// SINGLE/DUAL LEVER TELEGRAPH - Iambic A
+// ELECTRONIC KEY TELEGRAPH - Iambic A
 
-function useElectronicKey(mode = 'practice') {
+function useElectronicKey() {
 
     const {morseCharBuffer, setMorseCharBuffer, morseWords, setMorseWords} = useContext(MorseBufferContext)
 
@@ -55,11 +55,7 @@ function useElectronicKey(mode = 'practice') {
         context = null
     }
     let frequency = config.frequency
-    
-    let toneTimer = 0
-    let toneTime = 0
-    let start = 0
-    let end = 0
+
     
     // Promisify playing Dits and Dahs
     function play(ditDah) {
@@ -268,26 +264,26 @@ function useElectronicKey(mode = 'practice') {
         }
         depressSyncTime = 0
     }
-    function startGapTimer() {
-        gapTime = 0
-        gapTimer = setInterval(() => {
-            gapTime += 1
+    // function startGapTimer() {
+    //     gapTime = 0
+    //     gapTimer = setInterval(() => {
+    //         gapTime += 1
 
-            // Gap between words
-            if (mode === 'practice' && gapTime >= wordGapMaxTime) {
-                setMorseCharBuffer(prev => prev + '/')
-                clearInterval(gapTimer)
-                gapTimer = 0
-                gapTime = 0
-            }
-            if (mode === 'challenge' && gapTime >= letterGapMinTime) {
-                setMorseCharBuffer(prev => prev + '_')
-                clearInterval(gapTimer)
-                gapTimer = 0
-                gapTime = 0
-            }
-        }, timingUnit);
-    }
+    //         // Gap between words
+    //         if (mode === 'practice' && gapTime >= wordGapMaxTime) {
+    //             setMorseCharBuffer(prev => prev + '/')
+    //             clearInterval(gapTimer)
+    //             gapTimer = 0
+    //             gapTime = 0
+    //         }
+    //         if (mode === 'challenge' && gapTime >= letterGapMinTime) {
+    //             setMorseCharBuffer(prev => prev + '_')
+    //             clearInterval(gapTimer)
+    //             gapTimer = 0
+    //             gapTime = 0
+    //         }
+    //     }, timingUnit);
+    // }
     function checkGapBetweenInputs() {
         // Check Gap between letters
         // console.log('gapTime', gapTime);
@@ -295,13 +291,13 @@ function useElectronicKey(mode = 'practice') {
         // console.log('wordGapMaxTime', wordGapMaxTime);
         if (gapTime >= letterGapMinTime && gapTime < wordGapMaxTime) {
             // console.log('letterGapMinTime <= gapTime < wordGapMaxTime:',letterGapMinTime, gapTime, wordGapMaxTime);
-            if (mode === 'practice') {
+            // if (mode === 'practice') {
                 setMorseCharBuffer(prev => prev + ' ')
                 gapTime = 0
-            } else if (mode === 'challenge') {
-                console.log("UNDERSCORE ADDED");
-                setMorseCharBuffer(prev => prev + '_')
-            }
+            // } else if (mode === 'challenge') {
+            //     console.log("UNDERSCORE ADDED");
+            //     setMorseCharBuffer(prev => prev + '_')
+            // }
             clearInterval(gapTimer)
             gapTimer = 0
         }
@@ -326,7 +322,7 @@ function useElectronicKey(mode = 'practice') {
 
     useEffect(() => {
         // PRACTICE MODE
-        if (morseCharBuffer.slice(-1) === '/' && mode === 'practice') {
+        if (morseCharBuffer.slice(-1) === '/') {
             // Remove forward slash
             let val = morseCharBuffer.slice(0,morseCharBuffer.length-1)
 
@@ -344,6 +340,8 @@ function useElectronicKey(mode = 'practice') {
 
         // eslint-disable-next-line
     }, [morseCharBuffer])
+
+    return {morseCharBuffer, morseWords, setMorseCharBuffer, setMorseWords}
 }
 
 export default useElectronicKey

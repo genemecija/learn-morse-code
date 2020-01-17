@@ -4,14 +4,11 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {GameModeContextProvider} from "./contexts/gameContext"
-import {KeyTypeContextProvider} from "./contexts/keyTypeContext"
 
 
 ReactDOM.render(
     <GameModeContextProvider>
-        <KeyTypeContextProvider>
-            <App />
-        </KeyTypeContextProvider>
+        <App />
     </GameModeContextProvider>
     , document.getElementById('root'));
 

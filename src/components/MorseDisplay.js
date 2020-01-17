@@ -1,8 +1,13 @@
-import React from "react"
+import React, {useContext} from "react"
 import MorseCard from './MorseCard'
+import {MorseBufferContext} from "../contexts/morseBufferContext"
 
-function MorseDisplay(props) {
-    let morseCards = props.morseWords.map((word,index) => <MorseCard key={index} morse={word} />)
+function MorseDisplay() {
+    console.log('COMPONENT LOAD: MorseDisplay');
+
+    const {morseWords} = useContext(MorseBufferContext)
+    console.log('morseWords', morseWords);
+    let morseCards = morseWords.map((word,index) => <MorseCard key={index} morse={word} />)
     
     return (
         <div id="morseDisplay">
@@ -11,4 +16,4 @@ function MorseDisplay(props) {
     )
 }
 
-export default React.memo(MorseDisplay)
+export default MorseDisplay

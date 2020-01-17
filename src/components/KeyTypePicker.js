@@ -1,7 +1,7 @@
 import React, {useContext} from "react"
 import {KeyTypeContext} from "../contexts/keyTypeContext"
 
-function KeyTypePicker() {
+export default React.memo(function KeyTypePicker() {
 
     const {switchKeyType} = useContext(KeyTypeContext)
 
@@ -20,6 +20,4 @@ function KeyTypePicker() {
                 </button>
             </div>
     )
-}
-
-export default React.memo(KeyTypePicker)
+})

@@ -8,10 +8,10 @@ function MorseBufferContextProvider(props) {
     //     morseWords: []
     //     //morseCharBuffer, morseWords, clearHistory, setMorseCharBuffer, setMorseWords
     // }
-
+    console.log('MorseBufferContextProvider LOADED');
     const [morseCharBuffer, setMorseCharBuffer] = useState('')
     const [morseWords, setMorseWords] = useState([])
-
+    
     
     // switchKeyType = (type = "straight") => {
     //     this.setState({keyType: type})

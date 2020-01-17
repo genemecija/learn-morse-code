@@ -1,17 +1,20 @@
-import React from "react"
+import React, { useContext } from "react"
 import DitDahDisplay from "./DitDahDisplay"
 import morseCode from '../data/morse-reverse.json'
+import {MorseBufferContext} from "../contexts/morseBufferContext"
 
-function MorseBufferDisplay(props) {
+function MorseBufferDisplay() {
+    const {morseCharBuffer} = useContext(MorseBufferContext)
 
-    let ditDahs = props.buffer.split('').map((ditdah,index) => <DitDahDisplay key={index} dd={ditdah} />)
+    console.log('COMPONENT LOAD: MorseBufferDisplay');
+    let ditDahs = morseCharBuffer.split('').map((ditdah,index) => <DitDahDisplay key={index} dd={ditdah} />)
 
     let alphanumeric = ''
-    // if (props.buffer.includes(' ')) {
+    // if (morseCharBuffer.includes(' ')) {
 
-    let letters = props.buffer.split(' ')
+    let letters = morseCharBuffer.split(' ')
 
-    if (props.buffer === '') {}
+    if (morseCharBuffer === '') {}
     else {
         for (let i in letters) {
             if (letters[i] === ' ') {
@@ -27,8 +30,8 @@ function MorseBufferDisplay(props) {
         }
     }
     
-    // } else if (props.buffer !== '') {
-    //     let letters = props.buffer
+    // } else if (morseCharBuffer !== '') {
+    //     let letters = morseCharBuffer
     //     if (morseCode[letters] === undefined) {
     //         alphanumeric += '[?]'
     //     } else {
@@ -50,4 +53,4 @@ function MorseBufferDisplay(props) {
     )
 }
 
-export default React.memo(MorseBufferDisplay)
+export default MorseBufferDisplay
