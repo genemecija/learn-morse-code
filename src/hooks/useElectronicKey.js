@@ -1,8 +1,8 @@
-import {useEffect, useContext, useState} from 'react'
+import {useEffect, useContext} from 'react'
 import config from '../config.json'
 import {MorseBufferContext} from '../contexts/morseBufferContext'
 
-// SINGLE/DUAL LEVER TELEGRAPH
+// SINGLE/DUAL LEVER TELEGRAPH - Iambic A
 
 function useElectronicKey(mode = 'practice') {
 
@@ -10,9 +10,10 @@ function useElectronicKey(mode = 'practice') {
 
     const timingUnit = config.timingUnit
     
-    const ditMaxTime = 85 // ditMaxTime * 0.365 to get ms, e.g. 85 * 0.365 ~= 31ms
-    const letterGapMinTime = ditMaxTime*0.36*3 //config.practiceSpeed.normal*3
-    const wordGapMaxTime = ditMaxTime*0.36*7 // config.practiceSpeed.normal*7
+    let ratio = 0.2
+    const ditMaxTime = 80 // ditMaxTime * 0.365 to get ms, e.g. 85 * 0.365 ~= 31ms
+    const letterGapMinTime = ditMaxTime*ratio*3 //config.practiceSpeed.normal*3
+    const wordGapMaxTime = ditMaxTime*ratio*7 // config.practiceSpeed.normal*7
     const morseHistorySize = config.historySize
 
     let leftIsPressed = false
@@ -24,10 +25,23 @@ function useElectronicKey(mode = 'practice') {
     let depressSyncTime
     let depressSyncTimer
     let depressSyncTimerRunning = false
-    let gapTimer = 0
     let gapTime = 0
+    let gapTimer = 0
+    // let gapTimerRunning = false
     let paddlesReleasedSimultaneously = false
 
+    // function consoleLogVars() {
+    //     // Log variables (Debug tool)
+    //     console.log('<VARS>');
+    //     console.log('leftIsPressed', leftIsPressed);
+    //     console.log('rightIsPressed', rightIsPressed);
+    //     console.log('queueRunning', queueRunning);
+    //     console.log('queue', queue);
+    //     console.log('pressedFirst', pressedFirst);
+    //     console.log('gapTime', gapTime);
+    //     console.log('paddlesReleasedSimultaneously', paddlesReleasedSimultaneously);
+    //     console.log('</VARS>');
+    // };
 
     let currentPromise = Promise.resolve()
 
@@ -60,9 +74,6 @@ function useElectronicKey(mode = 'practice') {
             o.frequency.value = frequency
             o.type = "sine"
             o.onended = () => {
-                // clearInterval(toneTimer)
-                // end = toneTime
-                // console.log('duration:', end-start);
                 resolve()
             }
             
@@ -93,14 +104,31 @@ function useElectronicKey(mode = 'practice') {
 
         return new Promise(function(resolve) {
             if (ditDah === '.' || ditDah === '-') {
+
+                clearInterval(gapTimer)
+                checkGapBetweenInputs()
+                setMorseCharBuffer(prev => prev + ditDah)
+
                 play(ditDah)
                 .then(setTimeout(() => {
-                    setMorseCharBuffer(prev => prev + ditDah)
+                    
+                    // START GAP TIMER
+                    // gapTimerRunning = true
+                    gapTimer = setInterval(() => {
+                        gapTime += 1
+
+                        if (gapTime >= wordGapMaxTime) {
+                            setMorseCharBuffer(prev => prev + '/')
+                            clearInterval(gapTimer)
+                            gapTimer = 0
+                            gapTime = 0
+                        }
+                    }, timingUnit)
+                    
                     resolve();
                 }, delay))
             } else {
                 setTimeout(() => {
-                    // setMorseCharBuffer(prev => prev + ' ')
                     resolve();
                 }, delay)
             }
@@ -110,7 +138,7 @@ function useElectronicKey(mode = 'practice') {
     function executeQueue() {
         let localQueue = queue
         
-        // Set waitTime to completion of queue (including spaces)
+        // Set waitTime to completion of queue (ditDah time + following silences)
         let waitTime = 0
         for (let i in localQueue) {
             if (localQueue[i] === '.') {
@@ -119,39 +147,42 @@ function useElectronicKey(mode = 'practice') {
                 waitTime += ditMaxTime*4
             }
         }
-
-        queueRunning = true
-
-        // Wait till completion of queue to execute
-        const clear = setTimeout(() => {
+        
+        // Cleanup
+        function cleanup() {
             queueRunning = false
             queue = []
-            checkPressed()
+            sendPressedToQueue() // Check if anything still pressed down on queue finish
+        }
+        
+        // Wait till completion of queue to execute
+        const clear = setTimeout(() => {
+            cleanup()
         }, waitTime)
         
         // Execute queue
+        queueRunning = true
         for (let i = 0; i < localQueue.length; i++) {
+            if (paddlesReleasedSimultaneously === true) {
+                localQueue.pop()
+                clearTimeout(clear)
+                cleanup()
+            }
             currentPromise = currentPromise.then(() => {
                 return playWithSpaces(localQueue[i])
             });
         }
     }
 
-    function checkPressed() {
+    function sendPressedToQueue() {
         if (leftIsPressed && rightIsPressed) {
-            // queue.push(queue.slice(-1) === '.' ? '-' : '.')
             if (pressedFirst === 'left') {
                 queue.push('-')
-                if (!paddlesReleasedSimultaneously) {
-                    // console.log('one');
-                    queue.push('.')
-                }
+                pressedFirst = null
+
             } else {
                 queue.push('.')
-                if (!paddlesReleasedSimultaneously) {
-                    // console.log('two');
-                    queue.push('-')
-                }
+                queue.push('-')
             }
         }
         else if (leftIsPressed && !rightIsPressed) {
@@ -168,29 +199,9 @@ function useElectronicKey(mode = 'practice') {
     function handleInputStart(event) {
         event.preventDefault()
 
-        // if (event.keyCode === 188) {
-        //     depressSyncTimeout()
-        // }
-        // else if (event.keyCode === 190) {
-        //     testQueue.push('.')
-        //     console.log('testQueue', testQueue);
-        // }
-        // else if (event.target.id === 'morseButton') {
-        //     testQueue = []
-        // }
-        // while (testQueue.length > 0) {
-        //     currentPromise = currentPromise.then(() => {
-        //         return playWithSpaces(testQueue.shift())
-        //     })
-        // }
         paddlesReleasedSimultaneously = false
 
         if (event.repeat) { return }
-
-        // if (!leftIsPressed && !rightIsPressed) {
-        //     clearInterval(gapTimer)
-        //     checkGapBetweenInputs()
-        // }
 
         if (event.keyCode === 188) {
             leftIsPressed = true
@@ -198,7 +209,7 @@ function useElectronicKey(mode = 'practice') {
 
             // Prevent further input if queue is executing
             if (!queueRunning) {
-                checkPressed()
+                sendPressedToQueue()
             }
         }
         else if (event.keyCode === 190) {
@@ -207,8 +218,28 @@ function useElectronicKey(mode = 'practice') {
 
             // Prevent further input if queue is executing
             if (!queueRunning) {
-                checkPressed()
+                sendPressedToQueue()
             }
+        }
+    }
+
+    function handleInputEnd(event) {
+        event.preventDefault()
+
+        if (event.keyCode === 188) {
+            leftIsPressed = false
+            
+            if (pressedFirst === 'left') { pressedFirst = null }
+
+            if (!depressSyncTimerRunning) { startDepressSyncTimer() }
+            else { stopDepressSyncTimer() }
+        }
+        if (event.keyCode === 190) {
+            rightIsPressed = false
+            if (pressedFirst === 'right') { pressedFirst = null }
+
+            if (!depressSyncTimerRunning) { startDepressSyncTimer() }
+            else { stopDepressSyncTimer() }
         }
     }
 
@@ -259,10 +290,14 @@ function useElectronicKey(mode = 'practice') {
     }
     function checkGapBetweenInputs() {
         // Check Gap between letters
+        // console.log('gapTime', gapTime);
+        // console.log('letterGapMinTime', letterGapMinTime);
+        // console.log('wordGapMaxTime', wordGapMaxTime);
         if (gapTime >= letterGapMinTime && gapTime < wordGapMaxTime) {
-            console.log('letterGapMinTime <= gapTime < wordGapMaxTime:',letterGapMinTime, gapTime, wordGapMaxTime);
+            // console.log('letterGapMinTime <= gapTime < wordGapMaxTime:',letterGapMinTime, gapTime, wordGapMaxTime);
             if (mode === 'practice') {
                 setMorseCharBuffer(prev => prev + ' ')
+                gapTime = 0
             } else if (mode === 'challenge') {
                 console.log("UNDERSCORE ADDED");
                 setMorseCharBuffer(prev => prev + '_')
@@ -270,27 +305,6 @@ function useElectronicKey(mode = 'practice') {
             clearInterval(gapTimer)
             gapTimer = 0
         }
-    }
-
-    function handleInputEnd(event) {
-        event.preventDefault()
-
-        if (event.keyCode === 188) {
-            leftIsPressed = false
-            
-            if (pressedFirst === 'left') { pressedFirst = null }
-
-            if (!depressSyncTimerRunning) { startDepressSyncTimer() }
-            else { stopDepressSyncTimer() }
-        }
-        else if (event.keyCode === 190) {
-            rightIsPressed = false
-            if (pressedFirst === 'right') { pressedFirst = null }
-
-            if (!depressSyncTimerRunning) { startDepressSyncTimer() }
-            else { stopDepressSyncTimer() }
-        }
-        // if (!leftIsPressed && !rightIsPressed ) { startGapTimer() }
     }
 
     useEffect(() => {
