@@ -1,6 +1,5 @@
 import React from "react"
 import morseCode from '../data/morse-code.json'
-
 import useMorsePlayer from "../hooks/useMorsePlayer";
 
 function Legend() {

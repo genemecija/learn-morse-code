@@ -16,6 +16,18 @@ export default React.memo(function KeyTypePicker() {
             } else { button.classList.remove('selected')}
         })
 
+        if (e.target.id === 'electronic') {
+            document.querySelector('#morseButton').classList.add('showPaddles')
+            document.querySelector('.paddle').classList.add('showPaddles')
+            document.querySelector('.paddle#left').classList.add('showPaddles')
+            document.querySelector('.paddle#right').classList.add('showPaddles')
+        } else {
+            document.querySelector('#morseButton').classList.remove('showPaddles')
+            document.querySelector('.paddle').classList.remove('showPaddles')
+            document.querySelector('.paddle#left').classList.remove('showPaddles')
+            document.querySelector('.paddle#right').classList.remove('showPaddles')
+        }
+
     }
 
     return (

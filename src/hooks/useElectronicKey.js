@@ -11,7 +11,7 @@ function useElectronicKey() {
     const timingUnit = config.timingUnit
     
     let ratio = .2
-    const ditMaxTime =  85 // ditMaxTime * 0.365 to get ms, e.g. 85 * 0.365 ~= 31ms
+    const ditMaxTime = 85 // ditMaxTime * 0.365 to get ms, e.g. 85 * 0.365 ~= 31ms
 
     const letterGapMinTime = ditMaxTime*ratio*3 //config.practiceSpeed.normal*3
     const wordGapMaxTime = ditMaxTime*ratio*7 // config.practiceSpeed.normal*7
@@ -63,6 +63,10 @@ function useElectronicKey() {
     let start = 0
     let end = 0
 
+    function getTime() {
+        let today = new Date()
+        return today.getMilliseconds()
+    }
 
     // Promisify playing Dits and Dahs
     function play(ditDah) {
@@ -93,6 +97,8 @@ function useElectronicKey() {
             setTimeout(() => {
                 g.gain.setTargetAtTime(0.0001, context.currentTime, 0.001)
                 o.stop(context.currentTime + 0.05)
+                
+                // start = getTime()
             }, playDuration)
             // g.gain.setTargetAtTime(0.0001, startTime + playDuration/1000, 0.001)
             // o.stop(startTime + playDuration/1000 + 0.05)
@@ -116,11 +122,11 @@ function useElectronicKey() {
                 checkGapBetweenInputs()
                 setMorseCharBuffer(prev => prev + ditDah)
 
-                // for troubleshooting ditDah length in milliseconds
-                toneTimer = setInterval(() => {
-                    toneTime += 1
-                }, 1);
-                start = toneTime
+                // // for troubleshooting ditDah length in milliseconds
+                // toneTimer = setInterval(() => {
+                //     toneTime += 1
+                // }, 1);
+                // start = toneTime
 
                 
                 play(ditDah)
@@ -143,7 +149,7 @@ function useElectronicKey() {
             } else {
                 setTimeout(() => {
                     resolve();
-                }, delay)
+                }, ditMaxTime*3)
             }
         });
     }
@@ -211,12 +217,17 @@ function useElectronicKey() {
 
     function handleInputStart(event) {
         event.preventDefault()
+        
+        if (event.keyCode === 71) {
+            queue = ['.',' ','.',' ','.',' ','.',' ','-','.','.','.','.','-']
+            executeQueue()
+        }
 
         paddlesReleasedSimultaneously = false
 
         if (event.repeat) { return }
 
-        if (event.keyCode === 188) {
+        if (event.keyCode === 188 || event.target.id === "left") {
             leftIsPressed = true
             if (!rightIsPressed) { pressedFirst = 'left'}
 
@@ -225,7 +236,7 @@ function useElectronicKey() {
                 sendPressedToQueue()
             }
         }
-        else if (event.keyCode === 190) {
+        else if (event.keyCode === 190 || event.target.id === "right") {
             rightIsPressed = true
             if (!leftIsPressed) { pressedFirst = 'right'}
 
@@ -239,7 +250,7 @@ function useElectronicKey() {
     function handleInputEnd(event) {
         event.preventDefault()
 
-        if (event.keyCode === 188) {
+        if (event.keyCode === 188 || event.target.id === "left") {
             leftIsPressed = false
             
             if (pressedFirst === 'left') { pressedFirst = null }
@@ -247,7 +258,7 @@ function useElectronicKey() {
             if (!depressSyncTimerRunning) { startDepressSyncTimer() }
             else { stopDepressSyncTimer() }
         }
-        if (event.keyCode === 190) {
+        if (event.keyCode === 190 || event.target.id === "right") {
             rightIsPressed = false
             if (pressedFirst === 'right') { pressedFirst = null }
 
@@ -298,15 +309,33 @@ function useElectronicKey() {
         document.addEventListener('keydown', handleInputStart)
         document.addEventListener('keyup', handleInputEnd)
 
-        const morseButton = document.getElementById('morseButton')
-        morseButton.addEventListener('mousedown', handleInputStart)
-        morseButton.addEventListener('touchstart', handleInputStart)
-        morseButton.addEventListener('mouseup', handleInputEnd)
-        morseButton.addEventListener('touchend', handleInputEnd)
+        const paddleLeft = document.querySelector('.paddle#left')
+        const paddleRight = document.querySelector('.paddle#right')
+        
+        paddleLeft.addEventListener('mousedown', handleInputStart)
+        paddleLeft.addEventListener('touchstart', handleInputStart)
+        paddleLeft.addEventListener('mouseup', handleInputEnd)
+        paddleLeft.addEventListener('touchend', handleInputEnd)
+        paddleRight.addEventListener('mousedown', handleInputStart)
+        paddleRight.addEventListener('touchstart', handleInputStart)
+        paddleRight.addEventListener('mouseup', handleInputEnd)
+        paddleRight.addEventListener('touchend', handleInputEnd)
 
         return function cleanup() {
             document.removeEventListener('keydown', handleInputStart)
             document.removeEventListener('keyup', handleInputEnd)
+
+            const paddleLeft = document.querySelector('.paddle#left')
+            const paddleRight = document.querySelector('.paddle#right')
+            
+            paddleLeft.removeEventListener('mousedown', handleInputStart)
+            paddleLeft.removeEventListener('touchstart', handleInputStart)
+            paddleLeft.removeEventListener('mouseup', handleInputEnd)
+            paddleLeft.removeEventListener('touchend', handleInputEnd)
+            paddleRight.removeEventListener('mousedown', handleInputStart)
+            paddleRight.removeEventListener('touchstart', handleInputStart)
+            paddleRight.removeEventListener('mouseup', handleInputEnd)
+            paddleRight.removeEventListener('touchend', handleInputEnd)
         }
         // eslint-disable-next-line
     }, [])

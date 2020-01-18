@@ -1,6 +1,6 @@
 import React, {useContext, useState} from 'react';
 import './css/App.css';
-import MorseButton from './components/MorseButton'
+import MorseButtons from './components/MorseButtons'
 import ModePicker from './components/ModePicker'
 import KeyTypePicker from './components/KeyTypePicker'
 // import MorseDisplay from './components/MorseDisplay'
@@ -40,10 +40,10 @@ function App() {
                     {gameMode === 'practice' && <PracticeMode />}
                     {/* {gameMode === 'timed' && <TimedMode />}
                     {gameMode === 'challenge' && <ChallengeMode />} */}
+                    <MorseButtons />
                 </KeyTypeContextProvider>
             </MorseBufferContextProvider>
             
-            <MorseButton />
         </div>
     );
 

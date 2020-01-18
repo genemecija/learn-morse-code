@@ -53,8 +53,9 @@ html, body {
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
-  -ms-flex-item-align: center;
-      align-self: center;
+  position: absolute;
+  -ms-flex-item-align: left;
+      align-self: left;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
 }
@@ -86,14 +87,61 @@ html, body {
 }
 
 #morseButton {
-  width: 100px !important;
+  width: 100px;
   height: 100px;
   margin: 30px;
-  background: goldenrod;
-  border-radius: 50%;
+  border-radius: 50px;
   -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
       align-self: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-transition: all 500ms ease-in-out;
+  transition: all 500ms ease-in-out;
+}
+
+#morseButton.showPaddles {
+  width: 239px;
+  background: transparent;
+  -webkit-box-shadow: 0px 0px 0px transparent;
+          box-shadow: 0px 0px 0px transparent;
+}
+
+.paddle {
+  width: 100px;
+  height: 100px;
+  background: goldenrod;
+  margin: 0px;
+  border: 0px;
+  -webkit-transition: all 500ms ease-in-out;
+  transition: all 500ms ease-in-out;
+}
+
+.paddle#left {
+  border-radius: 50px 0 0 50px;
+}
+
+.paddle#right {
+  border-radius: 0 50px 50px 0;
+}
+
+.paddle.showPaddles {
+  width: 250px;
+  height: 100px;
+}
+
+.paddle#left.showPaddles {
+  margin-right: 7px;
+}
+
+.paddle#right.showPaddles {
+  margin-left: 7px;
 }
 
 #challengeWord {

@@ -50,7 +50,10 @@ function useStraightKey() {
 
             // TODO:
             // Make sure only one touchdown event registered at a time
-            if ((event.keyCode !== 32 && event.target.id !== "morseButton") ||
+            if ((event.keyCode !== 32 &&
+                event.target.id !== "morseButton" &&
+                event.target.id !== "left" &&
+                event.target.id !== "right") ||
             (event.repeat)) {
                 return
             }
@@ -77,8 +80,6 @@ function useStraightKey() {
     }
     
     function startCharTimer() {
-        // Reset character time
-        charTime = 0
         // Start Character Timer
         charTimer = setInterval(() => {
             charTime += 1
@@ -90,14 +91,15 @@ function useStraightKey() {
 
         if (isRunning) {
             isRunning = false
-            if ((event.keyCode !== 32 && event.target.id !== "morseButton") ||
+            if ((event.keyCode !== 32 &&
+                event.target.id !== "morseButton" &&
+                event.target.id !== "left" &&
+                event.target.id !== "right") ||
             (event.repeat)) {
                 return
             }
-            // if (event.repeat) {
-            //     return
-            // }
     
+            console.log('charTime:', charTime);
             if (charTime <= ditMaxTime) {
                 setMorseCharBuffer(prev => prev + '.')
             } else {
@@ -117,6 +119,7 @@ function useStraightKey() {
     function stopCharTimer() {    
         clearInterval(charTimer)
         charTimer = 0
+        charTime = 0
     }
 
     function startGapTimer() {
@@ -161,20 +164,43 @@ function useStraightKey() {
         document.addEventListener('keydown', handleInputStart)
         document.addEventListener('keyup', handleInputEnd)
 
-        const morseButton = document.getElementById('morseButton')
-        morseButton.addEventListener('mousedown', handleInputStart)
-        morseButton.addEventListener('touchstart', handleInputStart)
-        morseButton.addEventListener('mouseup', handleInputEnd)
-        morseButton.addEventListener('touchend', handleInputEnd)
+        // const morseButton = document.getElementById('morseButton')
+        // morseButton.addEventListener('mousedown', handleInputStart)
+        // morseButton.addEventListener('touchstart', handleInputStart)
+        // morseButton.addEventListener('mouseup', handleInputEnd)
+        // morseButton.addEventListener('touchend', handleInputEnd)
+        const paddleLeft = document.querySelector('.paddle#left')
+        const paddleRight = document.querySelector('.paddle#right')
+        
+        paddleLeft.addEventListener('mousedown', handleInputStart)
+        paddleLeft.addEventListener('touchstart', handleInputStart)
+        paddleLeft.addEventListener('mouseup', handleInputEnd)
+        paddleLeft.addEventListener('touchend', handleInputEnd)
+        paddleRight.addEventListener('mousedown', handleInputStart)
+        paddleRight.addEventListener('touchstart', handleInputStart)
+        paddleRight.addEventListener('mouseup', handleInputEnd)
+        paddleRight.addEventListener('touchend', handleInputEnd)
 
         return function cleanup() {
             document.removeEventListener('keydown', handleInputStart)
             document.removeEventListener('keyup', handleInputEnd)
-            const morseButton = document.getElementById('morseButton')
-            morseButton.removeEventListener('mousedown', handleInputStart)
-            morseButton.removeEventListener('touchstart', handleInputStart)
-            morseButton.removeEventListener('mouseup', handleInputEnd)
-            morseButton.removeEventListener('touchend', handleInputEnd)
+
+            const paddleLeft = document.querySelector('.paddle#left')
+            const paddleRight = document.querySelector('.paddle#right')
+            
+            paddleLeft.removeEventListener('mousedown', handleInputStart)
+            paddleLeft.removeEventListener('touchstart', handleInputStart)
+            paddleLeft.removeEventListener('mouseup', handleInputEnd)
+            paddleLeft.removeEventListener('touchend', handleInputEnd)
+            paddleRight.removeEventListener('mousedown', handleInputStart)
+            paddleRight.removeEventListener('touchstart', handleInputStart)
+            paddleRight.removeEventListener('mouseup', handleInputEnd)
+            paddleRight.removeEventListener('touchend', handleInputEnd)
+            // const morseButton = document.getElementById('morseButton')
+            // morseButton.removeEventListener('mousedown', handleInputStart)
+            // morseButton.removeEventListener('touchstart', handleInputStart)
+            // morseButton.removeEventListener('mouseup', handleInputEnd)
+            // morseButton.removeEventListener('touchend', handleInputEnd)
             // clearHistory()
         }
         // eslint-disable-next-line
