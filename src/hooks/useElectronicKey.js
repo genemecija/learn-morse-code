@@ -10,8 +10,9 @@ function useElectronicKey() {
 
     const timingUnit = config.timingUnit
     
-    let ratio = 0.2
-    const ditMaxTime = 80 // ditMaxTime * 0.365 to get ms, e.g. 85 * 0.365 ~= 31ms
+    let ratio = .2
+    const ditMaxTime =  85 // ditMaxTime * 0.365 to get ms, e.g. 85 * 0.365 ~= 31ms
+
     const letterGapMinTime = ditMaxTime*ratio*3 //config.practiceSpeed.normal*3
     const wordGapMaxTime = ditMaxTime*ratio*7 // config.practiceSpeed.normal*7
     const morseHistorySize = config.historySize
@@ -57,6 +58,12 @@ function useElectronicKey() {
     let frequency = config.frequency
 
     
+    let toneTimer = 0
+    let toneTime = 0
+    let start = 0
+    let end = 0
+
+
     // Promisify playing Dits and Dahs
     function play(ditDah) {
         let playDuration = ((ditDah === '.') ? ditMaxTime : ditMaxTime*3)
@@ -82,17 +89,21 @@ function useElectronicKey() {
             g.connect(context.destination)
             
             o.start(startTime)
-
-            // // for troubleshooting ditDah length in milliseconds
-            // toneTimer = setInterval(() => {
-            //     toneTime += 1
-            // }, 1);
-            // start = toneTime
-            // // </>
-
-            g.gain.setTargetAtTime(0.0001, startTime + playDuration/1000, 0.001)
-            o.stop(startTime + playDuration/1000 + 0.05)
+            
+            setTimeout(() => {
+                g.gain.setTargetAtTime(0.0001, context.currentTime, 0.001)
+                o.stop(context.currentTime + 0.05)
+            }, playDuration)
+            // g.gain.setTargetAtTime(0.0001, startTime + playDuration/1000, 0.001)
+            // o.stop(startTime + playDuration/1000 + 0.05)
         })
+    }
+
+    function stopToneTimer() {
+        clearInterval(toneTimer)
+        end = toneTime
+        console.log('toneTime:', start, end);
+        toneTime = 0
     }
 
     function playWithSpaces(ditDah) {
@@ -105,14 +116,19 @@ function useElectronicKey() {
                 checkGapBetweenInputs()
                 setMorseCharBuffer(prev => prev + ditDah)
 
+                // for troubleshooting ditDah length in milliseconds
+                toneTimer = setInterval(() => {
+                    toneTime += 1
+                }, 1);
+                start = toneTime
+
+                
                 play(ditDah)
                 .then(setTimeout(() => {
-                    
                     // START GAP TIMER
-                    // gapTimerRunning = true
                     gapTimer = setInterval(() => {
                         gapTime += 1
-
+    
                         if (gapTime >= wordGapMaxTime) {
                             setMorseCharBuffer(prev => prev + '/')
                             clearInterval(gapTimer)
@@ -122,7 +138,8 @@ function useElectronicKey() {
                     }, timingUnit)
                     
                     resolve();
-                }, delay))
+                }, delay)
+                )
             } else {
                 setTimeout(() => {
                     resolve();
@@ -264,6 +281,10 @@ function useElectronicKey() {
         depressSyncTime = 0
     }
     function checkGapBetweenInputs() {
+        console.log('ditMaxTime', ditMaxTime)
+        console.log('gapTime', gapTime);
+        console.log('letterGapMinTime', letterGapMinTime);
+        console.log('wordGapMaxTime', wordGapMaxTime);
         // Check Gap between letters
         if (gapTime >= letterGapMinTime && gapTime < wordGapMaxTime) {
                 setMorseCharBuffer(prev => prev + ' ')

@@ -41,8 +41,12 @@ function useMorsePlayer() {
             g.connect(context.destination)
             o.start(startTime)
             
-            g.gain.setTargetAtTime(0.0001, startTime + length/1000, 0.001)
-            o.stop(startTime + length/1000 + 0.05)
+            // g.gain.setTargetAtTime(0.0001, startTime + length/1000, 0.001)
+            // o.stop(startTime + length/1000 + 0.05)
+            setTimeout(() => {
+                g.gain.setTargetAtTime(0.0001, context.currentTime, 0.009)
+                o.stop(context.currentTime + 0.05)
+            }, length)
         })
     }
 

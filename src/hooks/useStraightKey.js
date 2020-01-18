@@ -109,7 +109,7 @@ function useStraightKey() {
             
             if (o.context.state === 'running') {
                 g.gain.setTargetAtTime(0.0001, context.currentTime, 0.001)
-                o.stop(context.currentTime + 0.01)
+                o.stop(context.currentTime + 0.05)
             }
         } else { return }
     }
@@ -142,7 +142,10 @@ function useStraightKey() {
 
     function checkGapBetweenInputs() {
         // Check Gap between letters
-
+        console.log('ditMaxTime', ditMaxTime)
+        console.log('gapTime', gapTime);
+        console.log('letterGapMinTime', letterGapMinTime);
+        console.log('wordGapMaxTime', wordGapMaxTime);
         if (gapTime >= letterGapMinTime && gapTime < wordGapMaxTime) {
             // if (mode === 'practice') {
                 setMorseCharBuffer(prev => prev + ' ')

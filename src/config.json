@@ -2,7 +2,7 @@
     "timingUnit": 1,
     "ditMaxTime": 60,
     "mainVolume": 0.2,
-    "frequency": 700.0,
+    "frequency": 550.0,
     "practiceSpeed": {
         "slow": 40,
         "normal": 24,
