@@ -7,17 +7,17 @@ import ChallengeWord from '../components/ChallengeWord'
 import ChallengeBufferDisplay from '../components/ChallengeBufferDisplay';
 import { MorseBufferContext } from '../contexts/morseBufferContext';
 
-function ChallengeMode() { console.log("ChallengeMode loaded");
+function ChallengeMode() {
+    console.log("ChallengeMode loaded");
 
     let word = "morse"
     
-    const {morseCharBuffer} = useContext(MorseBufferContext)
+    const {morseCharBuffer, setMorseCharBuffer} = useContext(MorseBufferContext)
 
 
-    // console.log('morseCharBuffer:', morseCharBuffer, '|END');
-    let morseLetters = morseCharBuffer.split('_').filter(l => l !== '')
-    // console.log('morseLetters:', morseLetters, morseLetters.length);
     let challengeLetters = word.split('')
+    let morseLetters = morseCharBuffer.split('_').filter(l => l !== '')
+    
     let correctIndexes = []
     let incorrectIndex = null
     
@@ -57,7 +57,7 @@ function ChallengeMode() { console.log("ChallengeMode loaded");
     return (
         <>
             <ChallengeWord word={spannedWord} />
-            <ChallengeBufferDisplay incorrectIndex={incorrectIndex} />
+            <ChallengeBufferDisplay incorrectIndex={incorrectIndex} morseLetters={morseLetters} setMorseCharBuffer={setMorseCharBuffer} />
             <button onClick={() => console.log(morseCharBuffer)}>morseCharBuffer</button>
         </>
     );

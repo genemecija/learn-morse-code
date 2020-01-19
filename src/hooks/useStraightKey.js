@@ -6,7 +6,6 @@ import config from '../config.json'
 // STRAIGHT KEY TELEGRAPH
 
 function useStraightKey(gameMode) {
-    console.log(gameMode);
     
     const {morseCharBuffer, setMorseCharBuffer, morseWords, setMorseWords} = useContext(MorseBufferContext)
     // const {gameMode} = useContext(GameModeContext)
@@ -130,9 +129,9 @@ function useStraightKey(gameMode) {
         gapTimer = setInterval(() => {
             gapTime += 1
 
+            console.log('useStraightKey-gameMode:',gameMode);
             // Gap between words
             if (gameMode === 'practice' && gapTime >= wordGapMaxTime) {
-                console.log('practice');
                 setMorseCharBuffer(prev => prev + '/')
                 clearInterval(gapTimer)
                 gapTimer = 0

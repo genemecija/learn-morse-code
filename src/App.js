@@ -41,7 +41,7 @@ function App() {
             <MorseBufferContextProvider>
                     <KeyTypePicker />
                     {keyType === "straight" ?
-                        <StraightKey key={gameMode} /> : <ElectronicKey key={gameMode} />}
+                        <StraightKey gameMode={gameMode} /> : <ElectronicKey gameMode={gameMode} />}
                     {gameMode === 'practice' &&
                         <>
                             <PracticeMode /><br/>
