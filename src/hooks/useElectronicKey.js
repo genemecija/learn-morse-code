@@ -4,7 +4,7 @@ import config from '../config.json'
 
 // ELECTRONIC KEY TELEGRAPH - Iambic A
 
-function useElectronicKey() {
+function useElectronicKey(gameMode) {
 
     const {morseCharBuffer, setMorseCharBuffer, morseWords, setMorseWords} = useContext(MorseBufferContext)
 
@@ -309,33 +309,27 @@ function useElectronicKey() {
         document.addEventListener('keydown', handleInputStart)
         document.addEventListener('keyup', handleInputEnd)
 
-        const paddleLeft = document.querySelector('.paddle#left')
-        const paddleRight = document.querySelector('.paddle#right')
-        
-        paddleLeft.addEventListener('mousedown', handleInputStart)
-        paddleLeft.addEventListener('touchstart', handleInputStart)
-        paddleLeft.addEventListener('mouseup', handleInputEnd)
-        paddleLeft.addEventListener('touchend', handleInputEnd)
-        paddleRight.addEventListener('mousedown', handleInputStart)
-        paddleRight.addEventListener('touchstart', handleInputStart)
-        paddleRight.addEventListener('mouseup', handleInputEnd)
-        paddleRight.addEventListener('touchend', handleInputEnd)
+        const paddles = document.querySelectorAll('.paddle')
+        paddles.forEach(paddle => {
+            paddle.addEventListener('mousedown', handleInputStart)
+            paddle.addEventListener('touchstart', handleInputStart)
+            paddle.addEventListener('mouseout', handleInputEnd)
+            paddle.addEventListener('mouseup', handleInputEnd)
+            paddle.addEventListener('touchend', handleInputEnd)
+        })
 
         return function cleanup() {
             document.removeEventListener('keydown', handleInputStart)
             document.removeEventListener('keyup', handleInputEnd)
 
-            const paddleLeft = document.querySelector('.paddle#left')
-            const paddleRight = document.querySelector('.paddle#right')
-            
-            paddleLeft.removeEventListener('mousedown', handleInputStart)
-            paddleLeft.removeEventListener('touchstart', handleInputStart)
-            paddleLeft.removeEventListener('mouseup', handleInputEnd)
-            paddleLeft.removeEventListener('touchend', handleInputEnd)
-            paddleRight.removeEventListener('mousedown', handleInputStart)
-            paddleRight.removeEventListener('touchstart', handleInputStart)
-            paddleRight.removeEventListener('mouseup', handleInputEnd)
-            paddleRight.removeEventListener('touchend', handleInputEnd)
+            const paddles = document.querySelectorAll('.paddle')
+            paddles.forEach(paddle => {
+                paddle.removeEventListener('mousedown', handleInputStart)
+                paddle.removeEventListener('touchstart', handleInputStart)
+                paddle.removeEventListener('mouseout', handleInputEnd)
+                paddle.removeEventListener('mouseup', handleInputEnd)
+                paddle.removeEventListener('touchend', handleInputEnd)
+            })
         }
         // eslint-disable-next-line
     }, [])

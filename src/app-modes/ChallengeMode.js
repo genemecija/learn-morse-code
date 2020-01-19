@@ -1,17 +1,19 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import '../css/App.css';
 import morseCode from '../data/morse-reverse.json'
-import useStraightKey from '../hooks/useStraightKey';
-// import ChallengeWord from '../components/ChallengeWord'
+import ChallengeWord from '../components/ChallengeWord'
 // import MorseBufferDisplay from '../components/MorseBufferDisplay'
 // import ChallengeDisplay from '../components/ChallengeDisplay';
 import ChallengeBufferDisplay from '../components/ChallengeBufferDisplay';
+import { MorseBufferContext } from '../contexts/morseBufferContext';
 
 function ChallengeMode() { console.log("ChallengeMode loaded");
 
     let word = "morse"
     
-    const {morseCharBuffer} = useStraightKey('challenge')
+    const {morseCharBuffer} = useContext(MorseBufferContext)
+
+
     // console.log('morseCharBuffer:', morseCharBuffer, '|END');
     let morseLetters = morseCharBuffer.split('_').filter(l => l !== '')
     // console.log('morseLetters:', morseLetters, morseLetters.length);
@@ -22,6 +24,10 @@ function ChallengeMode() { console.log("ChallengeMode loaded");
     morseLetters.forEach((morseLetter, index) => {
         let morseAlpha = morseCode[morseLetter]
         let challengeLetter = challengeLetters[index].toLowerCase()
+
+        console.log('morseAlpha', morseAlpha);
+        console.log('morseLetter', morseLetter);
+        console.log('challengeLetter', challengeLetter);
 
         if (morseAlpha === challengeLetter) {
             correctIndexes.push(index)
@@ -50,8 +56,8 @@ function ChallengeMode() { console.log("ChallengeMode loaded");
 
     return (
         <>
-            <div id="challengeWord">{spannedWord}</div>
-            <ChallengeBufferDisplay buffer={morseCharBuffer.slice(0,-1).replace(/_/g, ' ')} incorrectIndex={incorrectIndex} />
+            <ChallengeWord word={spannedWord} />
+            <ChallengeBufferDisplay incorrectIndex={incorrectIndex} />
             <button onClick={() => console.log(morseCharBuffer)}>morseCharBuffer</button>
         </>
     );

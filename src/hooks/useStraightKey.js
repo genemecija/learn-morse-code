@@ -1,12 +1,15 @@
 import {useEffect, useContext} from 'react'
 import {MorseBufferContext} from '../contexts/morseBufferContext'
 import config from '../config.json'
+// import {GameModeContext} from '../contexts/gameContext'
 
 // STRAIGHT KEY TELEGRAPH
 
-function useStraightKey() {
+function useStraightKey(gameMode) {
+    console.log(gameMode);
     
     const {morseCharBuffer, setMorseCharBuffer, morseWords, setMorseWords} = useContext(MorseBufferContext)
+    // const {gameMode} = useContext(GameModeContext)
 
     let charTimer = 0
     let charTime = 0
@@ -99,7 +102,7 @@ function useStraightKey() {
                 return
             }
     
-            console.log('charTime:', charTime);
+            // console.log('charTime:', charTime);
             if (charTime <= ditMaxTime) {
                 setMorseCharBuffer(prev => prev + '.')
             } else {
@@ -128,33 +131,34 @@ function useStraightKey() {
             gapTime += 1
 
             // Gap between words
-            if (gapTime >= wordGapMaxTime) {
+            if (gameMode === 'practice' && gapTime >= wordGapMaxTime) {
+                console.log('practice');
                 setMorseCharBuffer(prev => prev + '/')
                 clearInterval(gapTimer)
                 gapTimer = 0
                 gapTime = 0
             }
-            // if (mode === 'challenge' && gapTime >= letterGapMinTime) {
-            //     setMorseCharBuffer(prev => prev + '_')
-            //     clearInterval(gapTimer)
-            //     gapTimer = 0
-            //     gapTime = 0
-            // }
+            if (gameMode === 'challenge' && gapTime >= letterGapMinTime) {
+                setMorseCharBuffer(prev => prev + '_')
+                clearInterval(gapTimer)
+                gapTimer = 0
+                gapTime = 0
+            }
         }, timingUnit);
     }
 
     function checkGapBetweenInputs() {
         // Check Gap between letters
-        console.log('ditMaxTime', ditMaxTime)
-        console.log('gapTime', gapTime);
-        console.log('letterGapMinTime', letterGapMinTime);
-        console.log('wordGapMaxTime', wordGapMaxTime);
+        // console.log('ditMaxTime', ditMaxTime)
+        // console.log('gapTime', gapTime);
+        // console.log('letterGapMinTime', letterGapMinTime);
+        // console.log('wordGapMaxTime', wordGapMaxTime);
         if (gapTime >= letterGapMinTime && gapTime < wordGapMaxTime) {
-            // if (mode === 'practice') {
+            if (gameMode === 'practice') {
                 setMorseCharBuffer(prev => prev + ' ')
-            // } else if (mode === 'challenge') {
-            //     setMorseCharBuffer(prev => prev + '_')
-            // }
+            } else if (gameMode === 'challenge') {
+                setMorseCharBuffer(prev => prev + '_')
+            }
             clearInterval(gapTimer)
             gapTimer = 0
         }
@@ -164,43 +168,27 @@ function useStraightKey() {
         document.addEventListener('keydown', handleInputStart)
         document.addEventListener('keyup', handleInputEnd)
 
-        // const morseButton = document.getElementById('morseButton')
-        // morseButton.addEventListener('mousedown', handleInputStart)
-        // morseButton.addEventListener('touchstart', handleInputStart)
-        // morseButton.addEventListener('mouseup', handleInputEnd)
-        // morseButton.addEventListener('touchend', handleInputEnd)
-        const paddleLeft = document.querySelector('.paddle#left')
-        const paddleRight = document.querySelector('.paddle#right')
-        
-        paddleLeft.addEventListener('mousedown', handleInputStart)
-        paddleLeft.addEventListener('touchstart', handleInputStart)
-        paddleLeft.addEventListener('mouseup', handleInputEnd)
-        paddleLeft.addEventListener('touchend', handleInputEnd)
-        paddleRight.addEventListener('mousedown', handleInputStart)
-        paddleRight.addEventListener('touchstart', handleInputStart)
-        paddleRight.addEventListener('mouseup', handleInputEnd)
-        paddleRight.addEventListener('touchend', handleInputEnd)
+        const paddles = document.querySelectorAll('.paddle')
+        paddles.forEach(paddle => {
+            paddle.addEventListener('mousedown', handleInputStart)
+            paddle.addEventListener('touchstart', handleInputStart)
+            paddle.addEventListener('mouseout', handleInputEnd)
+            paddle.addEventListener('mouseup', handleInputEnd)
+            paddle.addEventListener('touchend', handleInputEnd)
+        })
 
         return function cleanup() {
             document.removeEventListener('keydown', handleInputStart)
             document.removeEventListener('keyup', handleInputEnd)
 
-            const paddleLeft = document.querySelector('.paddle#left')
-            const paddleRight = document.querySelector('.paddle#right')
-            
-            paddleLeft.removeEventListener('mousedown', handleInputStart)
-            paddleLeft.removeEventListener('touchstart', handleInputStart)
-            paddleLeft.removeEventListener('mouseup', handleInputEnd)
-            paddleLeft.removeEventListener('touchend', handleInputEnd)
-            paddleRight.removeEventListener('mousedown', handleInputStart)
-            paddleRight.removeEventListener('touchstart', handleInputStart)
-            paddleRight.removeEventListener('mouseup', handleInputEnd)
-            paddleRight.removeEventListener('touchend', handleInputEnd)
-            // const morseButton = document.getElementById('morseButton')
-            // morseButton.removeEventListener('mousedown', handleInputStart)
-            // morseButton.removeEventListener('touchstart', handleInputStart)
-            // morseButton.removeEventListener('mouseup', handleInputEnd)
-            // morseButton.removeEventListener('touchend', handleInputEnd)
+            const paddles = document.querySelectorAll('.paddle')
+            paddles.forEach(paddle => {
+                paddle.removeEventListener('mousedown', handleInputStart)
+                paddle.removeEventListener('touchstart', handleInputStart)
+                paddle.removeEventListener('mouseout', handleInputEnd)
+                paddle.removeEventListener('mouseup', handleInputEnd)
+                paddle.removeEventListener('touchend', handleInputEnd)
+            })
             // clearHistory()
         }
         // eslint-disable-next-line
@@ -208,7 +196,7 @@ function useStraightKey() {
 
     useEffect(() => {
         // PRACTICE MODE
-        if (morseCharBuffer.slice(-1) === '/') {
+        if (morseCharBuffer.slice(-1) === '/' && gameMode === 'practice') {
             // Remove forward slash
             let val = morseCharBuffer.slice(0,morseCharBuffer.length-1)
 

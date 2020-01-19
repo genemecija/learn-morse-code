@@ -1,10 +1,6 @@
-import React, { useContext } from "react"
-import { KeyTypeContext } from "../contexts/keyTypeContext"
+import React from "react"
 
 export default React.memo(function MorseButtons() {
-
-    const {keyType} = useContext(KeyTypeContext)
-
     return (
         <div id="morseButton">
             <button className="paddle" id="left"></button>

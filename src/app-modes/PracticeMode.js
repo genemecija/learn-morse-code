@@ -4,7 +4,7 @@ import {KeyTypeContext} from "../contexts/keyTypeContext"
 import StraightKey from '../components/StraightKey'
 import ElectronicKey from '../components/ElectronicKey'
 import MorseBufferDisplay from '../components/MorseBufferDisplay'
-import MorseDisplay from '../components/MorseDisplay'
+import MorseHistory from '../components/MorseHistory'
 
 
 export default React.memo(function PracticeMode() {
@@ -13,9 +13,9 @@ export default React.memo(function PracticeMode() {
 
     return (
         <>
-            {keyType === "straight" ? <StraightKey /> : <ElectronicKey />}
+            {/* {keyType === "straight" ? <StraightKey /> : <ElectronicKey />}
             <MorseBufferDisplay /><br/>
-            <MorseDisplay /><br/>
+            <MorseHistory /><br/> */}
         </>
     );
 

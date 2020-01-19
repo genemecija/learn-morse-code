@@ -4,12 +4,16 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {GameModeContextProvider} from "./contexts/gameContext"
+import { KeyTypeContextProvider } from './contexts/keyTypeContext';
 
 
 ReactDOM.render(
-    <GameModeContextProvider>
-        <App />
-    </GameModeContextProvider>
+    <KeyTypeContextProvider>
+        <GameModeContextProvider>
+            <App />
+        </GameModeContextProvider>
+    </KeyTypeContextProvider>
+
     , document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change

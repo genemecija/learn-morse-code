@@ -1,10 +1,7 @@
 import React from "react"
 
-function ChallengeWord(props) {
-
+export default React.memo(function ChallengeWord(props) {
     return (
-        <div id="challengeWord">{spannedWord}</div>
+        <div id="challengeWord">{props.word}</div>
     )
-}
-
-export default React.memo(ChallengeWord)
+})

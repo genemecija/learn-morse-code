@@ -3,7 +3,7 @@ import '../css/App.css';
 import useStraightKey from '../hooks/useStraightKey';
 import GameClock from '../components/GameClock'
 import MorseBufferDisplay from '../components/MorseBufferDisplay'
-import MorseDisplay from '../components/MorseDisplay'
+import MorseHistory from '../components/MorseHistory'
 
 function TimedMode() {
 
@@ -15,7 +15,7 @@ function TimedMode() {
         <>
             <GameClock time={30} />
             <MorseBufferDisplay buffer={morseCharBuffer} /><br/>
-            <MorseDisplay morseWords={morseWords} />
+            <MorseHistory morseWords={morseWords} />
         </>
     );
 

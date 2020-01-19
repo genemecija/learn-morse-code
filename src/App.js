@@ -8,7 +8,7 @@ import KeyTypePicker from './components/KeyTypePicker'
 // import GameClock from "./components/GameClock"
 // import ChallengeWord from "./components/ChallengeWord"
 import {GameModeContext} from "./contexts/gameContext"
-import {KeyTypeContextProvider} from "./contexts/keyTypeContext"
+import {KeyTypeContext} from "./contexts/keyTypeContext"
 import {MorseBufferContextProvider} from "./contexts/morseBufferContext"
 import PracticeMode from './app-modes/PracticeMode';
 import TimedMode from './app-modes/TimedMode'
@@ -16,13 +16,17 @@ import ChallengeMode from './app-modes/ChallengeMode'
 import Legend from './components/Legend';
 
 import MorseBufferDisplay from './components/MorseBufferDisplay'
-import MorseDisplay from './components/MorseDisplay'
+import MorseHistory from './components/MorseHistory'
+import StraightKey from './components/StraightKey';
+import ElectronicKey from './components/ElectronicKey';
 
 function App() {
 
     console.log('App.js rendered')
     const {gameMode} = useContext(GameModeContext)
     
+    const {keyType} = useContext(KeyTypeContext)
+
     // const [keyType, setKeyType] = useState('straight')
     
     // function handleClick(e) {
@@ -35,13 +39,20 @@ function App() {
             <Legend />
             <ModePicker />
             <MorseBufferContextProvider>
-                <KeyTypeContextProvider>
                     <KeyTypePicker />
-                    {gameMode === 'practice' && <PracticeMode />}
-                    {/* {gameMode === 'timed' && <TimedMode />}
-                    {gameMode === 'challenge' && <ChallengeMode />} */}
+                    {keyType === "straight" ?
+                        <StraightKey key={gameMode} /> : <ElectronicKey key={gameMode} />}
+                    {gameMode === 'practice' &&
+                        <>
+                            <PracticeMode /><br/>
+                            <MorseBufferDisplay /><br/>
+                            <MorseHistory /><br/>
+                        </>
+                    }
+                    {/* {gameMode === 'timed' && <TimedMode />} */}
+                    {gameMode === 'challenge' && <ChallengeMode />}
+                    
                     <MorseButtons />
-                </KeyTypeContextProvider>
             </MorseBufferContextProvider>
             
         </div>

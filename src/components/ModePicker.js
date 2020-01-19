@@ -3,10 +3,10 @@ import {GameModeContext} from "../contexts/gameContext"
 
 function ModePicker() {
 
-    const {switchGameModeTo} = useContext(GameModeContext)
+    const {setGameMode} = useContext(GameModeContext)
 
     function handleClick(e) {
-        switchGameModeTo(e.target.id)
+        setGameMode(e.target.id)
         console.log("Switched to " + e.target.id + " mode.");
     }
 

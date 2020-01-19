@@ -1,30 +1,34 @@
-import React from "react"
+import React, { useContext } from "react"
 import DitDahDisplay from "./DitDahDisplay"
 import morseCode from '../data/morse-reverse.json'
+import { MorseBufferContext } from "../contexts/morseBufferContext"
 
 function ChallengeBufferDisplay(props) {
-    // INCREMENTING COUNTER TO MONITOR COMPONENT RELOADING
-    // console.log('ChallengeMode')
-    if (!document.getElementById('counter')) {
-        let counter = document.createElement('h1')
-        let holder = document.createElement('h3')
-        counter.id = 'counter'
-        holder.id = 'holder'
-        counter.innerText = "0"
-        document.querySelector('#main-content').appendChild(counter)
-        document.querySelector('#main-content').appendChild(holder)
-    } else {
-        let num = document.getElementById('counter').innerText
-        document.getElementById('counter').innerText = Number(num) + 1
-        document.getElementById('holder').innerText = props.buffer
 
-    }
-    //
+    // // INCREMENTING COUNTER TO MONITOR COMPONENT RELOADING
+    // // console.log('ChallengeMode')
+    // if (!document.getElementById('counter')) {
+    //     let counter = document.createElement('h1')
+    //     let holder = document.createElement('h3')
+    //     counter.id = 'counter'
+    //     holder.id = 'holder'
+    //     counter.innerText = "0"
+    //     document.querySelector('#main-content').appendChild(counter)
+    //     document.querySelector('#main-content').appendChild(holder)
+    // } else {
+    //     let num = document.getElementById('counter').innerText
+    //     document.getElementById('counter').innerText = Number(num) + 1
+    //     document.getElementById('holder').innerText = buffer
+    // }
+    const {morseCharBuffer} = useContext(MorseBufferContext)
+
+    let buffer = morseCharBuffer.slice(0,-1).replace(/_/g, ' ')
+    console.log('buffer', buffer);
 
     let ditDahs = []
     let incorrectIndex = props.incorrectIndex
     
-    let morseLetters = props.buffer.split(' ')
+    let morseLetters = buffer.split(' ')
     if (incorrectIndex) {
         
         for (let i in morseLetters) {
@@ -37,14 +41,14 @@ function ChallengeBufferDisplay(props) {
             }
         }
     } else {
-        ditDahs = props.buffer.split('').map((ditdah,index) => <DitDahDisplay key={index} dd={ditdah} />)
+        ditDahs = buffer.split('').map((ditdah,index) => <DitDahDisplay key={index} dd={ditdah} />)
     }
 
 
     let alphanumeric = ''
-    let letters = props.buffer.split(' ')
+    let letters = buffer.split(' ')
 
-    if (props.buffer === '') {}
+    if (buffer === '') {}
     else {
         for (let i in letters) {
             if (letters[i] === ' ') {
@@ -60,8 +64,8 @@ function ChallengeBufferDisplay(props) {
         }
     }
     
-    // } else if (props.buffer !== '') {
-    //     let letters = props.buffer
+    // } else if (buffer !== '') {
+    //     let letters = buffer
     //     if (morseCode[letters] === undefined) {
     //         alphanumeric += '[?]'
     //     } else {
