@@ -28,17 +28,25 @@ function ChallengeBufferDisplay(props) {
     let ditDahs = []
     let alphanumeric = ''
     let incorrectIndex = props.incorrectIndex
+    
 
     for (let i in morseLetters) {
         let morseChar = morseLetters[i]
         alphanumeric += morseCode[morseChar]
         
         let cn = ''
-        cn = (incorrectIndex === i) ? 'morseError' : ''
-        ditDahs.push(morseChar)
-        ditDahs.push(' ')
+        console.log('incorrectIndex', incorrectIndex);
+        console.log('i', i);
+
+        cn = (incorrectIndex === Number(i)) ? 'morseError' : ''
+        ditDahs.push(<span className={cn}>{morseChar}</span>)
+        ditDahs.push(<span className='space'>&nbsp;</span>)
     }
-    
+    if (incorrectIndex) {
+        setTimeout(() => {
+            setMorseCharBuffer(prev => prev.slice(0,-1))
+        }, 3000)
+    }
 
     return (
         <div id="challengeBufferDisplay">

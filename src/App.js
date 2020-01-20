@@ -40,18 +40,23 @@ function App() {
             <ModePicker />
             <MorseBufferContextProvider>
                     <KeyTypePicker />
-                    {keyType === "straight" ?
-                        <StraightKey gameMode={gameMode} /> : <ElectronicKey gameMode={gameMode} />}
                     {gameMode === 'practice' &&
                         <>
+                            {keyType === "straight" ?
+                                <StraightKey gameMode={gameMode} /> : <ElectronicKey gameMode={gameMode} />}
                             <PracticeMode /><br/>
                             <MorseBufferDisplay /><br/>
                             <MorseHistory /><br/>
                         </>
                     }
                     {/* {gameMode === 'timed' && <TimedMode />} */}
-                    {gameMode === 'challenge' && <ChallengeMode />}
-                    
+                    {gameMode === 'challenge' &&
+                        <>
+                            {keyType === "straight" ?
+                                <StraightKey gameMode={gameMode} /> : <ElectronicKey gameMode={gameMode} />}
+                            <ChallengeMode />}
+                        </>
+                    }
                     <MorseButtons />
             </MorseBufferContextProvider>
             
