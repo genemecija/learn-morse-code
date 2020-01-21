@@ -6,62 +6,53 @@ import ChallengeBufferDisplay from '../components/ChallengeBufferDisplay';
 import { MorseBufferContext } from '../contexts/morseBufferContext';
 
 
-export default React.memo(function ChallengeMode() {
+export default React.memo(function ChallengeMode(props) {
     
     console.log("ChallengeMode loaded");
     
     let wordList = ['morse', 'code', 'hello', 'gene']
-    let word = wordList.shift()
+    // let word = wordList.shift()
+
+    // let word = props.word
+    let getNextWord = props.getNextWord
+    let word = getNextWord()
     let challengeLetters = word.split('')
     
-    const {morseCharBuffer} = useContext(MorseBufferContext)
+    const {morseCharBuffer, setMorseCharBuffer} = useContext(MorseBufferContext)
     let morseArray = morseCharBuffer.split('_').filter(l => l !== '')
     
     let correctCharIndexes = [] // Indexes of correct letters in Challenge Word
     let incorrectCharIndex = null
     let incorrectMorseIndexes = [] // Indexes of incorrect morse characters in morse character buffer
 
+    let offset = 0
+
     // Iterate through the morse character buffer and compare with each letter of challenge word
-    morseArray.forEach((item, index) => {
+    morseArray.forEach((item, index) => {        
 
-        let offset = incorrectMorseIndexes.length || 0 
+        // if (morseCharBuffer.slice(-1) === '_') { // If end of morse character
+            let morseLetter = morseCode[morseArray[index]]
+            let challengeLetter = challengeLetters[index-offset]
 
-        let morseLetter = morseCode[morseArray[index+offset]]
-        let challengeLetter = challengeLetters[index-offset]
-        if (morseLetter === challengeLetter) {
-            correctCharIndexes.push(index-offset)
-            incorrectCharIndex = null
-        }
-        else {
-            incorrectCharIndex = index-offset
-            incorrectMorseIndexes.push(index+offset)
-        }
-
-        // let offset = incorrectMorseIndexes.length
-
-        // if (morseArray[index + offset]) { // If value exists at index
-
-        //     let morseAlpha = morseCode[morseArray[index + offset]]
-        //     let adjustedIndex = index - offset
-            
-        //     if (challengeLetters[adjustedIndex]) { // If value exists at index
-
-        //         let challengeLetter = challengeLetters[adjustedIndex].toLowerCase()
-
-        //         if (morseCharBuffer.slice(-1) === "_") { // Signifies buffer has complete characters (i.e. no partial characters)
-
-        //             if (morseAlpha === challengeLetter) {
-        //                 correctCharIndexes.push(adjustedIndex)
-        //                 incorrectCharIndex = null
-        //             } else {
-        //                 incorrectMorseIndexes.push(index)
-        //                 incorrectCharIndex = adjustedIndex
-        //             }
-        //         }
-        //     }
-        //     else { word = wordList.shift() }
+            if (morseLetter === challengeLetter) {
+                correctCharIndexes.push(index-offset)
+                incorrectCharIndex = null
+            }
+            else {
+                incorrectCharIndex = index-offset
+                incorrectMorseIndexes.push(index)
+                offset = incorrectMorseIndexes.length
+            }
         // }
     })
+    console.log('morseArray', morseArray);
+
+    // Next word once all correct
+    if (correctCharIndexes.length === challengeLetters.length) {
+        word = wordList.shift()
+
+        setMorseCharBuffer('')
+    }
 
 
     return (

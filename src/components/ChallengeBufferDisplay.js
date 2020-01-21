@@ -34,11 +34,10 @@ function ChallengeBufferDisplay(props) {
         let morseChar = morseArray[i]
 
         // Alphanumeric
-        let alphaClass = (incorrectMorseIndexes.includes(Number(i))) ? 'strike' : ''
+        let alphaClass = (incorrectMorseIndexes.includes(Number(i))) ? 'strike morseError' : ''
         alphanumeric.push(<span className={alphaClass}>{morseCode[morseChar].toUpperCase()}</span>)
         
         // DitDahs
-        console.log('>>> incorrectMorseIndexes', incorrectMorseIndexes);
         let ditDahClass = (incorrectMorseIndexes.includes(Number(i))) ? 'morseError' : ''
         ditDahs.push(<span className={ditDahClass}>{morseChar}</span>)
         ditDahs.push(<span className='space'>&nbsp;</span>)

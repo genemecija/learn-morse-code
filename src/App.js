@@ -34,6 +34,14 @@ function App() {
     //     console.log("Switched to " + e.target.id + " keyType.");
     // }
 
+    let wordList = ['morse', 'code', 'hello', 'gene']
+    let wordIndex = 0
+    function getNextWord() {
+        let word = wordList[wordIndex]
+        wordIndex += 1
+        return word
+    }
+
     return (
         <div id='main-content'>
             <Legend />
@@ -54,7 +62,7 @@ function App() {
                         <>
                             {keyType === "straight" ?
                                 <StraightKey gameMode='challenge' /> : <ElectronicKey gameMode='challenge' />}
-                            <ChallengeMode />
+                            <ChallengeMode getNextWord={getNextWord} />
                         </>
                     }
                     <MorseButtons />

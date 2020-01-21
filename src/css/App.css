@@ -175,6 +175,8 @@ html, body {
 #challengeWord span {
   padding: 4px;
   margin: 1px;
+  -webkit-transition: background 100ms ease-in-out;
+  transition: background 100ms ease-in-out;
 }
 
 .strike {
@@ -216,11 +218,18 @@ html, body {
   font-family: 'Courier';
   font-weight: bold;
   background-color: transparent;
+  margin-bottom: 10px;
 }
 
 #morseBufferDisplay #alphanumeric-container #alphanumeric:first-child, #challengeBufferDisplay #alphanumeric-container #alphanumeric:first-child {
   padding-left: 5px;
   padding-right: 5px;
+}
+
+#morseBufferDisplay #alphanumeric-container #alphanumeric span, #challengeBufferDisplay #alphanumeric-container #alphanumeric span {
+  padding: 4px;
+  -webkit-transition: background 100ms ease-in-out;
+  transition: background 100ms ease-in-out;
 }
 
 #morseBufferDisplay #ditDahs, #challengeBufferDisplay #ditDahs {
@@ -236,6 +245,15 @@ html, body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  font-size: 25px;
+  font-family: 'Courier';
+  font-weight: bold;
+}
+
+#morseBufferDisplay #ditDahs span, #challengeBufferDisplay #ditDahs span {
+  padding: 4px;
+  -webkit-transition: background 100ms ease-in-out;
+  transition: background 100ms ease-in-out;
 }
 
 #morseBufferDisplay #ditDahs .ditDah, #challengeBufferDisplay #ditDahs .ditDah {
@@ -255,9 +273,6 @@ html, body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  font-size: 35px;
-  font-family: 'Courier';
-  font-weight: bold;
 }
 
 .space {
