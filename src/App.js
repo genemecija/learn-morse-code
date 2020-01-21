@@ -43,7 +43,7 @@ function App() {
                     {gameMode === 'practice' &&
                         <>
                             {keyType === "straight" ?
-                                <StraightKey gameMode={gameMode} /> : <ElectronicKey gameMode={gameMode} />}
+                                <StraightKey gameMode='practice' /> : <ElectronicKey gameMode='practice' />}
                             <PracticeMode /><br/>
                             <MorseBufferDisplay /><br/>
                             <MorseHistory /><br/>
@@ -53,8 +53,8 @@ function App() {
                     {gameMode === 'challenge' &&
                         <>
                             {keyType === "straight" ?
-                                <StraightKey gameMode={gameMode} /> : <ElectronicKey gameMode={gameMode} />}
-                            <ChallengeMode />}
+                                <StraightKey gameMode='challenge' /> : <ElectronicKey gameMode='challenge' />}
+                            <ChallengeMode />
                         </>
                     }
                     <MorseButtons />

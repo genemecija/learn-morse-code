@@ -2,66 +2,73 @@ import React, {useContext} from 'react';
 import '../css/App.css';
 import morseCode from '../data/morse-reverse.json'
 import ChallengeWord from '../components/ChallengeWord'
-// import MorseBufferDisplay from '../components/MorseBufferDisplay'
-// import ChallengeDisplay from '../components/ChallengeDisplay';
 import ChallengeBufferDisplay from '../components/ChallengeBufferDisplay';
 import { MorseBufferContext } from '../contexts/morseBufferContext';
 
-function ChallengeMode() {
+
+export default React.memo(function ChallengeMode() {
+    
     console.log("ChallengeMode loaded");
-
-    let word = "morse"
     
-    const {morseCharBuffer, setMorseCharBuffer} = useContext(MorseBufferContext)
-
-
+    let wordList = ['morse', 'code', 'hello', 'gene']
+    let word = wordList.shift()
     let challengeLetters = word.split('')
-    let morseLetters = morseCharBuffer.split('_').filter(l => l !== '')
     
-    let correctIndexes = []
-    let incorrectIndex = null
+    const {morseCharBuffer} = useContext(MorseBufferContext)
+    let morseArray = morseCharBuffer.split('_').filter(l => l !== '')
     
-    morseLetters.forEach((morseLetter, index) => {
-        let morseAlpha = morseCode[morseLetter]
-        let challengeLetter = challengeLetters[index].toLowerCase()
+    let correctCharIndexes = [] // Indexes of correct letters in Challenge Word
+    let incorrectCharIndex = null
+    let incorrectMorseIndexes = [] // Indexes of incorrect morse characters in morse character buffer
 
-        console.log('morseAlpha', morseAlpha);
-        console.log('morseLetter', morseLetter);
-        console.log('challengeLetter', challengeLetter);
+    // Iterate through the morse character buffer and compare with each letter of challenge word
+    morseArray.forEach((item, index) => {
 
-        if (morseAlpha === challengeLetter) {
-            correctIndexes.push(index)
-            // console.log('MATCH', correctIndexes);
+        let offset = incorrectMorseIndexes.length || 0 
+
+        let morseLetter = morseCode[morseArray[index+offset]]
+        let challengeLetter = challengeLetters[index-offset]
+        if (morseLetter === challengeLetter) {
+            correctCharIndexes.push(index-offset)
+            incorrectCharIndex = null
         }
         else {
-            if (morseCharBuffer.slice(-1) === "_") {
-                incorrectIndex = index
-                // console.log('MISMATCH:', incorrectIndex, 'should be', challengeLetter, 'instead of', morseAlpha, '>', morseLetter);
-                // props.setMorseCharBuffer(morseLetters.slice(0,-1).join('_') + '_')
-            }
+            incorrectCharIndex = index-offset
+            incorrectMorseIndexes.push(index+offset)
         }
-    })
-    
-    let spannedWord = challengeLetters.map((letter,index) => {
-        // console.log('correctIndexes',correctIndexes);
-        // console.log('index',index);
-        let className = 'cLetter'
-        className += (correctIndexes.includes(index)) ? ' correct' : ''
-        className += (incorrectIndex === index) ? ' morseError' : ''
-        return (
-            <span key={index} className={className} id={"chal"+index}>{letter}</span>
-        )
+
+        // let offset = incorrectMorseIndexes.length
+
+        // if (morseArray[index + offset]) { // If value exists at index
+
+        //     let morseAlpha = morseCode[morseArray[index + offset]]
+        //     let adjustedIndex = index - offset
+            
+        //     if (challengeLetters[adjustedIndex]) { // If value exists at index
+
+        //         let challengeLetter = challengeLetters[adjustedIndex].toLowerCase()
+
+        //         if (morseCharBuffer.slice(-1) === "_") { // Signifies buffer has complete characters (i.e. no partial characters)
+
+        //             if (morseAlpha === challengeLetter) {
+        //                 correctCharIndexes.push(adjustedIndex)
+        //                 incorrectCharIndex = null
+        //             } else {
+        //                 incorrectMorseIndexes.push(index)
+        //                 incorrectCharIndex = adjustedIndex
+        //             }
+        //         }
+        //     }
+        //     else { word = wordList.shift() }
+        // }
     })
 
 
     return (
         <>
-            <ChallengeWord word={spannedWord} />
-            <ChallengeBufferDisplay incorrectIndex={incorrectIndex} morseLetters={morseLetters} setMorseCharBuffer={setMorseCharBuffer} />
-            <button onClick={() => console.log(morseCharBuffer)}>morseCharBuffer</button>
+            <ChallengeWord word={word} correctCharIndexes={correctCharIndexes} incorrectCharIndex={incorrectCharIndex} />
+            <ChallengeBufferDisplay morseArray={morseArray} incorrectMorseIndexes={incorrectMorseIndexes} />
+            {/* <button onClick={() => console.log(morseCharBuffer)}>morseCharBuffer</button> */}
         </>
     );
-
-}
-
-export default React.memo(ChallengeMode);
+});

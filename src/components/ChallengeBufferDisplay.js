@@ -22,37 +22,38 @@ function ChallengeBufferDisplay(props) {
     // }
     // const {morseCharBuffer, setMorseCharBuffer} = useContext(MorseBufferContext)
 
-    const morseLetters = props.morseLetters
-    console.log('morseLetters', morseLetters);
-    const setMorseCharBuffer = props.setMorseCharBuffer
+    const morseArray = props.morseArray
+    let incorrectMorseIndexes = props.incorrectMorseIndexes
+    console.log('morseArray', morseArray);
+
     let ditDahs = []
-    let alphanumeric = ''
-    let incorrectIndex = props.incorrectIndex
+    let alphanumeric = []
     
 
-    for (let i in morseLetters) {
-        let morseChar = morseLetters[i]
-        alphanumeric += morseCode[morseChar]
-        
-        let cn = ''
-        console.log('incorrectIndex', incorrectIndex);
-        console.log('i', i);
+    for (let i in morseArray) {
+        let morseChar = morseArray[i]
 
-        cn = (incorrectIndex === Number(i)) ? 'morseError' : ''
-        ditDahs.push(<span className={cn}>{morseChar}</span>)
+        // Alphanumeric
+        let alphaClass = (incorrectMorseIndexes.includes(Number(i))) ? 'strike' : ''
+        alphanumeric.push(<span className={alphaClass}>{morseCode[morseChar].toUpperCase()}</span>)
+        
+        // DitDahs
+        console.log('>>> incorrectMorseIndexes', incorrectMorseIndexes);
+        let ditDahClass = (incorrectMorseIndexes.includes(Number(i))) ? 'morseError' : ''
+        ditDahs.push(<span className={ditDahClass}>{morseChar}</span>)
         ditDahs.push(<span className='space'>&nbsp;</span>)
     }
-    if (incorrectIndex) {
-        setTimeout(() => {
-            setMorseCharBuffer(prev => prev.slice(0,-1))
-        }, 3000)
-    }
+    // if (incorrectIndex) {
+    //     setTimeout(() => {
+    //         setMorseCharBuffer(prev => prev.slice(0,prev.length-2))
+    //     }, 500)
+    // }
 
     return (
         <div id="challengeBufferDisplay">
             <div id="alphanumeric-container">
                 <div id="alphanumeric">
-                    {alphanumeric.toUpperCase()}
+                    {alphanumeric}
                 </div>
             </div>
             <div id="ditDahs">

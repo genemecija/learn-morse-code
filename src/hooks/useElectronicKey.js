@@ -11,7 +11,7 @@ function useElectronicKey(gameMode) {
     const timingUnit = config.timingUnit
     
     let ratio = .2
-    const ditMaxTime = 85 // ditMaxTime * 0.365 to get ms, e.g. 85 * 0.365 ~= 31ms
+    const ditMaxTime = 70 // ditMaxTime * 0.365 to get ms, e.g. 85 * 0.365 ~= 31ms
 
     const letterGapMinTime = ditMaxTime*ratio*3 //config.practiceSpeed.normal*3
     const wordGapMaxTime = ditMaxTime*ratio*7 // config.practiceSpeed.normal*7

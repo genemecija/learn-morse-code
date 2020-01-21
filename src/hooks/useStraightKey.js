@@ -44,6 +44,7 @@ function useStraightKey(gameMode) {
 
     function handleInputStart(event) {
         event.preventDefault()
+        console.log("down", event.keyCode);
 
         if (isRunning) {
             return
@@ -90,17 +91,18 @@ function useStraightKey(gameMode) {
 
     function handleInputEnd(event) {
         event.preventDefault()
+        console.log("up", event.keyCode);
 
         if (isRunning) {
-            isRunning = false
             if ((event.keyCode !== 32 &&
                 event.target.id !== "morseButton" &&
                 event.target.id !== "left" &&
                 event.target.id !== "right") ||
-            (event.repeat)) {
+                (event.repeat)) {
                 return
             }
-    
+            isRunning = false
+                
             // console.log('charTime:', charTime);
             if (charTime <= ditMaxTime) {
                 setMorseCharBuffer(prev => prev + '.')
