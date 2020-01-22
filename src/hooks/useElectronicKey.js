@@ -105,6 +105,10 @@ function useElectronicKey(gameMode) {
         })
     }
 
+    function clearHistory() {
+        setMorseWords([])
+    }
+
     function stopToneTimer() {
         clearInterval(toneTimer)
         end = toneTime
@@ -339,6 +343,7 @@ function useElectronicKey(gameMode) {
                 paddle.removeEventListener('touchend', handleInputEnd)
             })
         }
+        clearHistory()
         // eslint-disable-next-line
     }, [])
 

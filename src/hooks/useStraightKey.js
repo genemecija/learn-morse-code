@@ -178,7 +178,7 @@ function useStraightKey(gameMode) {
                 paddle.removeEventListener('mouseup', handleInputEnd)
                 paddle.removeEventListener('touchend', handleInputEnd)
             })
-            // clearHistory()
+            clearHistory()
         }
         // eslint-disable-next-line
     }, [])
