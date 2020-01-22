@@ -2,6 +2,7 @@ import React from "react"
 
 export default React.memo(function ChallengeWord(props) {
 
+    let challengeWordClass= props.className
     const word = props.word
     const correctCharIndexes = props.correctCharIndexes
     const incorrectCharIndex = props.incorrectCharIndex
@@ -24,6 +25,6 @@ export default React.memo(function ChallengeWord(props) {
     })
 
     return (
-        <div id="challengeWord">{spannedWord}</div>
+        <div id="challengeWord" className={challengeWordClass}>{spannedWord}</div>
     )
 })

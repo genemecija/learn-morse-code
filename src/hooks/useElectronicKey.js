@@ -135,8 +135,15 @@ function useElectronicKey(gameMode) {
                     gapTimer = setInterval(() => {
                         gapTime += 1
     
-                        if (gapTime >= wordGapMaxTime) {
+                        // if (gapTime >= wordGapMaxTime) {
+                        if (gameMode === 'practice' && gapTime >= wordGapMaxTime) {
                             setMorseCharBuffer(prev => prev + '/')
+                            clearInterval(gapTimer)
+                            gapTimer = 0
+                            gapTime = 0
+                        }
+                        else if (gameMode === 'challenge' && gapTime >= letterGapMinTime) {
+                            setMorseCharBuffer(prev => prev + '_')
                             clearInterval(gapTimer)
                             gapTimer = 0
                             gapTime = 0
@@ -218,10 +225,10 @@ function useElectronicKey(gameMode) {
     function handleInputStart(event) {
         event.preventDefault()
         
-        if (event.keyCode === 71) {
-            queue = ['.',' ','.',' ','.',' ','.',' ','-','.','.','.','.','-']
-            executeQueue()
-        }
+        // if (event.keyCode === 71) {
+        //     queue = ['.',' ','.',' ','.',' ','.',' ','-','.','.','.','.','-']
+        //     executeQueue()
+        // }
 
         paddlesReleasedSimultaneously = false
 
@@ -292,14 +299,15 @@ function useElectronicKey(gameMode) {
         depressSyncTime = 0
     }
     function checkGapBetweenInputs() {
-        console.log('ditMaxTime', ditMaxTime)
-        console.log('gapTime', gapTime);
-        console.log('letterGapMinTime', letterGapMinTime);
-        console.log('wordGapMaxTime', wordGapMaxTime);
         // Check Gap between letters
         if (gapTime >= letterGapMinTime && gapTime < wordGapMaxTime) {
+            // setMorseCharBuffer(prev => prev + ' ')
+            if (gameMode === 'practice') {
                 setMorseCharBuffer(prev => prev + ' ')
-                gapTime = 0
+            } else if (gameMode === 'challenge') {
+                setMorseCharBuffer(prev => prev + '_')
+            }
+            gapTime = 0
             clearInterval(gapTimer)
             gapTimer = 0
         }
@@ -336,7 +344,8 @@ function useElectronicKey(gameMode) {
 
     useEffect(() => {
         // PRACTICE MODE
-        if (morseCharBuffer.slice(-1) === '/') {
+        // if (morseCharBuffer.slice(-1) === '/') {
+        if (morseCharBuffer.slice(-1) === '/' && gameMode === 'practice') {
             // Remove forward slash
             let val = morseCharBuffer.slice(0,morseCharBuffer.length-1)
 

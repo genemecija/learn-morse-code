@@ -1,11 +1,14 @@
 import React, {useContext} from "react"
-import {GameModeContext} from "../contexts/gameContext"
+import {GameModeContext} from "../contexts/gameModeContext"
+import { MorseBufferContext } from "../contexts/morseBufferContext"
 
 function ModePicker() {
 
     const {setGameMode} = useContext(GameModeContext)
+    const {setMorseCharBuffer} = useContext(MorseBufferContext)
 
     function handleClick(e) {
+        setMorseCharBuffer('')
         setGameMode(e.target.id)
         console.log("Switched to " + e.target.id + " mode.");
     }

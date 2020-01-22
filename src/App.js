@@ -1,76 +1,69 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import './css/App.css';
-import MorseButtons from './components/MorseButtons'
+
+import { GameModeContext } from "./contexts/gameModeContext"
+import { KeyTypeContext } from "./contexts/keyTypeContext"
+import { MorseBufferContextProvider } from "./contexts/morseBufferContext"
+import { WordFeederContextProvider } from './contexts/wordFeederContext';
+import { WordListPickerContextProvider } from './contexts/wordListPickerContext';
+
 import ModePicker from './components/ModePicker'
 import KeyTypePicker from './components/KeyTypePicker'
-// import MorseDisplay from './components/MorseDisplay'
-// import MorseBufferDisplay from './components/MorseBufferDisplay'
+import WordListPicker from './components/WordListPicker';
+
+import Legend from './components/Legend';
 // import GameClock from "./components/GameClock"
-// import ChallengeWord from "./components/ChallengeWord"
-import {GameModeContext} from "./contexts/gameContext"
-import {KeyTypeContext} from "./contexts/keyTypeContext"
-import {MorseBufferContextProvider} from "./contexts/morseBufferContext"
+import MorseButtons from './components/MorseButtons'
+
 import PracticeMode from './app-modes/PracticeMode';
 import TimedMode from './app-modes/TimedMode'
 import ChallengeMode from './app-modes/ChallengeMode'
-import Legend from './components/Legend';
 
 import MorseBufferDisplay from './components/MorseBufferDisplay'
 import MorseHistory from './components/MorseHistory'
+
 import StraightKey from './components/StraightKey';
 import ElectronicKey from './components/ElectronicKey';
 
-function App() {
+export default React.memo(function App() {
 
     console.log('App.js rendered')
     const {gameMode} = useContext(GameModeContext)
     
     const {keyType} = useContext(KeyTypeContext)
 
-    // const [keyType, setKeyType] = useState('straight')
-    
-    // function handleClick(e) {
-    //     setKeyType(e.target.id)
-    //     console.log("Switched to " + e.target.id + " keyType.");
-    // }
-
-    let wordList = ['morse', 'code', 'hello', 'gene']
-    let wordIndex = 0
-    function getNextWord() {
-        let word = wordList[wordIndex]
-        wordIndex += 1
-        return word
-    }
-
     return (
         <div id='main-content'>
             <Legend />
-            <ModePicker />
             <MorseBufferContextProvider>
-                    <KeyTypePicker />
-                    {gameMode === 'practice' &&
-                        <>
-                            {keyType === "straight" ?
-                                <StraightKey gameMode='practice' /> : <ElectronicKey gameMode='practice' />}
-                            <PracticeMode /><br/>
-                            <MorseBufferDisplay /><br/>
-                            <MorseHistory /><br/>
-                        </>
-                    }
-                    {/* {gameMode === 'timed' && <TimedMode />} */}
-                    {gameMode === 'challenge' &&
-                        <>
-                            {keyType === "straight" ?
-                                <StraightKey gameMode='challenge' /> : <ElectronicKey gameMode='challenge' />}
-                            <ChallengeMode getNextWord={getNextWord} />
-                        </>
-                    }
-                    <MorseButtons />
+                <ModePicker />
+                <KeyTypePicker />
+                {gameMode === 'practice' &&
+                    <>
+                        {keyType === "straight" ?
+                            <StraightKey gameMode='practice' /> : <ElectronicKey gameMode='practice' />}
+                        <PracticeMode /><br/>
+                        <MorseBufferDisplay /><br/>
+                        <MorseHistory /><br/>
+                    </>
+                }
+                {/* {gameMode === 'timed' && <TimedMode />} */}
+                {gameMode === 'challenge' &&
+                    <>
+                        <WordListPickerContextProvider>
+                            <WordFeederContextProvider>
+                                <WordListPicker />
+                                {keyType === "straight" ?
+                                    <StraightKey gameMode='challenge' /> : <ElectronicKey gameMode='challenge' />}
+                                <ChallengeMode />
+                            </WordFeederContextProvider>
+                        </WordListPickerContextProvider>
+                    </>
+                }
+                <MorseButtons />
             </MorseBufferContextProvider>
             
         </div>
     );
 
-}
-
-export default React.memo(App);
+})

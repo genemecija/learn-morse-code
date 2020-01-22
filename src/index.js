@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import {GameModeContextProvider} from "./contexts/gameContext"
+import {GameModeContextProvider} from "./contexts/gameModeContext"
 import { KeyTypeContextProvider } from './contexts/keyTypeContext';
 
 

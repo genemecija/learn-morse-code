@@ -5,7 +5,7 @@ html, body {
   width: 100%;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  background: #FFF;
+  background: #444;
 }
 
 #root {
@@ -159,6 +159,7 @@ html, body {
   margin-bottom: 20px;
   padding-left: 10px;
   padding-right: 10px;
+  border-radius: 5px;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
@@ -170,17 +171,24 @@ html, body {
   text-transform: uppercase;
   -ms-flex-item-align: center;
       align-self: center;
+  -webkit-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
 }
 
 #challengeWord span {
   padding: 4px;
   margin: 1px;
-  -webkit-transition: background 100ms ease-in-out;
-  transition: background 100ms ease-in-out;
+  -webkit-transition: background 300ms ease-in-out;
+  transition: background 300ms ease-in-out;
+}
+
+#challengeWord.correct {
+  background: rgba(0, 200, 0, 0.7);
 }
 
 .strike {
   text-decoration: line-through;
+  opacity: 30%;
 }
 
 #morseBufferDisplay, #challengeBufferDisplay {
@@ -228,8 +236,8 @@ html, body {
 
 #morseBufferDisplay #alphanumeric-container #alphanumeric span, #challengeBufferDisplay #alphanumeric-container #alphanumeric span {
   padding: 4px;
-  -webkit-transition: background 100ms ease-in-out;
-  transition: background 100ms ease-in-out;
+  -webkit-transition: background 300ms ease-in-out;
+  transition: background 300ms ease-in-out;
 }
 
 #morseBufferDisplay #ditDahs, #challengeBufferDisplay #ditDahs {

@@ -1,14 +1,11 @@
 import {useEffect, useContext} from 'react'
 import {MorseBufferContext} from '../contexts/morseBufferContext'
 import config from '../config.json'
-// import {GameModeContext} from '../contexts/gameContext'
 
 // STRAIGHT KEY TELEGRAPH
-
 function useStraightKey(gameMode) {
     
     const {morseCharBuffer, setMorseCharBuffer, morseWords, setMorseWords} = useContext(MorseBufferContext)
-    // const {gameMode} = useContext(GameModeContext)
 
     let charTimer = 0
     let charTime = 0
@@ -44,22 +41,19 @@ function useStraightKey(gameMode) {
 
     function handleInputStart(event) {
         event.preventDefault()
-        console.log("down", event.keyCode);
 
         if (isRunning) {
             return
         } else {
-            isRunning = true
-
-            // TODO:
-            // Make sure only one touchdown event registered at a time
             if ((event.keyCode !== 32 &&
                 event.target.id !== "morseButton" &&
-                event.target.id !== "left" &&
-                event.target.id !== "right") ||
-            (event.repeat)) {
-                return
-            }
+                event.target.className !== "paddle") ||
+                (event.repeat)) {
+                    return
+                }
+
+            isRunning = true
+
             if (context.state === 'interrupted') {
                 context.resume()
             }
@@ -73,7 +67,7 @@ function useStraightKey(gameMode) {
             o.connect(g)
             g.connect(context.destination)
             o.start()
-            
+             
             checkGapBetweenInputs()
             clearInterval(gapTimer)
 
@@ -91,17 +85,16 @@ function useStraightKey(gameMode) {
 
     function handleInputEnd(event) {
         event.preventDefault()
-        console.log("up", event.keyCode);
 
         if (isRunning) {
             if ((event.keyCode !== 32 &&
                 event.target.id !== "morseButton" &&
-                event.target.id !== "left" &&
-                event.target.id !== "right") ||
+                event.target.className !== "paddle") ||
                 (event.repeat)) {
                 return
             }
             isRunning = false
+            
                 
             // console.log('charTime:', charTime);
             if (charTime <= ditMaxTime) {
@@ -131,7 +124,6 @@ function useStraightKey(gameMode) {
         gapTimer = setInterval(() => {
             gapTime += 1
 
-            console.log('useStraightKey-gameMode:',gameMode);
             // Gap between words
             if (gameMode === 'practice' && gapTime >= wordGapMaxTime) {
                 setMorseCharBuffer(prev => prev + '/')
@@ -139,7 +131,7 @@ function useStraightKey(gameMode) {
                 gapTimer = 0
                 gapTime = 0
             }
-            if (gameMode === 'challenge' && gapTime >= letterGapMinTime) {
+            else if (gameMode === 'challenge' && gapTime >= letterGapMinTime) {
                 setMorseCharBuffer(prev => prev + '_')
                 clearInterval(gapTimer)
                 gapTimer = 0
@@ -150,10 +142,6 @@ function useStraightKey(gameMode) {
 
     function checkGapBetweenInputs() {
         // Check Gap between letters
-        // console.log('ditMaxTime', ditMaxTime)
-        // console.log('gapTime', gapTime);
-        // console.log('letterGapMinTime', letterGapMinTime);
-        // console.log('wordGapMaxTime', wordGapMaxTime);
         if (gapTime >= letterGapMinTime && gapTime < wordGapMaxTime) {
             if (gameMode === 'practice') {
                 setMorseCharBuffer(prev => prev + ' ')
@@ -164,7 +152,7 @@ function useStraightKey(gameMode) {
             gapTimer = 0
         }
     }
-
+    
     useEffect(() => {
         document.addEventListener('keydown', handleInputStart)
         document.addEventListener('keyup', handleInputEnd)
