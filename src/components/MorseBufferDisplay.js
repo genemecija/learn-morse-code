@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React, { useContext, useEffect } from "react"
 import DitDahDisplay from "./DitDahDisplay"
 import morseCode from '../data/morse-reverse.json'
 import {MorseBufferContext} from "../contexts/morseBufferContext"

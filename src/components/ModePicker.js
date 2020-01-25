@@ -18,8 +18,8 @@ function ModePicker() {
                 <button id="practice" onClick={handleClick}>
                     Practice
                 </button>
-                <button id="timed" onClick={handleClick}>
-                    Timed Mode
+                <button id="training" onClick={handleClick}>
+                    Training Mode
                 </button>
                 <button id="challenge" onClick={handleClick}>
                     Challenge Mode

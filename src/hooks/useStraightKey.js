@@ -1,11 +1,13 @@
 import {useEffect, useContext} from 'react'
 import {MorseBufferContext} from '../contexts/morseBufferContext'
 import config from '../config.json'
+import { WPMContext } from '../contexts/wpmContext'
 
 // STRAIGHT KEY TELEGRAPH
 function useStraightKey(gameMode) {
     
     const {morseCharBuffer, setMorseCharBuffer, morseWords, setMorseWords} = useContext(MorseBufferContext)
+    const {wpm} = useContext(WPMContext)
 
     let charTimer = 0
     let charTime = 0
@@ -14,10 +16,12 @@ function useStraightKey(gameMode) {
     
     const timingUnit = config.timingUnit
     
-    const ditMaxTime = config.practiceSpeed.normal
+    const ditMaxTime = 1200/wpm
     const letterGapMinTime = ditMaxTime*3
     const wordGapMaxTime = ditMaxTime*7
     const morseHistorySize = config.historySize
+    
+    let insideBufferDisplay = false
 
     // Tone Setup
     let AudioContext = window.AudioContext || window.webkitAudioContext || false
@@ -39,12 +43,36 @@ function useStraightKey(gameMode) {
         setMorseWords([])
     }
 
+    const bufferDisplay = ['morseBufferDisplay', 'challengeBufferDisplay', 'ditDahs', 'alphanumeric-container']
+    
     function handleInputStart(event) {
         event.preventDefault()
 
+        console.log(event.target);
+        if (event.type === 'mousedown' && event.target.className !== 'paddle') {
+            if (bufferDisplay.includes(event.target.id)) {
+                document.addEventListener('keydown', handleInputStart)
+                document.addEventListener('keyup', handleInputEnd)
+                insideBufferDisplay = true
+                console.log('insideBufferDisplay', insideBufferDisplay);
+            } else {
+                document.removeEventListener('keydown', handleInputStart)
+                document.removeEventListener('keyup', handleInputEnd)
+                insideBufferDisplay = false
+                console.log('insideBufferDisplay', insideBufferDisplay);
+                if (event.target.id === 'wpm-input') {
+                    event.target.focus()
+                } else {
+                    document.activeElement.blur()
+                }
+            }
+        }
+        
+
         if (isRunning) {
+            console.log('insideBufferDisplay', insideBufferDisplay);
             return
-        } else {
+        } else if (insideBufferDisplay === true) {
             if ((event.keyCode !== 32 &&
                 event.target.id !== "morseButton" &&
                 event.target.className !== "paddle") ||
@@ -72,6 +100,8 @@ function useStraightKey(gameMode) {
             clearInterval(gapTimer)
 
             startCharTimer()
+        } else {
+            return
         }
         
     }
@@ -85,6 +115,12 @@ function useStraightKey(gameMode) {
 
     function handleInputEnd(event) {
         event.preventDefault()
+
+        // if (event.target.id !== 'morseBufferDisplay') {
+        //     insideBufferDisplay = true
+        //     console.log('insideBufferDisplay', insideBufferDisplay);
+        // }
+        if (!insideBufferDisplay) {return}
 
         if (isRunning) {
             if ((event.keyCode !== 32 &&
@@ -153,9 +189,15 @@ function useStraightKey(gameMode) {
         }
     }
     
+
     useEffect(() => {
+        // const buffer = document.getElementById('morseBufferDisplay')
+        // document.addEventListener('mousedown', morseOn)
+        // document.addEventListener('mousedown', morseOff)
+
         document.addEventListener('keydown', handleInputStart)
         document.addEventListener('keyup', handleInputEnd)
+        document.addEventListener('mousedown', handleInputStart)
 
         const paddles = document.querySelectorAll('.paddle')
         paddles.forEach(paddle => {
@@ -167,8 +209,13 @@ function useStraightKey(gameMode) {
         })
 
         return function cleanup() {
+            // const buffer = document.getElementById('morseBufferDisplay')
+            // document.removeEventListener('mousedown', morseOn)
+            // document.removeEventListener('mousedown', morseOff)
+
             document.removeEventListener('keydown', handleInputStart)
             document.removeEventListener('keyup', handleInputEnd)
+            document.removeEventListener('mouseUp', handleInputStart)
 
             const paddles = document.querySelectorAll('.paddle')
             paddles.forEach(paddle => {

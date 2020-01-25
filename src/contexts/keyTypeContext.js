@@ -4,7 +4,7 @@ const KeyTypeContext = React.createContext()
 
 function KeyTypeContextProvider(props) {
 
-    const [keyType, setKeyType] = useState('')
+    const [keyType, setKeyType] = useState('straight')
 
     return (
         <KeyTypeContext.Provider value={{

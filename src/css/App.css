@@ -8,7 +8,7 @@
 html, body {
   height: 100%;
   width: 100%;
-  background: #444;
+  background: #FFF;
 }
 
 #root {
@@ -41,6 +41,9 @@ header {
           flex-direction: column;
   width: 95vw;
   border: 1px solid red;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .mode-picker {
@@ -58,7 +61,7 @@ header {
   -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
           box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
   border: 0px;
-  border-radius: 0px;
+  border-radius: 5px;
 }
 
 .mode-picker .selected {
@@ -74,9 +77,9 @@ header {
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
-  position: absolute;
-  -ms-flex-item-align: left;
-      align-self: left;
+  position: fixed;
+  top: 50px;
+  left: 50px;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
 }
@@ -201,7 +204,123 @@ header {
   background: rgba(0, 200, 0, 0.7);
 }
 
-#morseBufferDisplay, #challengeBufferDisplay {
+#morseBufferDisplay {
+  border: 1px solid green;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: column-reverse;
+          flex-direction: column-reverse;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 150px;
+  margin-bottom: 20px;
+}
+
+#morseBufferDisplay #alphanumeric-container {
+  background: #ccc;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-left: 5px;
+  height: 50px;
+  min-width: 50px;
+  margin-bottom: 10px;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
+}
+
+#morseBufferDisplay #alphanumeric-container #alphanumeric {
+  font-size: 40px;
+  font-family: 'Courier';
+  font-weight: bold;
+  background-color: transparent;
+}
+
+#morseBufferDisplay #alphanumeric-container #alphanumeric:first-child {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#morseBufferDisplay #alphanumeric-container #alphanumeric span {
+  padding: 4px;
+  -webkit-transition: background 300ms ease-in-out;
+  transition: background 300ms ease-in-out;
+}
+
+#morseBufferDisplay #ditDahs {
+  width: 50%;
+  height: 50px;
+  padding-right: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 25px;
+  font-family: 'Courier';
+  font-weight: bold;
+}
+
+#morseBufferDisplay #ditDahs span {
+  padding: 4px;
+  -webkit-transition: background 100ms ease-in-out;
+  transition: background 100ms ease-in-out;
+}
+
+#morseBufferDisplay #ditDahs .ditDah {
+  background: #DDD;
+  height: 40px;
+  width: 30px !important;
+  margin-left: 3px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  opacity: 50%;
+  -webkit-transition: all 100ms ease-in-out;
+  transition: all 100ms ease-in-out;
+}
+
+.example-appear {
+  opacity: 0.01;
+}
+
+.example-appear.example-appear-active {
+  opacity: 1;
+  -webkit-transition: opacity .5s ease-in;
+  transition: opacity .5s ease-in;
+}
+
+#challengeBufferDisplay {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -217,10 +336,11 @@ header {
       -ms-flex-align: center;
           align-items: center;
   width: 100%;
+  height: 150px;
   margin-bottom: 20px;
 }
 
-#morseBufferDisplay #alphanumeric-container, #challengeBufferDisplay #alphanumeric-container {
+#challengeBufferDisplay #alphanumeric-container {
   padding-left: 5px;
   width: 50%;
   display: -webkit-box;
@@ -231,7 +351,7 @@ header {
           justify-content: center;
 }
 
-#morseBufferDisplay #alphanumeric-container #alphanumeric, #challengeBufferDisplay #alphanumeric-container #alphanumeric {
+#challengeBufferDisplay #alphanumeric-container #alphanumeric {
   font-size: 40px;
   font-family: 'Courier';
   font-weight: bold;
@@ -239,18 +359,18 @@ header {
   margin-bottom: 10px;
 }
 
-#morseBufferDisplay #alphanumeric-container #alphanumeric:first-child, #challengeBufferDisplay #alphanumeric-container #alphanumeric:first-child {
+#challengeBufferDisplay #alphanumeric-container #alphanumeric:first-child {
   padding-left: 5px;
   padding-right: 5px;
 }
 
-#morseBufferDisplay #alphanumeric-container #alphanumeric span, #challengeBufferDisplay #alphanumeric-container #alphanumeric span {
+#challengeBufferDisplay #alphanumeric-container #alphanumeric span {
   padding: 4px;
   -webkit-transition: background 300ms ease-in-out;
   transition: background 300ms ease-in-out;
 }
 
-#morseBufferDisplay #ditDahs, #challengeBufferDisplay #ditDahs {
+#challengeBufferDisplay #ditDahs {
   width: 50%;
   padding-right: 5px;
   display: -webkit-box;
@@ -268,18 +388,17 @@ header {
   font-weight: bold;
 }
 
-#morseBufferDisplay #ditDahs span, #challengeBufferDisplay #ditDahs span {
+#challengeBufferDisplay #ditDahs span {
   padding: 4px;
   -webkit-transition: background 100ms ease-in-out;
   transition: background 100ms ease-in-out;
 }
 
-#morseBufferDisplay #ditDahs .ditDah, #challengeBufferDisplay #ditDahs .ditDah {
-  background: #DDD;
+#challengeBufferDisplay #ditDahs .ditDah {
   height: 40px;
   width: 30px !important;
   margin-left: 3px;
-  border-radius: 0px;
+  border-radius: 5px;
   -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
           box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
   display: -webkit-box;
@@ -313,8 +432,7 @@ header {
   border-radius: 5px;
 }
 
-#morseDisplay {
-  /* border: 1px solid blue; */
+#morseHistory {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -324,23 +442,43 @@ header {
           flex-direction: column;
 }
 
-#morseDisplay .morseCard:nth-child(1) {
+#morseHistory .morseCard:nth-child(1) {
   opacity: 100%;
 }
 
-#morseDisplay .morseCard:nth-child(2) {
+#morseHistory .morseCard:nth-child(2) {
+  opacity: 90%;
+}
+
+#morseHistory .morseCard:nth-child(3) {
+  opacity: 80%;
+}
+
+#morseHistory .morseCard:nth-child(4) {
   opacity: 70%;
 }
 
-#morseDisplay .morseCard:nth-child(3) {
+#morseHistory .morseCard:nth-child(5) {
+  opacity: 60%;
+}
+
+#morseHistory .morseCard:nth-child(6) {
   opacity: 50%;
 }
 
-#morseDisplay .morseCard:nth-child(4) {
+#morseHistory .morseCard:nth-child(7) {
+  opacity: 40%;
+}
+
+#morseHistory .morseCard:nth-child(8) {
   opacity: 30%;
 }
 
-#morseDisplay .morseCard:nth-child(5) {
+#morseHistory .morseCard:nth-child(9) {
+  opacity: 20%;
+}
+
+#morseHistory .morseCard:nth-child(10) {
   opacity: 10%;
 }
 
@@ -357,9 +495,8 @@ header {
           justify-content: center;
   /* border: 1px solid orange; */
   margin-bottom: 2px;
-  font-size: 2.5rem;
+  font-size: 1.5rem;
   font-family: 'Courier';
-  font-weight: bold;
   /* width: 100%; */
 }
 
@@ -369,10 +506,10 @@ header {
   margin: 3px;
   background: #EEE;
   white-space: nowrap;
-  border-radius: 0px;
+  border-radius: 5px;
   -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
           box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
-  line-height: 2rem;
+  line-height: 1rem;
 }
 
 .morseCard .ditDahs-container, .morseCard .alphanumeric-container {
@@ -380,6 +517,7 @@ header {
   display: -ms-flexbox;
   display: flex;
   width: 50%;
+  font-weight: bold;
 }
 
 .morseCard .ditDahs-container {

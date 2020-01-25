@@ -2,9 +2,7 @@ import React from "react"
 
 function DitDahDisplay(props) {
     return (
-        <div className={`ditDah ${props.className}`}>
-            {props.dd}
-        </div>
+        <div className='ditDah'>{props.dd}</div>
     )
 }
 

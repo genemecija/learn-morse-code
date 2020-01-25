@@ -5,11 +5,11 @@ import GameClock from '../components/GameClock'
 import MorseBufferDisplay from '../components/MorseBufferDisplay'
 import MorseHistory from '../components/MorseHistory'
 
-function TimedMode() {
+function TrainingMode() {
 
     const {morseCharBuffer, morseWords} = useStraightKey('timed')
     
-    console.log('TimedMode.js rendered')
+    console.log('TrainingMode.js rendered')
     
     return (
         <>
@@ -21,4 +21,4 @@ function TimedMode() {
 
 }
 
-export default React.memo(TimedMode);
+export default React.memo(TrainingMode);

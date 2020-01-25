@@ -1,17 +1,19 @@
 import {useEffect, useContext} from 'react'
 import {MorseBufferContext} from '../contexts/morseBufferContext'
 import config from '../config.json'
+import { WPMContext } from '../contexts/wpmContext'
 
 // ELECTRONIC KEY TELEGRAPH - Iambic A
 
 function useElectronicKey(gameMode) {
 
     const {morseCharBuffer, setMorseCharBuffer, morseWords, setMorseWords} = useContext(MorseBufferContext)
+    const {wpm} = useContext(WPMContext)
 
     const timingUnit = config.timingUnit
     
     let ratio = .2
-    const ditMaxTime = 70 // ditMaxTime * 0.365 to get ms, e.g. 85 * 0.365 ~= 31ms
+    const ditMaxTime = 1200/wpm // ditMaxTime * 0.365 to get ms, e.g. 85 * 0.365 ~= 31ms
 
     const letterGapMinTime = ditMaxTime*ratio*3 //config.practiceSpeed.normal*3
     const wordGapMaxTime = ditMaxTime*ratio*7 // config.practiceSpeed.normal*7
@@ -30,6 +32,8 @@ function useElectronicKey(gameMode) {
     let gapTimer = 0
     // let gapTimerRunning = false
     let paddlesReleasedSimultaneously = false
+
+    let insideBufferDisplay = false
 
     // function consoleLogVars() {
     //     // Log variables (Debug tool)
@@ -226,13 +230,30 @@ function useElectronicKey(gameMode) {
         }
     }
 
+    const bufferDisplay = ['morseBufferDisplay', 'challengeBufferDisplay', 'ditDahs', 'alphanumeric-container']
+
     function handleInputStart(event) {
         event.preventDefault()
         
-        // if (event.keyCode === 71) {
-        //     queue = ['.',' ','.',' ','.',' ','.',' ','-','.','.','.','.','-']
-        //     executeQueue()
-        // }
+        console.log(event.target);
+        if (event.type === 'mousedown' && event.target.className !== 'paddle') {
+            if (bufferDisplay.includes(event.target.id)) {
+                document.addEventListener('keydown', handleInputStart)
+                document.addEventListener('keyup', handleInputEnd)
+                insideBufferDisplay = true
+                console.log('insideBufferDisplay', insideBufferDisplay);
+            } else {
+                document.removeEventListener('keydown', handleInputStart)
+                document.removeEventListener('keyup', handleInputEnd)
+                insideBufferDisplay = false
+                console.log('insideBufferDisplay', insideBufferDisplay);
+                if (event.target.id === 'wpm-input') {
+                    event.target.focus()
+                } else {
+                    document.activeElement.blur()
+                }
+            }
+        }
 
         paddlesReleasedSimultaneously = false
 
@@ -260,6 +281,8 @@ function useElectronicKey(gameMode) {
 
     function handleInputEnd(event) {
         event.preventDefault()
+
+        if (!insideBufferDisplay) {return}
 
         if (event.keyCode === 188 || event.target.id === "left") {
             leftIsPressed = false
@@ -320,6 +343,7 @@ function useElectronicKey(gameMode) {
     useEffect(() => {
         document.addEventListener('keydown', handleInputStart)
         document.addEventListener('keyup', handleInputEnd)
+        document.addEventListener('mousedown', handleInputStart)
 
         const paddles = document.querySelectorAll('.paddle')
         paddles.forEach(paddle => {
@@ -333,6 +357,7 @@ function useElectronicKey(gameMode) {
         return function cleanup() {
             document.removeEventListener('keydown', handleInputStart)
             document.removeEventListener('keyup', handleInputEnd)
+            document.removeEventListener('mousedown', handleInputStart)
 
             const paddles = document.querySelectorAll('.paddle')
             paddles.forEach(paddle => {

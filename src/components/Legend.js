@@ -13,7 +13,7 @@ function Legend() {
         let newWord = convertWordToMorse(word)
         console.log(newWord);
 
-        playMorseWord(newWord)        
+        playMorseWord(newWord)
     }
 
     function convertWordToMorse(word) {
@@ -37,6 +37,7 @@ function Legend() {
                 {legend}
                 <button id="test" onClick={handleClick}>Anya</button>
                 <button id="test" onClick={handleClick}>Alexandra</button>
+                <button id="test" onClick={handleClick}>Paris</button>
             </div>
     )
 }
