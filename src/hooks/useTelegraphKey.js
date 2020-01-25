@@ -1,27 +1,36 @@
 import {useEffect, useContext} from 'react'
 import {MorseBufferContext} from '../contexts/morseBufferContext'
 import config from '../config.json'
-// import { WPMContext } from '../contexts/wpmContext'
+import { WPMContext } from '../contexts/wpmContext'
+import { KeyTypeContext } from '../contexts/keyTypeContext'
+
 
 // STRAIGHT KEY TELEGRAPH
-function useStraightKey(gameMode, wpm) {
+function useTelegraphKey(gameMode, wpm) {
     
     const {morseCharBuffer, setMorseCharBuffer, morseWords, setMorseWords} = useContext(MorseBufferContext)
     // const {wpm} = useContext(WPMContext)
     // console.log('useStraightKey-WPM:', wpm);
 
+    // Straight Key Variables
     let charTimer = 0
     let charTime = 0
+    
+    // Electronic Key Variables
+    let ratio = .2
+    let depressSyncTime
+    let depressSyncTimer
+    let depressSyncTimerRunning = false
+    let paddlesReleasedSimultaneously = false
+
+    // Straight && Electronic Key Variables
     let gapTimer = 0
     let gapTime = 0
-    
     const timingUnit = config.timingUnit
-    
     const ditMaxTime = 1200/wpm
     const letterGapMinTime = ditMaxTime*3
     const wordGapMaxTime = ditMaxTime*7
     const morseHistorySize = config.historySize
-    
 
     // Tone Setup
     let AudioContext = window.AudioContext || window.webkitAudioContext || false
@@ -43,56 +52,18 @@ function useStraightKey(gameMode, wpm) {
         setMorseWords([])
     }
 
-    const bufferDisplay = ['morseBufferDisplay', 'challengeBufferDisplay', 'ditDahs', 'alphanumeric-container']
-
     function handleInputStart(event) {
         event.preventDefault()
-        console.log('INPUTSTART');
-        // console.log('event.type', event.type);
-        // if (event.type === 'mousedown' && event.target.className !== 'paddle') {
-        //     if (event.target.id === 'wpm-input') {
-        //         console.log('REMOVED KEYDOWN/UP');
-        //         document.removeEventListener('keydown', handleInputStart)
-        //         document.removeEventListener('keyup', handleInputEnd)
-        //         event.target.focus()
-        //     } else {
-        //         document.addEventListener('keydown', handleInputStart)
-        //         document.addEventListener('keyup', handleInputEnd)
-        //         document.activeElement.blur()
-        //     }
-        // }
-
-        // console.log(event.target);
-        // if (event.type === 'mousedown' && event.target.className !== 'paddle') {
-        //     if (bufferDisplay.includes(event.target.id)) {
-        //         document.addEventListener('keydown', handleInputStart)
-        //         document.addEventListener('keyup', handleInputEnd)
-        //         insideBufferDisplay = true
-        //         console.log('insideBufferDisplay', insideBufferDisplay);
-        //     } else {
-        //         document.removeEventListener('keydown', handleInputStart)
-        //         document.removeEventListener('keyup', handleInputEnd)
-        //         insideBufferDisplay = false
-        //         console.log('insideBufferDisplay', insideBufferDisplay);
-        //         if (event.target.id === 'wpm-input') {
-        //             event.target.focus()
-        //         } else {
-        //             document.activeElement.blur()
-        //         }
-        //     }
-        // }
-        
 
         if (isRunning) {
-            // console.log('insideBufferDisplay', insideBufferDisplay);
             return
         } else {
             if ((event.keyCode !== 32 &&
                 event.target.id !== "morseButton" &&
                 event.target.className !== "paddle") ||
                 (event.repeat)) {
-                    return
-                }
+                return
+            }
 
             isRunning = true
 
@@ -255,4 +226,4 @@ function useStraightKey(gameMode, wpm) {
 
 }
 
-export default useStraightKey
+export default useTelegraphKey

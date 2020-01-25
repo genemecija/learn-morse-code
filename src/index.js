@@ -5,13 +5,16 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {GameModeContextProvider} from "./contexts/gameModeContext"
 import { KeyTypeContextProvider } from './contexts/keyTypeContext';
+import { WPMContextProvider } from './contexts/wpmContext';
 
 
 ReactDOM.render(
     <KeyTypeContextProvider>
-        <GameModeContextProvider>
-            <App />
-        </GameModeContextProvider>
+        <WPMContextProvider>
+            <GameModeContextProvider>
+                <App />
+            </GameModeContextProvider>
+        </WPMContextProvider>
     </KeyTypeContextProvider>
 
     , document.getElementById('root'));

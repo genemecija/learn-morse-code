@@ -26,12 +26,13 @@ import MorseHistory from './components/MorseHistory'
 import StraightKey from './components/StraightKey';
 import ElectronicKey from './components/ElectronicKey';
 import Footer from './components/Footer';
-import { WPMContextProvider } from './contexts/wpmContext';
+import { WPMContext } from './contexts/wpmContext';
 
 export default React.memo(function App() {
 
     console.log('App.js rendered')
     const {gameMode} = useContext(GameModeContext)
+    const {wpm} = useContext(WPMContext)
     
     const {keyType} = useContext(KeyTypeContext)
     console.log('gameMode', gameMode);
@@ -41,45 +42,43 @@ export default React.memo(function App() {
         <>
             <Header />
             <div id='main-content'>
-                <WPMContextProvider>
-                    <Legend />
-                    <WordsPerMinute />
-                    <MorseBufferContextProvider>
-                        <ModePicker />
-                        <KeyTypePicker />
-                        {gameMode === 'practice' &&
-                            <>
-                                {keyType === "straight" ?
-                                    <StraightKey gameMode='practice' /> : <ElectronicKey gameMode='practice' />}
-                                <PracticeMode /><br/>
-                                <MorseBufferDisplay /><br/>
-                                <MorseHistory /><br/>
-                            </>
-                        }
-                        {gameMode === 'timed' &&
-                            <>
-                                {keyType === "straight" ?
-                                    <StraightKey gameMode='training' /> : <ElectronicKey gameMode='training' />}
-                                <TrainingMode /><br/>
-                                <MorseBufferDisplay /><br/>
-                                <MorseHistory /><br/>
-                            </>
-                        }
-                        {gameMode === 'challenge' &&
-                            <>
-                                <WordListPickerContextProvider>
-                                    <WordFeederContextProvider>
-                                        <WordListPicker />
-                                        {keyType === "straight" ?
-                                            <StraightKey gameMode='challenge' /> : <ElectronicKey gameMode='challenge' />}
-                                        <ChallengeMode />
-                                    </WordFeederContextProvider>
-                                </WordListPickerContextProvider>
-                            </>
-                        }
-                        <MorseButtons />
-                    </MorseBufferContextProvider>    
-                </WPMContextProvider>
+                <Legend />
+                <WordsPerMinute />
+                <MorseBufferContextProvider>
+                    <ModePicker />
+                    <KeyTypePicker />
+                    {gameMode === 'practice' &&
+                        <>
+                            {/* {keyType === "straight" ?
+                                <StraightKey gameMode='practice' wpm={wpm} /> : <ElectronicKey gameMode='practice'  wpm={wpm} />} */}
+                            <PracticeMode /><br/>
+                            {/* <MorseBufferDisplay /><br/>
+                            <MorseHistory /><br/> */}
+                        </>
+                    }
+                    {/* {gameMode === 'timed' &&
+                        <>
+                        {keyType === "straight" ?
+                        <StraightKey gameMode='training' /> : <ElectronicKey gameMode='training' />}
+                        <TrainingMode /><br/>
+                        <MorseBufferDisplay /><br/>
+                        <MorseHistory /><br/>
+                        </>
+                    }
+                    {gameMode === 'challenge' &&
+                        <>
+                        <WordListPickerContextProvider>
+                        <WordFeederContextProvider>
+                        <WordListPicker />
+                        {keyType === "straight" ?
+                        <StraightKey gameMode='challenge' /> : <ElectronicKey gameMode='challenge' />}
+                        <ChallengeMode />
+                        </WordFeederContextProvider>
+                        </WordListPickerContextProvider>
+                        </>
+                    } */}
+                    <MorseButtons />
+                </MorseBufferContextProvider>    
             </div>
         <Footer />
         </>

@@ -11,6 +11,7 @@ export default React.memo(function WordsPerMinute(props) {
     }
     
     return (
-        <input id='wpm-input' type='text' value={wpm} onChange={handleChange} />
+        // <input id='wpm-input' type='text' value={wpm} onChange={handleChange} />
+        <input type="number" name="wpm" id='wpm-input' min="5" max="30" value={wpm} onChange={handleChange}></input>
     )
 })

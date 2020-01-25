@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import useElectronicKey from '../hooks/useElectronicKey';
 
-export default React.memo(function ElectronicKey(props) {
-    useElectronicKey(props.gameMode)
-})
+function ElectronicKey(props) {
+
+    return useElectronicKey(props.gameMode, props.wpm)
+}
+
+export default ElectronicKey
