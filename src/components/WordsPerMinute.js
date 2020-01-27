@@ -7,7 +7,7 @@ export default React.memo(function WordsPerMinute(props) {
     const {wpm, setWPM} = useContext(WPMContext)
 
     function handleChange(e) {
-        setWPM(e.target.value)
+        setWPM(Number(e.target.value))
     }
     
     return (

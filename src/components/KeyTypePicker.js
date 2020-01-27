@@ -7,10 +7,10 @@ export default React.memo(function KeyTypePicker() {
 
     function handleClick(e) {
         setKeyType(e.target.id)
+        console.log("KEYTYPE PICKED:", e.target.id);
 
         let buttons = document.querySelector(".mode-picker#keyType").childNodes
         buttons.forEach(button => {
-            console.log('buttonID', button.id);
             if (button.id === e.target.id) {
                 button.classList.add('selected')
             } else { button.classList.remove('selected')}

@@ -2,23 +2,26 @@ import {useEffect, useContext} from 'react'
 import {MorseBufferContext} from '../contexts/morseBufferContext'
 import config from '../config.json'
 import { WPMContext } from '../contexts/wpmContext'
+import { GameModeContext } from '../contexts/gameModeContext'
 
 // ELECTRONIC KEY TELEGRAPH - Iambic A
 
-function useElectronicKey(gameMode, wpm) {
+function useElectronicKey() {
 
     const {morseCharBuffer, setMorseCharBuffer, morseWords, setMorseWords} = useContext(MorseBufferContext)
-    // const {wpm} = useContext(WPMContext)
-    // console.log('useStraightKey-WPM:', wpm);
+    const {wpm} = useContext(WPMContext)
+    const {gameMode} = useContext(GameModeContext)
+
+    let ditMaxTime = 1200/wpm
+    
 
     const timingUnit = config.timingUnit
     
     let ratio = .2
-    const ditMaxTime = 1200/wpm // ditMaxTime * 0.365 to get ms, e.g. 85 * 0.365 ~= 31ms
-
     const letterGapMinTime = ditMaxTime*ratio*3 //config.practiceSpeed.normal*3
     const wordGapMaxTime = ditMaxTime*ratio*7 // config.practiceSpeed.normal*7
     const morseHistorySize = config.historySize
+    
 
     let leftIsPressed = false
     let rightIsPressed = false
@@ -230,7 +233,6 @@ function useElectronicKey(gameMode, wpm) {
         }
     }
 
-    const bufferDisplay = ['morseBufferDisplay', 'challengeBufferDisplay', 'ditDahs', 'alphanumeric-container']
 
     function handleInputStart(event) {
         event.preventDefault()
@@ -348,7 +350,7 @@ function useElectronicKey(gameMode, wpm) {
             clearHistory()
         }
         // eslint-disable-next-line
-    }, [])
+    }, [wpm])
 
     useEffect(() => {
         // PRACTICE MODE

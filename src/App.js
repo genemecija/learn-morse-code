@@ -20,23 +20,19 @@ import Legend from './components/Legend';
 // import GameClock from "./components/GameClock"
 import WordsPerMinute from "./components/WordsPerMinute"
 import MorseButtons from './components/MorseButtons'
-import MorseBufferDisplay from './components/MorseBufferDisplay'
-import MorseHistory from './components/MorseHistory'
-
-import StraightKey from './components/StraightKey';
-import ElectronicKey from './components/ElectronicKey';
 import Footer from './components/Footer';
 import { WPMContext } from './contexts/wpmContext';
+import StraightKey from './components/StraightKey';
+import ElectronicKey from './components/ElectronicKey';
 
 export default React.memo(function App() {
 
     console.log('App.js rendered')
-    const {gameMode} = useContext(GameModeContext)
-    const {wpm} = useContext(WPMContext)
-    
+
     const {keyType} = useContext(KeyTypeContext)
-    console.log('gameMode', gameMode);
-    console.log('keyType', keyType);
+    const {gameMode} = useContext(GameModeContext)
+    const wpm = useContext(WPMContext)
+
 
     return (
         <>
@@ -45,17 +41,18 @@ export default React.memo(function App() {
                 <Legend />
                 <WordsPerMinute />
                 <MorseBufferContextProvider>
+
                     <ModePicker />
                     <KeyTypePicker />
-                    {gameMode === 'practice' &&
-                        <>
-                            {/* {keyType === "straight" ?
-                                <StraightKey gameMode='practice' wpm={wpm} /> : <ElectronicKey gameMode='practice'  wpm={wpm} />} */}
-                            <PracticeMode /><br/>
-                            {/* <MorseBufferDisplay /><br/>
-                            <MorseHistory /><br/> */}
-                        </>
+                    
+                    {keyType === "straight" ?
+                        <StraightKey /> : <ElectronicKey />
                     }
+
+                    {gameMode === 'practice' &&
+                        <PracticeMode />
+                    }
+                    
                     {/* {gameMode === 'timed' &&
                         <>
                         {keyType === "straight" ?
@@ -64,19 +61,19 @@ export default React.memo(function App() {
                         <MorseBufferDisplay /><br/>
                         <MorseHistory /><br/>
                         </>
-                    }
+                    } */}
+
                     {gameMode === 'challenge' &&
                         <>
                         <WordListPickerContextProvider>
-                        <WordFeederContextProvider>
-                        <WordListPicker />
-                        {keyType === "straight" ?
-                        <StraightKey gameMode='challenge' /> : <ElectronicKey gameMode='challenge' />}
-                        <ChallengeMode />
-                        </WordFeederContextProvider>
+                            <WordFeederContextProvider>
+                                <WordListPicker />
+                                <ChallengeMode />
+                            </WordFeederContextProvider>
                         </WordListPickerContextProvider>
                         </>
-                    } */}
+                    }
+
                     <MorseButtons />
                 </MorseBufferContextProvider>    
             </div>

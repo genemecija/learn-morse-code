@@ -1,14 +1,15 @@
 import {useEffect, useContext} from 'react'
 import {MorseBufferContext} from '../contexts/morseBufferContext'
 import config from '../config.json'
-// import { WPMContext } from '../contexts/wpmContext'
+import { WPMContext } from '../contexts/wpmContext'
+import { GameModeContext } from '../contexts/gameModeContext'
 
 // STRAIGHT KEY TELEGRAPH
-function useStraightKey(gameMode, wpm) {
+function useStraightKey() {
     
     const {morseCharBuffer, setMorseCharBuffer, morseWords, setMorseWords} = useContext(MorseBufferContext)
-    // const {wpm} = useContext(WPMContext)
-    // console.log('useStraightKey-WPM:', wpm);
+    const {wpm} = useContext(WPMContext)
+    const {gameMode} = useContext(GameModeContext)
 
     let charTimer = 0
     let charTime = 0
@@ -17,7 +18,8 @@ function useStraightKey(gameMode, wpm) {
     
     const timingUnit = config.timingUnit
     
-    const ditMaxTime = 1200/wpm
+    const ditMaxTime = 1200/wpm * 0.3
+    
     const letterGapMinTime = ditMaxTime*3
     const wordGapMaxTime = ditMaxTime*7
     const morseHistorySize = config.historySize
@@ -43,11 +45,11 @@ function useStraightKey(gameMode, wpm) {
         setMorseWords([])
     }
 
-    const bufferDisplay = ['morseBufferDisplay', 'challengeBufferDisplay', 'ditDahs', 'alphanumeric-container']
-
     function handleInputStart(event) {
         event.preventDefault()
-        console.log('INPUTSTART');
+        console.log('ditMaxTime',ditMaxTime);
+        console.log('letterGapMinTime',letterGapMinTime);
+        console.log('wordGapMaxTime',wordGapMaxTime);
         // console.log('event.type', event.type);
         // if (event.type === 'mousedown' && event.target.className !== 'paddle') {
         //     if (event.target.id === 'wpm-input') {
@@ -230,7 +232,7 @@ function useStraightKey(gameMode, wpm) {
             clearHistory()
         }
         // eslint-disable-next-line
-    }, [])
+    }, [wpm])
 
     useEffect(() => {
         // PRACTICE MODE
