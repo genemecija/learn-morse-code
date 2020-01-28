@@ -10,7 +10,6 @@ function WordListPickerContextProvider(props) {
     const [wordListCategory, setWordListCategory] = useState('alphabet')
     let wordList = []
     const testList = ['gene', 'anya', 'ali', 'liam', 'last']
-    wordList = testList
 
     if (wordListCategory === 'alphabet') {
         wordList = alphabet.words
@@ -20,8 +19,30 @@ function WordListPickerContextProvider(props) {
         wordList = testList
     }
 
+
+    function randomize(arr) {
+        let array = [...arr]
+        let currentIndex = array.length, temporaryValue, randomIndex;
+        
+        // While there remain elements to shuffle...
+        while (0 !== currentIndex) {
+        
+            // Pick a remaining element...
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+        
+            // And swap it with the current element.
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+        }
+        
+        return array;
+    }
+
+
     return (
-        <WordListPickerContext.Provider value={{wordList: wordList, setWordListCategory: setWordListCategory}}>
+        <WordListPickerContext.Provider value={{wordList: wordList, wordListShuffled: randomize(wordList), setWordListCategory: setWordListCategory}}>
             {props.children}
         </WordListPickerContext.Provider>
     )

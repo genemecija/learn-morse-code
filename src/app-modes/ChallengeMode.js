@@ -50,7 +50,7 @@ export default React.memo(function ChallengeMode(props) {
                 if (incorrectMorseIndexes.length > 0) {
                     setMorseCharBuffer(prev => {
                         let newState = prev.split('_').filter(l => l !== '')
-                        let x = newState.splice(incorrectMorseIndexes[0], 1)
+                        newState.splice(incorrectMorseIndexes[0], 1)
                         newState = newState.join('_') + '_'
                         
                         return newState
@@ -77,7 +77,7 @@ export default React.memo(function ChallengeMode(props) {
         setTimeout(() => {
             getNextWord()
             setMorseCharBuffer('')
-        }, 1000)
+        }, 500)
     }
 
     return (

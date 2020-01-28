@@ -3,19 +3,23 @@ import { WordListPickerContext } from "./wordListPickerContext"
 const WordFeederContext = React.createContext()
 
 function WordFeederContextProvider(props) {
-
+    console.log('LOADED: wordFeederContext');
     // let wordList = ['hi', 'morse', 'code', 'hello', 'gene']
-    const {wordList} = useContext(WordListPickerContext)
+    const {wordList, wordListShuffled} = useContext(WordListPickerContext)
 
     const [wordIndex, setWordIndex] = useState(0)
     const [order, setOrder] = useState('sequential')
-    let indexCache = []
+    let word
 
-    let word = wordList[wordIndex]
+    if (order === 'sequential') {
+        word = wordList[wordIndex]
+    }
+    else if (order === 'random') {
+        word = wordListShuffled[wordIndex]
+    }
 
     function resetFeeder() {
         setWordIndex(0)
-        indexCache = []
     }
     
     function getNextWord() {
@@ -23,21 +27,13 @@ function WordFeederContextProvider(props) {
             setWordIndex(prev => prev + 1)
             word = wordList[wordIndex] || null
         } else if (order === 'random') {
-            let index = Math.floor(Math.random*wordList.length)
-            indexCache.push(index)
-            // Need to account for what to do when all words in wordList have been exhausted
-            while (indexCache.includes(index) && wordList.length !== indexCache.length) {
-                index = Math.floor(Math.random*wordList.length)
-                indexCache.push(index)
-            }
-            setWordIndex(index)
-
-            word = wordList[wordIndex]
+            setWordIndex(prev => prev + 1)
+            word = wordListShuffled[wordIndex] || null
         }
     }
 
     return (
-        <WordFeederContext.Provider value={{word: word, getNextWord: getNextWord, resetFeeder: resetFeeder}}>
+        <WordFeederContext.Provider value={{word: word, getNextWord: getNextWord, resetFeeder: resetFeeder, setOrder: setOrder}}>
             {props.children}
         </WordFeederContext.Provider>
     )

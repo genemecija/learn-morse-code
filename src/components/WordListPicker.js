@@ -5,15 +5,39 @@ import { WordFeederContext } from "../contexts/wordFeederContext";
 export default React.memo(function WordListPicker() {
 
     const {setWordListCategory} = useContext(WordListPickerContext)
-    const {resetFeeder} = useContext(WordFeederContext)
+    const {resetFeeder, setOrder} = useContext(WordFeederContext)
+
+    const orderOpts = ['sequential', 'random']
 
     function handleClick(e) {
         resetFeeder()
-        setWordListCategory(e.target.id)
-        console.log("Switched to " + e.target.id + " mode.");
+
+        if (orderOpts.includes(e.target.id)) {
+            let buttons = document.querySelector(".mode-picker#wordOrderPicker").childNodes
+            buttons.forEach(button => {
+                if (button.id === e.target.id) {
+                    button.classList.add('selected')
+                } else { button.classList.remove('selected')}
+            })
+
+            setOrder(e.target.id)
+        } else {
+            let buttons = document.querySelector(".mode-picker#wordListPicker").childNodes
+            buttons.forEach(button => {
+                if (button.id === e.target.id) {
+                    button.classList.add('selected')
+                } else { button.classList.remove('selected')}
+            })
+
+            setWordListCategory(e.target.id)
+            console.log("Switched to " + e.target.id + " mode.");
+        }
+
+        
     }
 
     return (
+        <>
             <div id="wordListPicker" className="mode-picker">
                 <button id="common100" onClick={handleClick}>
                     100 Most Common Words
@@ -25,5 +49,14 @@ export default React.memo(function WordListPicker() {
                     Test List
                 </button>
             </div>
+            <div id="wordOrderPicker" className="mode-picker">
+                <button id="sequential" onClick={handleClick}>
+                    Sequential
+                </button>
+                <button id="random" onClick={handleClick}>
+                    Random
+                </button>
+            </div>
+        </>
     )
 })

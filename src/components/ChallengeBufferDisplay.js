@@ -20,7 +20,7 @@ export default React.memo(function ChallengeBufferDisplay(props) {
         // DitDahs
         let ditDahClass = (incorrectMorseIndexes.includes(Number(i))) ? 'morseError' : ''
         ditDahs.push(<span key={i} className={ditDahClass}>{morseChar}</span>)
-        ditDahs.push(<span key={i+100} className='space'>&nbsp;</span>)
+        // ditDahs.push(<span key={i+100} className='space'>&nbsp;</span>)
     }
 
     return (

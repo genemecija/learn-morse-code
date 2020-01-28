@@ -229,10 +229,10 @@ function useStraightKey() {
                 paddle.removeEventListener('mouseup', handleInputEnd)
                 paddle.removeEventListener('touchend', handleInputEnd)
             })
-            clearHistory()
+            // clearHistory()
         }
         // eslint-disable-next-line
-    }, [wpm])
+    }, [wpm, gameMode])
 
     useEffect(() => {
         // PRACTICE MODE

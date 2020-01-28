@@ -366,8 +366,8 @@ header {
 
 #challengeBufferDisplay #alphanumeric-container #alphanumeric span {
   padding: 4px;
-  -webkit-transition: background 300ms ease-in-out;
-  transition: background 300ms ease-in-out;
+  -webkit-transition: background 100ms ease-in-out;
+  transition: background 100ms ease-in-out;
 }
 
 #challengeBufferDisplay #ditDahs {
