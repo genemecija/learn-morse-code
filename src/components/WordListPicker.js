@@ -39,18 +39,18 @@ export default React.memo(function WordListPicker() {
     return (
         <>
             <div id="wordListPicker" className="mode-picker">
+                <button id="alphabet" class="selected" onClick={handleClick}>
+                    Alphabet
+                </button>
                 <button id="common100" onClick={handleClick}>
                     100 Most Common Words
-                </button>
-                <button id="alphabet" onClick={handleClick}>
-                    Alphabet
                 </button>
                 <button id="test" onClick={handleClick}>
                     Test List
                 </button>
             </div>
             <div id="wordOrderPicker" className="mode-picker">
-                <button id="sequential" onClick={handleClick}>
+                <button id="sequential" class="selected" onClick={handleClick}>
                     Sequential
                 </button>
                 <button id="random" onClick={handleClick}>

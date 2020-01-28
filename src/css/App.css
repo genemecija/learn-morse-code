@@ -8,7 +8,7 @@
 html, body {
   height: 100%;
   width: 100%;
-  background: #FFF;
+  background: #2c2c2c;
 }
 
 #root {
@@ -55,25 +55,32 @@ header {
 }
 
 .mode-picker button {
-  background: #fcfcfc;
+  background: #2c2c2c;
+  color: #CCC;
   margin: 15px;
   padding: 5px;
-  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
-          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px rgba(255, 255, 255, 0.1);
+          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px rgba(255, 255, 255, 0.1);
   border: 0px;
   border-radius: 5px;
 }
 
 .mode-picker .selected {
-  -webkit-box-shadow: 0px -6px 10px white, 0px 4px 15px rgba(0, 0, 0, 0.15);
-          box-shadow: 0px -6px 10px white, 0px 4px 15px rgba(0, 0, 0, 0.15);
+  color: goldenrod;
+  -webkit-box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.2), inset 0px -1px 1px rgba(255, 255, 255, 0.1);
+          box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.2), inset 0px -1px 1px rgba(255, 255, 255, 0.1);
 }
 
 #legend {
-  width: 450px;
+  width: 400px;
+  height: 325px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
@@ -85,17 +92,32 @@ header {
 }
 
 #legend div {
+  border: 1px solid #999;
+  border-radius: 3px;
+  margin: 1px;
   width: 80px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: nowrap;
       flex-wrap: nowrap;
+  background: #BBB;
 }
 
 #legend div button {
-  width: 40px;
+  width: 20px;
+  height: 20px;
   margin: 4px;
+  border: 0px;
+  border-radius: 2px;
+}
+
+#legend div span {
+  width: 60%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
 }
 
 #morseButton {
@@ -219,7 +241,7 @@ header {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 100%;
+  width: 50vw;
   height: 150px;
   margin-bottom: 20px;
 }
@@ -231,7 +253,7 @@ header {
   display: flex;
   padding-left: 5px;
   height: 50px;
-  min-width: 50px;
+  min-width: 250px;
   margin-bottom: 10px;
   display: flex;
   -webkit-box-pack: center;
@@ -240,7 +262,7 @@ header {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  border-radius: 5px;
+  border-radius: 4px;
   -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
           box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
 }
@@ -264,7 +286,6 @@ header {
 }
 
 #morseBufferDisplay #ditDahs {
-  width: 50%;
   height: 50px;
   padding-right: 5px;
   display: -webkit-box;
@@ -294,8 +315,8 @@ header {
   width: 30px !important;
   margin-left: 3px;
   border-radius: 5px;
-  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
-          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px rgba(255, 255, 255, 0.1);
+          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px rgba(255, 255, 255, 0.1);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -305,7 +326,6 @@ header {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  opacity: 50%;
   -webkit-transition: all 100ms ease-in-out;
   transition: all 100ms ease-in-out;
 }

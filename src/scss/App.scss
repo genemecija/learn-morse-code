@@ -1,7 +1,10 @@
-$main-bg-color: #FFF;
+$main-bg-color: #2c2c2c;
 $main-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
+$main-box-shadow-dark: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px rgba(255, 255, 255, 0.1);
+$main-box-shadow-dark-selected: inset 0px 2px 2px rgba(0, 0, 0, 0.2), inset 0px -1px 1px rgba(255, 255, 255, 0.1);
 $main-border-radius: 5px;
 $border-radius-neumorphic: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.15);
+$border-radius-neumorphic-dark: 0px -10px 20px rgba(255, 255, 255, 0.1), 0px 10px 10px rgba(0, 0, 0, 0.4);
 $border-radius-neumorphic-active: 0 15px 20px rgba(0, 0, 0, 0.015), inset 0px -2px 5px rgb(255, 255, 255), inset 0px 2px 5px rgba(0, 0, 0, 0.15);
 * {
     box-sizing: border-box;
@@ -41,21 +44,26 @@ footer {
     display: flex;
     align-self: center;
     button {
-        background: #fcfcfc;
+        // background: #fcfcfc;
+        background: $main-bg-color;
+        color: #CCC;
         margin: 15px;
         padding: 5px;
-        box-shadow: $main-box-shadow;
+        box-shadow: $main-box-shadow-dark;
         border: 0px;
         border-radius: $main-border-radius;
     }
     .selected {
-        box-shadow: $border-radius-neumorphic;
+        color: goldenrod;
+        box-shadow: $main-box-shadow-dark-selected;
     }
 }
 
 #legend {
-    width: 450px;
+    width: 400px;
+    height: 325px;
     display: flex;
+    flex-direction: column;
     justify-content: space-evenly;
     position: fixed;
     top: 50px;
@@ -63,13 +71,25 @@ footer {
     flex-wrap: wrap;
 
     div {
+        border: 1px solid #999;
+        border-radius: 3px;
+        margin: 1px;
         width: 80px;
         display: flex;
         flex-wrap: nowrap;
+        background: #BBB;
         
         button {
-            width: 40px;
+            width: 20px;
+            height: 20px;
             margin: 4px;
+            border: 0px;
+            border-radius: 2px;
+        }
+        span {
+            width: 60%;
+            justify-content: center;
+            text-align: center;
         }
     }
 
@@ -166,7 +186,7 @@ footer {
     justify-content: center;
     flex-direction: column-reverse;
     align-items: center;
-    width: 100%;
+    width: 50vw;
     height: 150px;
     margin-bottom: 20px;
 
@@ -176,12 +196,12 @@ footer {
         display: flex;
         padding-left: 5px;
         height: 50px;
-        min-width: 50px;
+        min-width: 250px;
         margin-bottom: 10px;
         display: flex;
         justify-content: center;
         align-items: center;
-        border-radius: 5px;
+        border-radius: 4px;
         box-shadow: $main-box-shadow;
         
         #alphanumeric {
@@ -205,7 +225,7 @@ footer {
     }
 
     #ditDahs {
-        width: 50%;
+        // width: 50%;
         height: 50px;
         padding-right: 5px;
         // border-right: 2px solid #000;
@@ -228,12 +248,11 @@ footer {
             margin-left: 3px;
             // box-shadow: 0px 1px 0px #000;
             border-radius: $main-border-radius;
-            box-shadow: $main-box-shadow;
+            box-shadow: $main-box-shadow-dark;
             display: flex;
             justify-content: center;
             align-items: center;
             
-            opacity: 50%;
             transition: all 100ms ease-in-out;
         }
         

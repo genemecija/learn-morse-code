@@ -32,7 +32,7 @@ export default React.memo(function KeyTypePicker() {
 
     return (
             <div id="keyType" className="mode-picker">
-                <button id="straight" onClick={handleClick}>
+                <button id="straight" class="selected" onClick={handleClick}>
                     Straight Key
                 </button>
                 <button id="electronic" onClick={handleClick}>
