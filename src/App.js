@@ -21,7 +21,6 @@ import Legend from './components/Legend';
 import WordsPerMinute from "./components/WordsPerMinute"
 import MorseButtons from './components/MorseButtons'
 import Footer from './components/Footer';
-import { WPMContext } from './contexts/wpmContext';
 import StraightKey from './components/StraightKey';
 import ElectronicKey from './components/ElectronicKey';
 
@@ -31,19 +30,24 @@ export default React.memo(function App() {
 
     const {keyType} = useContext(KeyTypeContext)
     const {gameMode} = useContext(GameModeContext)
-    const wpm = useContext(WPMContext)
-
 
     return (
         <>
             <Header />
             <div id='main-content'>
                 <Legend />
-                <WordsPerMinute />
+                
                 <MorseBufferContextProvider>
-
-                    <ModePicker />
-                    <KeyTypePicker />
+                <WordListPickerContextProvider>
+                <WordFeederContextProvider>
+                    <div id="mainOptions">
+                        <ModePicker />
+                        <WordsPerMinute />
+                        <KeyTypePicker />
+                        {gameMode === 'challenge' &&
+                            <WordListPicker />
+                        }
+                    </div>
                     
                     {keyType === "straight" ?
                         <StraightKey /> : <ElectronicKey />
@@ -64,17 +68,12 @@ export default React.memo(function App() {
                     } */}
 
                     {gameMode === 'challenge' &&
-                        <>
-                        <WordListPickerContextProvider>
-                            <WordFeederContextProvider>
-                                <WordListPicker />
-                                <ChallengeMode />
-                            </WordFeederContextProvider>
-                        </WordListPickerContextProvider>
-                        </>
+                        <ChallengeMode />
                     }
 
                     <MorseButtons />
+                </WordFeederContextProvider>
+                </WordListPickerContextProvider>
                 </MorseBufferContextProvider>    
             </div>
         <Footer />

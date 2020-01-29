@@ -1,20 +1,38 @@
-$main-bg-color: #2c2c2c;
-$main-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
+// $main-bg-color-dark: #2c2c2c;
+@import url('https://fonts.googleapis.com/css?family=Courier+Prime:700|Rubik&display=swap');
+$main-font: 'Rubik', sans-serif;
+$buffer-font: 'Courier Prime', monospace;
+$ditDah-font: 'Courier', monospace;
+
+$main-bg-color-light: #f2f2f2;
+
+$main-font-color-light: #333;
+
+$morseCard-shadow-light: 0px 3px 3px rgba(0, 0, 0, 0.2);
+$main-box-shadow-light: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px rgba(255, 255, 255, 1);
+$main-box-shadow-light-selected: inset 0px 2px 2px rgba(0, 0, 0, 0.2), inset 0px -1px 1px rgba(255, 255, 255, 1);
 $main-box-shadow-dark: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px rgba(255, 255, 255, 0.1);
 $main-box-shadow-dark-selected: inset 0px 2px 2px rgba(0, 0, 0, 0.2), inset 0px -1px 1px rgba(255, 255, 255, 0.1);
+
 $main-border-radius: 5px;
+
 $border-radius-neumorphic: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.15);
 $border-radius-neumorphic-dark: 0px -10px 20px rgba(255, 255, 255, 0.1), 0px 10px 10px rgba(0, 0, 0, 0.4);
 $border-radius-neumorphic-active: 0 15px 20px rgba(0, 0, 0, 0.015), inset 0px -2px 5px rgb(255, 255, 255), inset 0px 2px 5px rgba(0, 0, 0, 0.15);
 * {
     box-sizing: border-box;
     margin: 0px;
-    padding: 0px
+    padding: 0px;
+    cursor: default;
+}
+button {
+    font-family: $main-bg-color-light;
+    cursor: pointer;
 }
 html, body {
     height: 100%;
     width: 100%;
-    background: $main-bg-color;
+    background: $main-bg-color-light;
     // background: #444;
 }
 #root {
@@ -43,19 +61,26 @@ footer {
 .mode-picker {
     display: flex;
     align-self: center;
+    #title {
+        display: flex;  
+        justify-content: center;
+        align-items: center;
+        margin: 7px;
+    }
+
     button {
         // background: #fcfcfc;
-        background: $main-bg-color;
-        color: #CCC;
-        margin: 15px;
+        background: $main-bg-color-light;
+        color: $main-font-color-light;
+        margin: 7px;
         padding: 5px;
-        box-shadow: $main-box-shadow-dark;
+        box-shadow: $main-box-shadow-light;
         border: 0px;
         border-radius: $main-border-radius;
     }
     .selected {
-        color: goldenrod;
-        box-shadow: $main-box-shadow-dark-selected;
+        // color: goldenrod;
+        box-shadow: $main-box-shadow-light-selected;
     }
 }
 
@@ -66,18 +91,18 @@ footer {
     flex-direction: column;
     justify-content: space-evenly;
     position: fixed;
-    top: 50px;
+    top: 250px;
     left: 50px;
     flex-wrap: wrap;
 
     div {
-        border: 1px solid #999;
+        border: 1px solid #ccc;
         border-radius: 3px;
         margin: 1px;
         width: 80px;
         display: flex;
         flex-wrap: nowrap;
-        background: #BBB;
+        // background: #BBB;
         
         button {
             width: 20px;
@@ -85,6 +110,7 @@ footer {
             margin: 4px;
             border: 0px;
             border-radius: 2px;
+            box-shadow: $main-box-shadow-light;
         }
         span {
             width: 60%;
@@ -98,7 +124,8 @@ footer {
 #morseButton {
     width: 100px;
     height: 100px;
-    margin: 30px;
+    margin-top: 30px;
+    margin-bottom: 10px;
     // background: goldenrod;
     border-radius: 50px;
     align-self: center;
@@ -106,11 +133,23 @@ footer {
     justify-content: center;
     align-items: center;
     transition: all 500ms ease-in-out;
+    box-shadow: $main-box-shadow-light;
 }
 #morseButton.showPaddles {
     width: 239px;
     background: transparent;
     box-shadow: 0px 0px 0px transparent;
+}
+#morseButtonText {
+    font-weight: bold;
+    color: #ccc;
+    font-size: 0.7rem;
+    margin-bottom: 40px;
+}
+#paddleText {
+    width: 150px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .paddle {
@@ -122,7 +161,7 @@ footer {
     margin: 0px;
     border: 0px;
     transition: all 500ms ease-in-out;
-
+    
     &#left {
         border-radius: 50px 0 0 50px;
         
@@ -145,6 +184,56 @@ footer {
         font-weight: bold;
         width: 250px;
         height: 100px;
+        box-shadow: $main-box-shadow-light;
+    }
+}
+i[class*="ri-"] {
+    font-weight: normal;
+    font-size: 0.9rem;
+    color: #777;
+    &:hover {
+        color: goldenrod;
+    }
+}
+
+#mainOptions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 400px;
+    // border: 1px solid red;
+    .mode-picker {
+        align-self: flex-start;
+        // border: 1px solid green;
+        width: 100%;
+        justify-content: flex-start;
+        #buttons {
+            // border: 1px solid blue;
+            display: flex;
+            justify-content: space-between;
+            align-content: space-between;
+        }
+        #input {
+            margin-left: 10px;
+            display: flex;
+            align-items: center;
+            input {
+                width: 50px;
+                // appearance: textfield;
+                text-align: center;
+                border-radius: 3px;
+                border: 1px solid #ddd;
+                height: 1.3rem;
+            }
+            select {
+                &:focus {
+                    box-shadow: none;
+                }
+            }
+        }
+    }
+    #title {
+        font-weight: bold;
     }
 }
     
@@ -160,8 +249,9 @@ footer {
     border-radius: 5px;
     width: fit-content;
     display: flex;
-    font-size: 40px;
-    font-family: 'Courier';
+    font-size: 3rem;
+    // font-family: 'Courier';
+    font-family: $buffer-font;
     font-weight: bold;
     background: #EEE;
     text-transform: uppercase;
@@ -171,6 +261,7 @@ footer {
     span {
         padding: 4px;
         margin: 1px;
+        line-height: 2.5rem;
         transition: background 300ms ease-in-out; //, opacity 100ms ease-in-out;
     }
     &.correct {
@@ -189,10 +280,11 @@ footer {
     width: 50vw;
     height: 150px;
     margin-bottom: 20px;
+    font-family: $buffer-font;
 
     #alphanumeric-container {
         // border-left: 2px solid #000;
-        background: #ccc;
+        background: #fdfdfd;
         display: flex;
         padding-left: 5px;
         height: 50px;
@@ -202,12 +294,10 @@ footer {
         justify-content: center;
         align-items: center;
         border-radius: 4px;
-        box-shadow: $main-box-shadow;
+        // box-shadow: $main-box-shadow-light;
         
         #alphanumeric {
             font-size: 40px;
-            font-family: 'Courier';
-            font-weight: bold;
             background-color: transparent;
             
             
@@ -233,7 +323,7 @@ footer {
         flex-direction: row;
         justify-content: center;
         font-size: 25px;
-        font-family: 'Courier';
+        font-family: $ditDah-font;
         font-weight: bold;
 
         span {
@@ -242,7 +332,7 @@ footer {
         }
 
         .ditDah {
-            background: #DDD;
+            background: #fdfdfd;
             height: 40px;
             width: 30px !important;
             margin-left: 3px;
@@ -259,15 +349,6 @@ footer {
     }
 }
 
-.example-appear {
-    opacity: 0.01;
-  }
-  
-.example-appear.example-appear-active {
-    opacity: 1;
-    transition: opacity .5s ease-in;
-}
-
 #challengeBufferDisplay {
     display: flex;
     justify-content: center;
@@ -277,6 +358,8 @@ footer {
     width: 100%;
     height: 150px;
     margin-bottom: 20px;
+    font-family: $buffer-font;
+    font-weight: bold;
 
     #alphanumeric-container {
         // border-left: 2px solid #000;
@@ -287,8 +370,6 @@ footer {
         
         #alphanumeric {
             font-size: 40px;
-            font-family: 'Courier';
-            font-weight: bold;
             background-color: transparent;
             margin-bottom: 10px;
             
@@ -313,7 +394,7 @@ footer {
         flex-direction: row;
         justify-content: center;
         font-size: 25px;
-        font-family: 'Courier';
+        font-family: $ditDah-font;
         font-weight: bold;
 
         span {
@@ -328,7 +409,7 @@ footer {
             margin-left: 3px;
             // box-shadow: 0px 1px 0px #000;
             border-radius: $main-border-radius;
-            box-shadow: $main-box-shadow;
+            box-shadow: $main-box-shadow-light;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -372,32 +453,32 @@ footer {
         opacity: 100%;
     }
     .morseCard:nth-child(2){
-        opacity: 90%;
+        opacity: 85%;
     }
     .morseCard:nth-child(3){
-        opacity: 80%;
-    }
-    .morseCard:nth-child(4){
         opacity: 70%;
     }
+    .morseCard:nth-child(4){
+        opacity: 55%;
+    }
     .morseCard:nth-child(5){
-        opacity: 60%;
-    }
-    .morseCard:nth-child(6){
-        opacity: 50%;
-    }
-    .morseCard:nth-child(7){
         opacity: 40%;
     }
-    .morseCard:nth-child(8){
-        opacity: 30%;
-    }
-    .morseCard:nth-child(9){
+    .morseCard:nth-child(6){
         opacity: 20%;
     }
-    .morseCard:nth-child(10){
+    .morseCard:nth-child(7){
         opacity: 10%;
     }
+    // .morseCard:nth-child(8){
+    //     opacity: 30%;
+    // }
+    // .morseCard:nth-child(9){
+    //     opacity: 20%;
+    // }
+    // .morseCard:nth-child(10){
+    //     opacity: 10%;
+    // }
 }
 
 .morseCard {
@@ -407,21 +488,21 @@ footer {
     /* border: 1px solid orange; */
     margin-bottom: 2px;
     font-size: 1.5rem;
-    font-family: 'Courier';
+    font-family: $buffer-font;
     /* width: 100%; */
-
-
+    
+    
     div div {
-        // border: 1px solid purple;
         cursor: default;
         padding: 5px;
-        margin: 3px;
-        background: #EEE;
+        margin: 2px;
+        background: #fdfdfd;
         // width: 50%;
         white-space: nowrap;
-        border-radius: $main-border-radius;
-        box-shadow: $main-box-shadow;
-        line-height: 1rem;
+        border-radius: 3px;
+        box-shadow: $morseCard-shadow-light;
+        line-height: 1.2rem;
+        display: flex;
     }
     .ditDahs-container, .alphanumeric-container {
         display: flex;
@@ -437,5 +518,7 @@ footer {
         justify-content: flex-end;
         align-items: center;
         overflow-wrap: break-word;
+        font-family: $ditDah-font;
+        font-weight: bold;
     }
 }

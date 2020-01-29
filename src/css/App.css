@@ -1,14 +1,21 @@
+@import url("https://fonts.googleapis.com/css?family=Courier+Prime:700|Rubik&display=swap");
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   margin: 0px;
   padding: 0px;
+  cursor: default;
+}
+
+button {
+  font-family: #f2f2f2;
+  cursor: pointer;
 }
 
 html, body {
   height: 100%;
   width: 100%;
-  background: #2c2c2c;
+  background: #f2f2f2;
 }
 
 #root {
@@ -54,21 +61,33 @@ header {
       align-self: center;
 }
 
+.mode-picker #title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 7px;
+}
+
 .mode-picker button {
-  background: #2c2c2c;
-  color: #CCC;
-  margin: 15px;
+  background: #f2f2f2;
+  color: #333;
+  margin: 7px;
   padding: 5px;
-  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px rgba(255, 255, 255, 0.1);
-          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px rgba(255, 255, 255, 0.1);
+  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px white;
+          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px white;
   border: 0px;
   border-radius: 5px;
 }
 
 .mode-picker .selected {
-  color: goldenrod;
-  -webkit-box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.2), inset 0px -1px 1px rgba(255, 255, 255, 0.1);
-          box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.2), inset 0px -1px 1px rgba(255, 255, 255, 0.1);
+  -webkit-box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.2), inset 0px -1px 1px white;
+          box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.2), inset 0px -1px 1px white;
 }
 
 #legend {
@@ -85,14 +104,14 @@ header {
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
   position: fixed;
-  top: 50px;
+  top: 250px;
   left: 50px;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
 }
 
 #legend div {
-  border: 1px solid #999;
+  border: 1px solid #ccc;
   border-radius: 3px;
   margin: 1px;
   width: 80px;
@@ -101,7 +120,6 @@ header {
   display: flex;
   -ms-flex-wrap: nowrap;
       flex-wrap: nowrap;
-  background: #BBB;
 }
 
 #legend div button {
@@ -110,6 +128,8 @@ header {
   margin: 4px;
   border: 0px;
   border-radius: 2px;
+  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px white;
+          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px white;
 }
 
 #legend div span {
@@ -123,7 +143,8 @@ header {
 #morseButton {
   width: 100px;
   height: 100px;
-  margin: 30px;
+  margin-top: 30px;
+  margin-bottom: 10px;
   border-radius: 50px;
   -ms-flex-item-align: center;
       align-self: center;
@@ -138,6 +159,8 @@ header {
           align-items: center;
   -webkit-transition: all 500ms ease-in-out;
   transition: all 500ms ease-in-out;
+  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px white;
+          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px white;
 }
 
 #morseButton.showPaddles {
@@ -145,6 +168,23 @@ header {
   background: transparent;
   -webkit-box-shadow: 0px 0px 0px transparent;
           box-shadow: 0px 0px 0px transparent;
+}
+
+#morseButtonText {
+  font-weight: bold;
+  color: #ccc;
+  font-size: 0.7rem;
+  margin-bottom: 40px;
+}
+
+#paddleText {
+  width: 150px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .paddle {
@@ -183,6 +223,79 @@ header {
   font-weight: bold;
   width: 250px;
   height: 100px;
+  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px white;
+          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px white;
+}
+
+i[class*="ri-"] {
+  font-weight: normal;
+  font-size: 0.9rem;
+  color: #777;
+}
+
+i[class*="ri-"]:hover {
+  color: goldenrod;
+}
+
+#mainOptions {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  width: 400px;
+}
+
+#mainOptions .mode-picker {
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  width: 100%;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+#mainOptions .mode-picker #buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-line-pack: justify;
+      align-content: space-between;
+}
+
+#mainOptions .mode-picker #input {
+  margin-left: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#mainOptions .mode-picker #input input {
+  width: 50px;
+  text-align: center;
+  border-radius: 3px;
+  border: 1px solid #ddd;
+  height: 1.3rem;
+}
+
+#mainOptions .mode-picker #input select:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+#mainOptions #title {
+  font-weight: bold;
 }
 
 #challengeWord {
@@ -204,8 +317,8 @@ header {
   width: -moz-fit-content;
   width: fit-content;
   display: flex;
-  font-size: 40px;
-  font-family: 'Courier';
+  font-size: 3rem;
+  font-family: "Courier Prime", monospace;
   font-weight: bold;
   background: #EEE;
   text-transform: uppercase;
@@ -218,6 +331,7 @@ header {
 #challengeWord span {
   padding: 4px;
   margin: 1px;
+  line-height: 2.5rem;
   -webkit-transition: background 300ms ease-in-out;
   transition: background 300ms ease-in-out;
 }
@@ -244,10 +358,11 @@ header {
   width: 50vw;
   height: 150px;
   margin-bottom: 20px;
+  font-family: "Courier Prime", monospace;
 }
 
 #morseBufferDisplay #alphanumeric-container {
-  background: #ccc;
+  background: #fdfdfd;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -263,14 +378,10 @@ header {
       -ms-flex-align: center;
           align-items: center;
   border-radius: 4px;
-  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
-          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
 }
 
 #morseBufferDisplay #alphanumeric-container #alphanumeric {
   font-size: 40px;
-  font-family: 'Courier';
-  font-weight: bold;
   background-color: transparent;
 }
 
@@ -299,7 +410,7 @@ header {
       -ms-flex-pack: center;
           justify-content: center;
   font-size: 25px;
-  font-family: 'Courier';
+  font-family: "Courier", monospace;
   font-weight: bold;
 }
 
@@ -310,7 +421,7 @@ header {
 }
 
 #morseBufferDisplay #ditDahs .ditDah {
-  background: #DDD;
+  background: #fdfdfd;
   height: 40px;
   width: 30px !important;
   margin-left: 3px;
@@ -328,16 +439,6 @@ header {
           align-items: center;
   -webkit-transition: all 100ms ease-in-out;
   transition: all 100ms ease-in-out;
-}
-
-.example-appear {
-  opacity: 0.01;
-}
-
-.example-appear.example-appear-active {
-  opacity: 1;
-  -webkit-transition: opacity .5s ease-in;
-  transition: opacity .5s ease-in;
 }
 
 #challengeBufferDisplay {
@@ -358,6 +459,8 @@ header {
   width: 100%;
   height: 150px;
   margin-bottom: 20px;
+  font-family: "Courier Prime", monospace;
+  font-weight: bold;
 }
 
 #challengeBufferDisplay #alphanumeric-container {
@@ -373,8 +476,6 @@ header {
 
 #challengeBufferDisplay #alphanumeric-container #alphanumeric {
   font-size: 40px;
-  font-family: 'Courier';
-  font-weight: bold;
   background-color: transparent;
   margin-bottom: 10px;
 }
@@ -404,7 +505,7 @@ header {
       -ms-flex-pack: center;
           justify-content: center;
   font-size: 25px;
-  font-family: 'Courier';
+  font-family: "Courier", monospace;
   font-weight: bold;
 }
 
@@ -419,8 +520,8 @@ header {
   width: 30px !important;
   margin-left: 3px;
   border-radius: 5px;
-  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
-          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px white;
+          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px white;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -467,38 +568,26 @@ header {
 }
 
 #morseHistory .morseCard:nth-child(2) {
-  opacity: 90%;
+  opacity: 85%;
 }
 
 #morseHistory .morseCard:nth-child(3) {
-  opacity: 80%;
-}
-
-#morseHistory .morseCard:nth-child(4) {
   opacity: 70%;
 }
 
+#morseHistory .morseCard:nth-child(4) {
+  opacity: 55%;
+}
+
 #morseHistory .morseCard:nth-child(5) {
-  opacity: 60%;
-}
-
-#morseHistory .morseCard:nth-child(6) {
-  opacity: 50%;
-}
-
-#morseHistory .morseCard:nth-child(7) {
   opacity: 40%;
 }
 
-#morseHistory .morseCard:nth-child(8) {
-  opacity: 30%;
-}
-
-#morseHistory .morseCard:nth-child(9) {
+#morseHistory .morseCard:nth-child(6) {
   opacity: 20%;
 }
 
-#morseHistory .morseCard:nth-child(10) {
+#morseHistory .morseCard:nth-child(7) {
   opacity: 10%;
 }
 
@@ -516,20 +605,23 @@ header {
   /* border: 1px solid orange; */
   margin-bottom: 2px;
   font-size: 1.5rem;
-  font-family: 'Courier';
+  font-family: "Courier Prime", monospace;
   /* width: 100%; */
 }
 
 .morseCard div div {
   cursor: default;
   padding: 5px;
-  margin: 3px;
-  background: #EEE;
+  margin: 2px;
+  background: #fdfdfd;
   white-space: nowrap;
-  border-radius: 5px;
+  border-radius: 3px;
   -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
           box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
-  line-height: 1rem;
+  line-height: 1.2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .morseCard .ditDahs-container, .morseCard .alphanumeric-container {
@@ -557,5 +649,7 @@ header {
       -ms-flex-align: center;
           align-items: center;
   overflow-wrap: break-word;
+  font-family: "Courier", monospace;
+  font-weight: bold;
 }
 /*# sourceMappingURL=App.css.map */

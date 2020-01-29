@@ -350,7 +350,7 @@ function useElectronicKey() {
             // clearHistory()
         }
         // eslint-disable-next-line
-    }, [wpm])
+    }, [wpm, gameMode])
 
     useEffect(() => {
         // PRACTICE MODE

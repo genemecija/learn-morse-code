@@ -1,6 +1,7 @@
 import React, {useContext} from "react"
 import {KeyTypeContext} from "../contexts/keyTypeContext"
 
+
 export default React.memo(function KeyTypePicker() {
 
     const {setKeyType} = useContext(KeyTypeContext)
@@ -9,7 +10,7 @@ export default React.memo(function KeyTypePicker() {
         setKeyType(e.target.id)
         console.log("KEYTYPE PICKED:", e.target.id);
 
-        let buttons = document.querySelector(".mode-picker#keyType").childNodes
+        let buttons = document.querySelector(".mode-picker#keyType #buttons").childNodes
         buttons.forEach(button => {
             if (button.id === e.target.id) {
                 button.classList.add('selected')
@@ -21,23 +22,30 @@ export default React.memo(function KeyTypePicker() {
             document.querySelector('.paddle').classList.add('showPaddles')
             document.querySelector('.paddle#left').classList.add('showPaddles')
             document.querySelector('.paddle#right').classList.add('showPaddles')
+            document.getElementById('morseButtonText').innerHTML = '<div id="paddleText"><div id="comma">COMMA (,)</div><div id="period">PERIOD (.)</div></div>'
         } else {
             document.querySelector('#morseButton').classList.remove('showPaddles')
             document.querySelector('.paddle').classList.remove('showPaddles')
             document.querySelector('.paddle#left').classList.remove('showPaddles')
             document.querySelector('.paddle#right').classList.remove('showPaddles')
+            document.getElementById('morseButtonText').innerHTML = 'SPACEBAR'
         }
 
     }
 
     return (
             <div id="keyType" className="mode-picker">
-                <button id="straight" class="selected" onClick={handleClick}>
-                    Straight Key
-                </button>
-                <button id="electronic" onClick={handleClick}>
-                    Electronic Key
-                </button>
+                <div id="title">
+                    Keyer Type&nbsp;<i class="ri-question-line"></i> 
+                </div>
+                <div id="buttons">
+                    <button id="straight" class="selected" onClick={handleClick}>
+                        Straight Keyer
+                    </button>
+                    <button id="electronic" onClick={handleClick}>
+                        Electronic Keyer
+                    </button>
+                </div>
             </div>
     )
 })

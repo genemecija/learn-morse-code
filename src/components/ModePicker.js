@@ -10,20 +10,32 @@ function ModePicker() {
     function handleClick(e) {
         setMorseCharBuffer('')
         setGameMode(e.target.id)
+
+        let buttons = document.querySelector(".mode-picker#gameMode #buttons").childNodes
+        buttons.forEach(button => {
+            if (button.id === e.target.id) {
+                button.classList.add('selected')
+            } else { button.classList.remove('selected')}
+        })
         console.log("Switched to " + e.target.id + " mode.");
     }
 
     return (
             <div id="gameMode" className="mode-picker">
-                <button id="practice" class="selected" onClick={handleClick}>
-                    Practice
-                </button>
-                <button id="training" onClick={handleClick}>
-                    Training Mode
-                </button>
-                <button id="challenge" onClick={handleClick}>
-                    Challenge Mode
-                </button>
+                <div id="title">
+                    Mode
+                </div>
+                <div id='buttons'>
+                    <button id="practice" class="selected" onClick={handleClick}>
+                        Practice
+                    </button>
+                    <button id="training" onClick={handleClick}>
+                        Training
+                    </button>
+                    <button id="challenge" onClick={handleClick}>
+                        Challenge
+                    </button>
+                </div>
             </div>
     )
 }
