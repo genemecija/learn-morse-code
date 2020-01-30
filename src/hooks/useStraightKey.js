@@ -46,43 +46,14 @@ function useStraightKey() {
     }
 
     function handleInputStart(event) {
-        event.preventDefault()
-        console.log('ditMaxTime',ditMaxTime);
-        console.log('letterGapMinTime',letterGapMinTime);
-        console.log('wordGapMaxTime',wordGapMaxTime);
-        // console.log('event.type', event.type);
-        // if (event.type === 'mousedown' && event.target.className !== 'paddle') {
-        //     if (event.target.id === 'wpm-input') {
-        //         console.log('REMOVED KEYDOWN/UP');
-        //         document.removeEventListener('keydown', handleInputStart)
-        //         document.removeEventListener('keyup', handleInputEnd)
-        //         event.target.focus()
-        //     } else {
-        //         document.addEventListener('keydown', handleInputStart)
-        //         document.addEventListener('keyup', handleInputEnd)
-        //         document.activeElement.blur()
-        //     }
-        // }
+        // event.preventDefault()
+        
+        
 
-        // console.log(event.target);
-        // if (event.type === 'mousedown' && event.target.className !== 'paddle') {
-        //     if (bufferDisplay.includes(event.target.id)) {
-        //         document.addEventListener('keydown', handleInputStart)
-        //         document.addEventListener('keyup', handleInputEnd)
-        //         insideBufferDisplay = true
-        //         console.log('insideBufferDisplay', insideBufferDisplay);
-        //     } else {
-        //         document.removeEventListener('keydown', handleInputStart)
-        //         document.removeEventListener('keyup', handleInputEnd)
-        //         insideBufferDisplay = false
-        //         console.log('insideBufferDisplay', insideBufferDisplay);
-        //         if (event.target.id === 'wpm-input') {
-        //             event.target.focus()
-        //         } else {
-        //             document.activeElement.blur()
-        //         }
-        //     }
-        // }
+        if (event.keyCode === 32 && document.activeElement.id === 'wordlist-picker') {
+            event.preventDefault()
+            document.activeElement.blur()
+        }
         
 
         if (isRunning) {
@@ -93,8 +64,10 @@ function useStraightKey() {
                 event.target.id !== "morseButton" &&
                 event.target.className !== "paddle") ||
                 (event.repeat)) {
-                    return
-                }
+                return
+            }
+            
+            document.getElementById('morseButton').classList.add('active')
 
             isRunning = true
 
@@ -128,7 +101,7 @@ function useStraightKey() {
     }
 
     function handleInputEnd(event) {
-        event.preventDefault()
+        // event.preventDefault()
 
         // if (event.target.id !== 'morseBufferDisplay') {
         //     insideBufferDisplay = true
@@ -143,6 +116,9 @@ function useStraightKey() {
                 (event.repeat)) {
                 return
             }
+
+            document.getElementById('morseButton').classList.remove('active')
+
             isRunning = false
             
                 

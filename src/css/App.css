@@ -8,14 +8,14 @@
 }
 
 button {
-  font-family: #f2f2f2;
+  font-family: #f1f1f1;
   cursor: pointer;
 }
 
 html, body {
   height: 100%;
   width: 100%;
-  background: #f2f2f2;
+  background: #f1f1f1;
 }
 
 #root {
@@ -35,10 +35,26 @@ html, body {
 }
 
 header {
-  margin-top: 100px;
+  margin-top: 50px;
 }
 
 #main-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 95vh;
+  width: 95vw;
+  border: 1px solid red;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#main-content #sidebar {
+  border: 1px solid green;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -46,11 +62,131 @@ header {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  width: 95vw;
-  border: 1px solid red;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  height: 100%;
+  width: 350px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+#main-content #main-interface {
+  border: 1px solid blue;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 900px;
+  height: 100%;
+  min-width: 400px;
+}
+
+i[class*="ri-"] {
+  cursor: pointer;
+  font-weight: normal;
+  font-size: 0.9rem;
+  color: #777;
+}
+
+i[class*="ri-"]:hover {
+  color: goldenrod;
+}
+
+#mainOptions {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  width: 100%;
+  max-width: 95vw;
+  height: 200px;
+  border: 1px solid red;
+}
+
+#mainOptions .mode-picker {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+#mainOptions .mode-picker #title {
+  font-weight: bold;
+}
+
+#mainOptions .mode-picker #buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#mainOptions .mode-picker #buttons button {
+  height: 1.4rem;
+}
+
+#mainOptions .mode-picker #input {
+  margin-left: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#mainOptions .mode-picker #input input {
+  width: 50px;
+  -webkit-appearance: textfield;
+     -moz-appearance: textfield;
+          appearance: textfield;
+  text-align: center;
+  border-radius: 3px;
+  border: 1px solid #ddd;
+  height: 1.3rem;
+}
+
+#mainOptions .mode-picker #input select {
+  height: 1.4rem;
+}
+
+#mainOptions .mode-picker #input button {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  line-height: 10px;
+}
+
+#mainOptions .mode-picker #input button i {
+  position: relative;
+  left: -2px;
 }
 
 .mode-picker {
@@ -75,7 +211,7 @@ header {
 }
 
 .mode-picker button {
-  background: #f2f2f2;
+  background: #f1f1f1;
   color: #333;
   margin: 7px;
   padding: 5px;
@@ -91,19 +227,15 @@ header {
 }
 
 #legend {
-  width: 400px;
-  height: 325px;
+  background: #f1f1f1;
+  width: 100%;
+  max-width: 95vw;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
-  position: fixed;
   top: 250px;
   left: 50px;
   -ms-flex-wrap: wrap;
@@ -132,6 +264,13 @@ header {
           box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px white;
 }
 
+#legend div button:active {
+  -webkit-transform: translateY(3px);
+          transform: translateY(3px);
+  -webkit-box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
+          box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
+}
+
 #legend div span {
   width: 60%;
   -webkit-box-pack: center;
@@ -141,11 +280,11 @@ header {
 }
 
 #morseButton {
-  width: 100px;
-  height: 100px;
+  width: 400px;
+  height: 55px;
   margin-top: 30px;
   margin-bottom: 10px;
-  border-radius: 50px;
+  border-radius: 5px;
   -ms-flex-item-align: center;
       align-self: center;
   display: -webkit-box;
@@ -157,14 +296,72 @@ header {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-transition: all 500ms ease-in-out;
-  transition: all 500ms ease-in-out;
+  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px white;
+          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px white;
+  -webkit-transition: width 500ms ease-out, background 500ms ease-out, -webkit-transform 40ms ease-out, -webkit-box-shadow 40ms ease-out;
+  transition: width 500ms ease-out, background 500ms ease-out, -webkit-transform 40ms ease-out, -webkit-box-shadow 40ms ease-out;
+  transition: transform 40ms ease-out, box-shadow 40ms ease-out, width 500ms ease-out, background 500ms ease-out;
+  transition: transform 40ms ease-out, box-shadow 40ms ease-out, width 500ms ease-out, background 500ms ease-out, -webkit-transform 40ms ease-out, -webkit-box-shadow 40ms ease-out;
+}
+
+#morseButton.active {
+  -webkit-transform: translateY(3px);
+          transform: translateY(3px);
+  -webkit-box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
+          box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
+}
+
+#morseButton button {
+  font-size: 1rem;
+  color: transparent;
+  width: 200px;
+  height: 55px;
+  background: #f4f4f4;
+  margin: 0px;
+  border: 0px;
+  -webkit-transition: width 500ms ease-out, background 500ms ease-out, -webkit-transform 40ms ease-out, -webkit-box-shadow 40ms ease-out;
+  transition: width 500ms ease-out, background 500ms ease-out, -webkit-transform 40ms ease-out, -webkit-box-shadow 40ms ease-out;
+  transition: transform 40ms ease-out, box-shadow 40ms ease-out, width 500ms ease-out, background 500ms ease-out;
+  transition: transform 40ms ease-out, box-shadow 40ms ease-out, width 500ms ease-out, background 500ms ease-out, -webkit-transform 40ms ease-out, -webkit-box-shadow 40ms ease-out;
+}
+
+#morseButton button.showPaddles {
+  color: #888;
+  font-size: 1rem;
+  font-weight: bold;
+  width: 60px;
+  height: 55px;
   -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px white;
           box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px white;
 }
 
+#morseButton button#left {
+  border-radius: 5px 0 0 5px;
+}
+
+#morseButton button#left.showPaddles {
+  margin-right: 7px;
+  border-radius: 5px;
+}
+
+#morseButton button#right {
+  border-radius: 0 5px 5px 0;
+}
+
+#morseButton button#right.showPaddles {
+  margin-left: 7px;
+  border-radius: 5px;
+}
+
+#morseButton button.active {
+  -webkit-transform: translateY(3px);
+          transform: translateY(3px);
+  -webkit-box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
+          box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
+}
+
 #morseButton.showPaddles {
-  width: 239px;
+  width: 134px;
   background: transparent;
   -webkit-box-shadow: 0px 0px 0px transparent;
           box-shadow: 0px 0px 0px transparent;
@@ -172,130 +369,18 @@ header {
 
 #morseButtonText {
   font-weight: bold;
-  color: #ccc;
+  color: #bbb;
   font-size: 0.7rem;
   margin-bottom: 40px;
 }
 
 #paddleText {
-  width: 150px;
+  width: 140px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-}
-
-.paddle {
-  font-size: 1rem;
-  color: transparent;
-  width: 100px;
-  height: 100px;
-  background: goldenrod;
-  margin: 0px;
-  border: 0px;
-  -webkit-transition: all 500ms ease-in-out;
-  transition: all 500ms ease-in-out;
-}
-
-.paddle#left {
-  border-radius: 50px 0 0 50px;
-}
-
-.paddle#left.showPaddles {
-  margin-right: 7px;
-  border-radius: 20px 0 0 20px;
-}
-
-.paddle#right {
-  border-radius: 0 50px 50px 0;
-}
-
-.paddle#right.showPaddles {
-  margin-left: 7px;
-  border-radius: 0 20px 20px 0;
-}
-
-.paddle.showPaddles {
-  color: #000;
-  font-size: 2.5rem;
-  font-weight: bold;
-  width: 250px;
-  height: 100px;
-  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px white;
-          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px white;
-}
-
-i[class*="ri-"] {
-  font-weight: normal;
-  font-size: 0.9rem;
-  color: #777;
-}
-
-i[class*="ri-"]:hover {
-  color: goldenrod;
-}
-
-#mainOptions {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
-  width: 400px;
-}
-
-#mainOptions .mode-picker {
-  -ms-flex-item-align: start;
-      align-self: flex-start;
-  width: 100%;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-}
-
-#mainOptions .mode-picker #buttons {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -ms-flex-line-pack: justify;
-      align-content: space-between;
-}
-
-#mainOptions .mode-picker #input {
-  margin-left: 10px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-#mainOptions .mode-picker #input input {
-  width: 50px;
-  text-align: center;
-  border-radius: 3px;
-  border: 1px solid #ddd;
-  height: 1.3rem;
-}
-
-#mainOptions .mode-picker #input select:focus {
-  -webkit-box-shadow: none;
-          box-shadow: none;
-}
-
-#mainOptions #title {
-  font-weight: bold;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 
 #challengeWord {
@@ -308,22 +393,23 @@ i[class*="ri-"]:hover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -ms-flex-item-align: center;
+      align-self: center;
   height: 50px;
-  margin-bottom: 20px;
-  padding-left: 10px;
-  padding-right: 10px;
-  border-radius: 5px;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  display: flex;
+  margin-bottom: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 4px;
+  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px white;
+          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px white;
   font-size: 3rem;
-  font-family: "Courier Prime", monospace;
+  font-family: "Courier", monospace;
   font-weight: bold;
-  background: #EEE;
+  background: #fdfdfd;
   text-transform: uppercase;
-  -ms-flex-item-align: center;
-      align-self: center;
   -webkit-transition: all 300ms ease-in-out;
   transition: all 300ms ease-in-out;
 }
@@ -355,10 +441,11 @@ i[class*="ri-"]:hover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 50vw;
+  width: 100%;
   height: 150px;
   margin-bottom: 20px;
-  font-family: "Courier Prime", monospace;
+  font-family: "Courier", monospace;
+  font-weight: bold;
 }
 
 #morseBufferDisplay #alphanumeric-container {
@@ -367,7 +454,7 @@ i[class*="ri-"]:hover {
   display: -ms-flexbox;
   display: flex;
   padding-left: 5px;
-  height: 50px;
+  height: 3rem;
   min-width: 250px;
   margin-bottom: 10px;
   display: flex;
@@ -378,10 +465,12 @@ i[class*="ri-"]:hover {
       -ms-flex-align: center;
           align-items: center;
   border-radius: 4px;
+  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px white;
+          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px white;
 }
 
 #morseBufferDisplay #alphanumeric-container #alphanumeric {
-  font-size: 40px;
+  font-size: 3rem;
   background-color: transparent;
 }
 
@@ -459,7 +548,7 @@ i[class*="ri-"]:hover {
   width: 100%;
   height: 150px;
   margin-bottom: 20px;
-  font-family: "Courier Prime", monospace;
+  font-family: "Courier", monospace;
   font-weight: bold;
 }
 
@@ -553,7 +642,26 @@ i[class*="ri-"]:hover {
   border-radius: 5px;
 }
 
+#morseHistory-textbox {
+  border: 1px solid cyan;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 150px;
+  width: 75%;
+  padding: 15px;
+  font-family: Courier;
+  font-size: 1.5rem;
+}
+
+#morseHistory-textbox span {
+  background: #CCC;
+  margin-right: 0.7rem;
+  height: 1.5rem;
+}
+
 #morseHistory {
+  border: 1px solid purple;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -561,6 +669,7 @@ i[class*="ri-"]:hover {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  width: 100%;
 }
 
 #morseHistory .morseCard:nth-child(1) {
@@ -604,24 +713,30 @@ i[class*="ri-"]:hover {
           justify-content: center;
   /* border: 1px solid orange; */
   margin-bottom: 2px;
-  font-size: 1.5rem;
-  font-family: "Courier Prime", monospace;
+  font-size: 1.7rem;
+  font-family: "Courier", monospace;
   /* width: 100%; */
 }
 
 .morseCard div div {
-  cursor: default;
-  padding: 5px;
+  padding: 3px;
   margin: 2px;
   background: #fdfdfd;
   white-space: nowrap;
   border-radius: 3px;
   -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
           box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
-  line-height: 1.2rem;
+  line-height: 1.7rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+}
+
+.morseCard div div span.morseError {
+  background: rgba(255, 0, 0, 0.4);
+  height: 1.7rem;
+  color: #780000;
+  border-radius: 5px;
 }
 
 .morseCard .ditDahs-container, .morseCard .alphanumeric-container {

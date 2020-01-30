@@ -42,7 +42,7 @@ function WordListPickerContextProvider(props) {
 
 
     return (
-        <WordListPickerContext.Provider value={{wordList: wordList, wordListShuffled: randomize(wordList), setWordListCategory: setWordListCategory}}>
+        <WordListPickerContext.Provider value={{wordList: wordList, wordListShuffled: randomize(wordList), wordListCategory: wordListCategory, setWordListCategory: setWordListCategory}}>
             {props.children}
         </WordListPickerContext.Provider>
     )

@@ -3,11 +3,12 @@ import React, {useContext, useState} from "react"
 import morseCode from '../data/morse-reverse.json'
 import {MorseBufferContext} from "../contexts/morseBufferContext"
 
-export default (function MorseHistory() {
+export default (function MorseHistoryTextBox() {
 
     const {morseWords} = useContext(MorseBufferContext)
 
     let text = ''
+    let span = []
 
     console.log('morseWords', morseWords);
 
@@ -23,14 +24,15 @@ export default (function MorseHistory() {
                     newWord += morseCode[letter].toUpperCase()
                 }
             })
-            text = newWord + ' ' + text
+            // text = newWord + ' ' + text
+            span.splice(0, 0, <span>{newWord}</span>)
         }
         else if (morseCode[word] === undefined) {
-            text = '[?]' + text
-            console.log('undefined', word);
+            // text = '[?] ' + text
+            span.splice(0, 0, <span>[?]</span>)
         } else {
-            console.log('here2');
-            text =  morseCode[word].toUpperCase() + ' ' + text
+            // text =  morseCode[word].toUpperCase() + ' ' + text
+            span.splice(0, 0, <span>{morseCode[word].toUpperCase()}</span>)
         }
     })
 
@@ -39,6 +41,6 @@ export default (function MorseHistory() {
     // } catch {}
     
     return (
-        <div id="morseHistory">{text}</div>
+        <div id="morseHistory-textbox">{span}</div>
     )
 })

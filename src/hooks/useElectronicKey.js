@@ -235,13 +235,15 @@ function useElectronicKey() {
 
 
     function handleInputStart(event) {
-        event.preventDefault()
+        // event.preventDefault()
         
         paddlesReleasedSimultaneously = false
 
         if (event.repeat) { return }
 
         if (event.keyCode === 188 || event.target.id === "left") {
+            document.getElementById('left').classList.add('active')
+            
             leftIsPressed = true
             if (!rightIsPressed) { pressedFirst = 'left'}
 
@@ -251,6 +253,8 @@ function useElectronicKey() {
             }
         }
         else if (event.keyCode === 190 || event.target.id === "right") {
+            document.getElementById('right').classList.add('active')
+
             rightIsPressed = true
             if (!leftIsPressed) { pressedFirst = 'right'}
 
@@ -262,11 +266,13 @@ function useElectronicKey() {
     }
 
     function handleInputEnd(event) {
-        event.preventDefault()
+        // event.preventDefault()
 
         // if (!insideBufferDisplay) {return}
 
         if (event.keyCode === 188 || event.target.id === "left") {
+            document.getElementById('left').classList.remove('active')
+
             leftIsPressed = false
             
             if (pressedFirst === 'left') { pressedFirst = null }
@@ -275,6 +281,8 @@ function useElectronicKey() {
             else { stopDepressSyncTimer() }
         }
         if (event.keyCode === 190 || event.target.id === "right") {
+            document.getElementById('right').classList.remove('active')
+
             rightIsPressed = false
             if (pressedFirst === 'right') { pressedFirst = null }
 

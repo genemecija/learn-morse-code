@@ -35,43 +35,45 @@ export default React.memo(function App() {
         <>
             <Header />
             <div id='main-content'>
-                <Legend />
-                
                 <MorseBufferContextProvider>
                 <WordListPickerContextProvider>
                 <WordFeederContextProvider>
-                    <div id="mainOptions">
-                        <ModePicker />
-                        <WordsPerMinute />
-                        <KeyTypePicker />
-                        {gameMode === 'challenge' &&
-                            <WordListPicker />
-                        }
+                    <div id="sidebar">
+                        <div id="mainOptions">
+                            <ModePicker />
+                            <KeyTypePicker />
+                            <WordsPerMinute />
+                            {gameMode === 'challenge' &&
+                                <WordListPicker />
+                            }
+                        </div>
+                        <Legend />
                     </div>
-                    
-                    {keyType === "straight" ?
-                        <StraightKey /> : <ElectronicKey />
-                    }
-
-                    {gameMode === 'practice' &&
-                        <PracticeMode />
-                    }
-                    
-                    {/* {gameMode === 'timed' &&
-                        <>
+                    <div id="main-interface">
                         {keyType === "straight" ?
-                        <StraightKey gameMode='training' /> : <ElectronicKey gameMode='training' />}
-                        <TrainingMode /><br/>
-                        <MorseBufferDisplay /><br/>
-                        <MorseHistory /><br/>
-                        </>
-                    } */}
+                            <StraightKey /> : <ElectronicKey />
+                        }
 
-                    {gameMode === 'challenge' &&
-                        <ChallengeMode />
-                    }
+                        {gameMode === 'practice' &&
+                            <PracticeMode />
+                        }
+                        
+                        {/* {gameMode === 'timed' &&
+                            <>
+                            {keyType === "straight" ?
+                            <StraightKey gameMode='training' /> : <ElectronicKey gameMode='training' />}
+                            <TrainingMode /><br/>
+                            <MorseBufferDisplay /><br/>
+                            <MorseHistory /><br/>
+                            </>
+                        } */}
 
-                    <MorseButtons />
+                        {gameMode === 'challenge' &&
+                            <ChallengeMode />
+                        }
+
+                        <MorseButtons />
+                    </div>
                 </WordFeederContextProvider>
                 </WordListPickerContextProvider>
                 </MorseBufferContextProvider>    

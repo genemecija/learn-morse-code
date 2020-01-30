@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import '../css/App.css';
 import morseCode from '../data/morse-reverse.json'
 import ChallengeWord from '../components/ChallengeWord'
@@ -24,17 +24,20 @@ export default React.memo(function ChallengeMode(props) {
     let incorrectMorseIndexes = [] // Indexes of incorrect morse characters in morse character buffer
     
     let offset = 0
-    
+
+
     if (!word) {
         console.log('FINISHED ALL WORDS!')
         alert('No more words.')
         return
     }
+
+    
     let challengeLetters = word.split('')
+    
 
     // Iterate through the morse character buffer and compare with each letter of challenge word
     morseArray.forEach((item, index) => {        
-
         if (morseCharBuffer.slice(-1) === '_') { // If end of morse character
 
             let morseLetter = morseCode[morseArray[index]] || '[?]'

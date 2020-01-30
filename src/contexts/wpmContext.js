@@ -8,8 +8,9 @@ function WPMContextProvider(props) {
 
     return (
         <WPMContext.Provider value={{
-            wpm: wpm,
-            setWPM: setWPM}}>
+            wpm: Number(wpm),
+            setWPM: setWPM}
+        }>
             {props.children}
         </WPMContext.Provider>
     )

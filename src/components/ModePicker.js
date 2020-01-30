@@ -1,14 +1,18 @@
 import React, {useContext} from "react"
 import {GameModeContext} from "../contexts/gameModeContext"
 import { MorseBufferContext } from "../contexts/morseBufferContext"
+import { WordFeederContext } from "../contexts/wordFeederContext"
 
 function ModePicker() {
 
     const {setGameMode} = useContext(GameModeContext)
     const {setMorseCharBuffer} = useContext(MorseBufferContext)
+    const {resetFeeder} = useContext(WordFeederContext)
 
     function handleClick(e) {
         setMorseCharBuffer('')
+        resetFeeder()
+
         setGameMode(e.target.id)
 
         let buttons = document.querySelector(".mode-picker#gameMode #buttons").childNodes
@@ -26,7 +30,7 @@ function ModePicker() {
                     Mode
                 </div>
                 <div id='buttons'>
-                    <button id="practice" class="selected" onClick={handleClick}>
+                    <button id="practice" className="selected" onClick={handleClick}>
                         Practice
                     </button>
                     <button id="training" onClick={handleClick}>

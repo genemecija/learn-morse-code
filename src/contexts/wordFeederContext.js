@@ -5,7 +5,7 @@ const WordFeederContext = React.createContext()
 function WordFeederContextProvider(props) {
     console.log('LOADED: wordFeederContext');
     // let wordList = ['hi', 'morse', 'code', 'hello', 'gene']
-    const {wordList, wordListShuffled} = useContext(WordListPickerContext)
+    const {wordList, wordListShuffled, wordListCategory} = useContext(WordListPickerContext)
 
     const [wordIndex, setWordIndex] = useState(0)
     const [order, setOrder] = useState('sequential')

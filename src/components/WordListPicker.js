@@ -34,7 +34,7 @@ export default React.memo(function WordListPicker() {
                     Word List
                 </div>
                 <div id="input">
-                    <select defaultValue={wordListCategory} onChange={handleClick}>
+                    <select id="wordlist-picker" defaultValue={wordListCategory} onChange={handleClick}>
                         <option value="alphabet">Alphabet</option>
                         <option value="common100">100 Most Common Words</option>
                         <option value="test">Test List</option>
@@ -57,7 +57,7 @@ export default React.memo(function WordListPicker() {
                     Word Order
                 </div>
                 <div id="buttons">
-                    <button id="sequential" class="selected" onClick={handleClick}>
+                    <button id="sequential" className="selected" onClick={handleClick}>
                         Sequential
                     </button>
                     <button id="random" onClick={handleClick}>
