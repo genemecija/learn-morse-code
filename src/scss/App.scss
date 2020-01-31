@@ -10,12 +10,12 @@ $main-bg-color-light: #f1f1f1;
 $main-font-color-light: #333;
 
 $morseCard-shadow-light: 0px 3px 3px rgba(0, 0, 0, 0.2);
-$main-box-shadow-light: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px rgba(255, 255, 255, 1);
-$main-box-shadow-light-selected: inset 0px 2px 2px rgba(0, 0, 0, 0.2), inset 0px -1px 1px rgba(255, 255, 255, 1);
+$main-box-shadow-light: 0px 3px 3px rgba(0, 0, 0, 0.3), 0px -1px 1px rgba(255, 255, 255, 1);
+$main-box-shadow-light-selected: inset 0px 2px 2px rgba(0, 0, 0, 0.3), inset 0px -1px 1px rgba(255, 255, 255, 1);
 $main-box-shadow-dark: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px rgba(255, 255, 255, 0.1);
 $main-box-shadow-dark-selected: inset 0px 2px 2px rgba(0, 0, 0, 0.2), inset 0px -1px 1px rgba(255, 255, 255, 0.1);
 
-$main-border-radius: 5px;
+$main-border-radius: 3px;
 
 $border-radius-neumorphic: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.15);
 $border-radius-neumorphic-dark: 0px -10px 20px rgba(255, 255, 255, 0.1), 0px 10px 10px rgba(0, 0, 0, 0.4);
@@ -62,9 +62,8 @@ header {
         flex-direction: column;
         justify-content: space-around;
         height: 100%;
-        width: 350px;
-        padding-top: 50px;
-        padding-bottom: 50px;
+        width: 500px;
+        padding: 1.5em;
     }
     #main-interface {
         border: 1px solid blue;
@@ -72,7 +71,7 @@ header {
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        width: 900px;
+        width: 600px;
         height: 100%;
         min-width: 400px;
     }
@@ -80,15 +79,14 @@ header {
 footer {
 
 }
-
+h2 {
+    margin-bottom: 0.5em;
+}
 i[class*="ri-"] {
     cursor: pointer;
     font-weight: normal;
     font-size: 0.9rem;
     color: #777;
-    &:hover {
-        color: goldenrod;
-    }
 }
 
 #mainOptions {
@@ -98,7 +96,7 @@ i[class*="ri-"] {
     width: 100%;
     max-width: 95vw;
     height: 200px;
-    border: 1px solid red;
+    // border: 1px solid red;
     .mode-picker {
         // border: 1px solid green;
         width: 100%;
@@ -106,19 +104,27 @@ i[class*="ri-"] {
         align-self: flex-start;
         align-content: center;
         justify-content: flex-start;
-        // height: 60px;
-        // height: 45px;
+
+        div {
+            padding: 5px;
+            height: 2.4em;
+        }
+
         #title {
             font-weight: bold;
+            font-size: 1.1em;
+            // border: 1px solid red;
+            height: 100%;
+            display: flex;
+            padding-left: 0px;
+            justify-content: flex-start;
+            align-items: center;
         }
         #buttons {
             // border: 1px solid blue;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            button {
-                height: 1.4rem;
-            }
         }
         #input {
             margin-left: 10px;
@@ -131,90 +137,86 @@ i[class*="ri-"] {
                 border-radius: 3px;
                 border: 1px solid #ddd;
                 height: 1.3rem;
+                font-size: 0.75em;
             }
             select {
                 height: 1.4rem;
             }
             button {
-                height: 20px;
                 width: 20px;
-                border-radius: 50%;
-                line-height: 10px;
+                height: 20px;
+                border-radius: 3px;
+                // line-height: 10px;
                 i {
                     position: relative;
-                    left: -2px;
+                    left: -1px;
+                    // top: -2px;
+                    font-size: 1.1em;
+                    font-weight: bold;
                 }
             }
         }
-    }
-}
-
-.mode-picker {
-    display: flex;
-    align-self: center;
-    #title {
-        display: flex;  
-        justify-content: center;
-        align-items: center;
-        margin: 7px;
-    }
-
-    button {
-        // background: #fcfcfc;
-        background: $main-bg-color-light;
-        color: $main-font-color-light;
-        margin: 7px;
-        padding: 5px;
-        box-shadow: $main-box-shadow-light;
-        border: 0px;
-        border-radius: $main-border-radius;
-    }
-    .selected {
-        // color: goldenrod;
-        box-shadow: $main-box-shadow-light-selected;
-    }
-}
-
-#legend {
-    background: $main-bg-color-light;
-    width: 100%;
-    max-width: 95vw;
-    // height: 325px;
-    display: flex;
-    // flex-direction: column;
-    justify-content: space-evenly;
-    top: 250px;
-    left: 50px;
-    flex-wrap: wrap;
-
-    div {
-        border: 1px solid #ccc;
-        border-radius: 3px;
-        margin: 1px;
-        width: 80px;
-        display: flex;
-        flex-wrap: nowrap;
-        // background: #BBB;
-        
         button {
-            width: 20px;
-            height: 20px;
-            margin: 4px;
-            border: 0px;
-            border-radius: 2px;
+            background: $main-bg-color-light;
             box-shadow: $main-box-shadow-light;
-            &:active {
-                transform: translateY(3px);
-                box-shadow: 0px 0px 2px rgba(0,0,0,0.3);
+            border-radius: $main-border-radius;
+            border: 0px;
+            padding: 0.3em;
+            margin-left: 10px;
+            margin-right: 10px;
+
+            font-size: 0.75em;
+            color: $main-font-color-light;
+
+            &.selected {
+                box-shadow: $main-box-shadow-light-selected;
             }
         }
-        span {
-            width: 60%;
-            justify-content: center;
-            text-align: center;
+    }
+}
+
+
+#legend {
+    // border: 1px solid orange;
+    background: $main-bg-color-light;
+    width: 100%;
+    // height: 325px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+
+    #legend-items {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        width: 100%;
+        
+        .item {
+            border: 1px solid #ccc;
+            margin: 1px;
+            width: 80px;
+            display: flex;
+
+            button {
+                width: 20px;
+                height: 20px;
+                margin: 4px;
+                border: 0px;
+                border-radius: 2px;
+                box-shadow: $main-box-shadow-light;
+                &:active {
+                    transform: translateY(3px);
+                    box-shadow: 0px 0px 2px rgba(0,0,0,0.3);
+                }
+            }
+            span {
+                width: 60%;
+                justify-content: center;
+                text-align: center;
+            }
         }
     }
-
 }
 
 #morseButton {
@@ -249,7 +251,7 @@ i[class*="ri-"] {
         margin: 0px;
         border: 0px;
         // transition: all 20ms ease-out;
-        transition: transform 40ms ease-out, box-shadow 40ms ease-out, width 500ms ease-out, background 500ms ease-out;
+        transition: transform 40ms ease-out, box-shadow 40ms ease-out, width 500ms ease-out, background 500ms ease-out, color 500ms ease-out;
         
         &.showPaddles {
             color: #888;
@@ -378,7 +380,7 @@ i[class*="ri-"] {
     padding-right: 10px;
 
     // border: 1px solid green;
-    border-radius: 4px;
+    border-radius: $main-border-radius;
     box-shadow: $main-box-shadow-light;
     
     font-size: 3rem;
@@ -425,7 +427,7 @@ i[class*="ri-"] {
         display: flex;
         justify-content: center;
         align-items: center;
-        border-radius: 4px;
+        border-radius: $main-border-radius;
         box-shadow: $main-box-shadow-light;
         // box-shadow: $morseCard-shadow-light;
         
@@ -441,7 +443,7 @@ i[class*="ri-"] {
             }
 
             span {
-                padding: 4px;
+                padding: $main-border-radius;
                 transition: background 300ms ease-in-out;
             }
         }
@@ -460,7 +462,7 @@ i[class*="ri-"] {
         font-weight: bold;
 
         span {
-            padding: 4px;
+            padding: $main-border-radius;
             transition: background 100ms ease-in-out;
         }
 
@@ -560,13 +562,13 @@ i[class*="ri-"] {
 .morseError {
     background: rgba(255,0,0,0.4);
     color: rgb(120, 0, 0);
-    border-radius: 5px;
+    border-radius: $main-border-radius;
     // text-decoration: line-through;
 }
 .correct {
     background: rgba(0,255,0,0.4);
     // color: rgb(120, 0, 0);
-    border-radius: 5px;
+    border-radius: $main-border-radius;
 }
 
 // #morseHistory {
@@ -593,7 +595,7 @@ i[class*="ri-"] {
     }
 }
 #morseHistory {
-    border: 1px solid purple;
+    // border: 1px solid purple;
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -647,7 +649,7 @@ i[class*="ri-"] {
         background: #fdfdfd;
         // width: 50%;
         white-space: nowrap;
-        border-radius: 3px;
+        border-radius: $main-border-radius;
         box-shadow: $morseCard-shadow-light;
         line-height: 1.7rem;
         display: flex;
@@ -657,7 +659,7 @@ i[class*="ri-"] {
             height: 1.7rem;
             // background: blue;
             color: rgb(120, 0, 0);
-            border-radius: 5px;
+            border-radius: $main-border-radius;
             // text-decoration: line-through;
         }
     }

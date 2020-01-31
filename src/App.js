@@ -23,6 +23,7 @@ import MorseButtons from './components/MorseButtons'
 import Footer from './components/Footer';
 import StraightKey from './components/StraightKey';
 import ElectronicKey from './components/ElectronicKey';
+import Info from './components/Info';
 
 export default React.memo(function App() {
 
@@ -39,7 +40,9 @@ export default React.memo(function App() {
                 <WordListPickerContextProvider>
                 <WordFeederContextProvider>
                     <div id="sidebar">
+                        <Info />
                         <div id="mainOptions">
+                            <h2>Options</h2>
                             <ModePicker />
                             <KeyTypePicker />
                             <WordsPerMinute />

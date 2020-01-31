@@ -65,9 +65,8 @@ header {
   -ms-flex-pack: distribute;
       justify-content: space-around;
   height: 100%;
-  width: 350px;
-  padding-top: 50px;
-  padding-bottom: 50px;
+  width: 500px;
+  padding: 1.5em;
 }
 
 #main-content #main-interface {
@@ -85,9 +84,13 @@ header {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  width: 900px;
+  width: 600px;
   height: 100%;
   min-width: 400px;
+}
+
+h2 {
+  margin-bottom: 0.5em;
 }
 
 i[class*="ri-"] {
@@ -95,10 +98,6 @@ i[class*="ri-"] {
   font-weight: normal;
   font-size: 0.9rem;
   color: #777;
-}
-
-i[class*="ri-"]:hover {
-  color: goldenrod;
 }
 
 #mainOptions {
@@ -115,7 +114,6 @@ i[class*="ri-"]:hover {
   width: 100%;
   max-width: 95vw;
   height: 200px;
-  border: 1px solid red;
 }
 
 #mainOptions .mode-picker {
@@ -132,8 +130,25 @@ i[class*="ri-"]:hover {
           justify-content: flex-start;
 }
 
+#mainOptions .mode-picker div {
+  padding: 5px;
+  height: 2.4em;
+}
+
 #mainOptions .mode-picker #title {
   font-weight: bold;
+  font-size: 1.1em;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-left: 0px;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 #mainOptions .mode-picker #buttons {
@@ -146,10 +161,6 @@ i[class*="ri-"]:hover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-}
-
-#mainOptions .mode-picker #buttons button {
-  height: 1.4rem;
 }
 
 #mainOptions .mode-picker #input {
@@ -171,6 +182,7 @@ i[class*="ri-"]:hover {
   border-radius: 3px;
   border: 1px solid #ddd;
   height: 1.3rem;
+  font-size: 0.75em;
 }
 
 #mainOptions .mode-picker #input select {
@@ -178,100 +190,92 @@ i[class*="ri-"]:hover {
 }
 
 #mainOptions .mode-picker #input button {
-  height: 20px;
   width: 20px;
-  border-radius: 50%;
-  line-height: 10px;
+  height: 20px;
+  border-radius: 3px;
 }
 
 #mainOptions .mode-picker #input button i {
   position: relative;
-  left: -2px;
+  left: -1px;
+  font-size: 1.1em;
+  font-weight: bold;
 }
 
-.mode-picker {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-item-align: center;
-      align-self: center;
-}
-
-.mode-picker #title {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  margin: 7px;
-}
-
-.mode-picker button {
+#mainOptions .mode-picker button {
   background: #f1f1f1;
-  color: #333;
-  margin: 7px;
-  padding: 5px;
-  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px white;
-          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px white;
+  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3), 0px -1px 1px white;
+          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3), 0px -1px 1px white;
+  border-radius: 3px;
   border: 0px;
-  border-radius: 5px;
+  padding: 0.3em;
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 0.75em;
+  color: #333;
 }
 
-.mode-picker .selected {
-  -webkit-box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.2), inset 0px -1px 1px white;
-          box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.2), inset 0px -1px 1px white;
+#mainOptions .mode-picker button.selected {
+  -webkit-box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.3), inset 0px -1px 1px white;
+          box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.3), inset 0px -1px 1px white;
 }
 
 #legend {
   background: #f1f1f1;
   width: 100%;
-  max-width: 95vw;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
-  top: 250px;
-  left: 50px;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
 }
 
-#legend div {
+#legend #legend-items {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+}
+
+#legend #legend-items .item {
   border: 1px solid #ccc;
-  border-radius: 3px;
   margin: 1px;
   width: 80px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: nowrap;
-      flex-wrap: nowrap;
 }
 
-#legend div button {
+#legend #legend-items .item button {
   width: 20px;
   height: 20px;
   margin: 4px;
   border: 0px;
   border-radius: 2px;
-  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px white;
-          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px white;
+  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3), 0px -1px 1px white;
+          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3), 0px -1px 1px white;
 }
 
-#legend div button:active {
+#legend #legend-items .item button:active {
   -webkit-transform: translateY(3px);
           transform: translateY(3px);
   -webkit-box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
           box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
 }
 
-#legend div span {
+#legend #legend-items .item span {
   width: 60%;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
@@ -296,8 +300,8 @@ i[class*="ri-"]:hover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px white;
-          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px white;
+  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3), 0px -1px 1px white;
+          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3), 0px -1px 1px white;
   -webkit-transition: width 500ms ease-out, background 500ms ease-out, -webkit-transform 40ms ease-out, -webkit-box-shadow 40ms ease-out;
   transition: width 500ms ease-out, background 500ms ease-out, -webkit-transform 40ms ease-out, -webkit-box-shadow 40ms ease-out;
   transition: transform 40ms ease-out, box-shadow 40ms ease-out, width 500ms ease-out, background 500ms ease-out;
@@ -319,10 +323,10 @@ i[class*="ri-"]:hover {
   background: #f4f4f4;
   margin: 0px;
   border: 0px;
-  -webkit-transition: width 500ms ease-out, background 500ms ease-out, -webkit-transform 40ms ease-out, -webkit-box-shadow 40ms ease-out;
-  transition: width 500ms ease-out, background 500ms ease-out, -webkit-transform 40ms ease-out, -webkit-box-shadow 40ms ease-out;
-  transition: transform 40ms ease-out, box-shadow 40ms ease-out, width 500ms ease-out, background 500ms ease-out;
-  transition: transform 40ms ease-out, box-shadow 40ms ease-out, width 500ms ease-out, background 500ms ease-out, -webkit-transform 40ms ease-out, -webkit-box-shadow 40ms ease-out;
+  -webkit-transition: width 500ms ease-out, background 500ms ease-out, color 500ms ease-out, -webkit-transform 40ms ease-out, -webkit-box-shadow 40ms ease-out;
+  transition: width 500ms ease-out, background 500ms ease-out, color 500ms ease-out, -webkit-transform 40ms ease-out, -webkit-box-shadow 40ms ease-out;
+  transition: transform 40ms ease-out, box-shadow 40ms ease-out, width 500ms ease-out, background 500ms ease-out, color 500ms ease-out;
+  transition: transform 40ms ease-out, box-shadow 40ms ease-out, width 500ms ease-out, background 500ms ease-out, color 500ms ease-out, -webkit-transform 40ms ease-out, -webkit-box-shadow 40ms ease-out;
 }
 
 #morseButton button.showPaddles {
@@ -331,8 +335,8 @@ i[class*="ri-"]:hover {
   font-weight: bold;
   width: 60px;
   height: 55px;
-  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px white;
-          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px white;
+  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3), 0px -1px 1px white;
+          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3), 0px -1px 1px white;
 }
 
 #morseButton button#left {
@@ -402,9 +406,9 @@ i[class*="ri-"]:hover {
   margin-bottom: 20px;
   padding-left: 10px;
   padding-right: 10px;
-  border-radius: 4px;
-  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px white;
-          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px white;
+  border-radius: 3px;
+  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3), 0px -1px 1px white;
+          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3), 0px -1px 1px white;
   font-size: 3rem;
   font-family: "Courier", monospace;
   font-weight: bold;
@@ -464,9 +468,9 @@ i[class*="ri-"]:hover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  border-radius: 4px;
-  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px white;
-          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px white;
+  border-radius: 3px;
+  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3), 0px -1px 1px white;
+          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3), 0px -1px 1px white;
 }
 
 #morseBufferDisplay #alphanumeric-container #alphanumeric {
@@ -480,7 +484,7 @@ i[class*="ri-"]:hover {
 }
 
 #morseBufferDisplay #alphanumeric-container #alphanumeric span {
-  padding: 4px;
+  padding: 3px;
   -webkit-transition: background 300ms ease-in-out;
   transition: background 300ms ease-in-out;
 }
@@ -504,7 +508,7 @@ i[class*="ri-"]:hover {
 }
 
 #morseBufferDisplay #ditDahs span {
-  padding: 4px;
+  padding: 3px;
   -webkit-transition: background 100ms ease-in-out;
   transition: background 100ms ease-in-out;
 }
@@ -514,7 +518,7 @@ i[class*="ri-"]:hover {
   height: 40px;
   width: 30px !important;
   margin-left: 3px;
-  border-radius: 5px;
+  border-radius: 3px;
   -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px rgba(255, 255, 255, 0.1);
           box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px rgba(255, 255, 255, 0.1);
   display: -webkit-box;
@@ -608,9 +612,9 @@ i[class*="ri-"]:hover {
   height: 40px;
   width: 30px !important;
   margin-left: 3px;
-  border-radius: 5px;
-  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px white;
-          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px white;
+  border-radius: 3px;
+  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3), 0px -1px 1px white;
+          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3), 0px -1px 1px white;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -634,12 +638,12 @@ i[class*="ri-"]:hover {
 .morseError {
   background: rgba(255, 0, 0, 0.4);
   color: #780000;
-  border-radius: 5px;
+  border-radius: 3px;
 }
 
 .correct {
   background: rgba(0, 255, 0, 0.4);
-  border-radius: 5px;
+  border-radius: 3px;
 }
 
 #morseHistory-textbox {
@@ -661,7 +665,6 @@ i[class*="ri-"]:hover {
 }
 
 #morseHistory {
-  border: 1px solid purple;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -736,7 +739,7 @@ i[class*="ri-"]:hover {
   background: rgba(255, 0, 0, 0.4);
   height: 1.7rem;
   color: #780000;
-  border-radius: 5px;
+  border-radius: 3px;
 }
 
 .morseCard .ditDahs-container, .morseCard .alphanumeric-container {

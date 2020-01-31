@@ -26,7 +26,7 @@ function Legend() {
     }
 
     const legend = Object.keys(morseCode).map((morse, index) =>
-        <div key={"legend_item_"+index}>
+        <div key={"legend_item_"+index} className="item">
             <button key={"legend_btn_"+index} onClick={handleClick}>{morse.toUpperCase()}</button>
             <span key={"legend_spn_"+index}>{morseCode[morse]}</span>
         </div>
@@ -34,10 +34,17 @@ function Legend() {
 
     return (
             <div id="legend">
-                {legend}
-                <button id="test" onClick={handleClick}>Anya</button>
-                <button id="test" onClick={handleClick}>Alexandra</button>
-                <button id="test" onClick={handleClick}>Paris</button>
+                <div id="title">
+                    <h2>Legend</h2>
+                </div>
+                <div id="legend-items">
+                    {legend}
+                    <div>
+                        <button id="test" onClick={handleClick}>Anya</button>
+                        <button id="test" onClick={handleClick}>Alexandra</button>
+                        <button id="test" onClick={handleClick}>Paris</button>
+                    </div>
+                </div>
             </div>
     )
 }
