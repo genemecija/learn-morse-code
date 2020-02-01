@@ -1,8 +1,8 @@
 // $main-bg-color-dark: #2c2c2c;
 @import url('https://fonts.googleapis.com/css?family=Courier+Prime:700|Rubik&display=swap');
 $main-font: 'Rubik', sans-serif;
-// $buffer-font: 'Courier Prime', monospace;
-$buffer-font: 'Courier', monospace;
+$buffer-font: 'Courier Prime', Courier, monospace;
+// $buffer-font: 'Courier', monospace;
 $ditDah-font: 'Courier', monospace;
 
 $main-bg-color-light: #f1f1f1;
@@ -372,18 +372,19 @@ i[class*="ri-"] {
     align-items: center;
     align-self: center;
 
-    height: 50px;
+    height: 5rem;
     width: fit-content;
     
     margin-bottom: 20px;
     padding-left: 10px;
     padding-right: 10px;
+    // padding-top: 10px;
 
     // border: 1px solid green;
     border-radius: $main-border-radius;
     box-shadow: $main-box-shadow-light;
     
-    font-size: 3rem;
+    font-size: 4rem;
     font-family: $buffer-font;
     font-weight: bold;
 
@@ -394,12 +395,20 @@ i[class*="ri-"] {
     span {
         padding: 4px;
         margin: 1px;
-        line-height: 2.5rem;
-        transition: background 300ms ease-in-out; //, opacity 100ms ease-in-out;
+        transition: background 100ms ease-in-out; //, opacity 100ms ease-in-out;
+        display: inline-flex;
+        align-items: center;
+        line-height: 3rem;
+        
+        &.correct {
+            background: rgba(0,255,0,0.6);
+            border-radius: $main-border-radius;
+        }
     }
     &.correct {
-        background: rgba(0,200,0,0.7);
+        background: rgba(0,200,0,0.6);
     }
+    
 }
 
 
@@ -414,34 +423,33 @@ i[class*="ri-"] {
     height: 150px;
     margin-bottom: 20px;
     font-family: $buffer-font;
-    font-weight: bold;
+    // font-weight: bold;
 
     #alphanumeric-container {
         // border-left: 2px solid #000;
         background: #fdfdfd;
         display: flex;
         padding-left: 5px;
-        height: 3rem;
-        min-width: 250px;
+        height: 5rem;
+        padding-top: 10px;
+        width: 90%;
         margin-bottom: 10px;
         display: flex;
         justify-content: center;
         align-items: center;
         border-radius: $main-border-radius;
-        box-shadow: $main-box-shadow-light;
+        // box-shadow: $main-box-shadow-light;
         // box-shadow: $morseCard-shadow-light;
         
         #alphanumeric {
-            font-size: 3rem;
+            font-size:  4rem;
             background-color: transparent;
-            
             
             &:first-child {
                 padding-left: 5px;
                 padding-right: 5px;
                 // box-shadow: $main-box-shadow;
             }
-
             span {
                 padding: $main-border-radius;
                 transition: background 300ms ease-in-out;
@@ -457,9 +465,9 @@ i[class*="ri-"] {
         display: flex;
         flex-direction: row;
         justify-content: center;
-        font-size: 25px;
+        font-size: 3rem;
         font-family: $ditDah-font;
-        font-weight: bold;
+        // font-weight: bold;
 
         span {
             padding: $main-border-radius;
@@ -537,7 +545,7 @@ i[class*="ri-"] {
             transition: background 100ms ease-in-out;
         }
         .ditDah {
-            // background: #DDD;
+            background: #fdfdfd;
             
             height: 40px;
             width: 30px !important;
@@ -565,11 +573,7 @@ i[class*="ri-"] {
     border-radius: $main-border-radius;
     // text-decoration: line-through;
 }
-.correct {
-    background: rgba(0,255,0,0.4);
-    // color: rgb(120, 0, 0);
-    border-radius: $main-border-radius;
-}
+
 
 // #morseHistory {
 //     border: 1px solid purple;
@@ -595,40 +599,57 @@ i[class*="ri-"] {
     }
 }
 #morseHistory {
-    // border: 1px solid purple;
+    border: 1px solid purple;
     display: flex;
     flex-direction: column;
     width: 100%;
+    height: 320px;
+    position: relative;
+    padding-top: 10px;
+    // // padding-bottom: 20px;
 
-    .morseCard:nth-child(1){
-        opacity: 100%;
+    #overlay {
+        // background: blue;
+        box-shadow: inset 20px 0px 20px $main-bg-color-light, inset -20px 0px 20px $main-bg-color-light, inset 0px -100px 100px $main-bg-color-light;
+        position: absolute;
+        display: inline-block;
+        top:0;
+        left:0;
+        width: 100%;
+        height: 100%;
+        z-index: 100;
     }
-    .morseCard:nth-child(2){
-        opacity: 85%;
-    }
-    .morseCard:nth-child(3){
-        opacity: 70%;
-    }
-    .morseCard:nth-child(4){
-        opacity: 55%;
-    }
-    .morseCard:nth-child(5){
-        opacity: 40%;
-    }
-    .morseCard:nth-child(6){
-        opacity: 20%;
-    }
-    .morseCard:nth-child(7){
-        opacity: 10%;
-    }
-    // .morseCard:nth-child(8){
-    //     opacity: 30%;
-    // }
-    // .morseCard:nth-child(9){
-    //     opacity: 20%;
-    // }
-    // .morseCard:nth-child(10){
-    //     opacity: 10%;
+    // #morseCards {
+    //     .morseCard:nth-child(1){
+    //         opacity: 100%;
+    //     }
+    //     .morseCard:nth-child(2){
+    //         opacity: 85%;
+    //     }
+    //     .morseCard:nth-child(3){
+    //         opacity: 70%;
+    //     }
+    //     .morseCard:nth-child(4){
+    //         opacity: 55%;
+    //     }
+    //     .morseCard:nth-child(5){
+    //         opacity: 40%;
+    //     }
+    //     .morseCard:nth-child(6){
+    //         opacity: 20%;
+    //     }
+    //     .morseCard:nth-child(7){
+    //         opacity: 10%;
+    //     }
+        // .morseCard:nth-child(8){
+        //     opacity: 30%;
+        // }
+        // .morseCard:nth-child(9){
+        //     opacity: 20%;
+        // }
+        // .morseCard:nth-child(10){
+        //     opacity: 10%;
+        // }
     // }
 }
 
@@ -636,22 +657,36 @@ i[class*="ri-"] {
     display: flex;
     flex-direction: row !important;
     justify-content: center;
-    /* border: 1px solid orange; */
-    margin-bottom: 2px;
-    font-size: 1.7rem;
+    margin-bottom: 4px;
+    font-size: 1.6rem;
     font-family: $buffer-font;
-    /* width: 100%; */
     
+    .ditDahs-container, .alphanumeric-container {
+        display: flex;
+        width: 50%;
+        font-weight: bold;
+        // border: 1px solid green;
+    }
+    .alphanumeric-container span {
+        // background: blue;
+        padding-top: 0.17em;
+    }
+    .ditDahs-container {
+        justify-content: flex-end;
+        // border: 1px solid red;
+        max-width: 50%;
+    }
 
     div div {
         padding: 3px;
         margin: 2px;
         background: #fdfdfd;
+        // border: 1px solid cyan;
         // width: 50%;
         white-space: nowrap;
         border-radius: $main-border-radius;
         box-shadow: $morseCard-shadow-light;
-        line-height: 1.7rem;
+        line-height: 1em;
         display: flex;
         
         span.morseError {
@@ -663,14 +698,7 @@ i[class*="ri-"] {
             // text-decoration: line-through;
         }
     }
-    .ditDahs-container, .alphanumeric-container {
-        display: flex;
-        width: 50%;
-        font-weight: bold;
-    }
-    .ditDahs-container {
-        justify-content: flex-end;
-    }
+    
     .ditDahs {
         // border: 1px solid red;
         display: flex;
@@ -679,5 +707,16 @@ i[class*="ri-"] {
         overflow-wrap: break-word;
         font-family: $ditDah-font;
         font-weight: bold;
+        max-width: 100%;
+        overflow-x: hidden;
+
+        span.space {
+            border-radius: $main-border-radius;
+            background: $main-bg-color-light;
+            opacity: 0.5;
+            width: 3px;
+            margin-left: 4px;
+            margin-right: 4px;
+        }
     }
 }

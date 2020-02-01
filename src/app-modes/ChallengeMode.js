@@ -31,7 +31,7 @@ export default React.memo(function ChallengeMode(props) {
         alert('No more words.')
         return
     }
-
+    console.log('word:', word);
     
     let challengeLetters = word.split('')
     
@@ -41,7 +41,7 @@ export default React.memo(function ChallengeMode(props) {
         if (morseCharBuffer.slice(-1) === '_') { // If end of morse character
 
             let morseLetter = morseCode[morseArray[index]] || '[?]'
-            let challengeLetter = challengeLetters[index-offset]
+            let challengeLetter = challengeLetters[index-offset].toLowerCase()
 
             if (morseLetter === challengeLetter) {
                 correctCharIndexes.push(index-offset)
@@ -78,9 +78,12 @@ export default React.memo(function ChallengeMode(props) {
         // 
         challengeWordClass = 'correct'
         setTimeout(() => {
-            getNextWord()
             setMorseCharBuffer('')
-        }, 500)
+        }, 800)
+        setTimeout(() => {
+            getNextWord()
+            
+        }, 1000)
     }
 
     return (

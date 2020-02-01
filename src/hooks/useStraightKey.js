@@ -48,7 +48,7 @@ function useStraightKey() {
     function handleInputStart(event) {
         // event.preventDefault()
         
-        
+        console.log(event.keyCode);
 
         if (event.keyCode === 32 && document.activeElement.id === 'wordlist-picker') {
             event.preventDefault()
@@ -66,29 +66,30 @@ function useStraightKey() {
                 (event.repeat)) {
                 return
             }
-            
-            document.getElementById('morseButton').classList.add('active')
-
-            isRunning = true
-
-            if (context.state === 'interrupted') {
-                context.resume()
+            if (event.keyCode === 32) {
+                document.getElementById('morseButton').classList.add('active')
+    
+                isRunning = true
+    
+                if (context.state === 'interrupted') {
+                    context.resume()
+                }
+                
+                o = context.createOscillator()
+                o.frequency.value = frequency
+                o.type = "sine"
+                
+                g = context.createGain()
+                g.gain.exponentialRampToValueAtTime(config.mainVolume, context.currentTime)
+                o.connect(g)
+                g.connect(context.destination)
+                o.start()
+                 
+                checkGapBetweenInputs()
+                clearInterval(gapTimer)
+    
+                startCharTimer()
             }
-            
-            o = context.createOscillator()
-            o.frequency.value = frequency
-            o.type = "sine"
-            
-            g = context.createGain()
-            g.gain.exponentialRampToValueAtTime(config.mainVolume, context.currentTime)
-            o.connect(g)
-            g.connect(context.destination)
-            o.start()
-             
-            checkGapBetweenInputs()
-            clearInterval(gapTimer)
-
-            startCharTimer()
         }
         
     }

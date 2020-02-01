@@ -10,7 +10,10 @@ export default (function MorseHistory() {
     
     return (
         <div id="morseHistory">
-            {morseCards}
+            <div id="overlay"></div>
+            <div id="morseCards">
+                {morseCards}
+            </div>
         </div>
     )
 })

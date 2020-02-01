@@ -399,7 +399,7 @@ i[class*="ri-"] {
           align-items: center;
   -ms-flex-item-align: center;
       align-self: center;
-  height: 50px;
+  height: 5rem;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
@@ -409,8 +409,8 @@ i[class*="ri-"] {
   border-radius: 3px;
   -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3), 0px -1px 1px white;
           box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3), 0px -1px 1px white;
-  font-size: 3rem;
-  font-family: "Courier", monospace;
+  font-size: 4rem;
+  font-family: "Courier Prime", Courier, monospace;
   font-weight: bold;
   background: #fdfdfd;
   text-transform: uppercase;
@@ -421,13 +421,24 @@ i[class*="ri-"] {
 #challengeWord span {
   padding: 4px;
   margin: 1px;
-  line-height: 2.5rem;
-  -webkit-transition: background 300ms ease-in-out;
-  transition: background 300ms ease-in-out;
+  -webkit-transition: background 100ms ease-in-out;
+  transition: background 100ms ease-in-out;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  line-height: 3rem;
+}
+
+#challengeWord span.correct {
+  background: rgba(0, 255, 0, 0.6);
+  border-radius: 3px;
 }
 
 #challengeWord.correct {
-  background: rgba(0, 200, 0, 0.7);
+  background: rgba(0, 200, 0, 0.6);
 }
 
 #morseBufferDisplay {
@@ -448,8 +459,7 @@ i[class*="ri-"] {
   width: 100%;
   height: 150px;
   margin-bottom: 20px;
-  font-family: "Courier", monospace;
-  font-weight: bold;
+  font-family: "Courier Prime", Courier, monospace;
 }
 
 #morseBufferDisplay #alphanumeric-container {
@@ -458,8 +468,9 @@ i[class*="ri-"] {
   display: -ms-flexbox;
   display: flex;
   padding-left: 5px;
-  height: 3rem;
-  min-width: 250px;
+  height: 5rem;
+  padding-top: 10px;
+  width: 90%;
   margin-bottom: 10px;
   display: flex;
   -webkit-box-pack: center;
@@ -469,12 +480,10 @@ i[class*="ri-"] {
       -ms-flex-align: center;
           align-items: center;
   border-radius: 3px;
-  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3), 0px -1px 1px white;
-          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3), 0px -1px 1px white;
 }
 
 #morseBufferDisplay #alphanumeric-container #alphanumeric {
-  font-size: 3rem;
+  font-size: 4rem;
   background-color: transparent;
 }
 
@@ -502,9 +511,8 @@ i[class*="ri-"] {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  font-size: 25px;
+  font-size: 3rem;
   font-family: "Courier", monospace;
-  font-weight: bold;
 }
 
 #morseBufferDisplay #ditDahs span {
@@ -552,7 +560,7 @@ i[class*="ri-"] {
   width: 100%;
   height: 150px;
   margin-bottom: 20px;
-  font-family: "Courier", monospace;
+  font-family: "Courier Prime", Courier, monospace;
   font-weight: bold;
 }
 
@@ -609,6 +617,7 @@ i[class*="ri-"] {
 }
 
 #challengeBufferDisplay #ditDahs .ditDah {
+  background: #fdfdfd;
   height: 40px;
   width: 30px !important;
   margin-left: 3px;
@@ -641,11 +650,6 @@ i[class*="ri-"] {
   border-radius: 3px;
 }
 
-.correct {
-  background: rgba(0, 255, 0, 0.4);
-  border-radius: 3px;
-}
-
 #morseHistory-textbox {
   border: 1px solid cyan;
   display: -webkit-box;
@@ -665,6 +669,7 @@ i[class*="ri-"] {
 }
 
 #morseHistory {
+  border: 1px solid purple;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -673,34 +678,21 @@ i[class*="ri-"] {
       -ms-flex-direction: column;
           flex-direction: column;
   width: 100%;
+  height: 320px;
+  position: relative;
+  padding-top: 10px;
 }
 
-#morseHistory .morseCard:nth-child(1) {
-  opacity: 100%;
-}
-
-#morseHistory .morseCard:nth-child(2) {
-  opacity: 85%;
-}
-
-#morseHistory .morseCard:nth-child(3) {
-  opacity: 70%;
-}
-
-#morseHistory .morseCard:nth-child(4) {
-  opacity: 55%;
-}
-
-#morseHistory .morseCard:nth-child(5) {
-  opacity: 40%;
-}
-
-#morseHistory .morseCard:nth-child(6) {
-  opacity: 20%;
-}
-
-#morseHistory .morseCard:nth-child(7) {
-  opacity: 10%;
+#morseHistory #overlay {
+  -webkit-box-shadow: inset 20px 0px 20px #f1f1f1, inset -20px 0px 20px #f1f1f1, inset 0px -100px 100px #f1f1f1;
+          box-shadow: inset 20px 0px 20px #f1f1f1, inset -20px 0px 20px #f1f1f1, inset 0px -100px 100px #f1f1f1;
+  position: absolute;
+  display: inline-block;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
 }
 
 .morseCard {
@@ -714,32 +706,9 @@ i[class*="ri-"] {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  /* border: 1px solid orange; */
-  margin-bottom: 2px;
-  font-size: 1.7rem;
-  font-family: "Courier", monospace;
-  /* width: 100%; */
-}
-
-.morseCard div div {
-  padding: 3px;
-  margin: 2px;
-  background: #fdfdfd;
-  white-space: nowrap;
-  border-radius: 3px;
-  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
-          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
-  line-height: 1.7rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.morseCard div div span.morseError {
-  background: rgba(255, 0, 0, 0.4);
-  height: 1.7rem;
-  color: #780000;
-  border-radius: 3px;
+  margin-bottom: 4px;
+  font-size: 1.6rem;
+  font-family: "Courier Prime", Courier, monospace;
 }
 
 .morseCard .ditDahs-container, .morseCard .alphanumeric-container {
@@ -750,10 +719,36 @@ i[class*="ri-"] {
   font-weight: bold;
 }
 
+.morseCard .alphanumeric-container span {
+  padding-top: 0.17em;
+}
+
 .morseCard .ditDahs-container {
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
+  max-width: 50%;
+}
+
+.morseCard div div {
+  padding: 3px;
+  margin: 2px;
+  background: #fdfdfd;
+  white-space: nowrap;
+  border-radius: 3px;
+  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
+  line-height: 1em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.morseCard div div span.morseError {
+  background: rgba(255, 0, 0, 0.4);
+  height: 1.7rem;
+  color: #780000;
+  border-radius: 3px;
 }
 
 .morseCard .ditDahs {
@@ -769,5 +764,16 @@ i[class*="ri-"] {
   overflow-wrap: break-word;
   font-family: "Courier", monospace;
   font-weight: bold;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.morseCard .ditDahs span.space {
+  border-radius: 3px;
+  background: #f1f1f1;
+  opacity: 0.5;
+  width: 3px;
+  margin-left: 4px;
+  margin-right: 4px;
 }
 /*# sourceMappingURL=App.css.map */
