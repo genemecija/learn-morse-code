@@ -66,7 +66,7 @@ function useStraightKey() {
                 (event.repeat)) {
                 return
             }
-            if (event.keyCode === 32) {
+            else {
                 document.getElementById('morseButton').classList.add('active')
     
                 isRunning = true

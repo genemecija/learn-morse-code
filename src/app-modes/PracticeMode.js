@@ -10,7 +10,7 @@ export default (function PracticeMode(props) {
     return (
         <>
             <MorseBufferDisplay /><br/>
-            <MorseHistory />
+            <MorseHistoryTextBox />
         </>
     );
 

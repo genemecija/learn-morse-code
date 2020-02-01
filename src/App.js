@@ -39,8 +39,8 @@ export default React.memo(function App() {
                 <MorseBufferContextProvider>
                 <WordListPickerContextProvider>
                 <WordFeederContextProvider>
-                    <div id="sidebar">
-                        <Info />
+                    <div className="sidebar" id="left">
+                        <Legend />
                         <div id="mainOptions">
                             <h2>Options</h2>
                             <ModePicker />
@@ -50,7 +50,6 @@ export default React.memo(function App() {
                                 <WordListPicker />
                             }
                         </div>
-                        <Legend />
                     </div>
                     <div id="main-interface">
                         {keyType === "straight" ?
@@ -76,6 +75,9 @@ export default React.memo(function App() {
                         }
 
                         <MorseButtons />
+                    </div>
+                    <div className="sidebar" id="right">
+                        <Info />
                     </div>
                 </WordFeederContextProvider>
                 </WordListPickerContextProvider>

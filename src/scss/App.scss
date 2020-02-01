@@ -51,29 +51,42 @@ header {
 #main-content {
     display: flex;
     height: 95vh;
-    width: 95vw;
+    width: 100%;
     border: 1px solid red;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 
-    #sidebar {
+    .sidebar#left {
+        // border: 1px solid green;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        height: 100%;
+        min-width: 400px;
+        width: 400px;
+        padding: 1.5em;
+    }
+    .sidebar#right {
         border: 1px solid green;
         display: flex;
         flex-direction: column;
-        justify-content: space-around;
+        justify-content: flex-start;
         height: 100%;
-        width: 500px;
+        min-width: 500px;
+        width: 600px;
         padding: 1.5em;
+        right: 0px;
     }
     #main-interface {
-        border: 1px solid blue;
+        // border: 1px solid blue;
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
-        width: 600px;
+        justify-content: flex-start;
+        flex-grow: 1;
         height: 100%;
-        min-width: 400px;
+        min-width: 500px;
+        width: 500px;
     }
 }
 footer {
@@ -112,7 +125,7 @@ i[class*="ri-"] {
 
         #title {
             font-weight: bold;
-            font-size: 1.1em;
+            font-size: 1.08em;
             // border: 1px solid red;
             height: 100%;
             display: flex;
@@ -195,7 +208,7 @@ i[class*="ri-"] {
         .item {
             border: 1px solid #ccc;
             margin: 1px;
-            width: 80px;
+            width: 19%;
             display: flex;
 
             button {
@@ -414,81 +427,106 @@ i[class*="ri-"] {
 
 
 #morseBufferDisplay {
-    border: 1px solid green;
+    // border: 1px solid green;
     display: flex;
     justify-content: center;
     flex-direction: column-reverse;
     align-items: center;
     width: 100%;
-    height: 150px;
+    height: 180px;
     margin-bottom: 20px;
     font-family: $buffer-font;
+    position: relative;
+    padding-top: 15px;
+    padding-bottom: 15px;
     // font-weight: bold;
+
+    #overlay {
+        // background: blue;
+        box-shadow: inset 20px 0px 20px -5px $main-bg-color-light;
+        position: absolute;
+        display: inline-block;
+        top:0;
+        left:0;
+        width: 100%;
+        height: 100%;
+        z-index: 100;
+    }
 
     #alphanumeric-container {
         // border-left: 2px solid #000;
-        background: #fdfdfd;
-        display: flex;
-        padding-left: 5px;
-        height: 5rem;
-        padding-top: 10px;
-        width: 90%;
-        margin-bottom: 10px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: $main-border-radius;
-        // box-shadow: $main-box-shadow-light;
+        
+        // display: flex;
+        
+        
+        // display: flex;
+        // justify-content: center;
+        // align-items: center;
         // box-shadow: $morseCard-shadow-light;
+        text-align: center;
+        max-width: 100%;
+        overflow-x: hidden;
+        // border: 1px solid red;
         
         #alphanumeric {
+            // border: 1px solid blue;
+            background: #fdfdfd;
+            height: 5rem;
+            padding-left: 5px;
+            padding-right: 5px;
+            padding-top: 0.45rem;
             font-size:  4rem;
-            background-color: transparent;
-            
-            &:first-child {
-                padding-left: 5px;
-                padding-right: 5px;
-                // box-shadow: $main-box-shadow;
-            }
-            span {
-                padding: $main-border-radius;
-                transition: background 300ms ease-in-out;
-            }
+            min-width: 4rem;
+            margin-bottom: 10px;
+            border-radius: $main-border-radius;
+            box-shadow: $main-box-shadow-light;
+            float: right;
         }
     }
+    #ditDahs-container {
+        // display: flex;
+        // justify-content: flex-start;
+        text-align: center;
+        max-width: 100%;
+        // border: 1px solid red;
+        overflow-x: hidden;
 
-    #ditDahs {
-        // width: 50%;
-        height: 50px;
-        padding-right: 5px;
-        // border-right: 2px solid #000;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        font-size: 3rem;
-        font-family: $ditDah-font;
-        // font-weight: bold;
-
-        span {
-            padding: $main-border-radius;
-            transition: background 100ms ease-in-out;
-        }
-
-        .ditDah {
-            background: #fdfdfd;
-            height: 40px;
-            width: 30px !important;
-            margin-left: 3px;
-            // box-shadow: 0px 1px 0px #000;
-            border-radius: $main-border-radius;
-            box-shadow: $main-box-shadow-dark;
+        #ditDahs {
+            height: 50px;
+            padding-right: 5px;
+            // border-right: 2px solid #000;
             display: flex;
+            flex-direction: row;
             justify-content: center;
-            align-items: center;
+            // border: 1px solid purple;
+            font-size: 3rem;
+            font-family: $ditDah-font;
+            float: right;
+            // font-weight: bold;
+    
+            // span {
+            //     padding: $main-border-radius;
+            //     transition: background 100ms ease-in-out;
+            //     width: 30px;
+            //     background: blue;
+            // }
+    
+            .ditDah {
+                background: #fdfdfd;
+                height: 40px;
+                width: 30px !important;
+                margin-left: 3px;
+                // box-shadow: 0px 1px 0px #000;
+                border-radius: $main-border-radius;
+                box-shadow: $main-box-shadow-dark;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                
+                transition: all 100ms ease-in-out;
+            }
             
-            transition: all 100ms ease-in-out;
         }
-        
     }
 }
 
@@ -584,20 +622,29 @@ i[class*="ri-"] {
 // }
 
 #morseHistory-textbox {
-    border: 1px solid cyan;
-    display: flex;
-    height: 150px;
-    width: 75%;
-    padding: 15px;
-    // background: #ddd;
+    // border: 1px solid cyan;
+    background: #ddd;
+    border-radius: 5px;
+    height: auto;
+    width: 90%;
     font-family: Courier;
     font-size: 1.5rem;
+    display: flex;
+    align-content: flex-start;
+    flex-wrap: wrap;
+
     span {
-        background: #CCC;
-        margin-right: 0.7rem;
+        margin: 5px;
+        background: #fdfdfd;
         height: 1.5rem;
+        padding: 4px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        border-radius: $main-border-radius;
+        box-shadow: $main-box-shadow-dark;
     }
 }
+
 #morseHistory {
     border: 1px solid purple;
     display: flex;

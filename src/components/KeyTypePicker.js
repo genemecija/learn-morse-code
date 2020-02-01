@@ -36,14 +36,15 @@ export default React.memo(function KeyTypePicker() {
     return (
             <div id="keyType" className="mode-picker">
                 <div id="title">
-                    Keyer&nbsp;<i className="ri-question-line"></i> 
+                    Key Type
+                    {/* &nbsp;<i className="ri-question-line"></i>  */}
                 </div>
                 <div id="buttons">
                     <button id="straight" className="selected" onClick={handleClick}>
-                        Straight Keyer
+                        Straight Key
                     </button>
                     <button id="electronic" onClick={handleClick}>
-                        Electronic Keyer
+                        Electronic Key
                     </button>
                 </div>
             </div>
