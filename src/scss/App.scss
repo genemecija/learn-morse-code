@@ -57,7 +57,7 @@ header {
     align-items: center;
 
     .sidebar#left {
-        // border: 1px solid green;
+        border: 1px solid yellowgreen;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -70,10 +70,10 @@ header {
         border: 1px solid green;
         display: flex;
         flex-direction: column;
-        justify-content: flex-start;
+        justify-content: space-between;
         height: 100%;
         min-width: 500px;
-        width: 600px;
+        width: 400px;
         padding: 1.5em;
         right: 0px;
     }
@@ -232,9 +232,10 @@ i[class*="ri-"] {
     }
 }
 
+$button-height: 60px;
 #morseButton {
     width: 400px;
-    height: 55px;
+    height: $button-height;
     margin-top: 30px;
     margin-bottom: 10px;
     border-radius: 5px;
@@ -258,7 +259,7 @@ i[class*="ri-"] {
         font-size: 1rem;
         color: transparent;
         width: 200px;
-        height: 55px;
+        height: $button-height;
         // background: yellow;
         background: #f4f4f4;
         margin: 0px;
@@ -270,8 +271,8 @@ i[class*="ri-"] {
             color: #888;
             font-size: 1rem;
             font-weight: bold;
-            width: 60px;
-            height: 55px;
+            width: calc($button-height+5px);
+            height: $button-height;
             box-shadow: $main-box-shadow-light;
         }
         &#left {
@@ -302,7 +303,7 @@ i[class*="ri-"] {
 }
 #morseButtonText {
     font-weight: bold;
-    color: #bbb;
+    color: #aaa;
     font-size: 0.7rem;
     margin-bottom: 40px;
 }

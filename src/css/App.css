@@ -54,6 +54,7 @@ header {
 }
 
 #main-content .sidebar#left {
+  border: 1px solid yellowgreen;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -79,12 +80,12 @@ header {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   height: 100%;
   min-width: 500px;
-  width: 600px;
+  width: 400px;
   padding: 1.5em;
   right: 0px;
 }
@@ -307,7 +308,7 @@ i[class*="ri-"] {
 
 #morseButton {
   width: 400px;
-  height: 55px;
+  height: 60px;
   margin-top: 30px;
   margin-bottom: 10px;
   border-radius: 5px;
@@ -341,7 +342,7 @@ i[class*="ri-"] {
   font-size: 1rem;
   color: transparent;
   width: 200px;
-  height: 55px;
+  height: 60px;
   background: #f4f4f4;
   margin: 0px;
   border: 0px;
@@ -355,8 +356,8 @@ i[class*="ri-"] {
   color: #888;
   font-size: 1rem;
   font-weight: bold;
-  width: 60px;
-  height: 55px;
+  width: calc($button-height+5px);
+  height: 60px;
   -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3), 0px -1px 1px white;
           box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3), 0px -1px 1px white;
 }
@@ -395,7 +396,7 @@ i[class*="ri-"] {
 
 #morseButtonText {
   font-weight: bold;
-  color: #bbb;
+  color: #aaa;
   font-size: 0.7rem;
   margin-bottom: 40px;
 }

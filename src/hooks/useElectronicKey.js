@@ -7,7 +7,7 @@ import { GameModeContext } from '../contexts/gameModeContext'
 // ELECTRONIC KEY TELEGRAPH - Iambic A
 
 function useElectronicKey() {
-
+    console.log('useElectronicKey');
     const {morseCharBuffer, setMorseCharBuffer, morseWords, setMorseWords} = useContext(MorseBufferContext)
     const {wpm} = useContext(WPMContext)
     const {gameMode} = useContext(GameModeContext)
@@ -242,7 +242,7 @@ function useElectronicKey() {
         if (event.repeat) { return }
 
         if (event.keyCode === 188 || event.target.id === "left") {
-            document.getElementById('left').classList.add('active')
+            document.querySelector('.paddle#left').classList.add('active')
             
             leftIsPressed = true
             if (!rightIsPressed) { pressedFirst = 'left'}
@@ -253,7 +253,7 @@ function useElectronicKey() {
             }
         }
         else if (event.keyCode === 190 || event.target.id === "right") {
-            document.getElementById('right').classList.add('active')
+            document.querySelector('.paddle#right').classList.add('active')
 
             rightIsPressed = true
             if (!leftIsPressed) { pressedFirst = 'right'}
@@ -271,7 +271,7 @@ function useElectronicKey() {
         // if (!insideBufferDisplay) {return}
 
         if (event.keyCode === 188 || event.target.id === "left") {
-            document.getElementById('left').classList.remove('active')
+            document.querySelector('.paddle#left').classList.remove('active')
 
             leftIsPressed = false
             
@@ -281,7 +281,7 @@ function useElectronicKey() {
             else { stopDepressSyncTimer() }
         }
         if (event.keyCode === 190 || event.target.id === "right") {
-            document.getElementById('right').classList.remove('active')
+            document.querySelector('.paddle#right').classList.remove('active')
 
             rightIsPressed = false
             if (pressedFirst === 'right') { pressedFirst = null }
@@ -355,6 +355,9 @@ function useElectronicKey() {
                 paddle.removeEventListener('mouseup', handleInputEnd)
                 paddle.removeEventListener('touchend', handleInputEnd)
             })
+
+            clearInterval(depressSyncTimer)
+            clearInterval(gapTimer)
             // clearHistory()
         }
         // eslint-disable-next-line

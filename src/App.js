@@ -40,16 +40,7 @@ export default React.memo(function App() {
                 <WordListPickerContextProvider>
                 <WordFeederContextProvider>
                     <div className="sidebar" id="left">
-                        <Legend />
-                        <div id="mainOptions">
-                            <h2>Options</h2>
-                            <ModePicker />
-                            <KeyTypePicker />
-                            <WordsPerMinute />
-                            {gameMode === 'challenge' &&
-                                <WordListPicker />
-                            }
-                        </div>
+                        <Info />
                     </div>
                     <div id="main-interface">
                         {keyType === "straight" ?
@@ -77,7 +68,16 @@ export default React.memo(function App() {
                         <MorseButtons />
                     </div>
                     <div className="sidebar" id="right">
-                        <Info />
+                        <div id="mainOptions">
+                            <h2>Options</h2>
+                            <ModePicker />
+                            <KeyTypePicker />
+                            <WordsPerMinute />
+                            {gameMode === 'challenge' &&
+                                <WordListPicker />
+                            }
+                        </div>
+                        <Legend />
                     </div>
                 </WordFeederContextProvider>
                 </WordListPickerContextProvider>

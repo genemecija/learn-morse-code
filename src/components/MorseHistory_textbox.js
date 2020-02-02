@@ -12,7 +12,7 @@ export default (function MorseHistoryTextBox() {
 
     console.log('morseWords', morseWords);
 
-    morseWords.forEach((word) => {
+    morseWords.forEach((word, index) => {
         if (word.includes(' ')) {
             let newWord = ''
             word.split(' ').forEach(letter => {
@@ -25,14 +25,14 @@ export default (function MorseHistoryTextBox() {
                 }
             })
             // text = newWord + ' ' + text
-            span.splice(0, 0, <span>{newWord}</span>)
+            span.splice(0, 0, <span key={index}>{newWord}</span>)
         }
         else if (morseCode[word] === undefined) {
             // text = '[?] ' + text
-            span.splice(0, 0, <span>[?]</span>)
+            span.splice(0, 0, <span key={index}>[?]</span>)
         } else {
             // text =  morseCode[word].toUpperCase() + ' ' + text
-            span.splice(0, 0, <span>{morseCode[word].toUpperCase()}</span>)
+            span.splice(0, 0, <span key={index}>{morseCode[word].toUpperCase()}</span>)
         }
     })
 
