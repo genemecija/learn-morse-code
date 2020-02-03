@@ -406,13 +406,16 @@ $button-height: 60px;
     text-transform: uppercase;
     transition: all 300ms ease-in-out;
     
-    span {
+    .cLetter {
         padding: 4px;
         margin: 1px;
-        transition: background 100ms ease-in-out; //, opacity 100ms ease-in-out;
         display: inline-flex;
         align-items: center;
         line-height: 3rem;
+        display: inline-block;
+        padding-top: 10px;
+        background: transparent;
+        // transition: background 100ms ease-in-out; //, opacity 100ms ease-in-out;
         
         &.correct {
             background: rgba(0,255,0,0.6);
@@ -467,6 +470,9 @@ $button-height: 60px;
         text-align: center;
         max-width: 100%;
         overflow-x: hidden;
+
+        display: inline-block;
+        padding-top: 10px;
         // border: 1px solid red;
         
         #alphanumeric {
@@ -551,9 +557,26 @@ $button-height: 60px;
         justify-content: center;
         
         #alphanumeric {
-            font-size: 40px;
-            background-color: transparent;
-            margin-bottom: 10px;
+            // font-size: 40px;
+            // background-color: transparent;
+            // margin-bottom: 10px;
+            
+            height: 50px;
+            // border: 1px solid purple;
+            font-size: 3rem;
+            font-family: $ditDah-font;
+            float: right;
+
+
+            background: #fdfdfd;
+            margin-left: 3px;
+            margin-bottom: 20px;
+            // box-shadow: 0px 1px 0px #000;
+            border-radius: $main-border-radius;
+            box-shadow: $main-box-shadow-dark;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             
             &:first-child {
                 padding-left: 5px;
@@ -562,6 +585,7 @@ $button-height: 60px;
             }
 
             span {
+                display: inline-block;
                 padding: 4px;
                 transition: background 100ms ease-in-out;
             }
@@ -569,32 +593,56 @@ $button-height: 60px;
     }
 
     #ditDahs {
-        width: 50%;
+        // width: 50%;
+        // padding-right: 5px;
+        // // border-right: 2px solid #000;
+        // display: flex;
+        // flex-direction: row;
+        // justify-content: center;
+        // font-size: 25px;
+        // font-family: $ditDah-font;
+        // font-weight: bold;
+
+        height: 50px;
         padding-right: 5px;
         // border-right: 2px solid #000;
         display: flex;
         flex-direction: row;
         justify-content: center;
-        font-size: 25px;
+        // border: 1px solid purple;
+        font-size: 3rem;
         font-family: $ditDah-font;
-        font-weight: bold;
 
         span {
-            padding: 4px;
-            transition: background 100ms ease-in-out;
-        }
-        .ditDah {
-            background: #fdfdfd;
             
+        }
+        span {
+            // background: #fdfdfd;
+            
+            // height: 40px;
+            // width: 30px !important;
+            // margin-left: 3px;
+            // // box-shadow: 0px 1px 0px #000;
+            // border-radius: $main-border-radius;
+            // box-shadow: $main-box-shadow-light;
+            // display: flex;
+            // justify-content: center;
+            // align-items: center;
+
+            padding: 5px;
+            transition: background 100ms ease-in-out; 
+            background: #fdfdfd;
             height: 40px;
-            width: 30px !important;
+            // width: 30px !important;
             margin-left: 3px;
             // box-shadow: 0px 1px 0px #000;
             border-radius: $main-border-radius;
-            box-shadow: $main-box-shadow-light;
+            box-shadow: $main-box-shadow-dark;
             display: flex;
             justify-content: center;
             align-items: center;
+            
+            transition: all 100ms ease-in-out;
         }
     }
 }

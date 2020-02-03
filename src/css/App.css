@@ -441,11 +441,9 @@ i[class*="ri-"] {
   transition: all 300ms ease-in-out;
 }
 
-#challengeWord span {
+#challengeWord .cLetter {
   padding: 4px;
   margin: 1px;
-  -webkit-transition: background 100ms ease-in-out;
-  transition: background 100ms ease-in-out;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
@@ -453,9 +451,12 @@ i[class*="ri-"] {
       -ms-flex-align: center;
           align-items: center;
   line-height: 3rem;
+  display: inline-block;
+  padding-top: 10px;
+  background: transparent;
 }
 
-#challengeWord span.correct {
+#challengeWord .cLetter.correct {
   background: rgba(0, 255, 0, 0.6);
   border-radius: 3px;
 }
@@ -503,6 +504,8 @@ i[class*="ri-"] {
   text-align: center;
   max-width: 100%;
   overflow-x: hidden;
+  display: inline-block;
+  padding-top: 10px;
 }
 
 #morseBufferDisplay #alphanumeric-container #alphanumeric {
@@ -599,9 +602,25 @@ i[class*="ri-"] {
 }
 
 #challengeBufferDisplay #alphanumeric-container #alphanumeric {
-  font-size: 40px;
-  background-color: transparent;
-  margin-bottom: 10px;
+  height: 50px;
+  font-size: 3rem;
+  font-family: "Courier", monospace;
+  float: right;
+  background: #fdfdfd;
+  margin-left: 3px;
+  margin-bottom: 20px;
+  border-radius: 3px;
+  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px rgba(255, 255, 255, 0.1);
+          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px rgba(255, 255, 255, 0.1);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 #challengeBufferDisplay #alphanumeric-container #alphanumeric:first-child {
@@ -610,13 +629,14 @@ i[class*="ri-"] {
 }
 
 #challengeBufferDisplay #alphanumeric-container #alphanumeric span {
+  display: inline-block;
   padding: 4px;
   -webkit-transition: background 100ms ease-in-out;
   transition: background 100ms ease-in-out;
 }
 
 #challengeBufferDisplay #ditDahs {
-  width: 50%;
+  height: 50px;
   padding-right: 5px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -628,25 +648,20 @@ i[class*="ri-"] {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  font-size: 25px;
+  font-size: 3rem;
   font-family: "Courier", monospace;
-  font-weight: bold;
 }
 
 #challengeBufferDisplay #ditDahs span {
-  padding: 4px;
+  padding: 5px;
   -webkit-transition: background 100ms ease-in-out;
   transition: background 100ms ease-in-out;
-}
-
-#challengeBufferDisplay #ditDahs .ditDah {
   background: #fdfdfd;
   height: 40px;
-  width: 30px !important;
   margin-left: 3px;
   border-radius: 3px;
-  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3), 0px -1px 1px white;
-          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3), 0px -1px 1px white;
+  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px rgba(255, 255, 255, 0.1);
+          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px rgba(255, 255, 255, 0.1);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -656,6 +671,8 @@ i[class*="ri-"] {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-transition: all 100ms ease-in-out;
+  transition: all 100ms ease-in-out;
 }
 
 .space {

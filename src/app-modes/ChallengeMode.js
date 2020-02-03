@@ -20,7 +20,7 @@ export default React.memo(function ChallengeMode(props) {
     let morseArray = morseCharBuffer.split('_').filter(l => l !== '')
     
     let correctCharIndexes = [] // Indexes of correct letters in Challenge Word
-    let incorrectCharIndex = null
+    // let incorrectCharIndex = null
     let incorrectMorseIndexes = [] // Indexes of incorrect morse characters in morse character buffer
     
     let offset = 0
@@ -45,10 +45,12 @@ export default React.memo(function ChallengeMode(props) {
 
             if (morseLetter === challengeLetter) {
                 correctCharIndexes.push(index-offset)
-                incorrectCharIndex = null
+                
+                document.getElementById('challengeWord').childNodes[index-offset].classList.add('correct')
+                // incorrectCharIndex = null
             }
             else {
-                incorrectCharIndex = index-offset
+                // incorrectCharIndex = index-offset
                 incorrectMorseIndexes.push(index)
                 if (incorrectMorseIndexes.length > 0) {
                     setMorseCharBuffer(prev => {
@@ -79,6 +81,9 @@ export default React.memo(function ChallengeMode(props) {
         challengeWordClass = 'correct'
         setTimeout(() => {
             setMorseCharBuffer('')
+            morseArray = []
+            incorrectMorseIndexes = []
+            offset = 0
         }, 800)
         setTimeout(() => {
             getNextWord()
@@ -88,7 +93,7 @@ export default React.memo(function ChallengeMode(props) {
 
     return (
         <>
-            <ChallengeWord className={challengeWordClass} word={word} correctCharIndexes={correctCharIndexes} incorrectCharIndex={incorrectCharIndex} />
+            <ChallengeWord className={challengeWordClass} word={word} />
             <ChallengeBufferDisplay morseArray={morseArray} incorrectMorseIndexes={incorrectMorseIndexes} />
             {/* <button onClick={() => console.log(morseCharBuffer)}>morseCharBuffer</button> */}
         </>
