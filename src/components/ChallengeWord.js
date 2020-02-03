@@ -1,18 +1,16 @@
-import React from "react"
+import React, { useContext } from "react"
+import { WordFeederContext } from "../contexts/wordFeederContext"
 
 export default React.memo(function ChallengeWord(props) {
 
     let challengeWordClass= props.className
-    const word = props.word
+    const {word} = useContext(WordFeederContext)
 
     let challengeLetters = word.split('')
 
     let spannedWord = challengeLetters.map((letter,index) => {
-
-        let className = 'cLetter'
-        
         return (
-            <span key={index} className={className} id={"chal"+index}>{letter}</span>
+            <span key={index} className='cLetter'>{letter}</span>
         )
     })
 

@@ -25,11 +25,11 @@ export default React.memo(function ChallengeBufferDisplay(props) {
 
     return (
         <div id="challengeBufferDisplay">
-            <div id="alphanumeric-container">
+            {/* <div id="alphanumeric-container">
                 <div id="alphanumeric">
                     {alphanumeric}
                 </div>
-            </div>
+            </div> */}
             <div id="ditDahs">
                 {ditDahs}
             </div>

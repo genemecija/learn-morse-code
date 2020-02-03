@@ -3,7 +3,6 @@ import { WordListPickerContext } from "./wordListPickerContext"
 const WordFeederContext = React.createContext()
 
 function WordFeederContextProvider(props) {
-    console.log('LOADED: wordFeederContext');
     // let wordList = ['hi', 'morse', 'code', 'hello', 'gene']
     const {wordList, wordListShuffled, wordListCategory} = useContext(WordListPickerContext)
 

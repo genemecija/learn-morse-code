@@ -1,6 +1,7 @@
-import React from "react"
+import React, { useContext } from "react"
 import morseCode from '../data/morse-code.json'
 import useMorsePlayer from "../hooks/useMorsePlayer";
+import { WPMContext } from "../contexts/wpmContext.js";
 
 function Legend() {
 
@@ -12,7 +13,6 @@ function Legend() {
         let word = e.target.innerHTML
         let newWord = convertWordToMorse(word)
         console.log(newWord);
-
         playMorseWord(newWord)
     }
 

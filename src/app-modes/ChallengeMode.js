@@ -9,8 +9,6 @@ import { WordListPickerContext } from '../contexts/wordListPickerContext';
 
 
 export default React.memo(function ChallengeMode(props) {
-    
-    console.log("ChallengeMode loaded");
 
     const {word, getNextWord} = useContext(WordFeederContext)
 
@@ -28,21 +26,26 @@ export default React.memo(function ChallengeMode(props) {
 
     if (!word) {
         console.log('FINISHED ALL WORDS!')
-        alert('No more words.')
+        alert('Show completion time.')
         return
     }
-    console.log('word:', word);
     
     let challengeLetters = word.split('')
     
+    // console.log('word', word);
+    // console.log('morseArray', morseArray);
+    // console.log('morseArray.length', morseArray.length);
+    // if (morseArray.length === 0) {
+    //     document.getElementById('challengeWord').childNodes.forEach(node => node.classList = ('cLetter'))
+    // }
 
     // Iterate through the morse character buffer and compare with each letter of challenge word
     morseArray.forEach((item, index) => {        
         if (morseCharBuffer.slice(-1) === '_') { // If end of morse character
-
+            
             let morseLetter = morseCode[morseArray[index]] || '[?]'
             let challengeLetter = challengeLetters[index-offset].toLowerCase()
-
+            
             if (morseLetter === challengeLetter) {
                 correctCharIndexes.push(index-offset)
                 
@@ -87,7 +90,11 @@ export default React.memo(function ChallengeMode(props) {
         }, 800)
         setTimeout(() => {
             getNextWord()
-            
+            if (document.getElementById('challengeWord') !== null) {
+                document.getElementById('challengeWord').childNodes.forEach(node => {
+                    node.classList = "cLetter"
+                })
+            }
         }, 1000)
     }
 

@@ -17,7 +17,7 @@ function useMorsePlayer() {
     } else {
         context = null
     }
-    
+
     let frequency = config.frequency
 
     function play(ditDah) {
@@ -54,32 +54,40 @@ function useMorsePlayer() {
         // })
     }
 
+    let queue = []
+    let timeouts = []
     function playMorseWord(morse) {
-        let chars = Array.from(morse)
-        // let currentPromise = Promise.resolve();
 
-        let soundQueue = []
+        // Empty morse queue and cancel all sounds (timeouts)
+        queue = []
+        for (let i = 0; i < timeouts.length; i++) {
+            clearTimeout(timeouts[i]);
+        }
+
+        queue = Array.from(morse)
+        // let currentPromise = Promise.resolve();
 
         let delay = 0
         let firstWord = true
-        for (let i = 0; i < chars.length; i++) {
+        for (let i = 0; i < queue.length; i++) {
             // currentPromise = currentPromise.then(() => {
-            //     return playChar(chars[i]);
+            //     return playChar(queue[i]);
             // });
-            let char = chars[i]
+            
+            let char = queue[i]
             if (char === '.') {
                 if (firstWord) {
                     firstWord = false
                     // soundQueue.push(
-                        setTimeout(() => {
+                        timeouts.push(setTimeout(() => {
                             play(char)
-                        }, 0)
+                        }, 0))
                     // )
                 } else {
                     // soundQueue.push(
-                        setTimeout(() => {
+                        timeouts.push(setTimeout(() => {
                             play(char)
-                        }, delay)
+                        }, delay))
                     // )
                 }
                 delay += ditMaxTime*2
@@ -87,45 +95,47 @@ function useMorsePlayer() {
                 if (firstWord) {
                     firstWord = false
                     // soundQueue.push(
-                        setTimeout(() => {
+                        timeouts.push(setTimeout(() => {
                             play(char)
-                        }, 0)
+                        }, 0))
                     // )
                 } else {
                     // soundQueue.push(
-                        setTimeout(() => {
+                        timeouts.push(setTimeout(() => {
                             play(char)
-                        }, delay)
+                        }, delay))
                     // )
                 }
                 delay += ditMaxTime*4
             } else if (char === ' ') {
-                setTimeout(() => {
+                timeouts.push(setTimeout(() => {
                     
-                }, delay)
+                }, delay))
                 delay += ditMaxTime*3
             }
         }
+        
+        
 
-        function playChar(char) {
-            let delay = (char === '.') ? ditMaxTime + ditMaxTime : ditMaxTime*3 + ditMaxTime
+        // function playChar(char) {
+        //     let delay = (char === '.') ? ditMaxTime + ditMaxTime : ditMaxTime*3 + ditMaxTime
 
-            return new Promise(function(resolve) {
-                if (char === '.' || char === '-') {
-                    play(char)
-                    .then(setTimeout(() => {
-                        resolve();
-                    }, delay))
-                } else {
-                    setTimeout(() => {
-                        resolve();
-                    }, delay)
-                }
-            });
-        }
+        //     return new Promise(function(resolve) {
+        //         if (char === '.' || char === '-') {
+        //             play(char)
+        //             .then(setTimeout(() => {
+        //                 resolve();
+        //             }, delay))
+        //         } else {
+        //             setTimeout(() => {
+        //                 resolve();
+        //             }, delay)
+        //         }
+        //     });
+        // }
     }
 
-    return { playMorseWord }
+    return { playMorseWord, play }
 }
 
 export default useMorsePlayer

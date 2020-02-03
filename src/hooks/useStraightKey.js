@@ -6,7 +6,7 @@ import { GameModeContext } from '../contexts/gameModeContext'
 
 // STRAIGHT KEY TELEGRAPH
 function useStraightKey() {
-    console.log('useStraightKey');
+    
     const {morseCharBuffer, setMorseCharBuffer, morseWords, setMorseWords} = useContext(MorseBufferContext)
     const {wpm} = useContext(WPMContext)
     const {gameMode} = useContext(GameModeContext)
