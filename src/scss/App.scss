@@ -6,8 +6,8 @@ $buffer-font: 'Courier Prime', Courier, monospace;
 $ditDah-font: 'Courier', monospace;
 
 $main-bg-color-light: #f1f1f1;
-
 $main-font-color-light: #333;
+$correct-bg-color: rgba(90,230,90,1);
 
 $morseCard-shadow-light: 0px 3px 3px rgba(0, 0, 0, 0.2);
 $main-box-shadow-light: 0px 3px 3px rgba(0, 0, 0, 0.3), 0px -1px 1px rgba(255, 255, 255, 1);
@@ -20,6 +20,8 @@ $main-border-radius: 3px;
 $border-radius-neumorphic: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.15);
 $border-radius-neumorphic-dark: 0px -10px 20px rgba(255, 255, 255, 0.1), 0px 10px 10px rgba(0, 0, 0, 0.4);
 $border-radius-neumorphic-active: 0 15px 20px rgba(0, 0, 0, 0.015), inset 0px -2px 5px rgb(255, 255, 255), inset 0px 2px 5px rgba(0, 0, 0, 0.15);
+
+
 * {
     box-sizing: border-box;
     margin: 0px;
@@ -56,6 +58,7 @@ header {
     justify-content: flex-start;
     align-items: center;
 
+
     .sidebar#left {
         border: 1px solid yellowgreen;
         display: flex;
@@ -87,6 +90,7 @@ header {
         height: 100%;
         min-width: 500px;
         width: 500px;
+        position: relative;
     }
 }
 footer {
@@ -379,7 +383,29 @@ $button-height: 60px;
 //     }
 // }
 
-    
+#challenge-overlay {
+    position: absolute;
+    display: inline-block;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    background-color: darkgoldenrod;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+        background-color: transparent;
+    }
+    .notify {
+        width: 300px;
+        height: 250px;
+        background: #DDD;
+    }
+}
+
 #challengeWord {
     display: flex;
     justify-content: center;
@@ -403,7 +429,7 @@ $button-height: 60px;
 
     background: #fdfdfd;
     text-transform: uppercase;
-    transition: all 300ms ease-in-out;
+    transition: all 100ms ease-in-out;
     
     .cLetter {
         padding: 4px;
@@ -414,15 +440,15 @@ $button-height: 60px;
         display: inline-block;
         padding-top: 10px;
         background: transparent;
-        // transition: background 100ms ease-in-out; //, opacity 100ms ease-in-out;
+        transition: background 100ms ease-in-out; //, opacity 100ms ease-in-out;
         
         &.correct {
-            background: rgba(0,255,0,0.6);
+            background: $correct-bg-color;
             border-radius: $main-border-radius;
         }
     }
     &.correct {
-        background: rgba(0,200,0,0.6);
+        background: $correct-bg-color;
     }
     
 }

@@ -110,6 +110,7 @@ header {
   height: 100%;
   min-width: 500px;
   width: 500px;
+  position: relative;
 }
 
 h2 {
@@ -410,6 +411,36 @@ i[class*="ri-"] {
       justify-content: space-around;
 }
 
+#challenge-overlay {
+  position: absolute;
+  display: inline-block;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  background-color: darkgoldenrod;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#challenge-overlay:hover {
+  background-color: transparent;
+}
+
+#challenge-overlay .notify {
+  width: 300px;
+  height: 250px;
+  background: #DDD;
+}
+
 #challengeWord {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -438,8 +469,8 @@ i[class*="ri-"] {
   font-weight: bold;
   background: #fdfdfd;
   text-transform: uppercase;
-  -webkit-transition: all 300ms ease-in-out;
-  transition: all 300ms ease-in-out;
+  -webkit-transition: all 100ms ease-in-out;
+  transition: all 100ms ease-in-out;
 }
 
 #challengeWord .cLetter {
@@ -455,15 +486,17 @@ i[class*="ri-"] {
   display: inline-block;
   padding-top: 10px;
   background: transparent;
+  -webkit-transition: background 100ms ease-in-out;
+  transition: background 100ms ease-in-out;
 }
 
 #challengeWord .cLetter.correct {
-  background: rgba(0, 255, 0, 0.6);
+  background: #5ae65a;
   border-radius: 3px;
 }
 
 #challengeWord.correct {
-  background: rgba(0, 200, 0, 0.6);
+  background: #5ae65a;
 }
 
 #morseBufferDisplay {

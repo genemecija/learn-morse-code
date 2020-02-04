@@ -2,7 +2,6 @@ import React, {useContext} from 'react';
 import './css/App.css';
 
 import { GameModeContext } from "./contexts/gameModeContext"
-import { KeyTypeContext } from "./contexts/keyTypeContext"
 import { MorseBufferContextProvider } from "./contexts/morseBufferContext"
 import { WordFeederContextProvider } from './contexts/wordFeederContext';
 import { WordListPickerContextProvider } from './contexts/wordListPickerContext';
@@ -21,15 +20,14 @@ import Legend from './components/Legend';
 import WordsPerMinute from "./components/WordsPerMinute"
 import MorseButtons from './components/MorseButtons'
 import Footer from './components/Footer';
-import StraightKey from './components/StraightKey';
-import ElectronicKey from './components/ElectronicKey';
 import Info from './components/Info';
+import { GameClockContextProvider } from './contexts/gameClockContext';
+import ChallengeOverlay from './components/ChallengeOverlay';
 
 export default React.memo(function App() {
 
     console.log('App.js rendered')
 
-    const {keyType} = useContext(KeyTypeContext)
     const {gameMode} = useContext(GameModeContext)
 
     return (
@@ -43,9 +41,6 @@ export default React.memo(function App() {
                         <Info />
                     </div>
                     <div id="main-interface">
-                        {keyType === "straight" ?
-                            <StraightKey /> : <ElectronicKey />
-                        }
 
                         {gameMode === 'practice' &&
                             <PracticeMode />
@@ -62,7 +57,10 @@ export default React.memo(function App() {
                         } */}
 
                         {gameMode === 'challenge' &&
-                            <ChallengeMode />
+                            <GameClockContextProvider>
+                                <ChallengeOverlay />
+                                <ChallengeMode />
+                            </GameClockContextProvider>
                         }
 
                         <MorseButtons />
