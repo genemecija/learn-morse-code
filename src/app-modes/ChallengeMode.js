@@ -15,8 +15,8 @@ import ElectronicKey from '../components/ElectronicKey';
 
 export default React.memo(function ChallengeMode(props) {
 
-    const {startGameClock, stopGameClock, gameClockTime, cleanup} = useContext(GameClockContext)
-    const {word, getNextWord} = useContext(WordFeederContext)
+    const {stopGameClock, clockIsRunning, cleanup} = useContext(GameClockContext)
+    const {word, getNextWord, resetFeeder} = useContext(WordFeederContext)
     const {morseCharBuffer, setMorseCharBuffer} = useContext(MorseBufferContext)
     const {keyType} = useContext(KeyTypeContext)
     
@@ -36,15 +36,13 @@ export default React.memo(function ChallengeMode(props) {
         console.log('FINISHED ALL WORDS!')
         stopGameClock()
         cleanup()
+        resetFeeder()
 
         //BREAKS HERE AFTER WORDLIST IS COMPLETED
-        alert(`Time: ${document.getElementById('gameClock').innerText}`)
+        try { alert(`Time: ${document.getElementById('gameClock').innerText}`) }
+        catch { return }
         return
     }
-    if (!challengeStarted) {
-        // SHOW "CLICK HERE TO START" OVERLAY
-    }
-
     
     
     let challengeLetters = word.split('')
@@ -111,13 +109,12 @@ export default React.memo(function ChallengeMode(props) {
 
     return (
         <>
-            {keyType === "straight" ?
-                <StraightKey /> : <ElectronicKey />
+            {clockIsRunning ? (keyType === "straight" ?
+                <StraightKey /> : <ElectronicKey />) : <></>
             }
             <GameClock />
             <ChallengeWord className={challengeWordClass} word={word} />
             <ChallengeBufferDisplay morseArray={morseArray} incorrectMorseIndexes={incorrectMorseIndexes} />
-            <button onClick={startGameClock}>start clock</button>
         </>
     )
 });

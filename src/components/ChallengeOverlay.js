@@ -15,6 +15,7 @@ export default (function ChallengeOverlay() {
             document.getElementById('challengeReady').innerText = `Challenge starting in ${count}`
             if (count === 0) {
                 // Do this when countdown hits 0
+                document.getElementById('challenge-overlay').classList.add('hide')
                 clearInterval(countdown)
                 startGameClock()
             }

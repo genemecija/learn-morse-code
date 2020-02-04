@@ -6,38 +6,34 @@ function GameClockContextProvider(props) {
     
     const [gameClockTime, setGameClockTime] = useState(0)
     const [clockIsRunning, setClockIsRunning] = useState(false)
+    const [gameClockTimer, setGameClockTimer] = useState(0)
     const {keyType} = useContext(KeyTypeContext)
 
-    let gameClock = 0
     let intervals = []
     
 
     function startGameClock() {
         if (!clockIsRunning) {
             setClockIsRunning(true)
-            intervals.push(setInterval(() => {
+            setGameClockTimer(setInterval(() => {
                 document.getElementById('gameClock').innerText = Number(document.getElementById('gameClock').innerText) + 1
             }, 1000))
         }
     }
     function stopGameClock() {
         if (clockIsRunning) {
-            clearInterval(gameClock)
+            clearInterval(gameClockTimer)
             setClockIsRunning(false)
         }
     }
 
     function cleanup() {
-        for (let i = 0; i < intervals.length; i++) {
-            clearInterval(intervals[i]);
-        }
+        clearInterval(gameClockTimer)
+        setGameClockTimer(0)
+        // for (let i = 0; i < intervals.length; i++) {
+        //     clearInterval(intervals[i]);
+        // }
     }
-    // function startChallenge(event) {
-    //     console.log(event);
-    //     document.removeEventListener('keydown', startChallenge)
-    //     document.removeEventListener('mousedown', startChallenge)
-    //     startGameClock()
-    // }
 
     useEffect(() => {
         console.log('KEYTYPE CHANGE');
@@ -54,7 +50,8 @@ function GameClockContextProvider(props) {
             setGameClockTime: setGameClockTime,
             startGameClock: startGameClock,
             stopGameClock: stopGameClock,
-            cleanup: cleanup
+            cleanup: cleanup,
+            clockIsRunning: clockIsRunning
             }}>
             {props.children}
         </GameClockContext.Provider>

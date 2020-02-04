@@ -391,13 +391,13 @@ $button-height: 60px;
     width: 100%;
     height: 100%;
     z-index: 100;
-    background-color: darkgoldenrod;
+    background-color: rgba(0,0,0,0.3);
     display: flex;
     justify-content: center;
     align-items: center;
 
-    &:hover {
-        background-color: transparent;
+    &.hide {
+        display: none;
     }
     .notify {
         width: 300px;
