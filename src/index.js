@@ -4,18 +4,12 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {GameModeContextProvider} from "./contexts/gameModeContext"
-import { KeyTypeContextProvider } from './contexts/keyTypeContext';
-import { WPMContextProvider } from './contexts/wpmContext';
 
 
 ReactDOM.render(
-    <KeyTypeContextProvider>
-        <WPMContextProvider>
-            <GameModeContextProvider>
-                <App />
-            </GameModeContextProvider>
-        </WPMContextProvider>
-    </KeyTypeContextProvider>
+    <GameModeContextProvider>
+        <App />
+    </GameModeContextProvider>
 
     , document.getElementById('root'));
 

@@ -60,7 +60,7 @@ header {
 
 
     .sidebar#left {
-        border: 1px solid yellowgreen;
+        // border: 1px solid yellowgreen;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -68,9 +68,10 @@ header {
         min-width: 400px;
         width: 400px;
         padding: 1.5em;
+        box-shadow: inset -3px 0px 5px rgba(0,0,0,0.2);
     }
     .sidebar#right {
-        border: 1px solid green;
+        // border: 1px solid green;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -79,6 +80,7 @@ header {
         width: 400px;
         padding: 1.5em;
         right: 0px;
+        box-shadow: inset 3px 0px 5px rgba(0,0,0,0.2);
     }
     #main-interface {
         // border: 1px solid blue;
@@ -383,6 +385,17 @@ $button-height: 60px;
 //     }
 // }
 
+@keyframes hideOverlay {
+    0% { 
+        opacity: 100%;
+        z-index: 1000;
+    }
+    100% {
+        opacity: 0%;
+        z-index: -1000;
+    }
+}
+
 #challenge-overlay {
     position: absolute;
     display: inline-block;
@@ -391,19 +404,134 @@ $button-height: 60px;
     width: 100%;
     height: 100%;
     z-index: 100;
-    background-color: rgba(0,0,0,0.3);
+    // background-color: rgba(0,0,0,0.4);
+    background: rgba(255,255,255,0.3);
+    // background-image: linear-gradient(0deg, transparent, rgba(1,1,1,1));
     display: flex;
     justify-content: center;
-    align-items: center;
-
+    // align-items: center;
+    
+    
     &.hide {
-        display: none;
+        // animation: hideOverlay 2000ms 1 ease-out forwards;
+        animation: hideOverlay 3s ease-out forwards;
     }
     .notify {
-        width: 300px;
+        width: 400px;
         height: 250px;
-        background: #DDD;
+        background: $main-bg-color-light;
+        margin-top: 150px;
+        border-radius: 5px;
+        box-shadow: 0px 5px 15px rgba(0,0,0,0.5);
     }
+    
+    #challengeReady {
+        position: relative;
+        width: 400px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+
+        #message {
+            font-size: 2em;
+            font-weight: bold;
+        }
+        #count {
+            font-size: 4.5em;
+            font-weight: bold;
+        }
+        &.starting {
+            justify-content: center;
+        }
+
+        button {
+            background: $main-bg-color-light;
+            box-shadow: $main-box-shadow-light;
+            border-radius: $main-border-radius;
+            border: 0px;
+            padding: 0.3em;
+            margin-left: 10px;
+            margin-right: 10px;
+    
+            font-size: 0.75em;
+            color: $main-font-color-light;
+            max-width: 250px;
+    
+            &.selected {
+                box-shadow: $main-box-shadow-light-selected;
+            }
+        }
+        #challengeOptions {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            // border: 1px solid blue;
+
+            .mode-picker {
+                // border: 1px solid green;
+                width: 300px;
+                display: flex;
+                // align-self: flex-start;s
+                align-content: center;
+                justify-content: flex-start;
+        
+                div {
+                    padding: 5px;
+                    height: 2.4em;
+                }
+        
+                div#title {
+                    font-weight: bold;
+                    font-size: 1.08em;
+                    // border: 1px solid red;
+                    height: 100%;
+                    display: flex;
+                    padding-left: 0px;
+                    justify-content: flex-start;
+                    align-items: center;
+                }
+                div#buttons {
+                    // border: 1px solid blue;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                }
+                div#input {
+                    margin-left: 10px;
+                    display: flex;
+                    align-items: center;
+                    input {
+                        width: 50px;
+                        appearance: textfield;
+                        text-align: center;
+                        border-radius: 3px;
+                        border: 1px solid #ddd;
+                        height: 1.3rem;
+                        font-size: 0.75em;
+                    }
+                    select {
+                        height: 1.4rem;
+                    }
+                    button {
+                        width: 20px;
+                        height: 20px;
+                        border-radius: 3px;
+                        // line-height: 10px;
+                        i {
+                            position: relative;
+                            left: -1px;
+                            // top: -2px;
+                            font-size: 1.1em;
+                            font-weight: bold;
+                        }
+                    }
+                }
+            }
+        }
+    }
+        
 }
 
 #challengeWord {

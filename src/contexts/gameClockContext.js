@@ -1,47 +1,44 @@
-import React, {useState, useEffect, useContext} from "react"
-import { KeyTypeContext } from "./keyTypeContext"
+import React, {useState} from "react"
+// import { KeyTypeContext } from "./keyTypeContext"
 const GameClockContext = React.createContext()
 
 function GameClockContextProvider(props) {
     
     const [gameClockTime, setGameClockTime] = useState(0)
     const [clockIsRunning, setClockIsRunning] = useState(false)
-    const [gameClockTimer, setGameClockTimer] = useState(0)
-    const {keyType} = useContext(KeyTypeContext)
+    // const [gameClockTimer, setGameClockTimer] = useState(0)
 
-    let intervals = []
-    
+    // let intervals = []
+    const [intervals, setIntervals] = useState([])
+
 
     function startGameClock() {
         if (!clockIsRunning) {
             setClockIsRunning(true)
-            setGameClockTimer(setInterval(() => {
-                document.getElementById('gameClock').innerText = Number(document.getElementById('gameClock').innerText) + 1
-            }, 1000))
+            setIntervals(prev => [...prev, (setInterval(() => {
+                    if (document.getElementById('gameClock') === null) {
+                        stopGameClock()
+                        return
+                    }
+                    document.getElementById('gameClock').innerText = Number(document.getElementById('gameClock').innerText) + 1
+                }, 1000))
+            ])
         }
     }
     function stopGameClock() {
         if (clockIsRunning) {
-            clearInterval(gameClockTimer)
+            cleanup()
             setClockIsRunning(false)
         }
     }
 
     function cleanup() {
-        clearInterval(gameClockTimer)
-        setGameClockTimer(0)
-        // for (let i = 0; i < intervals.length; i++) {
-        //     clearInterval(intervals[i]);
-        // }
-    }
-
-    useEffect(() => {
-        console.log('KEYTYPE CHANGE');
-        
-        return function () {
-            cleanup()
+        // clearInterval(gameClockTimer)
+        // setGameClockTimer(0)
+        for (let i = 0; i < intervals.length; i++) {
+            clearInterval(intervals[i]);
         }
-    }, [keyType])
+    }
     
 
     return (
@@ -51,7 +48,8 @@ function GameClockContextProvider(props) {
             startGameClock: startGameClock,
             stopGameClock: stopGameClock,
             cleanup: cleanup,
-            clockIsRunning: clockIsRunning
+            clockIsRunning: clockIsRunning,
+            intervals: intervals
             }}>
             {props.children}
         </GameClockContext.Provider>

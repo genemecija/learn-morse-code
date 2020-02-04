@@ -2,18 +2,22 @@ import React, {useContext} from "react"
 import {GameModeContext} from "../contexts/gameModeContext"
 import { MorseBufferContext } from "../contexts/morseBufferContext"
 import { WordFeederContext } from "../contexts/wordFeederContext"
+import { GameClockContext } from "../contexts/gameClockContext"
 
 function ModePicker() {
 
     const {setGameMode} = useContext(GameModeContext)
     const {setMorseCharBuffer} = useContext(MorseBufferContext)
     const {resetFeeder} = useContext(WordFeederContext)
+    const {stopGameClock, clockIsRunning} = useContext(GameClockContext)
 
     function handleClick(e) {
         setMorseCharBuffer('')
         resetFeeder()
 
         setGameMode(e.target.id)
+
+        if (clockIsRunning) { stopGameClock() }
 
         let buttons = document.querySelector(".mode-picker#gameMode #buttons").childNodes
         buttons.forEach(button => {

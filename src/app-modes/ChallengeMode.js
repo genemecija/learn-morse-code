@@ -11,11 +11,13 @@ import { GameClockContext } from '../contexts/gameClockContext';
 import { KeyTypeContext } from '../contexts/keyTypeContext';
 import StraightKey from '../components/StraightKey';
 import ElectronicKey from '../components/ElectronicKey';
+import ChallengeControls from '../components/ChallengeControls';
 
 
 export default React.memo(function ChallengeMode(props) {
 
-    const {stopGameClock, clockIsRunning, cleanup} = useContext(GameClockContext)
+    
+    const {stopGameClock, clockIsRunning, intervals} = useContext(GameClockContext)
     const {word, getNextWord, resetFeeder} = useContext(WordFeederContext)
     const {morseCharBuffer, setMorseCharBuffer} = useContext(MorseBufferContext)
     const {keyType} = useContext(KeyTypeContext)
@@ -34,14 +36,20 @@ export default React.memo(function ChallengeMode(props) {
 
     if (!word) {
         console.log('FINISHED ALL WORDS!')
-        stopGameClock()
-        cleanup()
-        resetFeeder()
+        stopChallenge()
 
         // Show a card showing challenge completion stats and option to restart word list
         try { alert(`Time: ${document.getElementById('gameClock').innerText}`) }
         catch { return }
         return
+    }
+
+    function stopChallenge() {
+        stopGameClock()
+        for (let i = 0; i < intervals.length; i++) {
+            clearInterval(intervals[i]);
+        }
+        resetFeeder()
     }
     
     
@@ -107,12 +115,14 @@ export default React.memo(function ChallengeMode(props) {
         }, 1000)
     }
 
+
     return (
         <>
             {clockIsRunning ? (keyType === "straight" ?
                 <StraightKey /> : <ElectronicKey />) : <></>
             }
-            <GameClock />
+            <ChallengeControls stopChallenge={stopChallenge} />
+            <GameClock stopChallenge={stopChallenge}/>
             <ChallengeWord className={challengeWordClass} word={word} />
             <ChallengeBufferDisplay morseArray={morseArray} incorrectMorseIndexes={incorrectMorseIndexes} />
         </>

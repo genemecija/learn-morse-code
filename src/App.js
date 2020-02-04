@@ -23,6 +23,8 @@ import Footer from './components/Footer';
 import Info from './components/Info';
 import { GameClockContextProvider } from './contexts/gameClockContext';
 import ChallengeOverlay from './components/ChallengeOverlay';
+import { KeyTypeContextProvider } from './contexts/keyTypeContext';
+import { WPMContextProvider } from './contexts/wpmContext';
 
 export default React.memo(function App() {
 
@@ -34,9 +36,12 @@ export default React.memo(function App() {
         <>
             <Header />
             <div id='main-content'>
+                <KeyTypeContextProvider>
+                <WPMContextProvider>
                 <MorseBufferContextProvider>
                 <WordListPickerContextProvider>
                 <WordFeederContextProvider>
+                <GameClockContextProvider>
                     <div className="sidebar" id="left">
                         <Info />
                     </div>
@@ -57,10 +62,10 @@ export default React.memo(function App() {
                         } */}
 
                         {gameMode === 'challenge' &&
-                            <GameClockContextProvider>
+                            <>
                                 <ChallengeOverlay />
                                 <ChallengeMode />
-                            </GameClockContextProvider>
+                            </>
                         }
 
                         <MorseButtons />
@@ -77,9 +82,12 @@ export default React.memo(function App() {
                         </div>
                         <Legend />
                     </div>
+                </GameClockContextProvider>
                 </WordFeederContextProvider>
                 </WordListPickerContextProvider>
-                </MorseBufferContextProvider>    
+                </MorseBufferContextProvider>
+                </WPMContextProvider>
+                </KeyTypeContextProvider>
             </div>
         <Footer />
         </>

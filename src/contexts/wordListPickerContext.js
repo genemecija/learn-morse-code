@@ -10,6 +10,7 @@ function WordListPickerContextProvider(props) {
     const [wordListCategory, setWordListCategory] = useState('alphabet')
     let wordList = []
     const testList = ['gene', 'anya', 'ali', 'liam', 'last']
+    const short = ['gene']
 
     if (wordListCategory === 'alphabet') {
         wordList = alphabet.words
@@ -17,6 +18,8 @@ function WordListPickerContextProvider(props) {
         wordList = common100.words
     } else if (wordListCategory === 'test') {
         wordList = testList
+    } else if (wordListCategory === 'short') {
+        wordList = short
     }
 
 

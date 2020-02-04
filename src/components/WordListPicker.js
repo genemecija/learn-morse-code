@@ -28,7 +28,7 @@ export default React.memo(function WordListPicker() {
     }
 
     return (
-        <>
+        <div id="challengeOptions">
             <div id="wordListPicker" className="mode-picker">
                 <div id="title">
                     Word List
@@ -38,19 +38,9 @@ export default React.memo(function WordListPicker() {
                         <option value="alphabet">Alphabet</option>
                         <option value="common100">100 Most Common Words</option>
                         <option value="test">Test List</option>
+                        <option value="short">Short List</option>
                     </select>
                 </div>
-                {/* <div id="buttons">
-                    <button id="alphabet" class="selected" onClick={handleClick}>
-                        Alphabet
-                    </button>
-                    <button id="common100" onClick={handleClick}>
-                        100 Most Common Words
-                    </button>
-                    <button id="test" onClick={handleClick}>
-                        Test List
-                    </button>
-                </div> */}
             </div>
             <div id="wordOrderPicker" className="mode-picker">
                 <div id="title">
@@ -65,6 +55,6 @@ export default React.memo(function WordListPicker() {
                     </button>
                 </div>
             </div>
-        </>
+        </div>
     )
 })
