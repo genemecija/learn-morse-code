@@ -71,9 +71,9 @@ export default React.memo(function App() {
                             <ModePicker />
                             <KeyTypePicker />
                             <WordsPerMinute />
-                            {gameMode === 'challenge' &&
+                            {/* {gameMode === 'challenge' &&
                                 <WordListPicker />
-                            }
+                            } */}
                         </div>
                         <Legend />
                     </div>

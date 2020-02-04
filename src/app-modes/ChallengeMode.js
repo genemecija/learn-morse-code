@@ -38,7 +38,7 @@ export default React.memo(function ChallengeMode(props) {
         cleanup()
         resetFeeder()
 
-        //BREAKS HERE AFTER WORDLIST IS COMPLETED
+        // Show a card showing challenge completion stats and option to restart word list
         try { alert(`Time: ${document.getElementById('gameClock').innerText}`) }
         catch { return }
         return

@@ -1,5 +1,6 @@
 import React, { useContext } from "react"
 import { GameClockContext } from "../contexts/gameClockContext"
+import WordListPicker from "./WordListPicker"
 
 
 export default (function ChallengeOverlay() {
@@ -24,7 +25,10 @@ export default (function ChallengeOverlay() {
 
     return (
         <div id="challenge-overlay">
-            <div id="challengeReady" className="notify" onClick={startChallenge}>Click to Start Challenge!</div>
+            <div id="challengeReady" className="notify">
+                <WordListPicker />
+                <button id="startChallenge" onClick={startChallenge}>Click to Start Challenge!</button>
+            </div>
         </div>
     )
 })
