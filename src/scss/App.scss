@@ -29,7 +29,7 @@ $border-radius-neumorphic-active: 0 15px 20px rgba(0, 0, 0, 0.015), inset 0px -2
     cursor: default;
 }
 button {
-    font-family: $main-bg-color-light;
+    font-family: $main-font;
     cursor: pointer;
 }
 html, body {
@@ -45,16 +45,28 @@ html, body {
     // justify-content: center;
     align-items: center;
     width: 100%;
-    border: 3px solid green;
+    // border: 3px solid green;
 }
-header {
-    margin-top: 50px;
+#header {
+    // margin-top: 50px;
+    min-height: 50px;
+    min-height: 50px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+    background: #333;
+    font-family: $main-font;
+    font-size: 2.5em;
+    font-weight: bold;
+    color: $main-bg-color-light;
+    box-shadow: $main-box-shadow-light;
 }
 #main-content {
     display: flex;
     height: 95vh;
     width: 100%;
-    border: 1px solid red;
+    // border: 1px solid red;
     justify-content: flex-start;
     align-items: center;
 
@@ -388,11 +400,9 @@ $button-height: 60px;
 @keyframes hideOverlay {
     0% { 
         opacity: 100%;
-        z-index: 1000;
     }
     100% {
         opacity: 0%;
-        z-index: -1000;
     }
 }
 
@@ -412,26 +422,34 @@ $button-height: 60px;
     // align-items: center;
     
     
+    &.fade {
+        // animation: hideOverlay 2000ms 1 ease-out forwards;
+        animation: hideOverlay 1s ease-out forwards;
+    }
     &.hide {
         // animation: hideOverlay 2000ms 1 ease-out forwards;
-        animation: hideOverlay 3s ease-out forwards;
+        z-index: -100;
     }
     .notify {
-        width: 400px;
-        height: 250px;
-        background: $main-bg-color-light;
-        margin-top: 150px;
-        border-radius: 5px;
-        box-shadow: 0px 5px 15px rgba(0,0,0,0.5);
+        
     }
     
     #challengeReady {
         position: relative;
-        width: 400px;
+        // width: 400px;
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
         align-items: center;
+
+        // width: 400px;
+        padding: 1.5rem;
+        height: 250px;
+        // background: $main-bg-color-light;
+        background: #fefefe;
+        margin-top: 150px;
+        border-radius: 5px;
+        box-shadow: 0px 5px 15px rgba(0,0,0,0.5);
 
         #message {
             font-size: 2em;
@@ -457,7 +475,11 @@ $button-height: 60px;
             font-size: 0.75em;
             color: $main-font-color-light;
             max-width: 250px;
-    
+            &#startChallenge {
+                font-size: 1.2em;
+                font-weight: bold;
+                padding: 0.3em;
+            }
             &.selected {
                 box-shadow: $main-box-shadow-light-selected;
             }
@@ -465,13 +487,13 @@ $button-height: 60px;
         #challengeOptions {
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            // border: 1px solid blue;
+            justify-content: flex-start;
+            align-items: flex-start;
+            border: 1px solid blue;
 
             .mode-picker {
-                // border: 1px solid green;
-                width: 300px;
+                border: 1px solid green;
+                // width: 300px;
                 display: flex;
                 // align-self: flex-start;s
                 align-content: center;

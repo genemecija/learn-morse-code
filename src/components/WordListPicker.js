@@ -27,6 +27,9 @@ export default React.memo(function WordListPicker() {
         }
     }
 
+    let wordLists = ['alphabet', 'numbers', 'common100', 'test', 'short']
+    let options = wordLists.map(wl => (<option value={wl}>{wl.substr(0,1).toUpperCase() + wl.substr(1)}</option>))
+
     return (
         <div id="challengeOptions">
             <div id="wordListPicker" className="mode-picker">
@@ -35,10 +38,7 @@ export default React.memo(function WordListPicker() {
                 </div>
                 <div id="input">
                     <select id="wordlist-picker" defaultValue={wordListCategory} onChange={handleClick}>
-                        <option value="alphabet">Alphabet</option>
-                        <option value="common100">100 Most Common Words</option>
-                        <option value="test">Test List</option>
-                        <option value="short">Short List</option>
+                        {options}
                     </select>
                 </div>
             </div>

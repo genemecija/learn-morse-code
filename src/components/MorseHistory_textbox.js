@@ -24,15 +24,15 @@ export default (function MorseHistoryTextBox() {
                     newWord += morseCode[letter].toUpperCase()
                 }
             })
-            // text = newWord + ' ' + text
-            span.splice(0, 0, <span key={index}>{newWord}</span>)
+            text = newWord + ' ' + text
+            // span.splice(0, 0, <span key={index}>{newWord}</span>)
         }
         else if (morseCode[word] === undefined) {
-            // text = '[?] ' + text
-            span.splice(0, 0, <span key={index}>[?]</span>)
+            text = '[?] ' + text
+            // span.splice(0, 0, <span key={index}>[?]</span>)
         } else {
-            // text =  morseCode[word].toUpperCase() + ' ' + text
-            span.splice(0, 0, <span key={index}>{morseCode[word].toUpperCase()}</span>)
+            text =  morseCode[word].toUpperCase() + ' ' + text
+            // span.splice(0, 0, <span key={index}>{morseCode[word].toUpperCase()}</span>)
         }
     })
 
@@ -41,6 +41,6 @@ export default (function MorseHistoryTextBox() {
     // } catch {}
     
     return (
-        <div id="morseHistory-textbox">{span}</div>
+        <div id="morseHistory-textbox">{text}</div>
     )
 })

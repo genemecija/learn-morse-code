@@ -19,9 +19,12 @@ export default (function ChallengeOverlay() {
             count--
             if (count === 0) {
                 // Do this when countdown hits 0
-                document.getElementById('challenge-overlay').classList.add('hide')
+                document.getElementById('challenge-overlay').classList.add('fade')
                 clearInterval(countdown)
-                startGameClock()
+                setTimeout(() => {
+                    document.getElementById('challenge-overlay').classList.add('hide')
+                    startGameClock()
+                }, 900);
             }
             document.getElementById('challengeReady').innerHTML = `<span id="message">Challenge starting in</span><span id="count">${count}</span>`
         }, 1000)
@@ -31,8 +34,9 @@ export default (function ChallengeOverlay() {
     return (
         <div id="challenge-overlay">
             <div id="challengeReady" className="notify">
+                <h2>Challenge Options</h2>
                 <WordListPicker />
-                <button id="startChallenge" onClick={startChallenge}>Click to Start Challenge!</button>
+                <button id="startChallenge" onClick={startChallenge}>Start Challenge</button>
             </div>
         </div>
     )

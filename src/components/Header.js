@@ -8,6 +8,6 @@ export default (function Header () {
     }
 
     return (
-            <header>Learn Morse Code</header>
+            <div id="header">Learn Morse Code</div>
     )
 })

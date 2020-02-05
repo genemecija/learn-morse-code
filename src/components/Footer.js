@@ -8,6 +8,6 @@ export default (function Footer() {
     }
 
     return (
-            <footer>Created by Gene Mecija • GitHub • Twitter</footer>
+            <div id="footer">Created by Gene Mecija • GitHub • Twitter</div>
     )
 })

@@ -1,5 +1,6 @@
 import React, {useState} from "react"
 import alphabet from '../data/alphabet.json'
+import numbers from '../data/numbers.json'
 import common100 from '../data/common100.json'
 
 
@@ -14,6 +15,8 @@ function WordListPickerContextProvider(props) {
 
     if (wordListCategory === 'alphabet') {
         wordList = alphabet.words
+    } else if (wordListCategory === 'numbers') {
+        wordList = numbers.words
     } else if (wordListCategory === 'common100') {
         wordList = common100.words
     } else if (wordListCategory === 'test') {

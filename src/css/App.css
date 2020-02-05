@@ -8,7 +8,7 @@
 }
 
 button {
-  font-family: #f1f1f1;
+  font-family: "Rubik", sans-serif;
   cursor: pointer;
 }
 
@@ -31,11 +31,26 @@ html, body {
       -ms-flex-align: center;
           align-items: center;
   width: 100%;
-  border: 3px solid green;
 }
 
-header {
-  margin-top: 50px;
+#header {
+  min-height: 50px;
+  min-height: 50px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-left: 15px;
+  background: #333;
+  font-family: "Rubik", sans-serif;
+  font-size: 2.5em;
+  font-weight: bold;
+  color: #f1f1f1;
+  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3), 0px -1px 1px white;
+          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3), 0px -1px 1px white;
 }
 
 #main-content {
@@ -44,7 +59,6 @@ header {
   display: flex;
   height: 95vh;
   width: 100%;
-  border: 1px solid red;
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
@@ -416,22 +430,18 @@ i[class*="ri-"] {
 @-webkit-keyframes hideOverlay {
   0% {
     opacity: 100%;
-    z-index: 1000;
   }
   100% {
     opacity: 0%;
-    z-index: -1000;
   }
 }
 
 @keyframes hideOverlay {
   0% {
     opacity: 100%;
-    z-index: 1000;
   }
   100% {
     opacity: 0%;
-    z-index: -1000;
   }
 }
 
@@ -452,24 +462,17 @@ i[class*="ri-"] {
           justify-content: center;
 }
 
-#challenge-overlay.hide {
-  -webkit-animation: hideOverlay 3s ease-out forwards;
-          animation: hideOverlay 3s ease-out forwards;
+#challenge-overlay.fade {
+  -webkit-animation: hideOverlay 1s ease-out forwards;
+          animation: hideOverlay 1s ease-out forwards;
 }
 
-#challenge-overlay .notify {
-  width: 400px;
-  height: 250px;
-  background: #f1f1f1;
-  margin-top: 150px;
-  border-radius: 5px;
-  -webkit-box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
-          box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
+#challenge-overlay.hide {
+  z-index: -100;
 }
 
 #challenge-overlay #challengeReady {
   position: relative;
-  width: 400px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -483,6 +486,13 @@ i[class*="ri-"] {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  padding: 1.5rem;
+  height: 250px;
+  background: #fefefe;
+  margin-top: 150px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
+          box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
 }
 
 #challenge-overlay #challengeReady #message {
@@ -515,6 +525,12 @@ i[class*="ri-"] {
   max-width: 250px;
 }
 
+#challenge-overlay #challengeReady button#startChallenge {
+  font-size: 1.2em;
+  font-weight: bold;
+  padding: 0.3em;
+}
+
 #challenge-overlay #challengeReady button.selected {
   -webkit-box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.3), inset 0px -1px 1px white;
           box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.3), inset 0px -1px 1px white;
@@ -528,16 +544,17 @@ i[class*="ri-"] {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  border: 1px solid blue;
 }
 
 #challenge-overlay #challengeReady #challengeOptions .mode-picker {
-  width: 300px;
+  border: 1px solid green;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
