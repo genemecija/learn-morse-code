@@ -35,7 +35,7 @@ function Legend() {
     return (
             <div id="legend">
                 <div id="title">
-                    <h2>Legend</h2>
+                    <h2>Morse Code Alphabet</h2>
                 </div>
                 <div id="legend-items">
                     {legend}

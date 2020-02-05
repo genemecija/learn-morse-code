@@ -32,6 +32,10 @@ export default React.memo(function App() {
 
     const {gameMode} = useContext(GameModeContext)
 
+    function handleClick() {
+        document.querySelector('.sidebar#right').classList.toggle('hide')
+    }
+
     return (
         <>
             <Header />
@@ -70,7 +74,7 @@ export default React.memo(function App() {
 
                         <MorseButtons />
                     </div>
-                    <div className="sidebar" id="right">
+                    <div className="sidebar" id="right"  onClick={handleClick}>
                         <div id="mainOptions">
                             <h2>Options</h2>
                             <ModePicker />

@@ -47,10 +47,8 @@ html, body {
   background: #333;
   font-family: "Rubik", sans-serif;
   font-size: 2.5em;
-  font-weight: bold;
   color: #f1f1f1;
-  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3), 0px -1px 1px white;
-          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3), 0px -1px 1px white;
+  z-index: 1000;
 }
 
 #main-content {
@@ -58,16 +56,27 @@ html, body {
   display: -ms-flexbox;
   display: flex;
   height: 95vh;
-  width: 100%;
+  min-width: -webkit-fit-content;
+  min-width: -moz-fit-content;
+  min-width: fit-content;
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -ms-flex-item-align: center;
+      align-self: center;
+  overflow-x: hidden;
+  position: relative;
+  left: 0px;
 }
 
 #main-content .sidebar#left {
+  border: 1px solid yellowgreen;
+  background: #f1f1f1;
+  -webkit-box-shadow: 3px 0px 5px rgba(0, 0, 0, 0.2);
+          box-shadow: 3px 0px 5px rgba(0, 0, 0, 0.2);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -81,12 +90,24 @@ html, body {
   height: 100%;
   min-width: 400px;
   width: 400px;
+  margin-top: 50px;
   padding: 1.5em;
-  -webkit-box-shadow: inset -3px 0px 5px rgba(0, 0, 0, 0.2);
-          box-shadow: inset -3px 0px 5px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  left: 0px;
+  -webkit-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+  z-index: 100;
+}
+
+#main-content .sidebar#left.hide {
+  background: blue;
+  left: -360px;
 }
 
 #main-content .sidebar#right {
+  background: #f1f1f1;
+  -webkit-box-shadow: -3px 0px 5px rgba(0, 0, 0, 0.2);
+          box-shadow: -3px 0px 5px rgba(0, 0, 0, 0.2);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -98,12 +119,20 @@ html, body {
       -ms-flex-pack: justify;
           justify-content: space-between;
   height: 100%;
-  min-width: 500px;
+  min-width: 400px;
   width: 400px;
   padding: 1.5em;
+  margin-top: 50px;
+  position: fixed;
   right: 0px;
-  -webkit-box-shadow: inset 3px 0px 5px rgba(0, 0, 0, 0.2);
-          box-shadow: inset 3px 0px 5px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+  -webkit-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+}
+
+#main-content .sidebar#right.hide {
+  background: blue;
+  right: -360px;
 }
 
 #main-content #main-interface {
@@ -120,13 +149,20 @@ html, body {
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
-  -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
   height: 100%;
-  min-width: 500px;
-  width: 500px;
+  width: 600px;
   position: relative;
+  left: 0px;
+}
+
+#footer {
+  width: 100%;
+  padding: 0.3em;
+  background: #333;
+  font-family: "Rubik", sans-serif;
+  font-size: 1em;
+  color: #f1f1f1;
+  z-index: 1000;
 }
 
 h2 {
@@ -696,7 +732,6 @@ i[class*="ri-"] {
 }
 
 #morseBufferDisplay {
-  border: 1px solid green;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

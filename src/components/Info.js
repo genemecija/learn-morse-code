@@ -2,8 +2,12 @@ import React from "react"
 
 export default React.memo(function Info() {
 
+    function handleClick() {
+        document.querySelector('.sidebar#left').classList.toggle('hide')
+    }
+
     return (
-        <div id="info">
+        <div id="info" onClick={handleClick}>
             <h2>Info</h2>
             <p>Morse code is a method of communication via tones and silences of various lengths.</p>
             <ul>
