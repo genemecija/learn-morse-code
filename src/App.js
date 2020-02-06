@@ -32,8 +32,11 @@ export default React.memo(function App() {
 
     const {gameMode} = useContext(GameModeContext)
 
-    function handleClick() {
+    function toggleRight() {
         document.querySelector('.sidebar#right').classList.toggle('hide')
+    }
+    function toggleLeft() {
+        document.querySelector('.sidebar#left').classList.toggle('hide')
     }
 
     return (
@@ -46,7 +49,7 @@ export default React.memo(function App() {
                 <WordListPickerContextProvider>
                 <WordFeederContextProvider>
                 <GameClockContextProvider>
-                    <div className="sidebar" id="left">
+                    <div className="sidebar" id="left" onClick={toggleLeft}>
                         <Info />
                     </div>
                     <div id="main-interface">
@@ -74,7 +77,8 @@ export default React.memo(function App() {
 
                         <MorseButtons />
                     </div>
-                    <div className="sidebar" id="right"  onClick={handleClick}>
+                    <div className="sidebar" id="right">
+                        <div id="settings" onClick={toggleRight}><i class="ri-settings-3-fill"></i></div>
                         <div id="mainOptions">
                             <h2>Options</h2>
                             <ModePicker />
