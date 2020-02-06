@@ -33,10 +33,10 @@ export default React.memo(function App() {
     const {gameMode} = useContext(GameModeContext)
 
     function toggleRight() {
-        document.querySelector('.sidebar#right').classList.toggle('hide')
+        document.querySelector('.sidebar#left').classList.toggle('hide')
     }
     function toggleLeft() {
-        document.querySelector('.sidebar#left').classList.toggle('hide')
+        document.querySelector('.sidebar#right').classList.toggle('hide')
     }
 
     return (
@@ -49,8 +49,18 @@ export default React.memo(function App() {
                 <WordListPickerContextProvider>
                 <WordFeederContextProvider>
                 <GameClockContextProvider>
-                    <div className="sidebar" id="left" onClick={toggleLeft}>
-                        <Info />
+                    <div className="sidebar" id="left">
+                        <div id="settings-icon" onClick={toggleRight}><i class="ri-settings-3-fill"></i></div>
+                        <div id="mainOptions">
+                            <h1>Options</h1>
+                            <ModePicker />
+                            <KeyTypePicker />
+                            <WordsPerMinute />
+                            {/* {gameMode === 'challenge' &&
+                                <WordListPicker />
+                            } */}
+                        </div>
+                        <Legend />
                     </div>
                     <div id="main-interface">
 
@@ -78,17 +88,8 @@ export default React.memo(function App() {
                         <MorseButtons />
                     </div>
                     <div className="sidebar" id="right">
-                        <div id="settings" onClick={toggleRight}><i class="ri-settings-3-fill"></i></div>
-                        <div id="mainOptions">
-                            <h2>Options</h2>
-                            <ModePicker />
-                            <KeyTypePicker />
-                            <WordsPerMinute />
-                            {/* {gameMode === 'challenge' &&
-                                <WordListPicker />
-                            } */}
-                        </div>
-                        <Legend />
+                        <div id="info-icon" onClick={toggleLeft}><i class="ri-information-line"></i></div>
+                        <Info />
                     </div>
                 </GameClockContextProvider>
                 </WordFeederContextProvider>

@@ -10,10 +10,20 @@ function Legend() {
     function handleClick(e) {
         e.preventDefault()
 
-        let word = e.target.innerHTML
-        let newWord = convertWordToMorse(word)
-        console.log(newWord);
-        playMorseWord(newWord)
+        let word = e.target.innerText
+
+        // let newWord = word
+
+        if (e.target.className === 'alpha') {
+            word = convertWordToMorse(word)
+        }
+
+        if (e.target.id === 'test') {
+            word = convertWordToMorse(e.target.innerText)
+        }
+
+        console.log(word);
+        playMorseWord(word)
     }
 
     function convertWordToMorse(word) {
@@ -26,16 +36,16 @@ function Legend() {
     }
 
     const legend = Object.keys(morseCode).map((morse, index) =>
-        <div key={"legend_item_"+index} className="item">
-            <button key={"legend_btn_"+index} onClick={handleClick}>{morse.toUpperCase()}</button>
-            <span key={"legend_spn_"+index}>{morseCode[morse]}</span>
-        </div>
+        <button key={"legend_item_"+index} className="item" onClick={handleClick}>
+            <span className="alpha" key={"legend_btn_"+index}>{morse.toUpperCase()}</span>
+            <span className="morse" key={"legend_spn_"+index}>{morseCode[morse]}</span>
+        </button>
     )
 
     return (
             <div id="legend">
                 <div id="title">
-                    <h2>Morse Code Alphabet</h2>
+                    <h1>Morse Code</h1>
                 </div>
                 <div id="legend-items">
                     {legend}
