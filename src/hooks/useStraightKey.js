@@ -50,10 +50,16 @@ function useStraightKey() {
         
         console.log(event.keyCode);
 
-        if (event.keyCode === 32 && document.activeElement.id === 'wordlist-picker') {
-            event.preventDefault()
-            document.activeElement.blur()
+        if (event.keyCode === 32) {
+            if (document.activeElement.id === 'wordlist-picker') {
+                event.preventDefault()
+                document.activeElement.blur()
+            }
+            else if (document.activeElement.id === 'morseInput') {
+                return
+            }
         }
+
         
 
         if (isRunning) {

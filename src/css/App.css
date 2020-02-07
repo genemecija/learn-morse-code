@@ -15,7 +15,7 @@ button {
 html, body {
   height: 100%;
   width: 100%;
-  background: #f1f1f1;
+  background: #eee;
 }
 
 #root {
@@ -47,7 +47,7 @@ html, body {
   background: #333;
   font-family: "Roboto", sans-serif;
   font-size: 2.5em;
-  color: #f1f1f1;
+  color: #eee;
   z-index: 1000;
 }
 
@@ -74,7 +74,7 @@ html, body {
 }
 
 #main-content .sidebar#left {
-  background: #f1f1f1;
+  background: #eee;
   -webkit-box-shadow: 3px 0px 5px rgba(0, 0, 0, 0.2);
           box-shadow: 3px 0px 5px rgba(0, 0, 0, 0.2);
   display: -webkit-box;
@@ -91,10 +91,9 @@ html, body {
       -ms-flex-align: center;
           align-items: center;
   height: calc(100% - 5em);
-  min-width: 400px;
+  min-width: 455px;
   width: 30%;
   margin-top: 50px;
-  padding: 1.5em;
   position: fixed;
   top: 0px;
   left: 0px;
@@ -103,13 +102,13 @@ html, body {
   transition: all 500ms ease-in-out;
 }
 
-#main-content .sidebar#left #mainOptions, #main-content .sidebar#left #legend {
+#main-content .sidebar#left #mainOptions, #main-content .sidebar#left #playMorseInput, #main-content .sidebar#left #legend {
   -webkit-transition: all 500ms ease-in-out;
   transition: all 500ms ease-in-out;
   opacity: 100%;
 }
 
-#main-content .sidebar#left #mainOptions h1, #main-content .sidebar#left #legend h1 {
+#main-content .sidebar#left #mainOptions h1, #main-content .sidebar#left #playMorseInput h1, #main-content .sidebar#left #legend h1 {
   margin-bottom: 0.3em;
 }
 
@@ -140,6 +139,19 @@ html, body {
   right: 5px;
   -webkit-transition: all 500ms ease-in-out;
   transition: all 500ms ease-in-out;
+  -webkit-transition: -webkit-transform 200ms ease-in-out;
+  transition: -webkit-transform 200ms ease-in-out;
+  transition: transform 200ms ease-in-out;
+  transition: transform 200ms ease-in-out, -webkit-transform 200ms ease-in-out;
+}
+
+#main-content .sidebar#left #settings-icon:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+#main-content .sidebar#left #settings-icon:hover i {
+  color: #333;
 }
 
 #main-content .sidebar#left #settings-icon i {
@@ -147,7 +159,7 @@ html, body {
 }
 
 #main-content .sidebar#right {
-  background: #f1f1f1;
+  background: #eee;
   -webkit-box-shadow: -3px 0px 5px rgba(0, 0, 0, 0.2);
           box-shadow: -3px 0px 5px rgba(0, 0, 0, 0.2);
   display: -webkit-box;
@@ -222,9 +234,22 @@ html, body {
   position: absolute;
   top: 10px;
   left: 5px;
+  z-index: 1010;
   -webkit-transition: all 500ms ease-in-out;
   transition: all 500ms ease-in-out;
-  z-index: 1010;
+  -webkit-transition: -webkit-transform 200ms ease-in-out;
+  transition: -webkit-transform 200ms ease-in-out;
+  transition: transform 200ms ease-in-out;
+  transition: transform 200ms ease-in-out, -webkit-transform 200ms ease-in-out;
+}
+
+#main-content .sidebar#right #info-icon:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+#main-content .sidebar#right #info-icon:hover i {
+  color: #333;
 }
 
 #main-content .sidebar#right #info-icon i {
@@ -232,6 +257,7 @@ html, body {
 }
 
 #main-content #main-interface {
+  border: 1px solid blue;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -242,9 +268,6 @@ html, body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
   height: 100%;
   min-width: 600px;
   width: 40%;
@@ -260,7 +283,7 @@ html, body {
   background: #333;
   font-family: "Roboto", sans-serif;
   font-size: 1em;
-  color: #f1f1f1;
+  color: #eee;
   z-index: 1000;
 }
 
@@ -286,9 +309,9 @@ i[class*="ri-"] {
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
-  width: 380px;
+  width: 450px;
   max-width: 95vw;
-  height: 200px;
+  font-family: "Roboto", sans-serif;
 }
 
 #mainOptions .mode-picker {
@@ -298,8 +321,8 @@ i[class*="ri-"] {
   display: flex;
   -ms-flex-item-align: start;
       align-self: flex-start;
-  -ms-flex-line-pack: center;
-      align-content: center;
+  -ms-flex-line-pack: start;
+      align-content: flex-start;
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
@@ -308,6 +331,13 @@ i[class*="ri-"] {
 #mainOptions .mode-picker div {
   padding: 5px;
   height: 2.4em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  margin-bottom: 5px;
 }
 
 #mainOptions .mode-picker #title {
@@ -328,9 +358,9 @@ i[class*="ri-"] {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -374,15 +404,15 @@ i[class*="ri-"] {
 }
 
 #mainOptions .mode-picker button {
-  background: #f1f1f1;
-  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3), 0px -1px 1px white;
-          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3), 0px -1px 1px white;
+  background: #eee;
+  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.35), 0px -1px 1px white;
+          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.35), 0px -1px 1px white;
   border-radius: 3px;
   border: 0px;
   padding: 0.3em;
   margin-left: 10px;
   margin-right: 10px;
-  font-size: 0.9em;
+  font-size: 0.85em;
   color: #333;
 }
 
@@ -391,9 +421,27 @@ i[class*="ri-"] {
           box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.3), inset 0px -1px 1px white;
 }
 
+#playMorseInput {
+  width: 450px;
+}
+
+#playMorseInput #input input {
+  padding-left: 3px;
+  border-radius: 3px;
+  border: 1px solid #ddd;
+  height: 1.5rem;
+  font-size: 0.9em;
+  width: 50%;
+}
+
+#playMorseInput #morseTrans {
+  font-size: 0.9em;
+  font-family: "Courier", monospace;
+}
+
 #legend {
-  background: #f1f1f1;
-  width: 380px;
+  background: #eee;
+  width: 450px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -408,7 +456,7 @@ i[class*="ri-"] {
       flex-wrap: wrap;
 }
 
-#legend #legend-items {
+#legend #legend-items div {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -418,17 +466,28 @@ i[class*="ri-"] {
       -ms-flex-pack: justify;
           justify-content: space-between;
   width: 100%;
+  margin-bottom: 10px;
 }
 
-#legend #legend-items .item, #legend #legend-items span {
+#legend #legend-items div .item, #legend #legend-items div span {
   cursor: pointer;
 }
 
-#legend #legend-items .item {
-  font-family: "Courier", monospace;
-  font-size: 0.9em;
-  border: 1px solid #ccc;
+#legend #legend-items div#letters .item {
+  width: 17%;
+}
+
+#legend #legend-items div#numbers .item {
+  width: 18%;
+}
+
+#legend #legend-items div#special .item {
   width: 20%;
+}
+
+#legend #legend-items div .item {
+  font-family: "Courier", monospace;
+  font-size: 0.85em;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -439,37 +498,38 @@ i[class*="ri-"] {
   padding: 0.3em;
   border: 0px;
   border-radius: 2px;
-  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3), 0px -1px 1px white;
-          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3), 0px -1px 1px white;
+  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.35), 0px -1px 1px white;
+          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.35), 0px -1px 1px white;
 }
 
-#legend #legend-items .item:active {
+#legend #legend-items div .item:active {
   -webkit-transform: translateY(3px);
           transform: translateY(3px);
   -webkit-box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
           box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
 }
 
-#legend #legend-items .item span:first-child {
+#legend #legend-items div .item span:first-child {
   display: inline-block;
   padding: 1px;
-  padding-left: 5px;
-  padding-right: 5px;
-  background: #DDD;
+  width: 1.5em;
+  background: #e0e0e0;
   border-radius: 2px;
-  font-size: 1.3em;
+  font-size: 1.2em;
 }
 
-#legend #legend-items .item span:last-child {
+#legend #legend-items div .item span:last-child {
+  display: inline-block;
+  padding-left: 5px;
   width: 100%;
 }
 
 #morseButton {
-  width: 400px;
-  height: 60px;
+  width: 100px;
+  height: 100px;
   margin-top: 30px;
   margin-bottom: 10px;
-  border-radius: 5px;
+  border-radius: 50%;
   -ms-flex-item-align: center;
       align-self: center;
   display: -webkit-box;
@@ -481,8 +541,8 @@ i[class*="ri-"] {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3), 0px -1px 1px white;
-          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3), 0px -1px 1px white;
+  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.35), 0px -1px 1px white;
+          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.35), 0px -1px 1px white;
   -webkit-transition: width 500ms ease-out, background 500ms ease-out, -webkit-transform 40ms ease-out, -webkit-box-shadow 40ms ease-out;
   transition: width 500ms ease-out, background 500ms ease-out, -webkit-transform 40ms ease-out, -webkit-box-shadow 40ms ease-out;
   transition: transform 40ms ease-out, box-shadow 40ms ease-out, width 500ms ease-out, background 500ms ease-out;
@@ -499,8 +559,8 @@ i[class*="ri-"] {
 #morseButton button {
   font-size: 1rem;
   color: transparent;
-  width: 200px;
-  height: 60px;
+  width: 50px;
+  height: 100px;
   background: #f4f4f4;
   margin: 0px;
   border: 0px;
@@ -514,14 +574,14 @@ i[class*="ri-"] {
   color: #888;
   font-size: 1rem;
   font-weight: bold;
-  width: calc($button-height+5px);
-  height: 60px;
-  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3), 0px -1px 1px white;
-          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3), 0px -1px 1px white;
+  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.35), 0px -1px 1px white;
+          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.35), 0px -1px 1px white;
 }
 
 #morseButton button#left {
-  border-radius: 5px 0 0 5px;
+  border-radius: 50px 0 0 50px;
+  width: 50%;
+  background: red;
 }
 
 #morseButton button#left.showPaddles {
@@ -530,7 +590,9 @@ i[class*="ri-"] {
 }
 
 #morseButton button#right {
-  border-radius: 0 5px 5px 0;
+  width: 50%;
+  background: blue;
+  border-radius: 0 50px 50px 0;
 }
 
 #morseButton button#right.showPaddles {
@@ -556,7 +618,6 @@ i[class*="ri-"] {
   font-weight: bold;
   color: #aaa;
   font-size: 0.7rem;
-  margin-bottom: 40px;
 }
 
 #paddleText {
@@ -653,9 +714,9 @@ i[class*="ri-"] {
 }
 
 #challenge-overlay #challengeReady button {
-  background: #f1f1f1;
-  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3), 0px -1px 1px white;
-          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3), 0px -1px 1px white;
+  background: #eee;
+  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.35), 0px -1px 1px white;
+          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.35), 0px -1px 1px white;
   border-radius: 3px;
   border: 0px;
   padding: 0.3em;
@@ -797,8 +858,8 @@ i[class*="ri-"] {
   margin-bottom: 10px;
   margin-top: 25px;
   border-radius: 3px;
-  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3), 0px -1px 1px white;
-          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3), 0px -1px 1px white;
+  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.35), 0px -1px 1px white;
+          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.35), 0px -1px 1px white;
   font-size: 4rem;
   font-family: "Courier Prime", Courier, monospace;
   font-weight: bold;
@@ -834,6 +895,11 @@ i[class*="ri-"] {
   background: #5ae65a;
 }
 
+#tip {
+  font-size: 2rem;
+  color: #aaa;
+}
+
 #morseBufferDisplay {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -856,8 +922,8 @@ i[class*="ri-"] {
 }
 
 #morseBufferDisplay #overlay {
-  -webkit-box-shadow: inset 20px 0px 20px -5px #f1f1f1;
-          box-shadow: inset 20px 0px 20px -5px #f1f1f1;
+  -webkit-box-shadow: inset 20px 0px 20px -5px #eee;
+          box-shadow: inset 20px 0px 20px -5px #eee;
   position: absolute;
   display: inline-block;
   top: 0;
@@ -1100,8 +1166,8 @@ i[class*="ri-"] {
 }
 
 #morseHistory #overlay {
-  -webkit-box-shadow: inset 20px 0px 20px #f1f1f1, inset -20px 0px 20px #f1f1f1, inset 0px -100px 100px #f1f1f1;
-          box-shadow: inset 20px 0px 20px #f1f1f1, inset -20px 0px 20px #f1f1f1, inset 0px -100px 100px #f1f1f1;
+  -webkit-box-shadow: inset 20px 0px 20px #eee, inset -20px 0px 20px #eee, inset 0px -100px 100px #eee;
+          box-shadow: inset 20px 0px 20px #eee, inset -20px 0px 20px #eee, inset 0px -100px 100px #eee;
   position: absolute;
   display: inline-block;
   top: 0;
@@ -1186,7 +1252,7 @@ i[class*="ri-"] {
 
 .morseCard .ditDahs span.space {
   border-radius: 3px;
-  background: #f1f1f1;
+  background: #eee;
   opacity: 0.5;
   width: 3px;
   margin-left: 4px;

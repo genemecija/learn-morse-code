@@ -9,7 +9,7 @@ export default React.memo(function Info() {
 
     return (
         <div id="info">
-            <h1>Info</h1>
+            <h1>Morse Code</h1>
             <p>Morse code is a method of communication via short and long tones with standard spacing between each tone.</p>
 
             <h2>Dits and Dahs</h2>
@@ -39,8 +39,7 @@ export default React.memo(function Info() {
             <p>The instrument used to send morse code is called the key.</p>
             
             <center><img src={straight_key} alt="Straight Key" /></center>
-            <p><b>Straight Keys</b> use a single button and generates tones when pressed down. Straight keys require greater accuracy as you control the dits, dahs, and spacing manually.</p><br/>
-            
+            <p><b>Straight Keys</b> use a single button and generates tones when pressed down. Straight keys require greater accuracy as you control the dits, dahs, and spacing manually.</p>
             <center><img src={electronic_key} alt="Electronic Key"></img></center>
             <p><b>Electronic Keys</b> automatically generate dits or dahs of appropriate length. The Electronic Keyer used here is an Iambic keyer. It uses two paddles, one for dits, one for dahs. Switch between the two at the appropriate times to build letters.</p>
         </div>

@@ -5,12 +5,14 @@ import {MorseBufferContext} from "../contexts/morseBufferContext"
 
 export default (function MorseHistoryTextBox() {
 
-    const {morseWords} = useContext(MorseBufferContext)
+    const {morseWords, setMorseWords} = useContext(MorseBufferContext)
 
     let text = ''
     let span = []
 
-    console.log('morseWords', morseWords);
+    function clearHistory() {
+        setMorseWords([])
+    }
 
     morseWords.forEach((word, index) => {
         if (word.includes(' ')) {
@@ -18,9 +20,7 @@ export default (function MorseHistoryTextBox() {
             word.split(' ').forEach(letter => {
                 if (morseCode[letter] === undefined) {
                     newWord += '[?]'
-                    console.log('undefined', letter);
                 } else {
-                    console.log('here1');
                     newWord += morseCode[letter].toUpperCase()
                 }
             })
@@ -41,6 +41,9 @@ export default (function MorseHistoryTextBox() {
     // } catch {}
     
     return (
-        <div id="morseHistory-textbox">{text}</div>
+        <>
+            <div id="morseHistory-textbox">{text}</div>
+            <button onClick={clearHistory}>Clear History</button>
+        </>
     )
 })

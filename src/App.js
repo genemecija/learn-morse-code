@@ -25,6 +25,7 @@ import { GameClockContextProvider } from './contexts/gameClockContext';
 import ChallengeOverlay from './components/ChallengeOverlay';
 import { KeyTypeContextProvider } from './contexts/keyTypeContext';
 import { WPMContextProvider } from './contexts/wpmContext';
+import PlayMorseInput from './components/PlayMorseInput';
 
 export default React.memo(function App() {
 
@@ -50,7 +51,7 @@ export default React.memo(function App() {
                 <WordFeederContextProvider>
                 <GameClockContextProvider>
                     <div className="sidebar" id="left">
-                        <div id="settings-icon" onClick={toggleRight}><i class="ri-settings-3-fill"></i></div>
+                        <div id="settings-icon" onClick={toggleRight}><i class="ri-settings-3-line"></i></div>
                         <div id="mainOptions">
                             <h1>Options</h1>
                             <ModePicker />
@@ -60,6 +61,7 @@ export default React.memo(function App() {
                                 <WordListPicker />
                             } */}
                         </div>
+                        <PlayMorseInput />
                         <Legend />
                     </div>
                     <div id="main-interface">
@@ -86,6 +88,7 @@ export default React.memo(function App() {
                         }
 
                         <MorseButtons />
+                        <span id='tip'>Tap the button to use the telegraph.</span>
                     </div>
                     <div className="sidebar" id="right">
                         <div id="info-icon" onClick={toggleLeft}><i class="ri-information-line"></i></div>

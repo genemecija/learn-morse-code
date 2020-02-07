@@ -239,6 +239,9 @@ function useElectronicKey() {
         
         paddlesReleasedSimultaneously = false
 
+        if ((event.keyCode === 188 || event.keyCode === 190) && document.activeElement.id === 'morseInput') {
+            return
+        }
         if (event.repeat) { return }
 
         if (event.keyCode === 188 || event.target.id === "left") {
@@ -269,7 +272,6 @@ function useElectronicKey() {
         // event.preventDefault()
 
         // if (!insideBufferDisplay) {return}
-
         if (event.keyCode === 188 || event.target.id === "left") {
             document.querySelector('.paddle#left').classList.remove('active')
 
