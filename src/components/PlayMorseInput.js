@@ -1,7 +1,6 @@
-import React, { useContext, useState, useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import morseCode from '../data/morse-code.json'
 import useMorsePlayer from "../hooks/useMorsePlayer";
-import { WPMContext } from "../contexts/wpmContext.js";
 
 export default (function PlayMorseInput() {
 
@@ -48,7 +47,7 @@ export default (function PlayMorseInput() {
     return (
             <div id="playMorseInput">
                 <div id="title">
-                    <h1>Translate To Morse</h1>
+                    <h2>Translate To Morse</h2>
                 </div>
                 <div id="input">
                     <input type="text" id='morseInput' value={inputValue} onChange={handleChange} placeholder="Type here." maxLength="25"/> Listen <i className="ri-volume-up-fill" onClick={handlePlay}></i>

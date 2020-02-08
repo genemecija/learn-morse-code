@@ -26,6 +26,7 @@ import ChallengeOverlay from './components/ChallengeOverlay';
 import { KeyTypeContextProvider } from './contexts/keyTypeContext';
 import { WPMContextProvider } from './contexts/wpmContext';
 import PlayMorseInput from './components/PlayMorseInput';
+import SidebarLeft from './components/SidebarLeft';
 
 export default React.memo(function App() {
 
@@ -33,11 +34,10 @@ export default React.memo(function App() {
 
     const {gameMode} = useContext(GameModeContext)
 
+    
     function toggleRight() {
-        document.querySelector('.sidebar#left').classList.toggle('hide')
-    }
-    function toggleLeft() {
         document.querySelector('.sidebar#right').classList.toggle('hide')
+        // document.querySelector('#main-interface').classList.toggle('expandRight')
     }
 
     return (
@@ -50,22 +50,9 @@ export default React.memo(function App() {
                 <WordListPickerContextProvider>
                 <WordFeederContextProvider>
                 <GameClockContextProvider>
-                    <div className="sidebar" id="left">
-                        <div id="settings-icon" onClick={toggleRight}><i class="ri-settings-3-line"></i></div>
-                        <div id="mainOptions">
-                            <h1>Options</h1>
-                            <ModePicker />
-                            <KeyTypePicker />
-                            <WordsPerMinute />
-                            {/* {gameMode === 'challenge' &&
-                                <WordListPicker />
-                            } */}
-                        </div>
-                        <PlayMorseInput />
-                        <Legend />
-                    </div>
+                    <SidebarLeft />
                     <div id="main-interface">
-
+                        <ModePicker />
                         {gameMode === 'practice' &&
                             <PracticeMode />
                         }
@@ -90,10 +77,10 @@ export default React.memo(function App() {
                         <MorseButtons />
                         <span id='tip'>Tap the button to use the telegraph.</span>
                     </div>
-                    <div className="sidebar" id="right">
-                        <div id="info-icon" onClick={toggleLeft}><i class="ri-information-line"></i></div>
-                        <Info />
-                    </div>
+                    {/* <div className="sidebar" id="right">
+                        <div id="settings-icon" onClick={toggleRight}><i class="ri-settings-3-line"></i></div>
+                        
+                    </div> */}
                 </GameClockContextProvider>
                 </WordFeederContextProvider>
                 </WordListPickerContextProvider>

@@ -49,6 +49,8 @@ html, body {
   font-size: 2.5em;
   color: #eee;
   z-index: 1000;
+  -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.5);
+          box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.5);
 }
 
 #main-content {
@@ -60,9 +62,6 @@ html, body {
   min-width: -moz-fit-content;
   min-width: fit-content;
   width: 100%;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -77,6 +76,8 @@ html, body {
   background: #eee;
   -webkit-box-shadow: 3px 0px 5px rgba(0, 0, 0, 0.2);
           box-shadow: 3px 0px 5px rgba(0, 0, 0, 0.2);
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.5em;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -90,44 +91,75 @@ html, body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  height: calc(100% - 5em);
+  width: 40%;
+  height: calc(100% - 5.1em);
+  max-width: 100%;
   min-width: 455px;
-  width: 30%;
-  margin-top: 50px;
+  overflow-y: scroll;
   position: fixed;
-  top: 0px;
+  top: 50px;
   left: 0px;
   z-index: 100;
   -webkit-transition: all 500ms ease-in-out;
   transition: all 500ms ease-in-out;
 }
 
-#main-content .sidebar#left #mainOptions, #main-content .sidebar#left #playMorseInput, #main-content .sidebar#left #legend {
-  -webkit-transition: all 500ms ease-in-out;
-  transition: all 500ms ease-in-out;
-  opacity: 100%;
-}
-
-#main-content .sidebar#left #mainOptions h1, #main-content .sidebar#left #playMorseInput h1, #main-content .sidebar#left #legend h1 {
-  margin-bottom: 0.3em;
-}
-
 #main-content .sidebar#left.hide {
-  left: calc(-30% + 40px);
-  top: 0px;
+  left: calc(-40% + 40px);
+  top: 50px;
   overflow-y: hidden;
 }
 
-#main-content .sidebar#left.hide #mainOptions, #main-content .sidebar#left.hide #legend {
+#main-content .sidebar#left.hide #sidebar-container #sidebar-content #info {
   opacity: 0%;
+  overflow-y: hidden;
 }
 
-#main-content .sidebar#left.hide #settings {
-  -webkit-transform: rotateZ(270deg);
-          transform: rotateZ(270deg);
+#main-content .sidebar#left #sidebar-container {
+  height: 100%;
+  width: 100%;
 }
 
-#main-content .sidebar#left #settings-icon {
+#main-content .sidebar#left #sidebar-container .navbar {
+  font-size: 1em;
+  line-height: 1em;
+  width: 100%;
+  height: 35px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-transform: uppercase;
+  font-weight: 550;
+}
+
+#main-content .sidebar#left #sidebar-container .navbar .nav-item {
+  padding: 10px;
+  width: 20%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-transition: all 150ms ease-in-out;
+  transition: all 150ms ease-in-out;
+  border-bottom: 2px solid transparent;
+}
+
+#main-content .sidebar#left #sidebar-container .navbar .nav-item:hover {
+  background: rgba(0, 0, 0, 0.1);
+  border-color: #999;
+}
+
+#main-content .sidebar#left #sidebar-container .navbar .nav-item.selected {
+  border-color: #508090;
+}
+
+#main-content .sidebar#left #sidebar-container #info-icon {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
@@ -135,33 +167,44 @@ html, body {
   height: -moz-fit-content;
   height: fit-content;
   position: absolute;
-  top: 3px;
-  right: 5px;
-  -webkit-transition: all 500ms ease-in-out;
-  transition: all 500ms ease-in-out;
-  -webkit-transition: -webkit-transform 200ms ease-in-out;
-  transition: -webkit-transform 200ms ease-in-out;
-  transition: transform 200ms ease-in-out;
-  transition: transform 200ms ease-in-out, -webkit-transform 200ms ease-in-out;
+  top: 7px;
+  right: 6px;
+  z-index: 1010;
+  -webkit-transition: all 100ms ease-in-out;
+  transition: all 100ms ease-in-out;
 }
 
-#main-content .sidebar#left #settings-icon:hover {
-  -webkit-transform: scale(1.1);
-          transform: scale(1.1);
+#main-content .sidebar#left #sidebar-container #info-icon:hover {
+  -webkit-transform: scale(1.08);
+          transform: scale(1.08);
 }
 
-#main-content .sidebar#left #settings-icon:hover i {
+#main-content .sidebar#left #sidebar-container #info-icon:hover i {
+  color: goldenrod;
+}
+
+#main-content .sidebar#left #sidebar-container #info-icon i {
   color: #333;
+  font-size: 1.7rem;
+  -webkit-transition: all 100ms ease-in-out;
+  transition: all 100ms ease-in-out;
 }
 
-#main-content .sidebar#left #settings-icon i {
-  font-size: 2rem;
+#main-content .sidebar#left #sidebar-container #sidebar-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-item-align: center;
+      align-self: center;
+  height: calc(100% - 35px);
 }
 
-#main-content .sidebar#right {
-  background: #eee;
-  -webkit-box-shadow: -3px 0px 5px rgba(0, 0, 0, 0.2);
-          box-shadow: -3px 0px 5px rgba(0, 0, 0, 0.2);
+#main-content .sidebar#left #sidebar-container #sidebar-content #playerAndLegend {
+  padding: 2em;
+  height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -172,92 +215,47 @@ html, body {
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
-  position: fixed;
-  top: 0px;
-  margin-top: 50px;
-  right: 0;
-  height: calc(100% - 5em);
-  min-width: 400px;
-  width: 30%;
-  z-index: 100;
-  font-family: 'Roboto', sans-serif;
-  line-height: 1.5em;
-  -webkit-transition: all 500ms ease-in-out;
-  transition: all 500ms ease-in-out;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-#main-content .sidebar#right.hide {
-  right: calc(-30% + 43px);
-}
-
-#main-content .sidebar#right.hide #info {
-  opacity: 0%;
-  overflow-y: hidden;
-}
-
-#main-content .sidebar#right #info {
+#main-content .sidebar#left #sidebar-container #sidebar-content #info {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
   padding: 2.5em;
   font-family: "Roboto", sans-serif;
-  font-size: 1em;
+  font-size: 0.9rem;
   line-height: 1.5em;
   opacity: 100%;
-  overflow-y: scroll;
   -webkit-transition: all 500ms ease-in-out;
   transition: all 500ms ease-in-out;
 }
 
-#main-content .sidebar#right #info h1, #main-content .sidebar#right #info h2 {
+#main-content .sidebar#left #sidebar-container #sidebar-content #info h1, #main-content .sidebar#left #sidebar-container #sidebar-content #info h2 {
   margin-bottom: 0.3em;
 }
 
-#main-content .sidebar#right #info h3 {
+#main-content .sidebar#left #sidebar-container #sidebar-content #info h3 {
   display: inline-block;
   margin-bottom: 0.1em;
 }
 
-#main-content .sidebar#right #info p {
-  margin-bottom: 1.5em;
+#main-content .sidebar#left #sidebar-container #sidebar-content #info p, #main-content .sidebar#left #sidebar-container #sidebar-content #info #legend, #main-content .sidebar#left #sidebar-container #sidebar-content #info #playMorseInput {
+  margin-bottom: 2em;
 }
 
-#main-content .sidebar#right #info img {
+#main-content .sidebar#left #sidebar-container #sidebar-content #info img {
   width: 50%;
   image-rendering: optimizeSpeed;
 }
 
-#main-content .sidebar#right #info-icon {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
-  position: absolute;
-  top: 10px;
-  left: 5px;
-  z-index: 1010;
-  -webkit-transition: all 500ms ease-in-out;
-  transition: all 500ms ease-in-out;
-  -webkit-transition: -webkit-transform 200ms ease-in-out;
-  transition: -webkit-transform 200ms ease-in-out;
-  transition: transform 200ms ease-in-out;
-  transition: transform 200ms ease-in-out, -webkit-transform 200ms ease-in-out;
-}
-
-#main-content .sidebar#right #info-icon:hover {
-  -webkit-transform: scale(1.1);
-          transform: scale(1.1);
-}
-
-#main-content .sidebar#right #info-icon:hover i {
-  color: #333;
-}
-
-#main-content .sidebar#right #info-icon i {
-  font-size: 2rem;
+#main-content .sidebar#left #sidebar-container #sidebar-content #info i:hover {
+  color: goldenrod;
 }
 
 #main-content #main-interface {
-  border: 1px solid blue;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -269,11 +267,56 @@ html, body {
       -ms-flex-align: center;
           align-items: center;
   height: 100%;
-  min-width: 600px;
-  width: 40%;
+  width: 60%;
   position: relative;
-  padding-top: 150px;
-  left: 0px;
+  left: 40%;
+  -webkit-transition: all 500ms ease-in-out;
+  transition: all 500ms ease-in-out;
+}
+
+#main-content #main-interface.expandLeft {
+  left: 40px;
+  width: calc(100% - 40px);
+}
+
+#main-content #main-interface #gameMode {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-top: 1em;
+  margin-bottom: 2em;
+  z-index: 100;
+}
+
+#main-content #main-interface #gameMode button {
+  background: #eee;
+  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.35), 0px -1px 1px white;
+          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.35), 0px -1px 1px white;
+  border-radius: 3px;
+  border: 0px;
+  padding: 0.5em;
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 1rem;
+  color: #333;
+}
+
+#main-content #main-interface #gameMode button.selected {
+  color: #467686;
+  -webkit-box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.3), inset 0px -1px 1px white;
+          box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.3), inset 0px -1px 1px white;
 }
 
 #footer {
@@ -306,21 +349,32 @@ i[class*="ri-"] {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
-  width: 450px;
-  max-width: 95vw;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100% !important;
   font-family: "Roboto", sans-serif;
+  padding: 2em;
+  padding-top: 5em;
+}
+
+#mainOptions #mainOptions-title {
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 30px;
+  text-transform: uppercase;
 }
 
 #mainOptions .mode-picker {
-  width: 100%;
+  width: auto;
+  height: auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-item-align: start;
-      align-self: flex-start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -ms-flex-line-pack: start;
       align-content: flex-start;
   -webkit-box-pack: start;
@@ -329,29 +383,24 @@ i[class*="ri-"] {
 }
 
 #mainOptions .mode-picker div {
-  padding: 5px;
-  height: 2.4em;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-  margin-bottom: 5px;
-}
-
-#mainOptions .mode-picker #title {
-  font-weight: bold;
-  font-size: 1.3em;
-  min-width: 100px;
+  padding: 3px;
   height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  padding-left: 0px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  margin-bottom: 5px;
+}
+
+#mainOptions .mode-picker #title {
+  width: 100%;
+  font-weight: bold;
+  font-size: 1.5em;
 }
 
 #mainOptions .mode-picker #buttons {
@@ -364,27 +413,19 @@ i[class*="ri-"] {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-}
-
-#mainOptions .mode-picker #input {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  margin-bottom: 20px;
 }
 
 #mainOptions .mode-picker #input input {
   width: 50px;
+  height: 2rem;
+  border: 1px solid #ddd;
   -webkit-appearance: textfield;
      -moz-appearance: textfield;
           appearance: textfield;
   text-align: center;
   border-radius: 3px;
-  border: 1px solid #ddd;
-  height: 1.5rem;
-  font-size: 0.8em;
+  font-size: 1em;
 }
 
 #mainOptions .mode-picker #input select {
@@ -395,11 +436,14 @@ i[class*="ri-"] {
   width: 1.6em;
   height: 1.6em;
   border-radius: 3px;
-  font-size: 0.9em;
+  font-size: 1em;
 }
 
 #mainOptions .mode-picker #input button i {
   position: relative;
+  left: -5px;
+  top: -4px;
+  font-size: 1.1em;
   font-weight: bold;
 }
 
@@ -409,10 +453,10 @@ i[class*="ri-"] {
           box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.35), 0px -1px 1px white;
   border-radius: 3px;
   border: 0px;
-  padding: 0.3em;
+  padding: 0.5em;
   margin-left: 10px;
   margin-right: 10px;
-  font-size: 0.85em;
+  font-size: 1em;
   color: #333;
 }
 
@@ -422,7 +466,27 @@ i[class*="ri-"] {
 }
 
 #playMorseInput {
-  width: 450px;
+  background: #ddd;
+  width: 400px;
+  height: 10em;
+  padding: 1em;
+  border-radius: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 45px;
+  overflow: hidden;
+}
+
+#playMorseInput i:hover {
+  color: goldenrod;
 }
 
 #playMorseInput #input input {
@@ -431,7 +495,7 @@ i[class*="ri-"] {
   border: 1px solid #ddd;
   height: 1.5rem;
   font-size: 0.9em;
-  width: 50%;
+  width: 70%;
 }
 
 #playMorseInput #morseTrans {
@@ -441,7 +505,6 @@ i[class*="ri-"] {
 
 #legend {
   background: #eee;
-  width: 450px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -452,40 +515,42 @@ i[class*="ri-"] {
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
 }
 
-#legend #legend-items div {
+#legend #legend-title {
+  margin-left: 2.2em;
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 0.3em;
+}
+
+#legend #legend-items {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  width: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
   margin-bottom: 10px;
 }
 
-#legend #legend-items div .item, #legend #legend-items div span {
+#legend #legend-items .item, #legend #legend-items span {
   cursor: pointer;
 }
 
-#legend #legend-items div#letters .item {
-  width: 17%;
-}
-
-#legend #legend-items div#numbers .item {
-  width: 18%;
-}
-
-#legend #legend-items div#special .item {
-  width: 20%;
-}
-
-#legend #legend-items div .item {
+#legend #legend-items .item {
   font-family: "Courier", monospace;
   font-size: 0.85em;
   display: -webkit-box;
@@ -494,31 +559,47 @@ i[class*="ri-"] {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin: 4px;
+  width: 15%;
+  margin: 5px;
   padding: 0.3em;
-  border: 0px;
-  border-radius: 2px;
-  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.35), 0px -1px 1px white;
-          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.35), 0px -1px 1px white;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  -webkit-transition: all 50ms ease-in-out;
+  transition: all 50ms ease-in-out;
 }
 
-#legend #legend-items div .item:active {
-  -webkit-transform: translateY(3px);
-          transform: translateY(3px);
-  -webkit-box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
-          box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
+#legend #legend-items .item:active {
+  -webkit-transform: scale(0.95);
+          transform: scale(0.95);
+  border-color: rgba(112, 128, 144, 0.6);
 }
 
-#legend #legend-items div .item span:first-child {
+#legend #legend-items .item:active span:first-child {
+  background: rgba(112, 128, 144, 0.6);
+}
+
+#legend #legend-items .item:hover {
+  border-color: rgba(112, 128, 144, 0.6);
+}
+
+#legend #legend-items .item:hover span:first-child {
+  background: rgba(112, 128, 144, 0.6);
+}
+
+#legend #legend-items .item span:first-child {
   display: inline-block;
   padding: 1px;
   width: 1.5em;
-  background: #e0e0e0;
+  background: #d6d6d6;
   border-radius: 2px;
-  font-size: 1.2em;
+  font-size: 1.5em;
+  -webkit-transition: all 75ms ease-in-out;
+  transition: all 75ms ease-in-out;
 }
 
-#legend #legend-items div .item span:last-child {
+#legend #legend-items .item span:last-child {
+  font-weight: bold;
+  font-size: 1em;
   display: inline-block;
   padding-left: 5px;
   width: 100%;
@@ -570,10 +651,16 @@ i[class*="ri-"] {
   transition: transform 40ms ease-out, box-shadow 40ms ease-out, width 500ms ease-out, background 500ms ease-out, color 500ms ease-out, -webkit-transform 40ms ease-out, -webkit-box-shadow 40ms ease-out;
 }
 
+#morseButton button:hover {
+  background: rgba(112, 128, 144, 0.2);
+}
+
 #morseButton button.showPaddles {
   color: #888;
   font-size: 1rem;
   font-weight: bold;
+  width: 30px;
+  height: 100px;
   -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.35), 0px -1px 1px white;
           box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.35), 0px -1px 1px white;
 }
@@ -581,23 +668,21 @@ i[class*="ri-"] {
 #morseButton button#left {
   border-radius: 50px 0 0 50px;
   width: 50%;
-  background: red;
 }
 
 #morseButton button#left.showPaddles {
   margin-right: 7px;
-  border-radius: 5px;
+  border-radius: 20px;
 }
 
 #morseButton button#right {
   width: 50%;
-  background: blue;
   border-radius: 0 50px 50px 0;
 }
 
 #morseButton button#right.showPaddles {
   margin-left: 7px;
-  border-radius: 5px;
+  border-radius: 20px;
 }
 
 #morseButton button.active {
@@ -608,7 +693,7 @@ i[class*="ri-"] {
 }
 
 #morseButton.showPaddles {
-  width: 134px;
+  width: 150px;
   background: transparent;
   -webkit-box-shadow: 0px 0px 0px transparent;
           box-shadow: 0px 0px 0px transparent;
@@ -648,7 +733,7 @@ i[class*="ri-"] {
 }
 
 #challenge-overlay {
-  position: fixed;
+  position: absolute;
   display: inline-block;
   top: 0;
   left: 0;
@@ -936,7 +1021,7 @@ i[class*="ri-"] {
 #morseBufferDisplay #alphanumeric-container {
   text-align: center;
   max-width: 100%;
-  width: 300px;
+  min-width: 300px;
   overflow: hidden;
   display: inline-block;
   padding-top: 10px;
@@ -1124,8 +1209,9 @@ i[class*="ri-"] {
 #morseHistory-textbox {
   background: #ddd;
   border-radius: 5px;
-  min-height: 1em;
-  width: 90%;
+  min-height: 2em;
+  width: 80%;
+  max-width: 500px;
   padding: 0.5em;
   font-family: Courier;
   font-size: 1.5rem;

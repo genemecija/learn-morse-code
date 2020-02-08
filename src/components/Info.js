@@ -2,6 +2,8 @@ import React from "react"
 import useMorsePlayer from "../hooks/useMorsePlayer"
 import straight_key from "../images/straight_key.jpg"
 import electronic_key from "../images/electronic_key.jpg"
+import Legend from "./Legend"
+import PlayMorseInput from "./PlayMorseInput"
 
 export default React.memo(function Info() {
 
@@ -32,7 +34,7 @@ export default React.memo(function Info() {
 
             <h2>Speed</h2   >
             <p>
-                Adjusting the <b>WPM</b> (Words Per Minute) in the Options Menu on the right sidebar will adjust the lengths of the dits, dahs, and spacing accordingly.
+                Adjusting the <b>WPM</b> (Words Per Minute) in the Options Menu will adjust the lengths of the dits, dahs, and spacing accordingly.
             </p>
 
             <h2>Telegraph Key Types</h2 >

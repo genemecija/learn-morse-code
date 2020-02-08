@@ -30,18 +30,18 @@ function ModePicker() {
 
     return (
             <div id="gameMode" className="mode-picker">
-                <div id="title">
+                {/* <div id="title">
                     Mode
-                </div>
+                </div> */}
                 <div id='buttons'>
                     <button id="practice" className="selected" onClick={handleClick}>
-                        Practice
+                        Practice Mode
                     </button>
                     <button id="training" onClick={handleClick}>
-                        Training
+                        Training Mode
                     </button>
                     <button id="challenge" onClick={handleClick}>
-                        Challenge
+                        Challenge Mode
                     </button>
                 </div>
             </div>

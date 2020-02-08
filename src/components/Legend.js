@@ -73,13 +73,13 @@ function Legend() {
 
     return (
             <div id="legend">
-                <div id="title">
-                    <h1>Morse Code</h1>
+                <div id="legend-title">
+                    Legend
                 </div>
                 <div id="legend-items">
-                    <div id="letters">{letters}</div>
-                    <div id="numbers">{numbers}</div>
-                    <div id="special">{special}</div>
+                    {letters}
+                    {numbers}
+                    {special}
                 </div>
             </div>
     )

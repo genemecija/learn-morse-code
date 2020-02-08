@@ -64,7 +64,7 @@ html, body {
     // font-weight: bold;
     color: $main-bg-color-light;
     z-index: 1000;
-    // box-shadow: $main-box-shadow-light;
+    box-shadow: 0px 2px 2px rgba(0,0,0,0.5);
 }
 #main-content {
     display: flex;
@@ -72,155 +72,232 @@ html, body {
     min-width: fit-content;
     width: 100%;
     // border: 1px solid red;
-    justify-content: center;
+    // justify-content: center;
     align-items: center;
     align-self: center;
     overflow-x: hidden;
-    position: relative; 
+    position: relative;
     left: 0px;
 
     .sidebar#left {
-        // border: 1px solid yellowgreen;
+        // border: 1px solid blue;
         background: $main-bg-color-light;
         box-shadow: 3px 0px 5px rgba(0,0,0,0.2);
+        
+        font-family: 'Roboto', sans-serif;
+        line-height: 1.5em;
+
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
         align-items: center;
-        // height: 100%;
-        height: calc(100% - 5em);
-        min-width: 455px;
-        width: 30%;
-        margin-top: 50px;
-        // padding: 1.5em;
         
+        width: 40%;
+        height: calc(100% - 5.1em);
+        max-width: 100%;
+        min-width: 455px;
+        overflow-y: scroll;
+
         position: fixed;
-        top: 0px;
+        top: 50px;
         left: 0px;
 
         z-index: 100;
-
-        transition: all 500ms ease-in-out;
         
-        #mainOptions, #playMorseInput, #legend {
-            h1 {
-                margin-bottom: 0.3em;
-            }
-            transition: all 500ms ease-in-out;
-            opacity: 100%;
-        }
+        transition: all 500ms ease-in-out;
+
         &.hide {
-            left: calc(-30% + 40px);
-            top: 0px;
+            left: calc(-40% + 40px);
+            top: 50px;
             overflow-y: hidden;
-            #mainOptions, #legend {
-                opacity: 0%;
-            }
-            // top: 50px;
 
-            #settings {
-                transform: rotateZ(270deg);
-            }
-        }
-        #settings-icon {
-            // border: 1px solid red;
-            width: fit-content;
-            height: fit-content;
-            position: absolute;
-            top: 3px;
-            right: 5px;
-            transition: all 500ms ease-in-out;
-            transition: transform 200ms ease-in-out;
-            &:hover {
-                transform: scale(1.1);
-                i {color: #333;}
-            }
-            i {
-                font-size: 2rem;
-            }
-        }
-    }
-    .sidebar#right {
-        // border: 1px solid green;
-        background: $main-bg-color-light;
-        box-shadow: -3px 0px 5px rgba(0,0,0,0.2);
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        
-        position: fixed;
-        top: 0px;
-        margin-top: 50px;
-        // left: calc(100vw - 30%);
-        right: 0;
-        
-        height: calc(100% - 5em);
-        min-width: 400px;
-        width: 30%;
-        
-        z-index: 100;
-
-        font-family: 'Roboto', sans-serif;
-        line-height: 1.5em;
-
-        transition: all 500ms ease-in-out;
-
-        &.hide {
-            // left: calc(100% - 40px);
-            right: calc(-30% + 43px);
-            #info {
+            #sidebar-container #sidebar-content #info {
                 opacity: 0%;
                 overflow-y: hidden;
             }
         }
-        #info {
-            // border: 1px solid darkcyan;
-            // margin-left: 20px;
-            // padding: 1.5em;
-            padding: 2.5em;
-            font-family: $main-font;
-            font-size: 1em;
-            line-height: 1.5em;
-            opacity: 100%;
-            overflow-y: scroll;
-            transition: all 500ms ease-in-out;
 
-            h1, h2 {
-                margin-bottom: 0.3em;
-                // text-transform: uppercase;
+        #sidebar-container {
+            height: 100%;
+            width: 100%;
+
+            .navbar {
+                // border-bottom: 1px solid #ccc;
+                // margin-top: 200px;
+                font-size: 1em;
+                line-height: 1em;
+                // height: 100px;
+                width: 100%;
+                height: 35px;
+                display: flex;
+                justify-content: center;
+                text-transform: uppercase;
+                font-weight: 550;
+                // color: #fff;
+                // background: #888;
+                // margin-top: 450px;
+                // box-shadow: inset 0px 3px 3px rgba(0,0,0,0.3);
+    
+                .nav-item {
+                    // border: 1px solid black;
+                    padding: 10px;
+                    // margin: 10px;
+                    width: 20%;
+                    height: 100%;
+                    display: flex;
+                    justify-content: center;
+                    // position: relative;
+                    // overflow: hidden;
+                    transition: all 150ms ease-in-out;
+                    border-bottom: 2px solid transparent;
+                    // border-bottom: 2px;
+    
+                    &:hover {
+                        background: rgba(0, 0, 0, 0.1);
+                        border-color: #999;
+                    }
+                    &.selected {
+                        border-color: rgb(80, 128, 144);
+                    }
+                }
             }
-            h3 {
-                display: inline-block;
-                margin-bottom: 0.1em;
+    
+            #info-icon {
+                width: fit-content;
+                height: fit-content;
+                position: absolute;
+                top: 7px;
+                right: 6px;
+                z-index: 1010;
+                transition: all 100ms ease-in-out;
+                &:hover {
+                    transform: scale(1.08);
+                    i {color: goldenrod;}
+                }
+                i {
+                    color: #333;
+                    font-size: 1.7rem;
+                    transition: all 100ms ease-in-out;
+                }
             }
-            p {
-                margin-bottom: 1.5em;
-            }
-            img {
-                width: 50%;
-                image-rendering: optimizeSpeed;
-            }
-        }
-        #info-icon {
-            width: fit-content;
-            height: fit-content;
-            position: absolute;
-            top: 10px;
-            left: 5px;
-            z-index: 1010;
-            transition: all 500ms ease-in-out;
-            transition: transform 200ms ease-in-out;
-            &:hover {
-                transform: scale(1.1);
-                i {color: #333;}
-            }
-            i {
-                font-size: 2rem;
+    
+            #sidebar-content {
+                // border: 1px solid cyan;
+                display: flex;
+                justify-content: center;
+                align-self: center;
+                height: calc(100% - 35px);
+                // height: 100%;
+                
+                #playerAndLegend {
+                    // border: 1px solid fuchsia;
+                    padding: 2em;
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-start;
+                    align-items: center;
+                }
+
+                #info {
+                    // border: 1px solid red;
+                    // margin-left: 20px;
+                    // padding: 1.5em;
+                    height: fit-content;
+                    padding: 2.5em;
+                    font-family: $main-font;
+                    font-size: 0.9rem;
+                    line-height: 1.5em;
+                    opacity: 100%;
+                    // overflow-y: scroll;
+                    transition: all 500ms ease-in-out;
+    
+                    h1, h2 {
+                        margin-bottom: 0.3em;
+                        // text-transform: uppercase;
+                    }
+                    h3 {
+                        display: inline-block;
+                        margin-bottom: 0.1em;
+                    }
+                    p, #legend, #playMorseInput {
+                        margin-bottom: 2em;
+                    }
+                    img {
+                        width: 50%;
+                        image-rendering: optimizeSpeed;
+                    }
+                    i:hover {
+                        color: goldenrod;
+                    }
+                }
             }
         }
     }
+    // .sidebar#right {
+    //     border: 1px solid green;
+    //     background: $main-bg-color-light;
+    //     box-shadow: -3px 0px 5px rgba(0,0,0,0.2);
+    //     display: flex;
+    //     flex-direction: column;
+    //     justify-content: space-between;
+        
+    //     position: fixed;
+    //     top: 0px;
+    //     margin-top: 50px;
+    //     padding: 1em;
+    //     padding-top: 50px;
+    //     // left: calc(100vw - 30%);
+    //     right: 0;
+        
+    //     height: calc(100% - 5em);
+    //     min-width: 400px;
+    //     max-width: 100%;
+    //     width: 30%;
+        
+    //     z-index: 100;
+        
+    //     transition: all 500ms ease-in-out;
+        
+    //     #mainOptions {
+    //         h1 {
+    //             margin-bottom: 0.3em;
+    //         }
+    //         transition: all 500ms ease-in-out;
+    //         opacity: 100%;
+    //     }
+    //     &.hide {
+    //         right: calc(-30% + 43px);
+
+    //         #mainOptions {
+    //             opacity: 0%;
+    //         }
+    //         // top: 50px;
+
+    //         #settings {
+    //             transform: rotateZ(270deg);
+    //         }
+    //     }
+    //     #settings-icon {
+    //         // border: 1px solid red;
+    //         width: fit-content;
+    //         height: fit-content;
+    //         position: absolute;
+    //         top: 10px;
+    //         left: 5px;
+    //         transition: all 500ms ease-in-out;
+    //         transition: transform 200ms ease-in-out;
+    //         &:hover {
+    //             transform: scale(1.1);
+    //             i {color: #333;}
+    //         }
+    //         i {
+    //             font-size: 2rem;
+    //         }
+    //     }
+    // }
     #main-interface {
-        border: 1px solid blue;
+        // border: 1px solid red;
         
         display: flex;
         flex-direction: column;
@@ -228,13 +305,50 @@ html, body {
         // justify-content: flex-start;
         // flex-grow: 1;
         height: 100%;
-        min-width: 600px;
-        width: 40%;
+        // min-width: 600px;
+        width: 60%;
+
+        // padding-top: 5em;
         // width: 100%;
         position: relative;
-        padding-top: 150px;
-        left: 0px;
+        // padding-top: 30px;
+        left: 40%;
+        transition: all 500ms ease-in-out;
+        &.expandLeft {
+            left: 40px;
+            width: calc(100% - 40px);
+        }
 
+        #gameMode {
+            // border: 1px solid red;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-top: 1em;
+            margin-bottom: 2em;
+            z-index: 100;
+
+            button {
+                background: $main-bg-color-light;
+                box-shadow: $main-box-shadow-light;
+                border-radius: $main-border-radius;
+                border: 0px;
+                padding: 0.5em;
+                margin-left: 10px;
+                margin-right: 10px;
+
+                font-size: 1rem;
+                color: $main-font-color-light;
+
+                &.selected {
+                    color: rgb(70, 118, 134);;
+                    box-shadow: $main-box-shadow-light-selected;
+                }
+            }
+        }
     }
 }
 #footer {
@@ -260,60 +374,69 @@ i[class*="ri-"] {
 }
 
 #mainOptions {
+    // border: 1px solid red;
+
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    width: 450px;
-    max-width: 95vw;
+    align-items: center;
+    width: 100% !important;
+    // max-width: 95vw;
     // height: 200px;
     font-family: $main-font;
-    // border: 1px solid red;
+    padding: 2em;
+    padding-top: 5em;
+    // padding-left: 1.5em;
+    // margin-top: 10px;
+    // top: 50px;
+    
+    #mainOptions-title {
+        font-size: 2em;
+        font-weight: bold;
+        margin-bottom: 30px;
+        text-transform: uppercase;
+    }
 
     .mode-picker {
         // border: 1px solid green;
-        width: 100%;
+        width: auto;
+        height: auto;
         display: flex;
-        // flex-direction: column;
-        align-self: flex-start;
+        flex-direction: column;
         align-content: flex-start;
         justify-content: flex-start;
 
+        
         div {
-            padding: 5px;
-            height: 2.4em;
+            // border: 1px solid blue;
+            padding: 3px;
+            height: 100%;
             display: flex;
-            justify-content: flex-start;
+            justify-content: center;
+            align-items: center;
             margin-bottom: 5px;
         }
         #title {
-            font-weight: bold;
-            font-size: 1.3em;
             // border: 1px solid red;
-            min-width: 100px;
-            height: 100%;
-            display: flex;
-            padding-left: 0px;
-            // justify-content: flex-end;
-            align-items: center;
+            width: 100%;
+            font-weight: bold;
+            font-size: 1.5em;
         }
         #buttons {
             // border: 1px solid blue;
             display: flex;
             justify-content: space-evenly;
             align-items: center;
+            margin-bottom: 20px;
         }
         #input {
-            // margin-left: 10px;
-            display: flex;
-            align-items: center;
             input {
                 width: 50px;
+                height: 2rem;
+                border: 1px solid #ddd;
                 appearance: textfield;
                 text-align: center;
                 border-radius: 3px;
-                border: 1px solid #ddd;
-                height: 1.5rem;
-                font-size: 0.8em;
+                font-size: 1em;
             }
             select {
                 height: 1.4rem;
@@ -322,13 +445,13 @@ i[class*="ri-"] {
                 width: 1.6em;
                 height: 1.6em;
                 border-radius: 3px;
-                font-size: 0.9em;
+                font-size: 1em;
                 // line-height: 10px;
                 i {
                     position: relative;
-                    // left: -1px;
-                    // top: -1px;
-                    // font-size: 1.1em;
+                    left: -5px;
+                    top: -4px;
+                    font-size: 1.1em;
                     font-weight: bold;
                 }
             }
@@ -338,11 +461,11 @@ i[class*="ri-"] {
             box-shadow: $main-box-shadow-light;
             border-radius: $main-border-radius;
             border: 0px;
-            padding: 0.3em;
+            padding: 0.5em;
             margin-left: 10px;
             margin-right: 10px;
 
-            font-size: 0.85em;
+            font-size: 1em;
             color: $main-font-color-light;
 
             &.selected {
@@ -353,16 +476,28 @@ i[class*="ri-"] {
 }
 
 #playMorseInput {
-    width: 450px;
-    // border: 1px solid blue;
+    background: #ddd;
+    width: 400px;
+    height: 10em;
+    padding: 1em;
+    // border: 1px solid #bbb;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 45px;
+    overflow: hidden;
 
+    i:hover {
+        color: goldenrod;
+    }
     #input input {
         padding-left: 3px;
         border-radius: 3px;
         border: 1px solid #ddd;
         height: 1.5rem;
         font-size: 0.9em;
-        width: 50%;
+        width: 70%;
     }
 
     #morseTrans {
@@ -374,50 +509,68 @@ i[class*="ri-"] {
 #legend {
     // border: 1px solid orange;
     background: $main-bg-color-light;
-    width: 450px;
-
-    // height: 325px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    flex-wrap: wrap;
 
-    #legend-items div {
+    #legend-title {
+        // border: 1px solid purple;
+        margin-left: 2.2em;
+        font-size: 1.5em;
+        font-weight: bold;
+        margin-bottom: 0.3em;
+    }
+    #legend-items {
+        // border: 1px solid blue;
         display: flex;
+        flex-direction: row;
         flex-wrap: wrap;
-        justify-content: space-between;
-        width: 100%;
+        justify-content: center;
+        width: fit-content;
+        height: fit-content;
         margin-bottom: 10px;
         .item, span {
             cursor: pointer;
         }
         
-        &#letters .item {
-            width: 17%;
-        }
-        &#numbers .item {
-            width: 18%;
-        }
-        &#special .item {
-            width: 20%;
-        }
+        // &#letters .item {
+        //     width: 17%;
+        // }
+        // &#numbers .item {
+        //     width: 18%;
+        // }
+        // &#special .item {
+        //     width: 20%;
+        // }
 
         .item {
             font-family: $ditDah-font;
             font-size: 0.85em;
             // height: 2em;
+            // height: 2em;
             display: flex;
             align-items: center;
             // justify-content: space-between;
+            width: 15%;
 
-            margin: 4px;
+            margin: 5px;
             padding: 0.3em;
-            border: 0px;
-            border-radius: 2px;
-            box-shadow: $main-box-shadow-light;
+            border: 1px solid #aaa;
+            border-radius: 5px;
+            transition: all 50ms ease-in-out;
+            // box-shadow: $main-box-shadow-light;
             &:active {
-                transform: translateY(3px);
-                box-shadow: 0px 0px 2px rgba(0,0,0,0.3);
+                transform: scale(0.95);
+                border-color: rgba(112, 128, 144,0.6);
+                span:first-child {
+                    background: rgba(112, 128, 144,0.6);
+                }
+            }
+            &:hover {
+                border-color: rgba(112, 128, 144,0.6);
+                span:first-child {
+                    background: rgba(112, 128, 144,0.6);
+                }
             }
 
             // button {
@@ -437,18 +590,17 @@ i[class*="ri-"] {
                 display: inline-block;
                 padding: 1px;
                 width: 1.5em;
-                background: #e0e0e0;
+                background: #d6d6d6;
                 border-radius: 2px;
+                font-size: 1.5em;
 
-                // font-weight: bold;
-                font-size: 1.2em;
-                // width: 60%;
-                // justify-content: center;
-                // text-align: center;
+                transition: all 75ms ease-in-out;
             }
             span:last-child {
                 // background: #08c;
                 // font-family: $ditDah-font;
+                font-weight: bold;
+                font-size: 1em;
                 display: inline-block;
                 padding-left: 5px;
                 width: 100%;
@@ -492,31 +644,35 @@ $button-radius: 50px;
         border: 0px;
         // transition: all 20ms ease-out;
         transition: transform 40ms ease-out, box-shadow 40ms ease-out, width 500ms ease-out, background 500ms ease-out, color 500ms ease-out;
+
+        &:hover {
+            background: rgba(112, 128, 144, 0.2);
+        }
         
         &.showPaddles {
             color: #888;
             font-size: 1rem;
             font-weight: bold;
-            // width: calc($button-height+5px);
-            // height: $button-height;
+            width: 30px;
+            height: $button-diameter;
             box-shadow: $main-box-shadow-light;
         }
         &#left {
             border-radius: $button-radius 0 0 $button-radius;
             width: 50%;
-            background: red;
+            // background: red;
             &.showPaddles{
                 margin-right: 7px;
-                border-radius: 5px;
+                border-radius: 20px;
             }
         }
         &#right {
             width: 50%;
-            background: blue;
+            // background: blue;
             border-radius: 0 $button-radius $button-radius 0;
             &.showPaddles{
                 margin-left: 7px;
-                border-radius: 5px;
+                border-radius: 20px;
             }
         }
         &.active {
@@ -526,7 +682,7 @@ $button-radius: 50px;
     }
     
     &.showPaddles {
-        width: 134px;
+        width: 150px;
         background: transparent;
         box-shadow: 0px 0px 0px transparent;
     }
@@ -618,10 +774,10 @@ $button-radius: 50px;
 }
 
 #challenge-overlay {
-    position: fixed;
+    position: absolute;
     display: inline-block;
-    top:0;
-    left:0;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     z-index: 50;
@@ -844,7 +1000,7 @@ $button-radius: 50px;
     #alphanumeric-container {
         text-align: center;
         max-width: 100%;
-        width: 300px;
+        min-width: 300px;
         overflow: hidden;
 
         display: inline-block;
@@ -1049,8 +1205,9 @@ $button-radius: 50px;
     // border: 1px solid cyan;
     background: #ddd;
     border-radius: 5px;
-    min-height: 1em;
-    width: 90%;
+    min-height: 2em;
+    width: 80%;
+    max-width: 500px;
     padding: 0.5em;
     font-family: Courier;
     font-size: 1.5rem;

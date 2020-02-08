@@ -1,10 +1,10 @@
-import React, {useContext} from "react"
+import React, {useContext, useEffect} from "react"
 import {KeyTypeContext} from "../contexts/keyTypeContext"
 
 
 export default React.memo(function KeyTypePicker() {
 
-    const {setKeyType} = useContext(KeyTypeContext)
+    const {setKeyType, keyType} = useContext(KeyTypeContext)
 
     function handleClick(e) {
         setKeyType(e.target.id)
@@ -30,8 +30,11 @@ export default React.memo(function KeyTypePicker() {
             document.querySelector('.paddle#right').classList.remove('showPaddles')
             document.getElementById('morseButtonText').innerHTML = 'SPACEBAR'
         }
-
     }
+
+    useEffect(() => {
+        document.querySelector(`button#${keyType}`).classList.add('selected')
+    }, [])
 
     return (
             <div id="keyType" className="mode-picker">
@@ -40,7 +43,7 @@ export default React.memo(function KeyTypePicker() {
                     {/* &nbsp;<i className="ri-question-line"></i>  */}
                 </div>
                 <div id="buttons">
-                    <button id="straight" className="selected" onClick={handleClick}>
+                    <button id="straight" onClick={handleClick}>
                         Straight Key
                     </button>
                     <button id="electronic" onClick={handleClick}>
