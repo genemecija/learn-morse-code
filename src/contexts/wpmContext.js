@@ -4,7 +4,7 @@ const WPMContext = React.createContext()
 
 function WPMContextProvider(props) {
     
-    const [wpm, setWPM] = useState(15)
+    const [wpm, setWPM] = useState(10)
 
     return (
         <WPMContext.Provider value={{

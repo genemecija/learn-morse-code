@@ -16,23 +16,23 @@ export default React.memo(function Info() {
 
             <h2>Dits and Dahs</h2>
             <p>
-                <h3>Dit</h3> <i className="ri-volume-up-fill" onClick={() => playMorseWord('.')}></i><br />
+                <span className="bold">Dit</span> <i className="ri-volume-up-fill" onClick={() => playMorseWord('.')}></i><br />
                 Denoted as a dot (.), dits are short tones and are base unit of morse code.<br />
-                <h3>Dah</h3> <i className="ri-volume-up-fill" onClick={() => playMorseWord('-')}></i><br />
+                <span className="bold">Dah</span> <i className="ri-volume-up-fill" onClick={() => playMorseWord('-')}></i><br />
                 Denoted as a dash (-), dahs are long tones the length of three dits.
             </p>
 
             <h2>Spacing</h2 >
             <p>
-                <h3>Intra-character Spacing</h3> <i className="ri-volume-up-fill" onClick={() => playMorseWord('...')}></i><br />
-                Silence between dits and dahs the length of one dit. Three dits separated by dit-long spaces is an "S".<br />
-                <h3>Inter-character Spacing</h3> <i className="ri-volume-up-fill" onClick={() => playMorseWord('. . .')}></i><br />
-                Silence the length of 3 dits. Three dits separated by three-dit-long spaces is "EEE".<br />
-                <h3>Inter-word Spacing</h3> <i className="ri-volume-up-fill" onClick={() => playMorseWord('././.')}></i><br />
-                Silence the length of 7 dits. Three dits separated by seven-dit-long spaces is "E E E".
+                <span className="bold">Intra-character Spacing</span> <i className="ri-volume-up-fill" onClick={() => playMorseWord('...')}></i><br />
+                Silence between dits and dahs the length of one dit. Three dits separated by one-dit-long spaces is an "S".<br />
+                <span className="bold">Inter-character Spacing</span> <i className="ri-volume-up-fill" onClick={() => playMorseWord('. . .')}></i><br />
+                Silence the length of three dits. Three dits separated by three-dit-long spaces is "EEE".<br />
+                <span className="bold">Inter-word Spacing</span> <i className="ri-volume-up-fill" onClick={() => playMorseWord('. /. /.')}></i><br />
+                Silence the length of seven dits. Three dits separated by seven-dit-long spaces is "E E E".
             </p>
 
-            <h2>Speed</h2   >
+            <h2>Speed</h2>
             <p>
                 Adjusting the <b>WPM</b> (Words Per Minute) in the Options Menu will adjust the lengths of the dits, dahs, and spacing accordingly.
             </p>

@@ -1,5 +1,5 @@
 // $main-bg-color-dark: #2c2c2c;
-@import url('https://fonts.googleapis.com/css?family=Courier+Prime:700|Asap|Roboto:700|Roboto|Ubuntu&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Courier+Prime:700|Asap|Roboto:700|Roboto&display=swap');
 // $main-font: 'Asap', sans-serif;
 $main-font: 'Roboto', sans-serif;
 // $main-font-bold: 'Roboto', sans-serif;
@@ -13,7 +13,7 @@ $main-font-color-light: #333;
 $correct-bg-color: rgba(90,230,90,1);
 
 $morseCard-shadow-light: 0px 3px 3px rgba(0, 0, 0, 0.2);
-$main-box-shadow-light: 0px 3px 3px rgba(0, 0, 0, 0.35), 0px -1px 1px rgba(255, 255, 255, 1);
+$main-box-shadow-light: 0px 2px 2px rgba(0, 0, 0, 0.35), 0px -1px 1px rgba(255, 255, 255, 1);
 $main-box-shadow-light-selected: inset 0px 2px 2px rgba(0, 0, 0, 0.3), inset 0px -1px 1px rgba(255, 255, 255, 1);
 $main-box-shadow-dark: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px rgba(255, 255, 255, 0.1);
 $main-box-shadow-dark-selected: inset 0px 2px 2px rgba(0, 0, 0, 0.2), inset 0px -1px 1px rgba(255, 255, 255, 0.1);
@@ -62,9 +62,11 @@ html, body {
     font-family: $main-font;
     font-size: 2.5em;
     // font-weight: bold;
+    // color: $main-bg-color-light;
+    color: rgb(218, 184, 32);
     color: $main-bg-color-light;
     z-index: 1000;
-    box-shadow: 0px 2px 2px rgba(0,0,0,0.5);
+    box-shadow: 0px 2px 2px rgba(0,0,0,0.45);
 }
 #main-content {
     display: flex;
@@ -81,8 +83,9 @@ html, body {
 
     .sidebar#left {
         // border: 1px solid blue;
+        // background: $main-bg-color-light;
         background: $main-bg-color-light;
-        box-shadow: 3px 0px 5px rgba(0,0,0,0.2);
+        box-shadow: 3px 0px 3px rgba(0,0,0,0.25);
         
         font-family: 'Roboto', sans-serif;
         line-height: 1.5em;
@@ -142,7 +145,7 @@ html, body {
                     // border: 1px solid black;
                     padding: 10px;
                     // margin: 10px;
-                    width: 20%;
+                    width: 30%;
                     height: 100%;
                     display: flex;
                     justify-content: center;
@@ -186,7 +189,7 @@ html, body {
                 display: flex;
                 justify-content: center;
                 align-self: center;
-                height: calc(100% - 35px);
+                // height: calc(100% - 35px);
                 // height: 100%;
                 
                 #playerAndLegend {
@@ -197,6 +200,17 @@ html, body {
                     flex-direction: column;
                     justify-content: flex-start;
                     align-items: center;
+                    overflow-y: scroll;
+                    #legend, #playMorseInput, span#note {
+                        margin-bottom: 1em;
+                    }
+                    span#note {
+                        font-family: $ditDah-font;
+                        color: #555;
+                        display: inline-block;
+                        width: 65%;
+                        text-align: center;
+                    }
                 }
 
                 #info {
@@ -216,11 +230,13 @@ html, body {
                         margin-bottom: 0.3em;
                         // text-transform: uppercase;
                     }
-                    h3 {
+                    .bold {
                         display: inline-block;
+                        font-size: 1.15em;
+                        font-weight: bold;
                         margin-bottom: 0.1em;
                     }
-                    p, #legend, #playMorseInput {
+                    p {
                         margin-bottom: 2em;
                     }
                     img {
@@ -299,6 +315,7 @@ html, body {
     #main-interface {
         // border: 1px solid red;
         
+        background: white;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -319,36 +336,191 @@ html, body {
             width: calc(100% - 40px);
         }
 
-        #gameMode {
+        #mainOptions {
             // border: 1px solid red;
+
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.5em;
-            font-weight: bold;
-            margin-top: 1em;
-            margin-bottom: 2em;
-            z-index: 100;
+            flex-direction: row;
+            justify-content: flex-start;
+            // align-items: flex-start;
+            
+            height: 6em;
+            width: 100%;
+            padding: 10px;
+            background: rgba(112, 128, 144,0.3);
+            box-shadow: inset 0px -2px 2px rgba(0,0,0,0.1);
 
-            button {
-                background: $main-bg-color-light;
-                box-shadow: $main-box-shadow-light;
-                border-radius: $main-border-radius;
-                border: 0px;
-                padding: 0.5em;
-                margin-left: 10px;
-                margin-right: 10px;
+            font-family: $main-font;
+            z-index: 500;
 
-                font-size: 1rem;
-                color: $main-font-color-light;
+            #options-left, #options-right {
+                // border: 1px solid cyan;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-start;
+                width: fit-content;
 
-                &.selected {
-                    color: rgb(70, 118, 134);;
-                    box-shadow: $main-box-shadow-light-selected;
+                .mode-picker {
+                    // border: 1px solid green;
+                    width: fit-content;
+                    display: flex;
+                    align-content: flex-start;
+                    justify-content: flex-start;
+                    
+                    div {
+                        // border: 1px solid blue;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        padding: 3px;
+                        height: 100%;
+                        margin-bottom: 5px;
+                    }
+                    #title {
+                        // border: 1px solid red;
+                        justify-content: flex-end;
+                        width: 10em;
+                        font-weight: bold;
+                        font-size: 1.15em;
+                        span#range {
+                            display: inline-block;
+                            padding-left: 5px;
+                            font-size: 0.8em;
+                        }
+                    }
+                    #buttons {
+                        // border: 1px solid blue;
+                        justify-content: space-evenly;
+                        // margin-bottom: 20px;
+                    }
+                    #input {
+                        input {
+                            width: 50px;
+                            height: 1.5rem;
+                            border: 1px solid #ddd;
+                            appearance: textfield;
+                            text-align: center;
+                            border-radius: 3px;
+                            font-size: 0.8rem;
+                        }
+                        select {
+                            height: 1.4rem;
+                        }
+                        button {
+                            width: 1.4em;
+                            height: 1.4em;
+                            border-radius: 3px;
+                            font-size: 1em;
+                            // line-height: 10px;
+                            i {
+                                position: relative;
+                                left: -6px;
+                                top: -2px;
+                                font-size: 1.1em;
+                                font-weight: bold;
+                            }
+                        }
+                    }
+                    button {
+                        background: $main-bg-color-light;
+                        box-shadow: $main-box-shadow-light;
+                        border-radius: $main-border-radius;
+                        border: 0px;
+                        padding: 0.2em;
+                        padding-left: 0.5em;
+                        padding-right: 0.5em;
+                        margin-left: 10px;
+                        margin-right: 10px;
+            
+                        font-size: 0.9em;
+                        color: $main-font-color-light;
+            
+                        &.selected {
+                            box-shadow: $main-box-shadow-light-selected;
+                        }
+                    }
                 }
             }
+
+            #options-left .mode-picker {
+                #title {
+                    width: 5em;
+                }
+            }
+            
+            // #mainOptions-title {
+            //     font-size: 2em;
+            //     font-weight: bold;
+            //     margin-bottom: 30px;
+            //     text-transform: uppercase;
+            // }
+        
+            
         }
+        // #gameMode {
+        //     // border: 1px solid red;
+        //     display: flex;
+        //     justify-content: center;
+        //     align-items: center;
+        //     width: 100%;
+        //     font-size: 1.5em;
+        //     font-weight: bold;
+        //     // margin-top: 1em;
+        //     margin-bottom: 2em;
+        //     z-index: 100;
+            
+        //     #buttons {
+        //         // border: 1px solid purple;
+        //         display: flex;
+        //         flex-direction: column;
+        //         padding: 0px;
+                
+        //         button {
+        //             // background: $main-bg-color-light;
+        //             // box-shadow: $main-box-shadow-light;
+        //             // border-radius: $main-border-radius;
+        //             // border: 0px;
+        //             // padding: 0.5em;
+        //             // margin-left: 10px;
+        //             // margin-right: 10px;
+                    
+        //             // font-size: 1rem;
+        //             // color: $main-font-color-light;
+                    
+        //             // &.selected {
+        //                 //     // color: rgb(70, 118, 134);;
+        //                 //     box-shadow: $main-box-shadow-light-selected;
+        //                 // }
+        //             background: white;
+        //             font-size: 0.7em;
+        //             // font-weight: bold;
+        //             // text-transform: uppercase;
+
+        //             margin-top: 3px;
+        //             padding: 0.3em;
+        //             width: 10em;
+        //             height: 100%;
+    
+    
+        //             display: flex;
+        //             justify-content: center;
+        //             // position: relative;
+        //             // overflow: hidden;
+        //             transition: all 150ms ease-in-out;
+        //             border: 0px;
+        //             border-bottom: 2px solid transparent;
+    
+        //             &:hover {
+        //                 background: rgba(0, 0, 0, 0.1);
+        //                 border-color: #999;
+        //             }
+        //             &.selected {
+        //                 border-color: rgb(180, 60, 60);
+        //             }
+        //         }
+        //     }
+        // }
     }
 }
 #footer {
@@ -361,7 +533,6 @@ html, body {
     // font-weight: bold;
     color: $main-bg-color-light;
     z-index: 1000;
-    // box-shadow: $main-box-shadow-light;
 }
 h2 {
     margin-bottom: 0.5em;
@@ -373,107 +544,7 @@ i[class*="ri-"] {
     color: #777;
 }
 
-#mainOptions {
-    // border: 1px solid red;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100% !important;
-    // max-width: 95vw;
-    // height: 200px;
-    font-family: $main-font;
-    padding: 2em;
-    padding-top: 5em;
-    // padding-left: 1.5em;
-    // margin-top: 10px;
-    // top: 50px;
-    
-    #mainOptions-title {
-        font-size: 2em;
-        font-weight: bold;
-        margin-bottom: 30px;
-        text-transform: uppercase;
-    }
-
-    .mode-picker {
-        // border: 1px solid green;
-        width: auto;
-        height: auto;
-        display: flex;
-        flex-direction: column;
-        align-content: flex-start;
-        justify-content: flex-start;
-
-        
-        div {
-            // border: 1px solid blue;
-            padding: 3px;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 5px;
-        }
-        #title {
-            // border: 1px solid red;
-            width: 100%;
-            font-weight: bold;
-            font-size: 1.5em;
-        }
-        #buttons {
-            // border: 1px solid blue;
-            display: flex;
-            justify-content: space-evenly;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        #input {
-            input {
-                width: 50px;
-                height: 2rem;
-                border: 1px solid #ddd;
-                appearance: textfield;
-                text-align: center;
-                border-radius: 3px;
-                font-size: 1em;
-            }
-            select {
-                height: 1.4rem;
-            }
-            button {
-                width: 1.6em;
-                height: 1.6em;
-                border-radius: 3px;
-                font-size: 1em;
-                // line-height: 10px;
-                i {
-                    position: relative;
-                    left: -5px;
-                    top: -4px;
-                    font-size: 1.1em;
-                    font-weight: bold;
-                }
-            }
-        }
-        button {
-            background: $main-bg-color-light;
-            box-shadow: $main-box-shadow-light;
-            border-radius: $main-border-radius;
-            border: 0px;
-            padding: 0.5em;
-            margin-left: 10px;
-            margin-right: 10px;
-
-            font-size: 1em;
-            color: $main-font-color-light;
-
-            &.selected {
-                box-shadow: $main-box-shadow-light-selected;
-            }
-        }
-    }
-}
 
 #playMorseInput {
     background: #ddd;
@@ -486,7 +557,7 @@ i[class*="ri-"] {
     flex-direction: column;
     align-items: center;
     margin-bottom: 45px;
-    overflow: hidden;
+    // overflow: hidden;
 
     i:hover {
         color: goldenrod;
@@ -555,19 +626,28 @@ i[class*="ri-"] {
 
             margin: 5px;
             padding: 0.3em;
-            border: 1px solid #aaa;
-            border-radius: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
             transition: all 50ms ease-in-out;
-            // box-shadow: $main-box-shadow-light;
+            background: #ddd;
+
+            border: 0px;
+            background: $main-bg-color-light;
+            box-shadow: $main-box-shadow-light;
+            span {
+                transition: all 50ms ease-in-out;
+            }
             &:active {
                 transform: scale(0.95);
                 border-color: rgba(112, 128, 144,0.6);
+                background: #ddd;
                 span:first-child {
                     background: rgba(112, 128, 144,0.6);
                 }
             }
             &:hover {
                 border-color: rgba(112, 128, 144,0.6);
+                background: #ddd;
                 span:first-child {
                     background: rgba(112, 128, 144,0.6);
                 }
@@ -782,7 +862,7 @@ $button-radius: 50px;
     height: 100%;
     z-index: 50;
     // background-color: rgba(0,0,0,0.4);
-    background: rgba(255,255,255,0.3);
+    background: rgba(255,255,255,0.75);
     // background-image: linear-gradient(0deg, transparent, rgba(1,1,1,1));
     display: flex;
     justify-content: center;
@@ -811,7 +891,7 @@ $button-radius: 50px;
         height: 250px;
         // background: $main-bg-color-light;
         background: #fefefe;
-        margin-top: 150px;
+        margin-top: 30%;
         border-radius: 5px;
         box-shadow: 0px 5px 15px rgba(0,0,0,0.5);
 
@@ -974,6 +1054,7 @@ $button-radius: 50px;
 
 #morseBufferDisplay {
     // border: 1px solid green;
+    background: #eee;
     display: flex;
     justify-content: center;
     flex-direction: column-reverse;
@@ -983,40 +1064,37 @@ $button-radius: 50px;
     margin-bottom: 20px;
     font-family: $buffer-font;
     position: relative;
-    // font-weight: bold;
+    // box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
+    // border-bottom: 2px solid rgba(0,0,0,0.1);
 
     #overlay {
         // background: blue;
-        box-shadow: inset 20px 0px 20px -5px $main-bg-color-light;
+        box-shadow: inset 20px 0px 20px -5px #eee;
         position: absolute;
         display: inline-block;
         top:0;
-        left:0;
-        width: 100%;
+        left: calc(50% - 37.5%);
+        width: 600px;
         height: 100%;
-        z-index: 100;
+        z-index: 40;
     }
 
     #alphanumeric-container {
-        text-align: center;
-        max-width: 100%;
-        min-width: 300px;
-        overflow: hidden;
-
-        display: inline-block;
-        padding-top: 10px;
         // border: 1px solid red;
+        // max-width: 100%;
+        // min-width: 300px;
+        text-align: center;
+        max-width: 75%;
+        display: inline-block;
+        overflow: hidden;
+        padding-top: 10px;
         
         #alphanumeric {
             // border: 1px solid blue;
-            background: #fdfdfd;
+
             height: 5rem;
-            width: 100%;
-            padding-left: 5px;
-            padding-right: 5px;
             padding-top: 0.45rem;
             font-size:  4rem;
-            min-width: 4rem;
             margin-bottom: 10px;
             border-radius: $main-border-radius;
             // box-shadow: $main-box-shadow-light;
@@ -1024,11 +1102,10 @@ $button-radius: 50px;
         }
     }
     #ditDahs-container {
-        // display: flex;
-        // justify-content: flex-start;
-        text-align: center;
-        max-width: 100%;
         // border: 1px solid red;
+        text-align: center;
+        max-width: 75%;
+        display: inline-block;
         overflow: hidden;
 
         #ditDahs {
@@ -1203,9 +1280,9 @@ $button-radius: 50px;
 
 #morseHistory-textbox {
     // border: 1px solid cyan;
-    background: #ddd;
+    background: #f8f8f8;
     border-radius: 5px;
-    min-height: 2em;
+    min-height: 4em;
     width: 80%;
     max-width: 500px;
     padding: 0.5em;

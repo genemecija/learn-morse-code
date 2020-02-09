@@ -1,10 +1,12 @@
 import config from '../config.json'
 import { WPMContext } from '../contexts/wpmContext.js';
 import { useContext } from 'react';
+import { FrequencyContext } from '../contexts/frequencyContext.js';
 
 function useMorsePlayer() {
 
     const {wpm} = useContext(WPMContext)
+    const {frequency} = useContext(FrequencyContext)
     // const ditMaxTime = 85 //config.ditMaxTime
     const ditMaxTime = 1200/wpm
 
@@ -18,7 +20,7 @@ function useMorsePlayer() {
         context = null
     }
 
-    let frequency = config.frequency
+    // let frequency = config.frequency
 
     function play(ditDah) {
         let length = ((ditDah === '.') ? ditMaxTime : ditMaxTime*3)

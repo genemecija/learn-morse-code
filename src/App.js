@@ -5,28 +5,23 @@ import { GameModeContext } from "./contexts/gameModeContext"
 import { MorseBufferContextProvider } from "./contexts/morseBufferContext"
 import { WordFeederContextProvider } from './contexts/wordFeederContext';
 import { WordListPickerContextProvider } from './contexts/wordListPickerContext';
+import { GameClockContextProvider } from './contexts/gameClockContext';
+import { WPMContextProvider } from './contexts/wpmContext';
+import { FrequencyContextProvider } from './contexts/frequencyContext';
+import { KeyTypeContextProvider } from './contexts/keyTypeContext';
+
+import PracticeMode from './app-modes/PracticeMode';
+import ChallengeMode from './app-modes/ChallengeMode'
 
 import ModePicker from './components/ModePicker'
 import KeyTypePicker from './components/KeyTypePicker'
-import WordListPicker from './components/WordListPicker';
-
-import PracticeMode from './app-modes/PracticeMode';
-import TrainingMode from './app-modes/TrainingMode'
-import ChallengeMode from './app-modes/ChallengeMode'
-
 import Header from './components/Header';
-import Legend from './components/Legend';
-// import GameClock from "./components/GameClock"
 import WordsPerMinute from "./components/WordsPerMinute"
 import MorseButtons from './components/MorseButtons'
 import Footer from './components/Footer';
-import Info from './components/Info';
-import { GameClockContextProvider } from './contexts/gameClockContext';
 import ChallengeOverlay from './components/ChallengeOverlay';
-import { KeyTypeContextProvider } from './contexts/keyTypeContext';
-import { WPMContextProvider } from './contexts/wpmContext';
-import PlayMorseInput from './components/PlayMorseInput';
 import SidebarLeft from './components/SidebarLeft';
+import FrequencyPicker from './components/FrequencyPicker';
 
 export default React.memo(function App() {
 
@@ -34,25 +29,29 @@ export default React.memo(function App() {
 
     const {gameMode} = useContext(GameModeContext)
 
-    
-    function toggleRight() {
-        document.querySelector('.sidebar#right').classList.toggle('hide')
-        // document.querySelector('#main-interface').classList.toggle('expandRight')
-    }
-
     return (
         <>
             <Header />
             <div id='main-content'>
                 <KeyTypeContextProvider>
                 <WPMContextProvider>
+                <FrequencyContextProvider>
                 <MorseBufferContextProvider>
                 <WordListPickerContextProvider>
                 <WordFeederContextProvider>
                 <GameClockContextProvider>
                     <SidebarLeft />
                     <div id="main-interface">
-                        <ModePicker />
+                        <div id="mainOptions">
+                            <div id="options-left">
+                                <ModePicker />
+                                <KeyTypePicker />
+                            </div>
+                            <div id="options-right">
+                                <WordsPerMinute />
+                                <FrequencyPicker />
+                            </div>
+                        </div>
                         {gameMode === 'practice' &&
                             <PracticeMode />
                         }
@@ -85,6 +84,7 @@ export default React.memo(function App() {
                 </WordFeederContextProvider>
                 </WordListPickerContextProvider>
                 </MorseBufferContextProvider>
+                </FrequencyContextProvider>
                 </WPMContextProvider>
                 </KeyTypeContextProvider>
             </div>

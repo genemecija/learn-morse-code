@@ -3,6 +3,7 @@ import {MorseBufferContext} from '../contexts/morseBufferContext'
 import config from '../config.json'
 import { WPMContext } from '../contexts/wpmContext'
 import { GameModeContext } from '../contexts/gameModeContext'
+import { FrequencyContext } from '../contexts/frequencyContext'
 
 // STRAIGHT KEY TELEGRAPH
 function useStraightKey() {
@@ -10,6 +11,7 @@ function useStraightKey() {
     const {morseCharBuffer, setMorseCharBuffer, morseWords, setMorseWords} = useContext(MorseBufferContext)
     const {wpm} = useContext(WPMContext)
     const {gameMode} = useContext(GameModeContext)
+    const {frequency} = useContext(FrequencyContext)
 
     let charTimer = 0
     let charTime = 0
@@ -37,7 +39,7 @@ function useStraightKey() {
 
     let o // Oscillator Node
     let g // Gain Node
-    let frequency = config.frequency
+    // let frequency = config.frequency
 
     let isRunning = false
     
@@ -51,12 +53,12 @@ function useStraightKey() {
         console.log(event.keyCode);
 
         if (event.keyCode === 32) {
-            if (document.activeElement.id === 'wordlist-picker') {
+            if (document.activeElement.id === 'morseInput') {
+                return
+            }
+            else if (document.activeElement.tagName.toLowerCase() !== 'body') {
                 event.preventDefault()
                 document.activeElement.blur()
-            }
-            else if (document.activeElement.id === 'morseInput') {
-                return
             }
         }
 
@@ -218,7 +220,7 @@ function useStraightKey() {
             // clearHistory()
         }
         // eslint-disable-next-line
-    }, [wpm, gameMode])
+    }, [wpm, gameMode, frequency])
 
     useEffect(() => {
         // PRACTICE MODE

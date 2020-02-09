@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Courier+Prime:700|Asap|Roboto:700|Roboto|Ubuntu&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Courier+Prime:700|Asap|Roboto:700|Roboto&display=swap");
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -47,10 +47,11 @@ html, body {
   background: #333;
   font-family: "Roboto", sans-serif;
   font-size: 2.5em;
+  color: #dab820;
   color: #eee;
   z-index: 1000;
-  -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.5);
-          box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.45);
+          box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.45);
 }
 
 #main-content {
@@ -74,8 +75,8 @@ html, body {
 
 #main-content .sidebar#left {
   background: #eee;
-  -webkit-box-shadow: 3px 0px 5px rgba(0, 0, 0, 0.2);
-          box-shadow: 3px 0px 5px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 3px 0px 3px rgba(0, 0, 0, 0.25);
+          box-shadow: 3px 0px 3px rgba(0, 0, 0, 0.25);
   font-family: 'Roboto', sans-serif;
   line-height: 1.5em;
   display: -webkit-box;
@@ -137,7 +138,7 @@ html, body {
 
 #main-content .sidebar#left #sidebar-container .navbar .nav-item {
   padding: 10px;
-  width: 20%;
+  width: 30%;
   height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -199,7 +200,6 @@ html, body {
           justify-content: center;
   -ms-flex-item-align: center;
       align-self: center;
-  height: calc(100% - 35px);
 }
 
 #main-content .sidebar#left #sidebar-container #sidebar-content #playerAndLegend {
@@ -218,6 +218,19 @@ html, body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  overflow-y: scroll;
+}
+
+#main-content .sidebar#left #sidebar-container #sidebar-content #playerAndLegend #legend, #main-content .sidebar#left #sidebar-container #sidebar-content #playerAndLegend #playMorseInput, #main-content .sidebar#left #sidebar-container #sidebar-content #playerAndLegend span#note {
+  margin-bottom: 1em;
+}
+
+#main-content .sidebar#left #sidebar-container #sidebar-content #playerAndLegend span#note {
+  font-family: "Courier", monospace;
+  color: #555;
+  display: inline-block;
+  width: 65%;
+  text-align: center;
 }
 
 #main-content .sidebar#left #sidebar-container #sidebar-content #info {
@@ -237,12 +250,14 @@ html, body {
   margin-bottom: 0.3em;
 }
 
-#main-content .sidebar#left #sidebar-container #sidebar-content #info h3 {
+#main-content .sidebar#left #sidebar-container #sidebar-content #info .bold {
   display: inline-block;
+  font-size: 1.15em;
+  font-weight: bold;
   margin-bottom: 0.1em;
 }
 
-#main-content .sidebar#left #sidebar-container #sidebar-content #info p, #main-content .sidebar#left #sidebar-container #sidebar-content #info #legend, #main-content .sidebar#left #sidebar-container #sidebar-content #info #playMorseInput {
+#main-content .sidebar#left #sidebar-container #sidebar-content #info p {
   margin-bottom: 2em;
 }
 
@@ -256,6 +271,7 @@ html, body {
 }
 
 #main-content #main-interface {
+  background: white;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -279,7 +295,28 @@ html, body {
   width: calc(100% - 40px);
 }
 
-#main-content #main-interface #gameMode {
+#main-content #main-interface #mainOptions {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  height: 6em;
+  width: 100%;
+  padding: 10px;
+  background: rgba(112, 128, 144, 0.3);
+  -webkit-box-shadow: inset 0px -2px 2px rgba(0, 0, 0, 0.1);
+          box-shadow: inset 0px -2px 2px rgba(0, 0, 0, 0.1);
+  font-family: "Roboto", sans-serif;
+  z-index: 500;
+}
+
+#main-content #main-interface #mainOptions #options-left, #main-content #main-interface #mainOptions #options-right {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -290,33 +327,117 @@ html, body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+#main-content #main-interface #mainOptions #options-left .mode-picker, #main-content #main-interface #mainOptions #options-right .mode-picker {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-line-pack: start;
+      align-content: flex-start;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+#main-content #main-interface #mainOptions #options-left .mode-picker div, #main-content #main-interface #mainOptions #options-right .mode-picker div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  font-size: 1.5em;
-  font-weight: bold;
-  margin-top: 1em;
-  margin-bottom: 2em;
-  z-index: 100;
+  padding: 3px;
+  height: 100%;
+  margin-bottom: 5px;
 }
 
-#main-content #main-interface #gameMode button {
+#main-content #main-interface #mainOptions #options-left .mode-picker #title, #main-content #main-interface #mainOptions #options-right .mode-picker #title {
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  width: 10em;
+  font-weight: bold;
+  font-size: 1.15em;
+}
+
+#main-content #main-interface #mainOptions #options-left .mode-picker #title span#range, #main-content #main-interface #mainOptions #options-right .mode-picker #title span#range {
+  display: inline-block;
+  padding-left: 5px;
+  font-size: 0.8em;
+}
+
+#main-content #main-interface #mainOptions #options-left .mode-picker #buttons, #main-content #main-interface #mainOptions #options-right .mode-picker #buttons {
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+#main-content #main-interface #mainOptions #options-left .mode-picker #input input, #main-content #main-interface #mainOptions #options-right .mode-picker #input input {
+  width: 50px;
+  height: 1.5rem;
+  border: 1px solid #ddd;
+  -webkit-appearance: textfield;
+     -moz-appearance: textfield;
+          appearance: textfield;
+  text-align: center;
+  border-radius: 3px;
+  font-size: 0.8rem;
+}
+
+#main-content #main-interface #mainOptions #options-left .mode-picker #input select, #main-content #main-interface #mainOptions #options-right .mode-picker #input select {
+  height: 1.4rem;
+}
+
+#main-content #main-interface #mainOptions #options-left .mode-picker #input button, #main-content #main-interface #mainOptions #options-right .mode-picker #input button {
+  width: 1.4em;
+  height: 1.4em;
+  border-radius: 3px;
+  font-size: 1em;
+}
+
+#main-content #main-interface #mainOptions #options-left .mode-picker #input button i, #main-content #main-interface #mainOptions #options-right .mode-picker #input button i {
+  position: relative;
+  left: -6px;
+  top: -2px;
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+#main-content #main-interface #mainOptions #options-left .mode-picker button, #main-content #main-interface #mainOptions #options-right .mode-picker button {
   background: #eee;
-  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.35), 0px -1px 1px white;
-          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.35), 0px -1px 1px white;
+  -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.35), 0px -1px 1px white;
+          box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.35), 0px -1px 1px white;
   border-radius: 3px;
   border: 0px;
-  padding: 0.5em;
+  padding: 0.2em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
   margin-left: 10px;
   margin-right: 10px;
-  font-size: 1rem;
+  font-size: 0.9em;
   color: #333;
 }
 
-#main-content #main-interface #gameMode button.selected {
-  color: #467686;
+#main-content #main-interface #mainOptions #options-left .mode-picker button.selected, #main-content #main-interface #mainOptions #options-right .mode-picker button.selected {
   -webkit-box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.3), inset 0px -1px 1px white;
           box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.3), inset 0px -1px 1px white;
+}
+
+#main-content #main-interface #mainOptions #options-left .mode-picker #title {
+  width: 5em;
 }
 
 #footer {
@@ -341,130 +462,6 @@ i[class*="ri-"] {
   color: #777;
 }
 
-#mainOptions {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  width: 100% !important;
-  font-family: "Roboto", sans-serif;
-  padding: 2em;
-  padding-top: 5em;
-}
-
-#mainOptions #mainOptions-title {
-  font-size: 2em;
-  font-weight: bold;
-  margin-bottom: 30px;
-  text-transform: uppercase;
-}
-
-#mainOptions .mode-picker {
-  width: auto;
-  height: auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -ms-flex-line-pack: start;
-      align-content: flex-start;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-}
-
-#mainOptions .mode-picker div {
-  padding: 3px;
-  height: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  margin-bottom: 5px;
-}
-
-#mainOptions .mode-picker #title {
-  width: 100%;
-  font-weight: bold;
-  font-size: 1.5em;
-}
-
-#mainOptions .mode-picker #buttons {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  margin-bottom: 20px;
-}
-
-#mainOptions .mode-picker #input input {
-  width: 50px;
-  height: 2rem;
-  border: 1px solid #ddd;
-  -webkit-appearance: textfield;
-     -moz-appearance: textfield;
-          appearance: textfield;
-  text-align: center;
-  border-radius: 3px;
-  font-size: 1em;
-}
-
-#mainOptions .mode-picker #input select {
-  height: 1.4rem;
-}
-
-#mainOptions .mode-picker #input button {
-  width: 1.6em;
-  height: 1.6em;
-  border-radius: 3px;
-  font-size: 1em;
-}
-
-#mainOptions .mode-picker #input button i {
-  position: relative;
-  left: -5px;
-  top: -4px;
-  font-size: 1.1em;
-  font-weight: bold;
-}
-
-#mainOptions .mode-picker button {
-  background: #eee;
-  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.35), 0px -1px 1px white;
-          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.35), 0px -1px 1px white;
-  border-radius: 3px;
-  border: 0px;
-  padding: 0.5em;
-  margin-left: 10px;
-  margin-right: 10px;
-  font-size: 1em;
-  color: #333;
-}
-
-#mainOptions .mode-picker button.selected {
-  -webkit-box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.3), inset 0px -1px 1px white;
-          box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.3), inset 0px -1px 1px white;
-}
-
 #playMorseInput {
   background: #ddd;
   width: 400px;
@@ -482,7 +479,6 @@ i[class*="ri-"] {
       -ms-flex-align: center;
           align-items: center;
   margin-bottom: 45px;
-  overflow: hidden;
 }
 
 #playMorseInput i:hover {
@@ -562,8 +558,18 @@ i[class*="ri-"] {
   width: 15%;
   margin: 5px;
   padding: 0.3em;
-  border: 1px solid #aaa;
-  border-radius: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  -webkit-transition: all 50ms ease-in-out;
+  transition: all 50ms ease-in-out;
+  background: #ddd;
+  border: 0px;
+  background: #eee;
+  -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.35), 0px -1px 1px white;
+          box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.35), 0px -1px 1px white;
+}
+
+#legend #legend-items .item span {
   -webkit-transition: all 50ms ease-in-out;
   transition: all 50ms ease-in-out;
 }
@@ -572,6 +578,7 @@ i[class*="ri-"] {
   -webkit-transform: scale(0.95);
           transform: scale(0.95);
   border-color: rgba(112, 128, 144, 0.6);
+  background: #ddd;
 }
 
 #legend #legend-items .item:active span:first-child {
@@ -580,6 +587,7 @@ i[class*="ri-"] {
 
 #legend #legend-items .item:hover {
   border-color: rgba(112, 128, 144, 0.6);
+  background: #ddd;
 }
 
 #legend #legend-items .item:hover span:first-child {
@@ -622,8 +630,8 @@ i[class*="ri-"] {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.35), 0px -1px 1px white;
-          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.35), 0px -1px 1px white;
+  -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.35), 0px -1px 1px white;
+          box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.35), 0px -1px 1px white;
   -webkit-transition: width 500ms ease-out, background 500ms ease-out, -webkit-transform 40ms ease-out, -webkit-box-shadow 40ms ease-out;
   transition: width 500ms ease-out, background 500ms ease-out, -webkit-transform 40ms ease-out, -webkit-box-shadow 40ms ease-out;
   transition: transform 40ms ease-out, box-shadow 40ms ease-out, width 500ms ease-out, background 500ms ease-out;
@@ -661,8 +669,8 @@ i[class*="ri-"] {
   font-weight: bold;
   width: 30px;
   height: 100px;
-  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.35), 0px -1px 1px white;
-          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.35), 0px -1px 1px white;
+  -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.35), 0px -1px 1px white;
+          box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.35), 0px -1px 1px white;
 }
 
 #morseButton button#left {
@@ -740,7 +748,7 @@ i[class*="ri-"] {
   width: 100%;
   height: 100%;
   z-index: 50;
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.75);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -776,7 +784,7 @@ i[class*="ri-"] {
   padding: 1.5rem;
   height: 250px;
   background: #fefefe;
-  margin-top: 150px;
+  margin-top: 30%;
   border-radius: 5px;
   -webkit-box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
           box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
@@ -800,8 +808,8 @@ i[class*="ri-"] {
 
 #challenge-overlay #challengeReady button {
   background: #eee;
-  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.35), 0px -1px 1px white;
-          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.35), 0px -1px 1px white;
+  -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.35), 0px -1px 1px white;
+          box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.35), 0px -1px 1px white;
   border-radius: 3px;
   border: 0px;
   padding: 0.3em;
@@ -943,8 +951,8 @@ i[class*="ri-"] {
   margin-bottom: 10px;
   margin-top: 25px;
   border-radius: 3px;
-  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.35), 0px -1px 1px white;
-          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.35), 0px -1px 1px white;
+  -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.35), 0px -1px 1px white;
+          box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.35), 0px -1px 1px white;
   font-size: 4rem;
   font-family: "Courier Prime", Courier, monospace;
   font-weight: bold;
@@ -986,6 +994,7 @@ i[class*="ri-"] {
 }
 
 #morseBufferDisplay {
+  background: #eee;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1012,30 +1021,24 @@ i[class*="ri-"] {
   position: absolute;
   display: inline-block;
   top: 0;
-  left: 0;
-  width: 100%;
+  left: calc(50% - 37.5%);
+  width: 600px;
   height: 100%;
-  z-index: 100;
+  z-index: 40;
 }
 
 #morseBufferDisplay #alphanumeric-container {
   text-align: center;
-  max-width: 100%;
-  min-width: 300px;
-  overflow: hidden;
+  max-width: 75%;
   display: inline-block;
+  overflow: hidden;
   padding-top: 10px;
 }
 
 #morseBufferDisplay #alphanumeric-container #alphanumeric {
-  background: #fdfdfd;
   height: 5rem;
-  width: 100%;
-  padding-left: 5px;
-  padding-right: 5px;
   padding-top: 0.45rem;
   font-size: 4rem;
-  min-width: 4rem;
   margin-bottom: 10px;
   border-radius: 3px;
   float: right;
@@ -1043,7 +1046,8 @@ i[class*="ri-"] {
 
 #morseBufferDisplay #ditDahs-container {
   text-align: center;
-  max-width: 100%;
+  max-width: 75%;
+  display: inline-block;
   overflow: hidden;
 }
 
@@ -1207,9 +1211,9 @@ i[class*="ri-"] {
 }
 
 #morseHistory-textbox {
-  background: #ddd;
+  background: #f8f8f8;
   border-radius: 5px;
-  min-height: 2em;
+  min-height: 4em;
   width: 80%;
   max-width: 500px;
   padding: 0.5em;

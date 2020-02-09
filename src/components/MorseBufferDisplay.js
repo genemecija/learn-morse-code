@@ -29,6 +29,7 @@ export default React.memo(function MorseBufferDisplay() {
 
     return (
         <div id="morseBufferDisplay">
+            <div id="overlay"></div>
             <div id="ditDahs-container">
                 <div id="ditDahs">
                     {ditDahs}

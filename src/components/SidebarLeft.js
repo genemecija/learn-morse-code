@@ -41,18 +41,19 @@ export default (function SidebarLeft() {
                     <div id="nav-legend" className="nav-item" onClick={navClicked}>
                         Legend
                     </div>
-                    <div id="nav-options" className="nav-item" onClick={navClicked}>
-                        Options
-                    </div>
                 </div>
 
-                <div id="info-icon" onClick={toggleLeft}><i class="ri-information-line"></i></div>
+                <div id="info-icon" onClick={toggleLeft}><i className="ri-information-line"></i></div>
                 
                 <div id='sidebar-content'>
                     {sidebarContent === 'nav-learn' && <Info />}
-                    {sidebarContent === 'nav-legend' && <div id="playerAndLegend"><PlayMorseInput /><Legend /></div>}
-                    {sidebarContent === 'nav-options' && <Options />  }
-                    
+                    {sidebarContent === 'nav-legend' && 
+                        <div id="playerAndLegend">
+                            <Legend />
+                            <span id="note">Adjust the Morse code speed by changing the WPM in the Options menu.</span>
+                            <PlayMorseInput />
+                        </div>
+                    }
                 </div>
             </div>
         </div>

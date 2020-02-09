@@ -50,7 +50,7 @@ export default (function PlayMorseInput() {
                     <h2>Translate To Morse</h2>
                 </div>
                 <div id="input">
-                    <input type="text" id='morseInput' value={inputValue} onChange={handleChange} placeholder="Type here." maxLength="25"/> Listen <i className="ri-volume-up-fill" onClick={handlePlay}></i>
+                    <input type="text" id='morseInput' value={inputValue} onChange={handleChange} placeholder="Type here." maxLength="25"/> <i className="ri-volume-up-fill" onClick={handlePlay}></i>
                 </div>
                 <div id="morseTranslation">
                     <span id="morseTrans">

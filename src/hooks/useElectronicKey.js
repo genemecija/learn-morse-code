@@ -3,14 +3,16 @@ import {MorseBufferContext} from '../contexts/morseBufferContext'
 import config from '../config.json'
 import { WPMContext } from '../contexts/wpmContext'
 import { GameModeContext } from '../contexts/gameModeContext'
+import { FrequencyContext } from '../contexts/frequencyContext'
 
 // ELECTRONIC KEY TELEGRAPH - Iambic A
 
 function useElectronicKey() {
-    console.log('useElectronicKey');
+
     const {morseCharBuffer, setMorseCharBuffer, morseWords, setMorseWords} = useContext(MorseBufferContext)
     const {wpm} = useContext(WPMContext)
     const {gameMode} = useContext(GameModeContext)
+    const {frequency} = useContext(FrequencyContext)
 
     let ditMaxTime = 1200/wpm
     
@@ -62,7 +64,7 @@ function useElectronicKey() {
     } else {
         context = null
     }
-    let frequency = config.frequency
+    // let frequency = config.frequency
 
     
     let toneTimer = 0
@@ -239,8 +241,13 @@ function useElectronicKey() {
         
         paddlesReleasedSimultaneously = false
 
-        if ((event.keyCode === 188 || event.keyCode === 190) && document.activeElement.id === 'morseInput') {
-            return
+        if (event.keyCode === 188 || event.keyCode === 190) {
+            if (document.activeElement.id === 'morseInput') {
+                return
+            } else if (document.activeElement.tagName.toLowerCase() !== 'body') {
+                event.preventDefault()
+                document.activeElement.blur()
+            }
         }
         if (event.repeat) { return }
 
@@ -363,7 +370,7 @@ function useElectronicKey() {
             // clearHistory()
         }
         // eslint-disable-next-line
-    }, [wpm, gameMode])
+    }, [wpm, gameMode, frequency])
 
     useEffect(() => {
         // PRACTICE MODE

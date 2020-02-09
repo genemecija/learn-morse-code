@@ -5,9 +5,8 @@ import ChallengeBufferDisplay from "./ChallengeBufferDisplay";
 // import ChallengeWord from "./ChallengeWord";
 
 function ChallengeDisplay(props) {
-    console.log('props.buffer:', props.buffer, '|END');
+
     let morseLetters = props.buffer.split('_').filter(l => l !== '')
-    console.log('morseLetters:', morseLetters, morseLetters.length);
     let challengeLetters = props.word.split('')
     let correctIndexes = []
     let incorrectIndex = null

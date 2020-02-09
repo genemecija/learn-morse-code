@@ -7,8 +7,7 @@ export default (function Options() {
     return (
         <div id="mainOptions">
             <div id="mainOptions-title">Options</div>
-            <KeyTypePicker />
-            <WordsPerMinute />
+            
         </div>
     )
 })

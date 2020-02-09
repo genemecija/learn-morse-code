@@ -28,7 +28,7 @@ export default React.memo(function WordListPicker() {
     }
 
     let wordLists = ['alphabet', 'numbers', 'common100', 'test', 'short']
-    let options = wordLists.map(wl => (<option value={wl}>{wl.substr(0,1).toUpperCase() + wl.substr(1)}</option>))
+    let options = wordLists.map((wl, index) => (<option value={wl} key={index}>{wl.substr(0,1).toUpperCase() + wl.substr(1)}</option>))
 
     return (
         <div id="challengeOptions">
