@@ -878,7 +878,7 @@ $button-radius: 50px;
         z-index: -100;
     }
     
-    #challengeReady {
+    #challengeReady, #challengeComplete {
         position: relative;
         // width: 400px;
         display: flex;
@@ -906,7 +906,6 @@ $button-radius: 50px;
         &.starting {
             justify-content: center;
         }
-
         button {
             background: $main-bg-color-light;
             box-shadow: $main-box-shadow-light;
@@ -919,7 +918,7 @@ $button-radius: 50px;
             font-size: 0.75em;
             color: $main-font-color-light;
             max-width: 250px;
-            &#startChallenge {
+            &#startChallenge, &#continue {
                 font-size: 1.2em;
                 font-weight: bold;
                 padding: 0.3em;
@@ -1054,7 +1053,7 @@ $button-radius: 50px;
 
 #morseBufferDisplay {
     // border: 1px solid green;
-    background: #eee;
+    // background: #eee;
     display: flex;
     justify-content: center;
     flex-direction: column-reverse;
@@ -1069,7 +1068,7 @@ $button-radius: 50px;
 
     #overlay {
         // background: blue;
-        box-shadow: inset 20px 0px 20px -5px #eee;
+        box-shadow: inset 20px 0px 20px -5px #fff;
         position: absolute;
         display: inline-block;
         top:0;

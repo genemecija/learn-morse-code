@@ -4,7 +4,7 @@ export default (function ChallengeControls(props) {
 
     return (
         <div id="challengeControls">
-            <button onClick={props.stopChallenge}>Exit</button>
+            <button onClick={props.cancelChallenge}>Exit</button>
         </div>
     )
 })

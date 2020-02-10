@@ -1,60 +1,45 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext} from 'react';
 import '../css/App.css';
 import morseCode from '../data/morse-reverse.json'
 import ChallengeWord from '../components/ChallengeWord'
 import ChallengeBufferDisplay from '../components/ChallengeBufferDisplay';
 import { MorseBufferContext } from '../contexts/morseBufferContext';
 import { WordFeederContext } from '../contexts/wordFeederContext';
-import { WordListPickerContext } from '../contexts/wordListPickerContext';
 import GameClock from '../components/GameClock';
 import { GameClockContext } from '../contexts/gameClockContext';
 import { KeyTypeContext } from '../contexts/keyTypeContext';
 import StraightKey from '../components/StraightKey';
 import ElectronicKey from '../components/ElectronicKey';
 import ChallengeControls from '../components/ChallengeControls';
+import { ChallengeContext } from '../contexts/challengeContext';
 
 
 export default React.memo(function ChallengeMode(props) {
 
-    
-    const {stopGameClock, clockIsRunning, intervals} = useContext(GameClockContext)
-    const {word, getNextWord, resetFeeder} = useContext(WordFeederContext)
+    console.log('CHALLENGE MODE');
+    const {word, getNextWord} = useContext(WordFeederContext)
+    const {clockIsRunning} = useContext(GameClockContext)
     const {morseCharBuffer, setMorseCharBuffer} = useContext(MorseBufferContext)
     const {keyType} = useContext(KeyTypeContext)
+    const {completeChallenge, cancelChallenge} = useContext(ChallengeContext)
     
-    const [challengeStarted, setChallengeStarted] = useState(false)
     let morseArray = morseCharBuffer.split('_').filter(l => l !== '')
     let challengeWordClass = ''
     
-    
     let correctCharIndexes = [] // Indexes of correct letters in Challenge Word
-    // let incorrectCharIndex = null
     let incorrectMorseIndexes = [] // Indexes of incorrect morse characters in morse character buffer
     
     let offset = 0
+    let challengeLetters
 
-
-    if (!word) {
-        console.log('FINISHED ALL WORDS!')
-        stopChallenge()
-
-        // Show a card showing challenge completion stats and option to restart word list
-        try { alert(`Time: ${document.getElementById('gameClock').innerText}`) }
-        catch { return }
-        return
+    // If no more words in wordlist, feeder returns first word in an array
+    if (typeof word === 'object') {
+        completeChallenge()
+        challengeLetters = word[0].split('')
     }
-
-    function stopChallenge() {
-        stopGameClock()
-        for (let i = 0; i < intervals.length; i++) {
-            clearInterval(intervals[i]);
-        }
-        resetFeeder()
+    else {
+        challengeLetters = word.split('')
     }
-    
-    
-    let challengeLetters = word.split('')
-
 
     // Iterate through the morse character buffer and compare with each letter of challenge word
     morseArray.forEach((item, index) => {        
@@ -103,6 +88,7 @@ export default React.memo(function ChallengeMode(props) {
             setMorseCharBuffer('')
             morseArray = []
             incorrectMorseIndexes = []
+            correctCharIndexes = []
             offset = 0
         }, 800)
         setTimeout(() => {
@@ -121,8 +107,8 @@ export default React.memo(function ChallengeMode(props) {
             {clockIsRunning ? (keyType === "straight" ?
                 <StraightKey /> : <ElectronicKey />) : <></>
             }
-            <ChallengeControls stopChallenge={stopChallenge} />
-            <GameClock stopChallenge={stopChallenge}/>
+            <ChallengeControls cancelChallenge={cancelChallenge} />
+            <GameClock />
             <ChallengeWord className={challengeWordClass} word={word} />
             <ChallengeBufferDisplay morseArray={morseArray} incorrectMorseIndexes={incorrectMorseIndexes} />
         </>

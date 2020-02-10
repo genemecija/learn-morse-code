@@ -20,7 +20,8 @@ function GameClockContextProvider(props) {
                         stopGameClock()
                         return
                     }
-                    document.getElementById('gameClock').innerText = Number(document.getElementById('gameClock').innerText) + 1
+                    setGameClockTime(prev => prev + 1)
+                    // document.getElementById('gameClock').innerText = Number(gameClockTime) //Number(document.getElementById('gameClock').innerText) + 1
                 }, 1000))
             ])
         }

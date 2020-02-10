@@ -3,21 +3,27 @@ import {GameModeContext} from "../contexts/gameModeContext"
 import { MorseBufferContext } from "../contexts/morseBufferContext"
 import { WordFeederContext } from "../contexts/wordFeederContext"
 import { GameClockContext } from "../contexts/gameClockContext"
+import { ChallengeContext } from "../contexts/challengeContext"
 
 function ModePicker() {
 
     const {setGameMode} = useContext(GameModeContext)
     const {setMorseCharBuffer} = useContext(MorseBufferContext)
     const {resetFeeder} = useContext(WordFeederContext)
-    const {stopGameClock, clockIsRunning} = useContext(GameClockContext)
+    const {stopGameClock, setGameClockTime, clockIsRunning} = useContext(GameClockContext)
+    const {setChallengeState} = useContext(ChallengeContext)
 
     function handleClick(e) {
         setMorseCharBuffer('')
         resetFeeder()
+        setChallengeState('ready')
 
         setGameMode(e.target.id)
 
-        if (clockIsRunning) { stopGameClock() }
+        if (clockIsRunning) { 
+            stopGameClock()
+            setGameClockTime(0)
+        }
 
         let buttons = document.querySelector(".mode-picker#gameMode #buttons").childNodes
         buttons.forEach(button => {

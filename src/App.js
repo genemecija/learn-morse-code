@@ -9,6 +9,7 @@ import { GameClockContextProvider } from './contexts/gameClockContext';
 import { WPMContextProvider } from './contexts/wpmContext';
 import { FrequencyContextProvider } from './contexts/frequencyContext';
 import { KeyTypeContextProvider } from './contexts/keyTypeContext';
+import { ChallengeContextProvider } from './contexts/challengeContext';
 
 import PracticeMode from './app-modes/PracticeMode';
 import ChallengeMode from './app-modes/ChallengeMode'
@@ -40,6 +41,7 @@ export default React.memo(function App() {
                 <WordListPickerContextProvider>
                 <WordFeederContextProvider>
                 <GameClockContextProvider>
+                <ChallengeContextProvider>
                     <SidebarLeft />
                     <div id="main-interface">
                         <div id="mainOptions">
@@ -80,6 +82,7 @@ export default React.memo(function App() {
                         <div id="settings-icon" onClick={toggleRight}><i class="ri-settings-3-line"></i></div>
                         
                     </div> */}
+                </ChallengeContextProvider>
                 </GameClockContextProvider>
                 </WordFeederContextProvider>
                 </WordListPickerContextProvider>

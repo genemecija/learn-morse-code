@@ -766,7 +766,7 @@ i[class*="ri-"] {
   z-index: -100;
 }
 
-#challenge-overlay #challengeReady {
+#challenge-overlay #challengeReady, #challenge-overlay #challengeComplete {
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -790,23 +790,23 @@ i[class*="ri-"] {
           box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
 }
 
-#challenge-overlay #challengeReady #message {
+#challenge-overlay #challengeReady #message, #challenge-overlay #challengeComplete #message {
   font-size: 2em;
   font-weight: bold;
 }
 
-#challenge-overlay #challengeReady #count {
+#challenge-overlay #challengeReady #count, #challenge-overlay #challengeComplete #count {
   font-size: 4.5em;
   font-weight: bold;
 }
 
-#challenge-overlay #challengeReady.starting {
+#challenge-overlay #challengeReady.starting, #challenge-overlay #challengeComplete.starting {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
 }
 
-#challenge-overlay #challengeReady button {
+#challenge-overlay #challengeReady button, #challenge-overlay #challengeComplete button {
   background: #eee;
   -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.35), 0px -1px 1px white;
           box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.35), 0px -1px 1px white;
@@ -820,18 +820,18 @@ i[class*="ri-"] {
   max-width: 250px;
 }
 
-#challenge-overlay #challengeReady button#startChallenge {
+#challenge-overlay #challengeReady button#startChallenge, #challenge-overlay #challengeReady button#continue, #challenge-overlay #challengeComplete button#startChallenge, #challenge-overlay #challengeComplete button#continue {
   font-size: 1.2em;
   font-weight: bold;
   padding: 0.3em;
 }
 
-#challenge-overlay #challengeReady button.selected {
+#challenge-overlay #challengeReady button.selected, #challenge-overlay #challengeComplete button.selected {
   -webkit-box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.3), inset 0px -1px 1px white;
           box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.3), inset 0px -1px 1px white;
 }
 
-#challenge-overlay #challengeReady #challengeOptions {
+#challenge-overlay #challengeReady #challengeOptions, #challenge-overlay #challengeComplete #challengeOptions {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -847,7 +847,7 @@ i[class*="ri-"] {
           align-items: flex-start;
 }
 
-#challenge-overlay #challengeReady #challengeOptions .mode-picker {
+#challenge-overlay #challengeReady #challengeOptions .mode-picker, #challenge-overlay #challengeComplete #challengeOptions .mode-picker {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -858,12 +858,12 @@ i[class*="ri-"] {
           justify-content: flex-start;
 }
 
-#challenge-overlay #challengeReady #challengeOptions .mode-picker div {
+#challenge-overlay #challengeReady #challengeOptions .mode-picker div, #challenge-overlay #challengeComplete #challengeOptions .mode-picker div {
   padding: 5px;
   height: 2.4em;
 }
 
-#challenge-overlay #challengeReady #challengeOptions .mode-picker div#title {
+#challenge-overlay #challengeReady #challengeOptions .mode-picker div#title, #challenge-overlay #challengeComplete #challengeOptions .mode-picker div#title {
   font-weight: bold;
   font-size: 1.08em;
   height: 100%;
@@ -879,7 +879,7 @@ i[class*="ri-"] {
           align-items: center;
 }
 
-#challenge-overlay #challengeReady #challengeOptions .mode-picker div#buttons {
+#challenge-overlay #challengeReady #challengeOptions .mode-picker div#buttons, #challenge-overlay #challengeComplete #challengeOptions .mode-picker div#buttons {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -891,7 +891,7 @@ i[class*="ri-"] {
           align-items: center;
 }
 
-#challenge-overlay #challengeReady #challengeOptions .mode-picker div#input {
+#challenge-overlay #challengeReady #challengeOptions .mode-picker div#input, #challenge-overlay #challengeComplete #challengeOptions .mode-picker div#input {
   margin-left: 10px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -901,7 +901,7 @@ i[class*="ri-"] {
           align-items: center;
 }
 
-#challenge-overlay #challengeReady #challengeOptions .mode-picker div#input input {
+#challenge-overlay #challengeReady #challengeOptions .mode-picker div#input input, #challenge-overlay #challengeComplete #challengeOptions .mode-picker div#input input {
   width: 50px;
   -webkit-appearance: textfield;
      -moz-appearance: textfield;
@@ -913,17 +913,17 @@ i[class*="ri-"] {
   font-size: 0.75em;
 }
 
-#challenge-overlay #challengeReady #challengeOptions .mode-picker div#input select {
+#challenge-overlay #challengeReady #challengeOptions .mode-picker div#input select, #challenge-overlay #challengeComplete #challengeOptions .mode-picker div#input select {
   height: 1.4rem;
 }
 
-#challenge-overlay #challengeReady #challengeOptions .mode-picker div#input button {
+#challenge-overlay #challengeReady #challengeOptions .mode-picker div#input button, #challenge-overlay #challengeComplete #challengeOptions .mode-picker div#input button {
   width: 20px;
   height: 20px;
   border-radius: 3px;
 }
 
-#challenge-overlay #challengeReady #challengeOptions .mode-picker div#input button i {
+#challenge-overlay #challengeReady #challengeOptions .mode-picker div#input button i, #challenge-overlay #challengeComplete #challengeOptions .mode-picker div#input button i {
   position: relative;
   left: -1px;
   font-size: 1.1em;
@@ -994,7 +994,6 @@ i[class*="ri-"] {
 }
 
 #morseBufferDisplay {
-  background: #eee;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1016,8 +1015,8 @@ i[class*="ri-"] {
 }
 
 #morseBufferDisplay #overlay {
-  -webkit-box-shadow: inset 20px 0px 20px -5px #eee;
-          box-shadow: inset 20px 0px 20px -5px #eee;
+  -webkit-box-shadow: inset 20px 0px 20px -5px #fff;
+          box-shadow: inset 20px 0px 20px -5px #fff;
   position: absolute;
   display: inline-block;
   top: 0;

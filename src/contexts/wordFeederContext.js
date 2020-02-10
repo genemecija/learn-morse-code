@@ -4,17 +4,29 @@ const WordFeederContext = React.createContext()
 
 function WordFeederContextProvider(props) {
     // let wordList = ['hi', 'morse', 'code', 'hello', 'gene']
-    const {wordList, wordListShuffled, wordListCategory} = useContext(WordListPickerContext)
+    const {wordList, wordListShuffled} = useContext(WordListPickerContext)
 
     const [wordIndex, setWordIndex] = useState(0)
     const [order, setOrder] = useState('sequential')
-    let word
+    let word 
 
     if (order === 'sequential') {
-        word = wordList[wordIndex]
+        // word = wordList[wordIndex]
+        if (wordList[wordIndex] === undefined) {
+            word = [wordList[0]]
+        }
+        else {
+            word = wordList[wordIndex]
+        }
     }
     else if (order === 'random') {
-        word = wordListShuffled[wordIndex]
+        // word = wordListShuffled[wordIndex]
+        if (wordListShuffled[wordIndex] === undefined) {
+            word = [wordListShuffled[0]]
+        }
+        else {
+            word = wordListShuffled[wordIndex]
+        }
     }
 
     function resetFeeder() {
@@ -22,14 +34,20 @@ function WordFeederContextProvider(props) {
     }
     
     function getNextWord() {
-        if (order === 'sequential') {
-            setWordIndex(prev => prev + 1)
-            word = wordList[wordIndex] || null
-        } else if (order === 'random') {
-            setWordIndex(prev => prev + 1)
-            word = wordListShuffled[wordIndex] || null
-        }
+        setWordIndex(prev => prev + 1)
+        // if (order === 'sequential') {
+        // } else if (order === 'random') {
+        //     setWordIndex(prev => prev + 1)
+        //     if (wordListShuffled[wordIndex] === undefined) {
+        //         alert('NULL2')
+        //         word = '!end'
+        //     }
+        //     else {
+        //         word = wordListShuffled[wordIndex]
+        //     }
+        // }
     }
+    
 
     return (
         <WordFeederContext.Provider value={{word: word, getNextWord: getNextWord, resetFeeder: resetFeeder, setOrder: setOrder}}>

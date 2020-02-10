@@ -6,7 +6,13 @@ export default React.memo(function ChallengeWord(props) {
     let challengeWordClass= props.className
     const {word} = useContext(WordFeederContext)
 
-    let challengeLetters = word.split('')
+    let challengeLetters
+    if (typeof word === 'object') {
+        challengeLetters = word[0].split('')
+    }
+    else {
+        challengeLetters = word.split('')
+    }
 
     let spannedWord = challengeLetters.map((letter,index) => {
         return (
