@@ -5,18 +5,18 @@ import { ChallengeContext } from "../contexts/challengeContext"
 export default (function ChallengeComplete(props) {
 
     const {gameClockTime} = useContext(GameClockContext)
-    const {cancelChallenge} = useContext(ChallengeContext)
+    const {setChallengeState} = useContext(ChallengeContext)
 
     function _continue() {
         // setGameClockTime(0)
         // props.setChallengeState('ready')
-        cancelChallenge()
+        setChallengeState('ready')
     }
 
     return (
         <div id="challengeComplete" className="notify">
-            <h2>Challenge Complete</h2>
-            Challenge completed in {gameClockTime} seconds!
+            <span id="notify-title">Challenge Complete</span>
+            <span id="message">Challenge completed in {gameClockTime} seconds!</span>
             <button id="continue" onClick={_continue}>Continue</button>
 
         </div>

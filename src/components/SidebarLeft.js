@@ -18,7 +18,7 @@ export default (function SidebarLeft() {
         } else if (e.target.id === 'nav-legend') {
             setSidebarContent('nav-legend')
         } else {
-            setSidebarContent('nav-options')
+            setSidebarContent('nav-play')
         }
         let navItems = document.querySelector(".navbar").childNodes
 
@@ -35,6 +35,9 @@ export default (function SidebarLeft() {
         <div className="sidebar" id="left">
             <div id="sidebar-container">
                 <div className="navbar">
+                    <div id="nav-play" className="nav-item" onClick={navClicked}>
+                        Play
+                    </div>
                     <div id="nav-learn" className="nav-item selected" onClick={navClicked}>
                         Learn
                     </div>

@@ -1,9 +1,9 @@
 import React, { useContext } from "react"
 import { WordFeederContext } from "../contexts/wordFeederContext"
+import { ChallengeContext } from "../contexts/challengeContext"
 
 export default React.memo(function ChallengeWord(props) {
 
-    let challengeWordClass= props.className
     const {word} = useContext(WordFeederContext)
 
     let challengeLetters
@@ -21,6 +21,6 @@ export default React.memo(function ChallengeWord(props) {
     })
 
     return (
-        <div id="challengeWord" className={challengeWordClass}>{spannedWord}</div>
+        <div id="challengeWord" className={props.challengeWordClass}>{spannedWord}</div>
     )
 })

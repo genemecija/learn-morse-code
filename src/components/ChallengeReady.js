@@ -8,7 +8,7 @@ export default (function ChallengeReady() {
 
     return (
         <div id="challengeReady" className="notify">
-            <h2>Challenge Options</h2>
+            <span id="notify-title">Challenge Options</span>
             <WordListPicker />
             <button id="startChallenge" onClick={startChallenge}>Start Challenge</button>
         </div>

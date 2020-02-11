@@ -29,12 +29,19 @@ export default React.memo(function WordListPicker() {
 
     let wordLists = ['alphabet', 'numbers', 'common100', 'test', 'short']
     let options = wordLists.map((wl, index) => (<option value={wl} key={index}>{wl.substr(0,1).toUpperCase() + wl.substr(1)}</option>))
+    const metadata = {
+        'alphabet': {description: 'Each letter of the alphabet', count: 26},
+        'numbers': {description: '0-9', count: 10},
+        'common100': {description: '100 most common words', count: 100},
+        'test': {description: 'A test list', count: 5},
+        'short': {description: 'A short list', count: 1}
+    }
 
     return (
         <div id="challengeOptions">
             <div id="wordListPicker" className="mode-picker">
                 <div id="title">
-                    Word List
+                    Word List:
                 </div>
                 <div id="input">
                     <select id="wordlist-picker" defaultValue={wordListCategory} onChange={handleClick}>
@@ -42,9 +49,10 @@ export default React.memo(function WordListPicker() {
                     </select>
                 </div>
             </div>
+
             <div id="wordOrderPicker" className="mode-picker">
                 <div id="title">
-                    Word Order
+                    Word Order:
                 </div>
                 <div id="buttons">
                     <button id="sequential" className="selected" onClick={handleClick}>
@@ -53,6 +61,23 @@ export default React.memo(function WordListPicker() {
                     <button id="random" onClick={handleClick}>
                         Random
                     </button>
+                </div>
+            </div>
+
+            <div id="wordlist-description" className="mode-picker">
+                <div id="title">
+                    Description:
+                </div>
+                <div id="info">
+                    {metadata[wordListCategory]['description']}
+                </div>
+            </div>
+            <div id="wordlist-count" className="mode-picker">
+                <div id="title">
+                    # of List Items:
+                </div>
+                <div id="info">
+                    {metadata[wordListCategory]['count']}
                 </div>
             </div>
         </div>

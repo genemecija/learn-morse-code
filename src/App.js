@@ -40,8 +40,8 @@ export default React.memo(function App() {
                 <MorseBufferContextProvider>
                 <WordListPickerContextProvider>
                 <WordFeederContextProvider>
-                <GameClockContextProvider>
                 <ChallengeContextProvider>
+                <GameClockContextProvider>
                     <SidebarLeft />
                     <div id="main-interface">
                         <div id="mainOptions">
@@ -82,8 +82,8 @@ export default React.memo(function App() {
                         <div id="settings-icon" onClick={toggleRight}><i class="ri-settings-3-line"></i></div>
                         
                     </div> */}
-                </ChallengeContextProvider>
                 </GameClockContextProvider>
+                </ChallengeContextProvider>
                 </WordFeederContextProvider>
                 </WordListPickerContextProvider>
                 </MorseBufferContextProvider>

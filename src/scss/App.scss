@@ -141,6 +141,7 @@ html, body {
                 // margin-top: 450px;
                 // box-shadow: inset 0px 3px 3px rgba(0,0,0,0.3);
     
+                
                 .nav-item {
                     // border: 1px solid black;
                     padding: 10px;
@@ -161,6 +162,9 @@ html, body {
                     }
                     &.selected {
                         border-color: rgb(80, 128, 144);
+                    }
+                    &#nav-play {
+                        display: none;
                     }
                 }
             }
@@ -220,7 +224,7 @@ html, body {
                     height: fit-content;
                     padding: 2.5em;
                     font-family: $main-font;
-                    font-size: 0.9rem;
+                    font-size: 1.2rem;
                     line-height: 1.5em;
                     opacity: 100%;
                     // overflow-y: scroll;
@@ -545,30 +549,44 @@ i[class*="ri-"] {
 }
 
 
-
 #playMorseInput {
+    // border: 1px solid #bbb;
     background: #ddd;
     width: 400px;
     height: 10em;
     padding: 1em;
-    // border: 1px solid #bbb;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    // justify-content: center;
     margin-bottom: 45px;
     // overflow: hidden;
 
-    i:hover {
-        color: goldenrod;
-    }
-    #input input {
-        padding-left: 3px;
-        border-radius: 3px;
-        border: 1px solid #ddd;
-        height: 1.5rem;
-        font-size: 0.9em;
-        width: 70%;
+    
+    #input {
+        // border: 1px solid red;
+        display: flex;
+        align-items: center;
+        width: auto;
+
+        i {
+            // background: blue;
+            font-size: 1.3em;
+            display: inline-block;
+            
+            &:hover {
+                color: goldenrod;
+            }
+        }
+        input {
+            padding-left: 3px;
+            border-radius: 3px;
+            border: 1px solid #ddd;
+            height: 1.5rem;
+            font-size: 0.9em;
+            width: auto;
+        }
     }
 
     #morseTrans {
@@ -692,6 +710,9 @@ i[class*="ri-"] {
 $button-diameter: 100px;
 $button-radius: 50px;
 #morseButton {
+    
+    touch-action: manipulation; // Disable double-tap to zoom on mobile devices
+
     width: $button-diameter;
     height: $button-diameter;
     margin-top: 30px;
@@ -886,18 +907,24 @@ $button-radius: 50px;
         justify-content: space-evenly;
         align-items: center;
 
-        // width: 400px;
-        padding: 1.5rem;
-        height: 250px;
-        // background: $main-bg-color-light;
-        background: #fefefe;
-        margin-top: 30%;
+        width: 45%;
+        padding: 1.7em;
+        height: 40%;
+        background: $main-bg-color-light;
+        // background: #fefefe;
+        margin-top: 25%;
         border-radius: 5px;
         box-shadow: 0px 5px 15px rgba(0,0,0,0.5);
+        border: 3px solid #666;
 
-        #message {
-            font-size: 2em;
+        #notify-title {
+            font-size: 2.5em;
             font-weight: bold;
+        }
+        #message {
+            display: inline-block;
+            text-align: center;
+            font-size: 1.7em;
         }
         #count {
             font-size: 4.5em;
@@ -917,41 +944,55 @@ $button-radius: 50px;
     
             font-size: 0.75em;
             color: $main-font-color-light;
-            max-width: 250px;
+            // max-width: 250px;
             &#startChallenge, &#continue {
-                font-size: 1.2em;
+                width: 100%;
+                font-size: 1.7em;
                 font-weight: bold;
                 padding: 0.3em;
+                background: #666;
+                color: goldenrod;
+                text-transform: uppercase;
+                letter-spacing: 0.3rem;
+                
+                // &:hover {
+                //     text-shadow: 0px 0px 7px rgba(255,255,255,0.3);
+                // }
+                &:active {
+                    transform: translateY(3px);
+                    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
+                }
             }
             &.selected {
                 box-shadow: $main-box-shadow-light-selected;
             }
         }
         #challengeOptions {
+            // border: 1px solid blue;
+            width: 100%;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
-            align-items: flex-start;
-            // border: 1px solid blue;
+            align-items: center;
 
             .mode-picker {
                 // border: 1px solid green;
-                // width: 300px;
+                width: 90%;
                 display: flex;
-                // align-self: flex-start;s
                 align-content: center;
                 justify-content: flex-start;
-        
+
                 div {
                     padding: 5px;
                     height: 2.4em;
                 }
         
                 div#title {
-                    font-weight: bold;
-                    font-size: 1.08em;
                     // border: 1px solid red;
+                    font-weight: bold;
+                    font-size: 1.4em;
                     height: 100%;
+                    // width: 40%;
                     display: flex;
                     padding-left: 0px;
                     justify-content: flex-start;
@@ -962,41 +1003,89 @@ $button-radius: 50px;
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
+                    height: 100%;
+
+                    button {
+                        font-size: 1rem;
+                        // &:hover {
+                        //     color: goldenrod;
+                        // }
+                        // &:active {
+                        //     box-shadow: $main-box-shadow-light-selected;
+                        // }
+                    }
+                }
+                div#info {
+                    // border: 1px solid black;
+                    display: flex;
+                    align-items: center;
+                    font-size: 1.2em;
+                    height: 100%;
                 }
                 div#input {
                     margin-left: 10px;
+                    margin-top: 0.25em;
                     display: flex;
                     align-items: center;
-                    input {
-                        width: 50px;
-                        appearance: textfield;
-                        text-align: center;
-                        border-radius: 3px;
-                        border: 1px solid #ddd;
-                        height: 1.3rem;
-                        font-size: 0.75em;
-                    }
+                    justify-content: center;
+
                     select {
-                        height: 1.4rem;
+                        height: auto;
+                        // padding: 5px;
+                        font-size: 1rem;
                     }
-                    button {
-                        width: 20px;
-                        height: 20px;
-                        border-radius: 3px;
-                        // line-height: 10px;
-                        i {
-                            position: relative;
-                            left: -1px;
-                            // top: -2px;
-                            font-size: 1.1em;
-                            font-weight: bold;
-                        }
-                    }
+
+                    // input {
+                    //     width: 50px;
+                    //     appearance: textfield;
+                    //     text-align: center;
+                    //     border-radius: 3px;
+                    //     border: 1px solid #ddd;
+                    //     height: 1.3rem;
+                    //     font-size: 0.75em;
+                    // }
+                    
+                    // button {
+                    //     width: 20px;
+                    //     height: 20px;
+                    //     border-radius: 3px;
+                    //     // line-height: 10px;
+                    //     i {
+                    //         position: relative;
+                    //         left: -1px;
+                    //         // top: -2px;
+                    //         font-size: 1.1em;
+                    //         font-weight: bold;
+                    //     }
+                    // }
                 }
             }
         }
     }
         
+}
+
+#challenge-header {
+    width: 100%;
+    padding: 1em;
+    display: flex;
+    justify-content: space-between;
+
+    #gameClock {
+        font-size: 1.3em;
+    }
+    #challengeControls {
+        button {    
+            border: 0px;
+            border-radius: 5px;
+            padding: 0.3em;
+            font-size: 1.2em;
+            color: #555;
+            &:hover {
+                color: maroon;
+            }
+        }
+    }
 }
 
 #challengeWord {
@@ -1276,30 +1365,37 @@ $button-radius: 50px;
 //     font-family: 'Verdana';
 //     font-size: 1.5em;
 // }
-
-#morseHistory-textbox {
-    // border: 1px solid cyan;
-    background: #f8f8f8;
-    border-radius: 5px;
-    min-height: 4em;
+#morse-history {
+    // border: 1px solid blue;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
     width: 80%;
     max-width: 500px;
-    padding: 0.5em;
-    font-family: Courier;
-    font-size: 1.5rem;
-    display: flex;
-    align-content: flex-start;
-    flex-wrap: wrap;
-
-    span {
-        margin: 5px;
-        background: #fdfdfd;
-        height: 1.5rem;
-        padding: 4px;
-        padding-top: 0px;
-        padding-bottom: 0px;
-        border-radius: $main-border-radius;
-        box-shadow: $main-box-shadow-dark;
+    #morseHistory-textbox {
+        // border: 1px solid cyan;
+        background: #f8f8f8;
+        border-radius: 5px;
+        min-height: 4em;
+        width: 100%;
+        padding: 0.5em;
+        font-family: Courier;
+        font-size: 1.5rem;
+        display: flex;
+        align-content: flex-start;
+        flex-wrap: wrap;
+    
+        span {
+            margin: 5px;
+            background: #fdfdfd;
+            height: 1.5rem;
+            padding: 4px;
+            padding-top: 0px;
+            padding-bottom: 0px;
+            border-radius: $main-border-radius;
+            box-shadow: $main-box-shadow-dark;
+        }
     }
 }
 
@@ -1422,6 +1518,328 @@ $button-radius: 50px;
             width: 3px;
             margin-left: 4px;
             margin-right: 4px;
+        }
+    }
+}
+
+
+// @media screen and (max-width: 415px) {
+@media only screen and (max-width: 415px) {
+
+    html, body, #root, #main-interface {
+        width: 100vw;
+        overflow: hidden;
+    }
+    #header {
+        font-size: 2.1em;
+        line-height: 1.2em;
+        height: auto;
+    }
+    #playerAndLegend {
+        // border: 1px solid blue;
+        padding: 0 !important;
+        overflow-x: hidden;
+        width: 100vw;
+        #legend {
+            // margin-left: 2em;
+            width: 100vw;
+        }
+    }
+
+    #legend {
+        margin-top: 0px;
+        // width: 100%;
+        // border: 1px solid orange;
+        
+        background: $main-bg-color-light;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+    
+        #legend-title {
+            // border: 1px solid purple;
+            margin-left: 0em;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 0.3em;
+        }
+        #legend-items {
+            // border: 1px solid blue;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: fit-content;
+            height: fit-content;
+            margin-bottom: 10px;
+            .item, span {
+                cursor: pointer;
+            }
+            
+            // &#letters .item {
+            //     width: 17%;
+            // }
+            // &#numbers .item {
+            //     width: 18%;
+            // }
+            // &#special .item {
+            //     width: 20%;
+            // }
+    
+            .item {
+                font-family: $ditDah-font;
+                font-size: 0.7em;
+                // height: 2em;
+                // height: 2em;
+                display: flex;
+                align-items: center;
+                // justify-content: space-between;
+                width: 20%;
+    
+                margin: 5px;
+                padding: 0.3em;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+                transition: all 50ms ease-in-out;
+                background: #ddd;
+    
+                border: 0px;
+                background: $main-bg-color-light;
+                box-shadow: $main-box-shadow-light;
+                span {
+                    transition: all 50ms ease-in-out;
+                }
+                &:active {
+                    transform: scale(0.95);
+                    border-color: rgba(112, 128, 144,0.6);
+                    background: #ddd;
+                    span:first-child {
+                        background: rgba(112, 128, 144,0.6);
+                    }
+                }
+                &:hover {
+                    border-color: rgba(112, 128, 144,0.6);
+                    background: #ddd;
+                    span:first-child {
+                        background: rgba(112, 128, 144,0.6);
+                    }
+                }
+    
+                // button {
+                //     width: 20px;
+                //     height: 20px;
+                //     margin: 4px;
+                //     border: 0px;
+                //     border-radius: 2px;
+                //     box-shadow: $main-box-shadow-light;
+                //     &:active {
+                //         transform: translateY(3px);
+                //         box-shadow: 0px 0px 2px rgba(0,0,0,0.3);
+                //     }
+                // }
+                
+                span:first-child {
+                    display: inline-block;
+                    padding: 1px;
+                    width: 1.5em;
+                    background: #d6d6d6;
+                    border-radius: 2px;
+                    font-size: 1.5em;
+    
+                    transition: all 75ms ease-in-out;
+                }
+                span:last-child {
+                    // background: #08c;
+                    // font-family: $ditDah-font;
+                    font-weight: bold;
+                    font-size: 1em;
+                    display: inline-block;
+                    padding-left: 5px;
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    #main-content {
+        top: 2.5em;
+        width: 100vw;
+        .sidebar#left {
+            min-width: 100vw;
+            // z-index: -5;
+            transition: all 500ms ease-in-out;
+
+            &.hide {
+                left: calc(-100vw + 40px);
+                top: 50px;
+                overflow-y: hidden;
+                background: transparent;
+                box-shadow: 0px 0px 0px transparent;
+                
+                #sidebar-container {
+                    
+                    #sidebar-content #info {
+                        opacity: 0%;
+                        overflow-y: hidden;
+                    }
+                    #info-icon {
+                        // top: calc(100vh - 7em);
+                        background: white;
+                        &::after {
+                            content: ">";
+                        }
+                    }
+                } 
+            }
+            
+
+            #sidebar-container {
+                width: 100%;
+                padding: 0em;
+
+                .navbar {
+                    width: 100%;
+                    // z-index: 11000;
+                    
+                    .nav-item {
+                        width: 25%;
+                        // z-index: 11000;
+
+                        &#nav-play {
+                            display: flex;
+                            justify-content: center;
+                        }
+                    }
+                }
+                #info-icon {
+                    display: none;
+                }
+
+                #sidebar-content {
+                    #info {
+                        width: 100%;
+                        padding: 1em;
+                    }
+                }
+            }
+        }
+        #main-interface {
+            width: 100vw;
+            left: 0;
+            #morseBufferDisplay {
+                // background: white;
+                margin-bottom: 0px;
+                height: fit-content;
+                #overlay {
+                    // background: blue;
+                    box-shadow: inset 20px 0px 20px -5px $main-bg-color-light;
+                }
+                #alphanumeric-container {
+                    // border: 1px solid red;
+                    text-align: center;
+                    max-width: 75%;
+                    display: inline-block;
+                    overflow: hidden;
+                    padding-top: 0px;
+                    
+                    #alphanumeric {
+                        // border: 1px solid blue;
+            
+                        height: 4rem;
+                        padding-top: 0.45rem;
+                        font-size: 3rem;
+                        margin-bottom: 0px;
+                        border-radius: $main-border-radius;
+                        // box-shadow: $main-box-shadow-light;
+                        float: right;
+                    }
+                }
+            }
+            * {
+                z-index: 1000;
+            }
+
+            &.expandLeft {
+                left: 0;
+                width: 100vw;
+            }
+
+            #morse-history {
+                // border: 1px solid blue;
+                width: 95%;
+                display: flex;
+                justify-content: flex-end;
+                #morseHistory-textbox {
+                    // border: 1px solid blue;
+                    width: 100%;
+                    overflow-y: scroll;
+                    padding: 5px;
+                    margin: 0px;
+                    min-height: 2.3em;
+                }
+                #clear-history {
+                    border: 0px;
+                }
+            }
+            #morseButton {
+                margin-top: 5px;
+            }
+
+
+            #mainOptions {
+                // border: 1px solid red;
+                flex-direction: column;
+                height: 10em;
+                width: 100vw;
+    
+                #options-left, #options-right {
+    
+                    .mode-picker {
+
+                        #title {
+                            // border: 1px solid red;
+                            justify-content: flex-end;
+                            width: 5em;
+                            font-weight: bold;
+                            font-size: 1em;
+                            span#range {
+                                display: none;
+                            }
+                        }
+                        #buttons {
+                            button {
+                                margin: 5px;
+                            }
+                        }
+                        #input {
+                            font-size: 0.8em;
+                            input {
+                                height: 1.1rem;
+                                font-size: 0.8rem;
+                            }
+                            select {
+                                height: 1.4rem;
+                            }
+                            button {
+                                width: 1.2em;
+                                height: 1.2em;
+                                border-radius: 3px;
+                                font-size: 1em;
+                                
+                                i {
+                                    left: -7px;
+                                    top: -3px;
+                                    font-size: 1rem;
+                                }
+                            }
+                        }
+                        button {
+                            font-size: 0.8em;
+                            color: $main-font-color-light;
+                        }
+                    }
+                }
+            }
         }
     }
 }

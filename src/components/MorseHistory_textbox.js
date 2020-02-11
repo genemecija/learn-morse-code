@@ -41,9 +41,9 @@ export default (function MorseHistoryTextBox() {
     // } catch {}
     
     return (
-        <>
+        <div id="morse-history">
             <div id="morseHistory-textbox">{text}</div>
-            <button onClick={clearHistory}>Clear History</button>
-        </>
+            <button id="clear-history" onClick={clearHistory}>Clear History</button>
+        </div>
     )
 })

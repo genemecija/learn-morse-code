@@ -113,12 +113,12 @@ function useMorsePlayer() {
                 timeouts.push(setTimeout(() => {
                     
                 }, delay))
-                delay += ditMaxTime*3
+                delay += ditMaxTime*2
             } else if (char === '/') {
                 timeouts.push(setTimeout(() => {
                     
                 }, delay))
-                delay += ditMaxTime*7
+                delay += ditMaxTime*6
             }
         }
         
