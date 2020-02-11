@@ -39,20 +39,6 @@ function useElectronicKey() {
     // let gapTimerRunning = false
     let paddlesReleasedSimultaneously = false
 
-
-    // function consoleLogVars() {
-    //     // Log variables (Debug tool)
-    //     console.log('<VARS>');
-    //     console.log('leftIsPressed', leftIsPressed);
-    //     console.log('rightIsPressed', rightIsPressed);
-    //     console.log('queueRunning', queueRunning);
-    //     console.log('queue', queue);
-    //     console.log('pressedFirst', pressedFirst);
-    //     console.log('gapTime', gapTime);
-    //     console.log('paddlesReleasedSimultaneously', paddlesReleasedSimultaneously);
-    //     console.log('</VARS>');
-    // };
-
     let currentPromise = Promise.resolve()
 
     // Audio Setup
@@ -63,18 +49,6 @@ function useElectronicKey() {
         context = new AudioContext()
     } else {
         context = null
-    }
-    // let frequency = config.frequency
-
-    
-    let toneTimer = 0
-    let toneTime = 0
-    let start = 0
-    let end = 0
-
-    function getTime() {
-        let today = new Date()
-        return today.getMilliseconds()
     }
 
     // Promisify playing Dits and Dahs
@@ -112,17 +86,6 @@ function useElectronicKey() {
             // g.gain.setTargetAtTime(0.0001, startTime + playDuration/1000, 0.001)
             // o.stop(startTime + playDuration/1000 + 0.05)
         })
-    }
-
-    function clearHistory() {
-        setMorseWords([])
-    }
-
-    function stopToneTimer() {
-        clearInterval(toneTimer)
-        end = toneTime
-        console.log('toneTime:', start, end);
-        toneTime = 0
     }
 
     function playWithSpaces(ditDah) {
@@ -320,7 +283,6 @@ function useElectronicKey() {
         if (depressSyncTime < 10) {
             paddlesReleasedSimultaneously = true
             queue.pop()
-            console.log('paddles released', queue);
         }
         depressSyncTime = 0
     }

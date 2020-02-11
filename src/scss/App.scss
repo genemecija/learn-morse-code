@@ -219,15 +219,14 @@ html, body {
 
                 #info {
                     // border: 1px solid red;
-                    // margin-left: 20px;
-                    // padding: 1.5em;
+                    
                     height: fit-content;
                     padding: 2.5em;
                     font-family: $main-font;
                     font-size: 1.2rem;
                     line-height: 1.5em;
                     opacity: 100%;
-                    // overflow-y: scroll;
+                    
                     transition: all 500ms ease-in-out;
     
                     h1, h2 {
@@ -242,6 +241,9 @@ html, body {
                     }
                     p {
                         margin-bottom: 2em;
+                        span.ditdah {
+                            font-family: $ditDah-font;
+                        }
                     }
                     img {
                         width: 50%;
@@ -254,68 +256,6 @@ html, body {
             }
         }
     }
-    // .sidebar#right {
-    //     border: 1px solid green;
-    //     background: $main-bg-color-light;
-    //     box-shadow: -3px 0px 5px rgba(0,0,0,0.2);
-    //     display: flex;
-    //     flex-direction: column;
-    //     justify-content: space-between;
-        
-    //     position: fixed;
-    //     top: 0px;
-    //     margin-top: 50px;
-    //     padding: 1em;
-    //     padding-top: 50px;
-    //     // left: calc(100vw - 30%);
-    //     right: 0;
-        
-    //     height: calc(100% - 5em);
-    //     min-width: 400px;
-    //     max-width: 100%;
-    //     width: 30%;
-        
-    //     z-index: 100;
-        
-    //     transition: all 500ms ease-in-out;
-        
-    //     #mainOptions {
-    //         h1 {
-    //             margin-bottom: 0.3em;
-    //         }
-    //         transition: all 500ms ease-in-out;
-    //         opacity: 100%;
-    //     }
-    //     &.hide {
-    //         right: calc(-30% + 43px);
-
-    //         #mainOptions {
-    //             opacity: 0%;
-    //         }
-    //         // top: 50px;
-
-    //         #settings {
-    //             transform: rotateZ(270deg);
-    //         }
-    //     }
-    //     #settings-icon {
-    //         // border: 1px solid red;
-    //         width: fit-content;
-    //         height: fit-content;
-    //         position: absolute;
-    //         top: 10px;
-    //         left: 5px;
-    //         transition: all 500ms ease-in-out;
-    //         transition: transform 200ms ease-in-out;
-    //         &:hover {
-    //             transform: scale(1.1);
-    //             i {color: #333;}
-    //         }
-    //         i {
-    //             font-size: 2rem;
-    //         }
-    //     }
-    // }
     #main-interface {
         // border: 1px solid red;
         
@@ -683,11 +623,7 @@ $button-radius: 50px;
         margin: 0px;
         border: 0px;
         // transition: all 20ms ease-out;
-        transition: transform 40ms ease-out, box-shadow 40ms ease-out, width 500ms ease-out, background 500ms ease-out, color 500ms ease-out;
-
-        &:hover {
-            background: rgba(112, 128, 144, 0.2);
-        }
+        transition: transform 40ms ease-out, box-shadow 500ms ease-out, width 500ms ease-out, background 500ms ease-out, color 500ms ease-out;
         
         &.showPaddles {
             color: #888;
@@ -700,6 +636,7 @@ $button-radius: 50px;
         &#left {
             border-radius: $button-radius 0 0 $button-radius;
             width: 50%;
+            transition: all 500ms ease-out;
             // background: red;
             &.showPaddles{
                 margin-right: 7px;
@@ -707,9 +644,10 @@ $button-radius: 50px;
             }
         }
         &#right {
-            width: 50%;
-            // background: blue;
             border-radius: 0 $button-radius $button-radius 0;
+            width: 50%;
+            transition: all 500ms ease-out;
+            // background: blue;
             &.showPaddles{
                 margin-left: 7px;
                 border-radius: 20px;
@@ -848,7 +786,7 @@ $button-radius: 50px;
 
         width: 45%;
         padding: 1.7em;
-        height: 40%;
+        height: 35%;
         background: $main-bg-color-light;
         // background: #fefefe;
         margin-top: 25%;

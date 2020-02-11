@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import '../css/App.css';
 import MorseBufferDisplay from '../components/MorseBufferDisplay'
 import MorseHistoryTextBox from '../components/MorseHistory_textbox'
-import MorseHistory from '../components/MorseHistory'
 import { KeyTypeContext } from '../contexts/keyTypeContext';
 import StraightKey from '../components/StraightKey';
 import ElectronicKey from '../components/ElectronicKey';

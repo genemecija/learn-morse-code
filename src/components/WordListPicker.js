@@ -23,16 +23,16 @@ export default React.memo(function WordListPicker() {
             setOrder(e.target.id)
         } else {
             setWordListCategory(e.target.value)
-            console.log("Switched to " + e.target.value + " word list.");
         }
     }
 
-    let wordLists = ['alphabet', 'numbers', 'boys', 'girls', 'common100', 'test', 'short']
+    let wordLists = ['alphabet', 'numbers', 'boys', 'girls', 'startrek', 'common100', 'test', 'short']
     const metadata = {
         'alphabet': {name: 'Alphabet', description: 'Each letter of the alphabet', count: 26},
         'numbers': {name: 'Numbers', description: '0-9', count: 10},
         'boys': {name: 'Boys Names', description: 'Top 20 Boys Names', count: 20},
         'girls': {name: 'Girls Names', description: 'Top 20 Girls Names', count: 20},
+        'startrek': {name: 'Star Trek', description: 'Word list from the Star Trek universe', count: 20},
         'common100': {name: 'Common 100', description: '100 most common words', count: 100},
         'test': {name: 'Test List', description: 'A test list', count: 5},
         'short': {name: 'Short List', description: 'A short list', count: 1}

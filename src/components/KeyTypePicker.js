@@ -8,7 +8,6 @@ export default React.memo(function KeyTypePicker() {
 
     function handleClick(e) {
         setKeyType(e.target.id)
-        console.log("KEYTYPE PICKED:", e.target.id);
 
         let buttons = document.querySelector(".mode-picker#keyType #buttons").childNodes
         buttons.forEach(button => {
@@ -34,13 +33,13 @@ export default React.memo(function KeyTypePicker() {
 
     useEffect(() => {
         document.querySelector(`button#${keyType}`).classList.add('selected')
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (
             <div id="keyType" className="mode-picker">
                 <div id="title">
                     Key Type
-                    {/* &nbsp;<i className="ri-question-line"></i>  */}
                 </div>
                 <div id="buttons">
                     <button id="straight" onClick={handleClick}>
@@ -53,25 +52,3 @@ export default React.memo(function KeyTypePicker() {
             </div>
     )
 })
-
-
-// > STRAIGHT KEY SELECTED
-// CONTEXT LOAD: KeyTypeContextProvider
-// COMPONENT LOADED: PracticeMode
-// COMPONENT LOAD: MorseBufferDisplay
-// COMPONENT LOAD: MorseDisplay
-// morseWords Array []
-
-// —————————
-
-// > ELECTRONIC KEY SELECTED
-// CONTEXT LOAD: KeyTypeContextProvider
-// COMPONENT LOADED: PracticeMode
-// COMPONENT LOAD: MorseBufferDisplay
-// COMPONENT LOAD: MorseDisplay
-// morseWords Array []
-
-// CONTEXT LOAD: MorseBufferContextProvider // MorseBufferContextProvider reloading when Electronic selected
-// COMPONENT LOAD: MorseBufferDisplay
-// COMPONENT LOAD: MorseDisplay
-// morseWords Array []

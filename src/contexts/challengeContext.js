@@ -1,7 +1,5 @@
 import React, {useState, useContext} from "react"
-import { GameClockContext } from "./gameClockContext"
 import { WordFeederContext } from "./wordFeederContext"
-import { KeyTypeContext } from "./keyTypeContext";
 import { MorseBufferContext } from "./morseBufferContext";
 import morseCode from '../data/morse-reverse.json'
 
@@ -9,7 +7,6 @@ import morseCode from '../data/morse-reverse.json'
 const ChallengeContext = React.createContext()
 
 function ChallengeContextProvider(props) {
-    console.log('ChallengeContextProvider');
 
     const [challengeState, setChallengeState] = useState('ready')
     const {resetFeeder} = useContext(WordFeederContext)
@@ -28,7 +25,6 @@ function ChallengeContextProvider(props) {
 
 
     function startChallenge() {
-        console.log('STARTCHALLENGE');
 
         let countdown
         let count = 3
@@ -94,13 +90,10 @@ function ChallengeContextProvider(props) {
             
             if (morseLetter === challengeLetter) {
                 correctCharIndexes.push(index-offset)
-                console.log('morseCharBuffer', morseCharBuffer);
                 
                 document.getElementById('challengeWord').childNodes[index-offset].classList.add('correct')
-                // incorrectCharIndex = null
             }
             else {
-                // incorrectCharIndex = index-offset
                 incorrectMorseIndexes.push(index)
                 if (incorrectMorseIndexes.length > 0) {
                     setMorseCharBuffer(prev => {

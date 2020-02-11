@@ -1,7 +1,6 @@
 import {useEffect} from "react"
 import useTelegraph from './hooks/useTelegraph'
 
-
 function usePracticeMode() {
     const {morseCharBuffer, setMorseWords, morseWords, setMorseCharBuffer} = useTelegraph()
 
@@ -11,7 +10,6 @@ function usePracticeMode() {
         if (morseCharBuffer.slice(-1) === '/') {
             // Remove forward slash
             let val = morseCharBuffer.slice(0,morseCharBuffer.length-1)
-            console.log('val: ', val);
 
             setMorseWords(prev => [val, ...prev])
 
@@ -22,7 +20,6 @@ function usePracticeMode() {
             setMorseCharBuffer('')
         }
 
-        // setMorseLettersBuffer(prev => [...prev, morseCharBuffer])
         // eslint-disable-next-line
     }, [morseCharBuffer])
 }

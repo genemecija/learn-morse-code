@@ -1,6 +1,4 @@
 import React from "react"
-import KeyTypePicker from "./KeyTypePicker"
-import WordsPerMinute from "./WordsPerMinute"
 
 export default (function Options() {
 

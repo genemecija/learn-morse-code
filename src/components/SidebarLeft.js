@@ -2,7 +2,6 @@ import React, { useState } from "react"
 import Info from "./Info"
 import PlayMorseInput from "./PlayMorseInput"
 import Legend from "./Legend"
-import Options from "./Options"
 
 export default (function SidebarLeft() {
 

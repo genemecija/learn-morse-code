@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 import React from "react"
 import morseCode from '../data/morse-code.json'
 import useMorsePlayer from "../hooks/useMorsePlayer";
@@ -11,17 +12,13 @@ function Legend() {
 
         let word = e.target.innerText
 
-        // let newWord = word
-
         if (e.target.className === 'alpha') {
             word = convertWordToMorse(word)
         }
-
         if (e.target.id === 'test') {
             word = convertWordToMorse(e.target.innerText)
         }
 
-        console.log(word);
         playMorseWord(word)
     }
 

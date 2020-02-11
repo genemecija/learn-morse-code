@@ -3,7 +3,6 @@ import { WPMContext } from "../contexts/wpmContext";
 import useMorsePlayer from "../hooks/useMorsePlayer";
 
 export default React.memo(function WordsPerMinute(props) {
-    console.log('WordsPerMinute rendered');
 
     const {wpm, setWPM} = useContext(WPMContext)
     const {playMorseWord} = useMorsePlayer()

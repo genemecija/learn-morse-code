@@ -25,7 +25,6 @@ export default (function PlayMorseInput() {
             }
         })
         let a = morse.map(i => i.trim()).join(' ').replace(/ \/ /g,'/').replace(/ \?/g,'?')
-        console.log(a);
         setMorseTranslation(a)
 
     }, [inputValue])
@@ -51,7 +50,7 @@ export default (function PlayMorseInput() {
                 </div>
                 <div id="input">
                     <input type="text" id='morseInput' value={inputValue} onChange={handleChange} placeholder="Type here." maxLength="25"/> <i className="ri-play-fill" onClick={handlePlay}></i>
-                    <i class="ri-stop-fill" onClick={() => playMorseWord('')}></i> 
+                    <i className="ri-stop-fill" onClick={() => playMorseWord('')}></i> 
                 </div>
                 <div id="morseTranslation">
                     <span id="morseTrans">

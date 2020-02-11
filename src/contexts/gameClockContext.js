@@ -1,6 +1,5 @@
 import React, {useState, useContext, useEffect} from "react"
 import { ChallengeContext } from "./challengeContext"
-// import { KeyTypeContext } from "./keyTypeContext"
 const GameClockContext = React.createContext()
 
 function GameClockContextProvider(props) {
@@ -12,9 +11,7 @@ function GameClockContextProvider(props) {
 
 
     function startGameClock() {
-        console.log('before clock');
         if (!clockIsRunning) {
-            console.log('after clock');
             setClockIsRunning(true)
             setIntervals(prev => [...prev, (setInterval(() => {
                     if (document.getElementById('gameClock') === null) {
@@ -61,6 +58,7 @@ function GameClockContextProvider(props) {
             default:
                 return
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [challengeState])
     
 

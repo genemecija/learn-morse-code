@@ -265,6 +265,10 @@ html, body {
   margin-bottom: 2em;
 }
 
+#main-content .sidebar#left #sidebar-container #sidebar-content #info p span.ditdah {
+  font-family: "Courier", monospace;
+}
+
 #main-content .sidebar#left #sidebar-container #sidebar-content #info img {
   width: 50%;
   image-rendering: optimizeSpeed;
@@ -692,14 +696,10 @@ i[class*="ri-"] {
   background: #f4f4f4;
   margin: 0px;
   border: 0px;
-  -webkit-transition: width 500ms ease-out, background 500ms ease-out, color 500ms ease-out, -webkit-transform 40ms ease-out, -webkit-box-shadow 40ms ease-out;
-  transition: width 500ms ease-out, background 500ms ease-out, color 500ms ease-out, -webkit-transform 40ms ease-out, -webkit-box-shadow 40ms ease-out;
-  transition: transform 40ms ease-out, box-shadow 40ms ease-out, width 500ms ease-out, background 500ms ease-out, color 500ms ease-out;
-  transition: transform 40ms ease-out, box-shadow 40ms ease-out, width 500ms ease-out, background 500ms ease-out, color 500ms ease-out, -webkit-transform 40ms ease-out, -webkit-box-shadow 40ms ease-out;
-}
-
-#morseButton button:hover {
-  background: rgba(112, 128, 144, 0.2);
+  -webkit-transition: width 500ms ease-out, background 500ms ease-out, color 500ms ease-out, -webkit-transform 40ms ease-out, -webkit-box-shadow 500ms ease-out;
+  transition: width 500ms ease-out, background 500ms ease-out, color 500ms ease-out, -webkit-transform 40ms ease-out, -webkit-box-shadow 500ms ease-out;
+  transition: transform 40ms ease-out, box-shadow 500ms ease-out, width 500ms ease-out, background 500ms ease-out, color 500ms ease-out;
+  transition: transform 40ms ease-out, box-shadow 500ms ease-out, width 500ms ease-out, background 500ms ease-out, color 500ms ease-out, -webkit-transform 40ms ease-out, -webkit-box-shadow 500ms ease-out;
 }
 
 #morseButton button.showPaddles {
@@ -715,6 +715,8 @@ i[class*="ri-"] {
 #morseButton button#left {
   border-radius: 50px 0 0 50px;
   width: 50%;
+  -webkit-transition: all 500ms ease-out;
+  transition: all 500ms ease-out;
 }
 
 #morseButton button#left.showPaddles {
@@ -723,8 +725,10 @@ i[class*="ri-"] {
 }
 
 #morseButton button#right {
-  width: 50%;
   border-radius: 0 50px 50px 0;
+  width: 50%;
+  -webkit-transition: all 500ms ease-out;
+  transition: all 500ms ease-out;
 }
 
 #morseButton button#right.showPaddles {
@@ -822,7 +826,7 @@ i[class*="ri-"] {
           align-items: center;
   width: 45%;
   padding: 1.7em;
-  height: 40%;
+  height: 35%;
   background: #eee;
   margin-top: 25%;
   border-radius: 5px;

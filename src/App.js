@@ -23,6 +23,7 @@ import Footer from './components/Footer';
 import ChallengeOverlay from './components/ChallengeOverlay';
 import SidebarLeft from './components/SidebarLeft';
 import FrequencyPicker from './components/FrequencyPicker';
+import Tip from './components/Tip';
 
 export default React.memo(function App() {
 
@@ -57,16 +58,6 @@ export default React.memo(function App() {
                         {gameMode === 'practice' &&
                             <PracticeMode />
                         }
-                        
-                        {/* {gameMode === 'timed' &&
-                            <>
-                            {keyType === "straight" ?
-                            <StraightKey gameMode='training' /> : <ElectronicKey gameMode='training' />}
-                            <TrainingMode /><br/>
-                            <MorseBufferDisplay /><br/>
-                            <MorseHistory /><br/>
-                            </>
-                        } */}
 
                         {gameMode === 'challenge' &&
                             <>
@@ -76,7 +67,7 @@ export default React.memo(function App() {
                         }
 
                         <MorseButtons />
-                        <span id='tip'>Tap the button to use the telegraph.</span>
+                        <Tip />
                     </div>
                     {/* <div className="sidebar" id="right">
                         <div id="settings-icon" onClick={toggleRight}><i class="ri-settings-3-line"></i></div>

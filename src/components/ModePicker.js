@@ -31,7 +31,6 @@ function ModePicker() {
                 button.classList.add('selected')
             } else { button.classList.remove('selected')}
         })
-        console.log("Switched to " + e.target.id + " mode.");
     }
 
     return (

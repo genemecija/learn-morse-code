@@ -39,18 +39,11 @@ function useStraightKey() {
 
     let o // Oscillator Node
     let g // Gain Node
-    // let frequency = config.frequency
 
     let isRunning = false
-    
-    function clearHistory() {
-        setMorseWords([])
-    }
+
 
     function handleInputStart(event) {
-        // event.preventDefault()
-        
-        console.log(event.keyCode);
 
         if (event.keyCode === 32) {
             if (document.activeElement.id === 'morseInput') {
@@ -62,10 +55,7 @@ function useStraightKey() {
             }
         }
 
-        
-
         if (isRunning) {
-            // console.log('insideBufferDisplay', insideBufferDisplay);
             return
         } else {
             if ((event.keyCode !== 32 &&
@@ -110,13 +100,6 @@ function useStraightKey() {
     }
 
     function handleInputEnd(event) {
-        // event.preventDefault()
-
-        // if (event.target.id !== 'morseBufferDisplay') {
-        //     insideBufferDisplay = true
-        //     console.log('insideBufferDisplay', insideBufferDisplay);
-        // }
-        // if (!insideBufferDisplay) {return}
 
         if (isRunning) {
             if ((event.keyCode !== 32 &&
@@ -130,8 +113,6 @@ function useStraightKey() {
 
             isRunning = false
             
-                
-            // console.log('charTime:', charTime);
             if (charTime <= ditMaxTime) {
                 setMorseCharBuffer(prev => prev + '.')
             } else {
@@ -217,7 +198,6 @@ function useStraightKey() {
 
             clearInterval(charTimer)
             clearInterval(gapTimer)
-            // clearHistory()
         }
         // eslint-disable-next-line
     }, [wpm, gameMode, frequency])

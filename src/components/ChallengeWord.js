@@ -1,6 +1,5 @@
 import React, { useContext } from "react"
 import { WordFeederContext } from "../contexts/wordFeederContext"
-import { ChallengeContext } from "../contexts/challengeContext"
 
 export default React.memo(function ChallengeWord(props) {
 

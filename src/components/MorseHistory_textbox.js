@@ -1,5 +1,4 @@
-import React, {useContext, useState} from "react"
-// import MorseCard from './MorseCard'
+import React, {useContext} from "react"
 import morseCode from '../data/morse-reverse.json'
 import {MorseBufferContext} from "../contexts/morseBufferContext"
 
@@ -8,7 +7,6 @@ export default (function MorseHistoryTextBox() {
     const {morseWords, setMorseWords} = useContext(MorseBufferContext)
 
     let text = ''
-    let span = []
 
     function clearHistory() {
         setMorseWords([])
@@ -36,10 +34,6 @@ export default (function MorseHistoryTextBox() {
         }
     })
 
-    // try {
-    //     document.getElementById('morseHistory').innerText = text
-    // } catch {}
-    
     return (
         <div id="morse-history">
             <div id="morseHistory-textbox">{text}</div>

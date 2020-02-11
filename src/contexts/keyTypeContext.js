@@ -3,7 +3,6 @@ import React, {useState} from "react"
 const KeyTypeContext = React.createContext()
 
 function KeyTypeContextProvider(props) {
-    console.log('KeyTypeContextProvider');
 
     const [keyType, setKeyType] = useState('straight')
 
