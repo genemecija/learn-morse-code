@@ -27,15 +27,17 @@ export default React.memo(function WordListPicker() {
         }
     }
 
-    let wordLists = ['alphabet', 'numbers', 'common100', 'test', 'short']
-    let options = wordLists.map((wl, index) => (<option value={wl} key={index}>{wl.substr(0,1).toUpperCase() + wl.substr(1)}</option>))
+    let wordLists = ['alphabet', 'numbers', 'boys', 'girls', 'common100', 'test', 'short']
     const metadata = {
-        'alphabet': {description: 'Each letter of the alphabet', count: 26},
-        'numbers': {description: '0-9', count: 10},
-        'common100': {description: '100 most common words', count: 100},
-        'test': {description: 'A test list', count: 5},
-        'short': {description: 'A short list', count: 1}
+        'alphabet': {name: 'Alphabet', description: 'Each letter of the alphabet', count: 26},
+        'numbers': {name: 'Numbers', description: '0-9', count: 10},
+        'boys': {name: 'Boys Names', description: 'Top 20 Boys Names', count: 20},
+        'girls': {name: 'Girls Names', description: 'Top 20 Girls Names', count: 20},
+        'common100': {name: 'Common 100', description: '100 most common words', count: 100},
+        'test': {name: 'Test List', description: 'A test list', count: 5},
+        'short': {name: 'Short List', description: 'A short list', count: 1}
     }
+    let options = wordLists.map((wl, index) => (<option value={wl} key={index}>{metadata[wl]['name']}</option>))
 
     return (
         <div id="challengeOptions">

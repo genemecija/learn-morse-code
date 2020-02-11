@@ -452,91 +452,30 @@ html, body {
                     width: 5em;
                 }
             }
-            
-            // #mainOptions-title {
-            //     font-size: 2em;
-            //     font-weight: bold;
-            //     margin-bottom: 30px;
-            //     text-transform: uppercase;
-            // }
-        
-            
         }
-        // #gameMode {
-        //     // border: 1px solid red;
-        //     display: flex;
-        //     justify-content: center;
-        //     align-items: center;
-        //     width: 100%;
-        //     font-size: 1.5em;
-        //     font-weight: bold;
-        //     // margin-top: 1em;
-        //     margin-bottom: 2em;
-        //     z-index: 100;
-            
-        //     #buttons {
-        //         // border: 1px solid purple;
-        //         display: flex;
-        //         flex-direction: column;
-        //         padding: 0px;
-                
-        //         button {
-        //             // background: $main-bg-color-light;
-        //             // box-shadow: $main-box-shadow-light;
-        //             // border-radius: $main-border-radius;
-        //             // border: 0px;
-        //             // padding: 0.5em;
-        //             // margin-left: 10px;
-        //             // margin-right: 10px;
-                    
-        //             // font-size: 1rem;
-        //             // color: $main-font-color-light;
-                    
-        //             // &.selected {
-        //                 //     // color: rgb(70, 118, 134);;
-        //                 //     box-shadow: $main-box-shadow-light-selected;
-        //                 // }
-        //             background: white;
-        //             font-size: 0.7em;
-        //             // font-weight: bold;
-        //             // text-transform: uppercase;
-
-        //             margin-top: 3px;
-        //             padding: 0.3em;
-        //             width: 10em;
-        //             height: 100%;
-    
-    
-        //             display: flex;
-        //             justify-content: center;
-        //             // position: relative;
-        //             // overflow: hidden;
-        //             transition: all 150ms ease-in-out;
-        //             border: 0px;
-        //             border-bottom: 2px solid transparent;
-    
-        //             &:hover {
-        //                 background: rgba(0, 0, 0, 0.1);
-        //                 border-color: #999;
-        //             }
-        //             &.selected {
-        //                 border-color: rgb(180, 60, 60);
-        //             }
-        //         }
-        //     }
-        // }
     }
 }
 #footer {
     width: 100%;
     height: 2em;
     padding: 0.3em;
+    display: flex;
+    justify-content: center;
     background: #333;
     font-family: $main-font;
     font-size: 1em;
     // font-weight: bold;
     color: $main-bg-color-light;
     z-index: 1000;
+    a {
+        text-decoration: none;
+    }
+    a:visited {
+        color: $main-bg-color-light;
+    }
+    a:hover {
+        color: gold;
+    }
 }
 h2 {
     margin-bottom: 0.5em;
@@ -951,7 +890,7 @@ $button-radius: 50px;
                 font-weight: bold;
                 padding: 0.3em;
                 background: #666;
-                color: goldenrod;
+                color: gold;
                 text-transform: uppercase;
                 letter-spacing: 0.3rem;
                 

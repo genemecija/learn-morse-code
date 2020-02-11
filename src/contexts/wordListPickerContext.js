@@ -2,6 +2,8 @@ import React, {useState} from "react"
 import alphabet from '../data/alphabet.json'
 import numbers from '../data/numbers.json'
 import common100 from '../data/common100.json'
+import boys from '../data/names_boys.json'
+import girls from '../data/names_girls.json'
 
 
 const WordListPickerContext = React.createContext()
@@ -17,6 +19,10 @@ function WordListPickerContextProvider(props) {
         wordList = alphabet.words
     } else if (wordListCategory === 'numbers') {
         wordList = numbers.words
+    } else if (wordListCategory === 'boys') {
+        wordList = boys.words
+    } else if (wordListCategory === 'girls') {
+        wordList = girls.words
     } else if (wordListCategory === 'common100') {
         wordList = common100.words
     } else if (wordListCategory === 'test') {
