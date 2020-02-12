@@ -45,7 +45,7 @@ export default (function SidebarLeft() {
                     </div>
                 </div>
 
-                <div id="info-icon" onClick={toggleLeft}><i className="ri-information-line"></i></div>
+                <div id="info-icon" onClick={toggleLeft}><i className="ri-arrow-left-circle-line"></i></div>
                 
                 <div id='sidebar-content'>
                     {sidebarContent === 'nav-learn' && <Info />}

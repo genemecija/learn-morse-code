@@ -29,7 +29,6 @@ $main-border-radius: 3px;
 }
 button {
     font-family: $main-font;
-    cursor: pointer;
 }
 html, body {
     height: 100%;
@@ -106,9 +105,15 @@ html, body {
             top: 50px;
             overflow-y: hidden;
 
-            #sidebar-container #sidebar-content #info {
-                opacity: 0%;
-                overflow-y: hidden;
+            #sidebar-container {
+                #sidebar-content #info {
+                    opacity: 0%;
+                    overflow-y: hidden;
+                }
+                #info-icon {
+                    top: 0px;
+                    transform: rotate(180deg);
+                }
             }
         }
 
@@ -158,10 +163,11 @@ html, body {
                 top: 7px;
                 right: 6px;
                 z-index: 1010;
-                transition: all 100ms ease-in-out;
+                transition: all 500ms ease-in-out;
                 &:hover {
-                    transform: scale(1.08);
-                    i {color: goldenrod;}
+                    i {
+                        color: goldenrod;
+                    }
                 }
                 i {
                     color: #333;
@@ -175,8 +181,6 @@ html, body {
                 display: flex;
                 justify-content: center;
                 align-self: center;
-                // height: calc(100% - 35px);
-                // height: 100%;
                 
                 #playerAndLegend {
                     // border: 1px solid fuchsia;
@@ -201,7 +205,6 @@ html, body {
 
                 #info {
                     // border: 1px solid red;
-                    
                     height: fit-content;
                     padding: 2.5em;
                     font-family: $main-font;
@@ -231,6 +234,12 @@ html, body {
                         image-rendering: optimizeSpeed;
                     }
                     i:hover {
+                        color: goldenrod;
+                    }
+                    a:visited {
+                        color: #333;
+                    }
+                    a:hover {
                         color: goldenrod;
                     }
                 }
@@ -391,13 +400,14 @@ html, body {
     }
     a:hover {
         color: gold;
+        text-decoration: underline;
     }
 }
 h2 {
     margin-bottom: 0.5em;
 }
 i[class*="ri-"] {
-    cursor: pointer;
+    // cursor: pointer;
     font-weight: normal;
     font-size: 0.9rem;
     color: #777;
@@ -473,9 +483,6 @@ i[class*="ri-"] {
         width: fit-content;
         height: fit-content;
         margin-bottom: 10px;
-        .item, span {
-            cursor: pointer;
-        }
         
         // &#letters .item {
         //     width: 17%;
@@ -564,7 +571,7 @@ i[class*="ri-"] {
 
 $button-diameter: 100px;
 $button-radius: 50px;
-$morse-button-color: lightgray;
+$morse-button-color: rgba(112, 138, 144,0.5);
 #morseButton {
 
     width: $button-diameter;
@@ -597,23 +604,23 @@ $morse-button-color: lightgray;
         margin: 0px;
         border: 0px;
         // transition: all 20ms ease-out;
-        transition: transform 40ms ease-out, box-shadow 500ms ease-out, width 500ms ease-out, background 500ms ease-out, color 500ms ease-out;
+        transition: transform 40ms ease-out, box-shadow 40ms ease-out, width 500ms ease-out, background 500ms ease-out, color 500ms ease-out;
         
         &.showPaddles {
-            color: #888;
-            font-size: 1rem;
-            font-weight: bold;
-            width: 30px;
+            color: transparent;
+            border-radius: $button-radius;
+            width: $button-radius;
             height: $button-diameter;
             box-shadow: $main-box-shadow-light;
         }
         &#left {
-            border-radius: $button-radius 0 0 $button-radius;
             width: 50%;
-            transition: all 500ms ease-out;
+            border-radius: $button-radius 0px 0px $button-radius;
+            // transition: all 500ms ease-out;
             display: none;
             // background: red;
             &.showPaddles{
+                border-radius: $button-radius 0 0 $button-radius;
                 display: inline-block;
                 margin-right: 7px;
                 border-radius: 20px;
@@ -622,10 +629,11 @@ $morse-button-color: lightgray;
         &#right {
             border-radius: 0 $button-radius $button-radius 0;
             width: 50%;
-            transition: all 500ms ease-out;
+            // transition: all 500ms ease-out;
             display: none;
             // background: blue;
             &.showPaddles{
+                border-radius: 0 $button-radius $button-radius 0;
                 display: inline-block;
                 margin-left: 7px;
                 border-radius: 20px;
@@ -633,12 +641,13 @@ $morse-button-color: lightgray;
         }
         &.active {
             transform: translateY(3px);
-            box-shadow: 0px 0px 2px rgba(0,0,0,0.3);
+            box-shadow: 0px 0px 1px rgba(0,0,0,0.3);
         }
     }
     
     &.showPaddles {
         width: 150px;
+        height: $button-diameter;
         background: transparent;
         box-shadow: 0px 0px 0px transparent;
     }
@@ -646,7 +655,7 @@ $morse-button-color: lightgray;
 #morseButtonText {
     font-weight: bold;
     color: #aaa;
-    font-size: 0.7rem;
+    font-size: 0.9rem;
 }
 #paddleText {
     width: 140px;
@@ -926,7 +935,7 @@ $morse-button-color: lightgray;
         box-shadow: inset 20px 0px 20px -5px rgb(245, 245, 245); //this
         position: absolute;
         display: inline-block;
-        top:0;
+        top:20px;
         left: calc(50% - 37.5%);
         width: 600px;
         height: 5rem;
@@ -958,7 +967,7 @@ $morse-button-color: lightgray;
     #ditDahs-container {
         // border: 1px solid red;
         text-align: center;
-        max-width: 75%;
+        max-width: 70vw;
         display: inline-block;
         overflow: hidden;
 
@@ -1056,6 +1065,7 @@ $morse-button-color: lightgray;
     align-items: flex-end;
     width: 80%;
     max-width: 500px;
+    margin-top: 3em;
     #morseHistory-textbox {
         // border: 1px solid cyan;
         background: #fff;
@@ -1068,7 +1078,7 @@ $morse-button-color: lightgray;
         display: flex;
         align-content: flex-start;
         flex-wrap: wrap;
-        
+        overflow-y: scroll;
     
         span {
             margin: 5px;
@@ -1082,16 +1092,32 @@ $morse-button-color: lightgray;
         }
     }
     #clear {
+        width: 100%;
         display: flex;
         height: fit-content;
+        justify-content: space-between;
+        #message {
+            padding: 0.3em;
+            font-size: 0.9em;
+            color: #777;
+            .ditDah {
+                font-family: $ditDah-font;
+            }
+        }
         button {
-            background: #ddd;
+            background: #ededed;
+            color: #666;
             font-size: 1em;
             height: 1.5em;
             border: 0px;
-            border-radius: 3px;
-            padding: 3px;
-            text-transform: uppercase;
+            // border-radius: 3px;
+            padding: 0.7em;
+            display: flex;
+            align-items: center;
+            // text-transform: uppercase;
+            &:hover {
+                color: maroon;
+            }
         }
     }
 }
@@ -1229,8 +1255,6 @@ $morse-button-color: lightgray;
         #main-content {
             height: calc(100vh - 4.1em);
 
-            
-
             .sidebar#left {
                 top: 2.2em;
                 width: 100vw;
@@ -1263,7 +1287,7 @@ $morse-button-color: lightgray;
             }
 
             #main-interface {
-                border: 1px solid red;
+                // border: 1px solid red;
                 max-width: 100vw;
                 position: relative;
                 left: 100%;
@@ -1341,23 +1365,52 @@ $morse-button-color: lightgray;
                     // border: 1px solid black;
                     justify-content: flex-end;
                     margin-bottom: 0px;
+                    margin-top: 0px;
                     height: fit-content;
                     #alphanumeric-container {
                         // background: blue;
+                        // border: 1px solid green;
+                        min-height: 3.5rem;
+                        max-height: 3.5rem;
+                        margin-bottom: 0px;
+                        padding: 0px;
                         #alphanumeric {
                             // background: red;
-                            height: 3.5rem;
-                            // font-size: 3rem;
+                            min-height: 3.5rem;
                             font-size: 3rem;
+                        }
+                    }
+                    #ditDahs-container {
+                        // border: 1px solid blue;
+                        margin-top: 0;
+                        margin-bottom: 0;
+                        min-height: 2.3rem;
+                        max-height: 2.3rem;
+                        #ditDahs {
+                            min-height: 2rem;
+                            max-height: 2rem;
+                            .ditDah {
+                                // background: red;
+                                height: 2rem;
+                                min-width: 1.7rem;
+                                max-width: 1.7rem;
+                                font-size: 2rem;
+                                // font-size: 1rem;
+                                // height: 1em;
+                                // width: 0.7em;
+                            }
                         }
                     }
                 }
                 #morse-history {
-                    height: 3rem;
+                    // border: 2px solid cyan;
+                    margin-top: 0px;
                     #morseHistory-textbox {
+                        // border: 2px solid cyan;
                         background: #fff;
+                        min-height: 2em;
+                        max-height: 2em;
                     }
-                    
                 }
                 #challenge-header {
                     padding: 5px;

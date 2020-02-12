@@ -42,10 +42,10 @@ function useStraightKey() {
 
     let isRunning = false
 
-
     function handleInputStart(event) {
-        // console.log(event.type, event.target);
-        if (event.type === 'touchstart') {event.preventDefault()}
+        if (event.type === 'touchstart') {
+            event.preventDefault()
+        }
 
         if (event.keyCode === 32) {
             if (document.activeElement.id === 'morseInput') {
@@ -104,10 +104,6 @@ function useStraightKey() {
     }
 
     function handleInputEnd(event) {
-        console.log(event.type, event.target);
-
-        if (event.type === 'touchend') {event.preventDefault()}
-
         if (isRunning) {
             if ((event.keyCode !== 32 &&
                 event.target.id !== "morseButton" &&
@@ -129,6 +125,10 @@ function useStraightKey() {
             stopCharTimer()
             startGapTimer()
             
+            // Account for bug triggered when pressing paddle button (e.g.) outside of body, then clicking into body, and depressing key
+            if (o === undefined) { 
+                return
+            }
             if (o.context.state === 'running') {
                 g.gain.setTargetAtTime(0.0001, context.currentTime, 0.001)
                 o.stop(context.currentTime + 0.05)
@@ -183,11 +183,11 @@ function useStraightKey() {
 
         const morseButton = document.getElementById('morseButton')
         // paddles.forEach(paddle => {
-            morseButton.addEventListener('mousedown', handleInputStart)
             morseButton.addEventListener('touchstart', handleInputStart)
+            morseButton.addEventListener('touchend', handleInputEnd)
+            morseButton.addEventListener('mousedown', handleInputStart)
             morseButton.addEventListener('mouseout', handleInputEnd)
             morseButton.addEventListener('mouseup', handleInputEnd)
-            morseButton.addEventListener('touchend', handleInputEnd)
         // })
 
         return function cleanup() {
@@ -195,11 +195,11 @@ function useStraightKey() {
             document.removeEventListener('keyup', handleInputEnd)
 
             const morseButton = document.getElementById('morseButton')
-            morseButton.removeEventListener('mousedown', handleInputStart)
             morseButton.removeEventListener('touchstart', handleInputStart)
+            morseButton.removeEventListener('touchend', handleInputEnd)
+            morseButton.removeEventListener('mousedown', handleInputStart)
             morseButton.removeEventListener('mouseout', handleInputEnd)
             morseButton.removeEventListener('mouseup', handleInputEnd)
-            morseButton.removeEventListener('touchend', handleInputEnd)
 
             // const paddles = document.querySelectorAll('.paddle')
             // paddles.forEach(paddle => {

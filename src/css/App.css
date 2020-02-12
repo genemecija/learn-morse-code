@@ -15,7 +15,6 @@
 
 button {
   font-family: "Roboto", sans-serif;
-  cursor: pointer;
 }
 
 html, body {
@@ -121,6 +120,12 @@ html, body {
   overflow-y: hidden;
 }
 
+#main-content .sidebar#left.hide #sidebar-container #info-icon {
+  top: 0px;
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
 #main-content .sidebar#left #sidebar-container {
   height: 100%;
   width: 100%;
@@ -180,13 +185,8 @@ html, body {
   top: 7px;
   right: 6px;
   z-index: 1010;
-  -webkit-transition: all 100ms ease-in-out;
-  transition: all 100ms ease-in-out;
-}
-
-#main-content .sidebar#left #sidebar-container #info-icon:hover {
-  -webkit-transform: scale(1.08);
-          transform: scale(1.08);
+  -webkit-transition: all 500ms ease-in-out;
+  transition: all 500ms ease-in-out;
 }
 
 #main-content .sidebar#left #sidebar-container #info-icon:hover i {
@@ -280,6 +280,14 @@ html, body {
 }
 
 #main-content .sidebar#left #sidebar-container #sidebar-content #info i:hover {
+  color: goldenrod;
+}
+
+#main-content .sidebar#left #sidebar-container #sidebar-content #info a:visited {
+  color: #333;
+}
+
+#main-content .sidebar#left #sidebar-container #sidebar-content #info a:hover {
   color: goldenrod;
 }
 
@@ -481,6 +489,7 @@ html, body {
 
 #footer a:hover {
   color: gold;
+  text-decoration: underline;
 }
 
 h2 {
@@ -488,7 +497,6 @@ h2 {
 }
 
 i[class*="ri-"] {
-  cursor: pointer;
   font-weight: normal;
   font-size: 0.9rem;
   color: #777;
@@ -589,10 +597,6 @@ i[class*="ri-"] {
   margin-bottom: 10px;
 }
 
-#legend #legend-items .item, #legend #legend-items span {
-  cursor: pointer;
-}
-
 #legend #legend-items .item {
   font-family: "Courier", monospace;
   font-size: 0.85em;
@@ -683,7 +687,7 @@ i[class*="ri-"] {
   transition: width 500ms ease-out, background 500ms ease-out, -webkit-transform 40ms ease-out, -webkit-box-shadow 40ms ease-out;
   transition: transform 40ms ease-out, box-shadow 40ms ease-out, width 500ms ease-out, background 500ms ease-out;
   transition: transform 40ms ease-out, box-shadow 40ms ease-out, width 500ms ease-out, background 500ms ease-out, -webkit-transform 40ms ease-out, -webkit-box-shadow 40ms ease-out;
-  background: lightgray;
+  background: rgba(112, 138, 144, 0.5);
 }
 
 #morseButton.active {
@@ -698,34 +702,32 @@ i[class*="ri-"] {
   color: transparent;
   width: 50px;
   height: 100px;
-  background: lightgray;
+  background: rgba(112, 138, 144, 0.5);
   margin: 0px;
   border: 0px;
-  -webkit-transition: width 500ms ease-out, background 500ms ease-out, color 500ms ease-out, -webkit-transform 40ms ease-out, -webkit-box-shadow 500ms ease-out;
-  transition: width 500ms ease-out, background 500ms ease-out, color 500ms ease-out, -webkit-transform 40ms ease-out, -webkit-box-shadow 500ms ease-out;
-  transition: transform 40ms ease-out, box-shadow 500ms ease-out, width 500ms ease-out, background 500ms ease-out, color 500ms ease-out;
-  transition: transform 40ms ease-out, box-shadow 500ms ease-out, width 500ms ease-out, background 500ms ease-out, color 500ms ease-out, -webkit-transform 40ms ease-out, -webkit-box-shadow 500ms ease-out;
+  -webkit-transition: width 500ms ease-out, background 500ms ease-out, color 500ms ease-out, -webkit-transform 40ms ease-out, -webkit-box-shadow 40ms ease-out;
+  transition: width 500ms ease-out, background 500ms ease-out, color 500ms ease-out, -webkit-transform 40ms ease-out, -webkit-box-shadow 40ms ease-out;
+  transition: transform 40ms ease-out, box-shadow 40ms ease-out, width 500ms ease-out, background 500ms ease-out, color 500ms ease-out;
+  transition: transform 40ms ease-out, box-shadow 40ms ease-out, width 500ms ease-out, background 500ms ease-out, color 500ms ease-out, -webkit-transform 40ms ease-out, -webkit-box-shadow 40ms ease-out;
 }
 
 #morseButton button.showPaddles {
-  color: #888;
-  font-size: 1rem;
-  font-weight: bold;
-  width: 30px;
+  color: transparent;
+  border-radius: 50px;
+  width: 50px;
   height: 100px;
   -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.35), 0px -1px 1px white;
           box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.35), 0px -1px 1px white;
 }
 
 #morseButton button#left {
-  border-radius: 50px 0 0 50px;
   width: 50%;
-  -webkit-transition: all 500ms ease-out;
-  transition: all 500ms ease-out;
+  border-radius: 50px 0px 0px 50px;
   display: none;
 }
 
 #morseButton button#left.showPaddles {
+  border-radius: 50px 0 0 50px;
   display: inline-block;
   margin-right: 7px;
   border-radius: 20px;
@@ -734,12 +736,11 @@ i[class*="ri-"] {
 #morseButton button#right {
   border-radius: 0 50px 50px 0;
   width: 50%;
-  -webkit-transition: all 500ms ease-out;
-  transition: all 500ms ease-out;
   display: none;
 }
 
 #morseButton button#right.showPaddles {
+  border-radius: 0 50px 50px 0;
   display: inline-block;
   margin-left: 7px;
   border-radius: 20px;
@@ -748,12 +749,13 @@ i[class*="ri-"] {
 #morseButton button.active {
   -webkit-transform: translateY(3px);
           transform: translateY(3px);
-  -webkit-box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
-          box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.3);
+          box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.3);
 }
 
 #morseButton.showPaddles {
   width: 150px;
+  height: 100px;
   background: transparent;
   -webkit-box-shadow: 0px 0px 0px transparent;
           box-shadow: 0px 0px 0px transparent;
@@ -762,7 +764,7 @@ i[class*="ri-"] {
 #morseButtonText {
   font-weight: bold;
   color: #aaa;
-  font-size: 0.7rem;
+  font-size: 0.9rem;
 }
 
 #paddleText {
@@ -1116,7 +1118,7 @@ i[class*="ri-"] {
           box-shadow: inset 20px 0px 20px -5px whitesmoke;
   position: absolute;
   display: inline-block;
-  top: 0;
+  top: 20px;
   left: calc(50% - 37.5%);
   width: 600px;
   height: 5rem;
@@ -1142,7 +1144,7 @@ i[class*="ri-"] {
 
 #morseBufferDisplay #ditDahs-container {
   text-align: center;
-  max-width: 75%;
+  max-width: 70vw;
   display: inline-block;
   overflow: hidden;
 }
@@ -1282,6 +1284,7 @@ i[class*="ri-"] {
           align-items: flex-end;
   width: 80%;
   max-width: 500px;
+  margin-top: 3em;
 }
 
 #morse-history #morseHistory-textbox {
@@ -1299,6 +1302,7 @@ i[class*="ri-"] {
       align-content: flex-start;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  overflow-y: scroll;
 }
 
 #morse-history #morseHistory-textbox span {
@@ -1314,22 +1318,45 @@ i[class*="ri-"] {
 }
 
 #morse-history #clear {
+  width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+#morse-history #clear #message {
+  padding: 0.3em;
+  font-size: 0.9em;
+  color: #777;
+}
+
+#morse-history #clear #message .ditDah {
+  font-family: "Courier", monospace;
 }
 
 #morse-history #clear button {
-  background: #ddd;
+  background: #ededed;
+  color: #666;
   font-size: 1em;
   height: 1.5em;
   border: 0px;
-  border-radius: 3px;
-  padding: 3px;
-  text-transform: uppercase;
+  padding: 0.7em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#morse-history #clear button:hover {
+  color: maroon;
 }
 
 #morseHistory {
@@ -1504,7 +1531,6 @@ i[class*="ri-"] {
     width: 20%;
   }
   #root #main-content #main-interface {
-    border: 1px solid red;
     max-width: 100vw;
     position: relative;
     left: 100%;
@@ -1587,19 +1613,44 @@ i[class*="ri-"] {
         -ms-flex-pack: end;
             justify-content: flex-end;
     margin-bottom: 0px;
+    margin-top: 0px;
     height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
   }
+  #root #main-content #main-interface #morseBufferDisplay #alphanumeric-container {
+    min-height: 3.5rem;
+    max-height: 3.5rem;
+    margin-bottom: 0px;
+    padding: 0px;
+  }
   #root #main-content #main-interface #morseBufferDisplay #alphanumeric-container #alphanumeric {
-    height: 3.5rem;
+    min-height: 3.5rem;
     font-size: 3rem;
   }
+  #root #main-content #main-interface #morseBufferDisplay #ditDahs-container {
+    margin-top: 0;
+    margin-bottom: 0;
+    min-height: 2.3rem;
+    max-height: 2.3rem;
+  }
+  #root #main-content #main-interface #morseBufferDisplay #ditDahs-container #ditDahs {
+    min-height: 2rem;
+    max-height: 2rem;
+  }
+  #root #main-content #main-interface #morseBufferDisplay #ditDahs-container #ditDahs .ditDah {
+    height: 2rem;
+    min-width: 1.7rem;
+    max-width: 1.7rem;
+    font-size: 2rem;
+  }
   #root #main-content #main-interface #morse-history {
-    height: 3rem;
+    margin-top: 0px;
   }
   #root #main-content #main-interface #morse-history #morseHistory-textbox {
     background: #fff;
+    min-height: 2em;
+    max-height: 2em;
   }
   #root #main-content #main-interface #challenge-header {
     padding: 5px;

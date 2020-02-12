@@ -200,7 +200,9 @@ function useElectronicKey() {
 
 
     function handleInputStart(event) {
-        if (event.type === 'touchstart') {event.preventDefault()}
+        if (event.type === 'touchstart') {
+            event.preventDefault()
+        }
         
         paddlesReleasedSimultaneously = false
 
