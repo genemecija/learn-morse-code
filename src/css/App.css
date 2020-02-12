@@ -1,10 +1,16 @@
-@import url("https://fonts.googleapis.com/css?family=Courier+Prime:700|Asap|Roboto:700|Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Courier+Prime:700|Roboto:700|Roboto&display=swap");
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   margin: 0px;
   padding: 0px;
   cursor: default;
+  -ms-touch-action: manipulation;
+      touch-action: manipulation;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 button {
@@ -14,7 +20,7 @@ button {
 
 html, body {
   height: 100%;
-  width: 100%;
+  width: 100vw;
   background: #eee;
 }
 
@@ -30,7 +36,7 @@ html, body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 100%;
+  width: 100vw;
 }
 
 #header {
@@ -62,7 +68,7 @@ html, body {
   min-width: -webkit-fit-content;
   min-width: -moz-fit-content;
   min-width: fit-content;
-  width: 100%;
+  width: 100vw;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -95,7 +101,6 @@ html, body {
   width: 40%;
   height: calc(100% - 5.1em);
   max-width: 100%;
-  min-width: 455px;
   overflow-y: scroll;
   position: fixed;
   top: 50px;
@@ -279,7 +284,7 @@ html, body {
 }
 
 #main-content #main-interface {
-  background: white;
+  background: whitesmoke;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -314,7 +319,7 @@ html, body {
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
-  height: 6em;
+  overflow-x: scroll;
   width: 100%;
   padding: 10px;
   background: rgba(112, 128, 144, 0.3);
@@ -466,6 +471,7 @@ html, body {
 }
 
 #footer a {
+  color: #eee;
   text-decoration: none;
 }
 
@@ -655,8 +661,6 @@ i[class*="ri-"] {
 }
 
 #morseButton {
-  -ms-touch-action: manipulation;
-      touch-action: manipulation;
   width: 100px;
   height: 100px;
   margin-top: 30px;
@@ -679,6 +683,7 @@ i[class*="ri-"] {
   transition: width 500ms ease-out, background 500ms ease-out, -webkit-transform 40ms ease-out, -webkit-box-shadow 40ms ease-out;
   transition: transform 40ms ease-out, box-shadow 40ms ease-out, width 500ms ease-out, background 500ms ease-out;
   transition: transform 40ms ease-out, box-shadow 40ms ease-out, width 500ms ease-out, background 500ms ease-out, -webkit-transform 40ms ease-out, -webkit-box-shadow 40ms ease-out;
+  background: lightgray;
 }
 
 #morseButton.active {
@@ -693,7 +698,7 @@ i[class*="ri-"] {
   color: transparent;
   width: 50px;
   height: 100px;
-  background: #f4f4f4;
+  background: lightgray;
   margin: 0px;
   border: 0px;
   -webkit-transition: width 500ms ease-out, background 500ms ease-out, color 500ms ease-out, -webkit-transform 40ms ease-out, -webkit-box-shadow 500ms ease-out;
@@ -717,9 +722,11 @@ i[class*="ri-"] {
   width: 50%;
   -webkit-transition: all 500ms ease-out;
   transition: all 500ms ease-out;
+  display: none;
 }
 
 #morseButton button#left.showPaddles {
+  display: inline-block;
   margin-right: 7px;
   border-radius: 20px;
 }
@@ -729,9 +736,11 @@ i[class*="ri-"] {
   width: 50%;
   -webkit-transition: all 500ms ease-out;
   transition: all 500ms ease-out;
+  display: none;
 }
 
 #morseButton button#right.showPaddles {
+  display: inline-block;
   margin-left: 7px;
   border-radius: 20px;
 }
@@ -825,10 +834,11 @@ i[class*="ri-"] {
       -ms-flex-align: center;
           align-items: center;
   width: 45%;
+  max-width: 600px;
   padding: 1.7em;
   height: 35%;
   background: #eee;
-  margin-top: 25%;
+  margin-top: 10rem;
   border-radius: 5px;
   -webkit-box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
           box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
@@ -1102,14 +1112,14 @@ i[class*="ri-"] {
 }
 
 #morseBufferDisplay #overlay {
-  -webkit-box-shadow: inset 20px 0px 20px -5px #fff;
-          box-shadow: inset 20px 0px 20px -5px #fff;
+  -webkit-box-shadow: inset 20px 0px 20px -5px whitesmoke;
+          box-shadow: inset 20px 0px 20px -5px whitesmoke;
   position: absolute;
   display: inline-block;
   top: 0;
   left: calc(50% - 37.5%);
   width: 600px;
-  height: 100%;
+  height: 5rem;
   z-index: 40;
 }
 
@@ -1195,58 +1205,16 @@ i[class*="ri-"] {
   font-weight: bold;
 }
 
-#challengeBufferDisplay #alphanumeric-container {
-  padding-left: 5px;
-  width: 50%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-#challengeBufferDisplay #alphanumeric-container #alphanumeric {
-  height: 50px;
-  font-size: 3rem;
-  font-family: "Courier", monospace;
-  float: right;
-  background: #fdfdfd;
-  margin-left: 3px;
-  margin-bottom: 20px;
-  border-radius: 3px;
-  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px rgba(255, 255, 255, 0.1);
-          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px rgba(255, 255, 255, 0.1);
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-#challengeBufferDisplay #alphanumeric-container #alphanumeric:first-child {
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#challengeBufferDisplay #alphanumeric-container #alphanumeric span {
-  display: inline-block;
-  padding: 4px;
-  -webkit-transition: background 100ms ease-in-out;
-  transition: background 100ms ease-in-out;
-}
-
 #challengeBufferDisplay #ditDahs {
-  height: 50px;
+  max-width: 95%;
+  height: 60px;
   padding-right: 5px;
   padding-top: 10px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  margin-bottom: 10px;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  overflow: hidden;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
@@ -1256,9 +1224,11 @@ i[class*="ri-"] {
           justify-content: center;
   font-size: 3rem;
   font-family: "Courier", monospace;
+  text-align: center;
 }
 
 #challengeBufferDisplay #ditDahs span {
+  float: right;
   padding: 5px;
   -webkit-transition: background 100ms ease-in-out;
   transition: background 100ms ease-in-out;
@@ -1315,7 +1285,7 @@ i[class*="ri-"] {
 }
 
 #morse-history #morseHistory-textbox {
-  background: #f8f8f8;
+  background: #fff;
   border-radius: 5px;
   min-height: 4em;
   width: 100%;
@@ -1341,6 +1311,25 @@ i[class*="ri-"] {
   border-radius: 3px;
   -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px rgba(255, 255, 255, 0.1);
           box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px rgba(255, 255, 255, 0.1);
+}
+
+#morse-history #clear {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+#morse-history #clear button {
+  background: #ddd;
+  font-size: 1em;
+  height: 1.5em;
+  border: 0px;
+  border-radius: 3px;
+  padding: 3px;
+  text-transform: uppercase;
 }
 
 #morseHistory {
@@ -1452,283 +1441,182 @@ i[class*="ri-"] {
   margin-right: 4px;
 }
 
+@media only screen and (max-width: 1024px) {
+  #root #main-content .sidebar#left #sidebar-container #sidebar-content #info {
+    padding: 1em;
+  }
+  #root #main-content .sidebar#left #sidebar-container #sidebar-content #playerAndLegend {
+    padding: 0;
+  }
+  #root #main-content .sidebar#left #sidebar-container #sidebar-content #playerAndLegend #legend #legend-items button {
+    width: 20%;
+  }
+  #root #main-content #main-interface #mainOptions {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+}
+
 @media only screen and (max-width: 415px) {
   html, body, #root, #main-interface {
     width: 100vw;
     overflow: hidden;
   }
   #header {
-    font-size: 2.1em;
-    line-height: 1.2em;
-    height: auto;
-  }
-  #playerAndLegend {
-    padding: 0 !important;
-    overflow-x: hidden;
     width: 100vw;
-  }
-  #playerAndLegend #legend {
-    width: 100vw;
-  }
-  #legend {
-    margin-top: 0px;
-    background: #eee;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -webkit-box-pack: space-evenly;
-        -ms-flex-pack: space-evenly;
-            justify-content: space-evenly;
-  }
-  #legend #legend-title {
-    margin-left: 0em;
     font-size: 1.5em;
-    font-weight: bold;
-    margin-bottom: 0.3em;
+    height: 1.5em;
+    min-height: 1.5em;
+    max-height: 1.5em;
   }
-  #legend #legend-items {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    width: -webkit-fit-content;
-    width: -moz-fit-content;
-    width: fit-content;
-    height: -webkit-fit-content;
-    height: -moz-fit-content;
-    height: fit-content;
-    margin-bottom: 10px;
+  #root #main-content {
+    height: calc(100vh - 4.1em);
   }
-  #legend #legend-items .item, #legend #legend-items span {
-    cursor: pointer;
-  }
-  #legend #legend-items .item {
-    font-family: "Courier", monospace;
-    font-size: 0.7em;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    width: 20%;
-    margin: 5px;
-    padding: 0.3em;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    -webkit-transition: all 50ms ease-in-out;
-    transition: all 50ms ease-in-out;
-    background: #ddd;
-    border: 0px;
-    background: #eee;
-    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.35), 0px -1px 1px white;
-            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.35), 0px -1px 1px white;
-  }
-  #legend #legend-items .item span {
-    -webkit-transition: all 50ms ease-in-out;
-    transition: all 50ms ease-in-out;
-  }
-  #legend #legend-items .item:active {
-    -webkit-transform: scale(0.95);
-            transform: scale(0.95);
-    border-color: rgba(112, 128, 144, 0.6);
-    background: #ddd;
-  }
-  #legend #legend-items .item:active span:first-child {
-    background: rgba(112, 128, 144, 0.6);
-  }
-  #legend #legend-items .item:hover {
-    border-color: rgba(112, 128, 144, 0.6);
-    background: #ddd;
-  }
-  #legend #legend-items .item:hover span:first-child {
-    background: rgba(112, 128, 144, 0.6);
-  }
-  #legend #legend-items .item span:first-child {
-    display: inline-block;
-    padding: 1px;
-    width: 1.5em;
-    background: #d6d6d6;
-    border-radius: 2px;
-    font-size: 1.5em;
-    -webkit-transition: all 75ms ease-in-out;
-    transition: all 75ms ease-in-out;
-  }
-  #legend #legend-items .item span:last-child {
-    font-weight: bold;
-    font-size: 1em;
-    display: inline-block;
-    padding-left: 5px;
-    width: 100%;
-  }
-  #main-content {
-    top: 2.5em;
+  #root #main-content .sidebar#left {
+    top: 2.2em;
     width: 100vw;
+    min-width: 40%;
+    max-width: 100vw;
+    height: calc(100vh - 4.1em);
   }
-  #main-content .sidebar#left {
-    min-width: 100vw;
-    -webkit-transition: all 500ms ease-in-out;
-    transition: all 500ms ease-in-out;
-  }
-  #main-content .sidebar#left.hide {
-    left: calc(-100vw + 40px);
-    top: 50px;
-    overflow-y: hidden;
+  #root #main-content .sidebar#left.hide {
+    left: calc(-100% + 40px);
     background: transparent;
     -webkit-box-shadow: 0px 0px 0px transparent;
             box-shadow: 0px 0px 0px transparent;
+    z-index: 600;
   }
-  #main-content .sidebar#left.hide #sidebar-container #sidebar-content #info {
-    opacity: 0%;
-    overflow-y: hidden;
-  }
-  #main-content .sidebar#left.hide #sidebar-container #info-icon {
-    background: white;
-  }
-  #main-content .sidebar#left.hide #sidebar-container #info-icon::after {
-    content: ">";
-  }
-  #main-content .sidebar#left #sidebar-container {
-    width: 100%;
-    padding: 0em;
-  }
-  #main-content .sidebar#left #sidebar-container .navbar {
-    width: 100%;
-  }
-  #main-content .sidebar#left #sidebar-container .navbar .nav-item {
-    width: 25%;
-  }
-  #main-content .sidebar#left #sidebar-container .navbar .nav-item#nav-play {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-  }
-  #main-content .sidebar#left #sidebar-container #info-icon {
+  #root #main-content .sidebar#left.hide #sidebar-content {
     display: none;
   }
-  #main-content .sidebar#left #sidebar-container #sidebar-content #info {
-    width: 100%;
+  #root #main-content .sidebar#left #sidebar-content #info {
     padding: 1em;
   }
-  #main-content #main-interface {
-    width: 100vw;
-    left: 0;
+  #root #main-content .sidebar#left #sidebar-content #playerAndLegend {
+    padding: 0px;
   }
-  #main-content #main-interface #morseBufferDisplay {
+  #root #main-content .sidebar#left #sidebar-content #playerAndLegend #legend #legend-items button {
+    width: 20%;
+  }
+  #root #main-content #main-interface {
+    border: 1px solid red;
+    max-width: 100vw;
+    position: relative;
+    left: 100%;
+  }
+  #root #main-content #main-interface.expandLeft {
+    left: 0%;
+    width: 100vw;
+  }
+  #root #main-content #main-interface #mainOptions {
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    min-height: -webkit-fit-content;
+    min-height: -moz-fit-content;
+    min-height: fit-content;
+    width: 100vw;
+    padding: 3px;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    z-index: 500;
+  }
+  #root #main-content #main-interface #mainOptions div .mode-picker {
+    margin-left: 15px;
+    width: 100%;
+    max-width: 100vw;
+    min-width: 50px;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+  }
+  #root #main-content #main-interface #mainOptions div .mode-picker div {
+    max-width: 100vw;
+  }
+  #root #main-content #main-interface #mainOptions div .mode-picker div#title {
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    font-size: 1em;
+  }
+  #root #main-content #main-interface #mainOptions div .mode-picker div#buttons, #root #main-content #main-interface #mainOptions div .mode-picker div#input {
+    font-size: 1em;
+  }
+  #root #main-content #main-interface #mainOptions div .mode-picker button, #root #main-content #main-interface #mainOptions div .mode-picker #input button {
+    font-size: 0.8em;
+  }
+  #root #main-content #main-interface #mainOptions div .mode-picker #input {
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+  }
+  #root #main-content #main-interface #challenge-overlay #challengeReady, #root #main-content #main-interface #challenge-overlay #challengeComplete {
+    height: 60%;
+    max-height: 600px;
+    padding: 0px;
+    width: 90%;
+  }
+  #root #main-content #main-interface #challenge-overlay #challengeReady #notify-title, #root #main-content #main-interface #challenge-overlay #challengeComplete #notify-title {
+    font-size: 1.5em;
+  }
+  #root #main-content #main-interface #challenge-overlay #challengeReady div .mode-picker, #root #main-content #main-interface #challenge-overlay #challengeComplete div .mode-picker {
+    width: 95%;
+  }
+  #root #main-content #main-interface #challenge-overlay #challengeReady div .mode-picker #title, #root #main-content #main-interface #challenge-overlay #challengeComplete div .mode-picker #title {
+    font-size: 1em;
+  }
+  #root #main-content #main-interface #challenge-overlay #challengeReady div .mode-picker #info, #root #main-content #main-interface #challenge-overlay #challengeReady div .mode-picker #input, #root #main-content #main-interface #challenge-overlay #challengeReady div .mode-picker #buttons, #root #main-content #main-interface #challenge-overlay #challengeComplete div .mode-picker #info, #root #main-content #main-interface #challenge-overlay #challengeComplete div .mode-picker #input, #root #main-content #main-interface #challenge-overlay #challengeComplete div .mode-picker #buttons {
+    font-size: 1em;
+  }
+  #root #main-content #main-interface #challenge-overlay #challengeReady #startChallenge, #root #main-content #main-interface #challenge-overlay #challengeComplete #startChallenge {
+    font-size: 1.3em;
+    line-height: 2em;
+  }
+  #root #main-content #main-interface #morseBufferDisplay {
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
     margin-bottom: 0px;
     height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
   }
-  #main-content #main-interface #morseBufferDisplay #overlay {
-    -webkit-box-shadow: inset 20px 0px 20px -5px #eee;
-            box-shadow: inset 20px 0px 20px -5px #eee;
-  }
-  #main-content #main-interface #morseBufferDisplay #alphanumeric-container {
-    text-align: center;
-    max-width: 75%;
-    display: inline-block;
-    overflow: hidden;
-    padding-top: 0px;
-  }
-  #main-content #main-interface #morseBufferDisplay #alphanumeric-container #alphanumeric {
-    height: 4rem;
-    padding-top: 0.45rem;
+  #root #main-content #main-interface #morseBufferDisplay #alphanumeric-container #alphanumeric {
+    height: 3.5rem;
     font-size: 3rem;
-    margin-bottom: 0px;
-    border-radius: 3px;
-    float: right;
   }
-  #main-content #main-interface * {
-    z-index: 1000;
+  #root #main-content #main-interface #morse-history {
+    height: 3rem;
   }
-  #main-content #main-interface.expandLeft {
-    left: 0;
-    width: 100vw;
+  #root #main-content #main-interface #morse-history #morseHistory-textbox {
+    background: #fff;
   }
-  #main-content #main-interface #morse-history {
-    width: 95%;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: end;
-        -ms-flex-pack: end;
-            justify-content: flex-end;
-  }
-  #main-content #main-interface #morse-history #morseHistory-textbox {
-    width: 100%;
-    overflow-y: scroll;
+  #root #main-content #main-interface #challenge-header {
     padding: 5px;
-    margin: 0px;
-    min-height: 2.3em;
   }
-  #main-content #main-interface #morse-history #clear-history {
-    border: 0px;
-  }
-  #main-content #main-interface #morseButton {
-    margin-top: 5px;
-  }
-  #main-content #main-interface #mainOptions {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    height: 10em;
-    width: 100vw;
-  }
-  #main-content #main-interface #mainOptions #options-left .mode-picker #title, #main-content #main-interface #mainOptions #options-right .mode-picker #title {
-    -webkit-box-pack: end;
-        -ms-flex-pack: end;
-            justify-content: flex-end;
-    width: 5em;
-    font-weight: bold;
-    font-size: 1em;
-  }
-  #main-content #main-interface #mainOptions #options-left .mode-picker #title span#range, #main-content #main-interface #mainOptions #options-right .mode-picker #title span#range {
-    display: none;
-  }
-  #main-content #main-interface #mainOptions #options-left .mode-picker #buttons button, #main-content #main-interface #mainOptions #options-right .mode-picker #buttons button {
-    margin: 5px;
-  }
-  #main-content #main-interface #mainOptions #options-left .mode-picker #input, #main-content #main-interface #mainOptions #options-right .mode-picker #input {
+  #root #main-content #main-interface #challenge-header #gameClock {
     font-size: 0.8em;
   }
-  #main-content #main-interface #mainOptions #options-left .mode-picker #input input, #main-content #main-interface #mainOptions #options-right .mode-picker #input input {
-    height: 1.1rem;
-    font-size: 0.8rem;
-  }
-  #main-content #main-interface #mainOptions #options-left .mode-picker #input select, #main-content #main-interface #mainOptions #options-right .mode-picker #input select {
-    height: 1.4rem;
-  }
-  #main-content #main-interface #mainOptions #options-left .mode-picker #input button, #main-content #main-interface #mainOptions #options-right .mode-picker #input button {
-    width: 1.2em;
-    height: 1.2em;
-    border-radius: 3px;
+  #root #main-content #main-interface #challenge-header #challengeControls button {
     font-size: 1em;
   }
-  #main-content #main-interface #mainOptions #options-left .mode-picker #input button i, #main-content #main-interface #mainOptions #options-right .mode-picker #input button i {
-    left: -7px;
-    top: -3px;
-    font-size: 1rem;
+  #root #main-content #main-interface #challengeWord {
+    margin-top: 0;
+    height: 4rem;
+    font-size: 3rem;
   }
-  #main-content #main-interface #mainOptions #options-left .mode-picker button, #main-content #main-interface #mainOptions #options-right .mode-picker button {
-    font-size: 0.8em;
-    color: #333;
+  #root #main-content #main-interface #challengeWord span {
+    line-height: 2rem;
   }
 }
 /*# sourceMappingURL=App.css.map */

@@ -1,14 +1,15 @@
 import React from "react"
 
 export default React.memo(function MorseButtons() {
+
     return (
         <>
             <div id="morseButton">
-                <button className="paddle" id="left">&lt;<br/>,</button>
-                <button className="paddle" id="right">&gt;<br/>.</button>
+                <button className="paddle" id="left"></button>
+                <button className="paddle" id="right"></button>
             </div>
             <div id="morseButtonText">
-                SPACEBAR
+                TAP OR PRESS SPACEBAR
             </div>
         </>
     )

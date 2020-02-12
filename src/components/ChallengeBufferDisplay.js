@@ -25,11 +25,7 @@ export default React.memo(function ChallengeBufferDisplay(props) {
 
     return (
         <div id="challengeBufferDisplay">
-            {/* <div id="alphanumeric-container">
-                <div id="alphanumeric">
-                    {alphanumeric}
-                </div>
-            </div> */}
+            {/* <div id="overlay"></div> */}
             <div id="ditDahs">
                 {ditDahs}
             </div>

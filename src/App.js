@@ -23,7 +23,6 @@ import Footer from './components/Footer';
 import ChallengeOverlay from './components/ChallengeOverlay';
 import SidebarLeft from './components/SidebarLeft';
 import FrequencyPicker from './components/FrequencyPicker';
-import Tip from './components/Tip';
 
 export default React.memo(function App() {
 
@@ -67,7 +66,6 @@ export default React.memo(function App() {
                         }
 
                         <MorseButtons />
-                        <Tip />
                     </div>
                     {/* <div className="sidebar" id="right">
                         <div id="settings-icon" onClick={toggleRight}><i class="ri-settings-3-line"></i></div>

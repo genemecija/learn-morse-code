@@ -200,7 +200,7 @@ function useElectronicKey() {
 
 
     function handleInputStart(event) {
-        // event.preventDefault()
+        if (event.type === 'touchstart') {event.preventDefault()}
         
         paddlesReleasedSimultaneously = false
 
@@ -239,7 +239,7 @@ function useElectronicKey() {
     }
 
     function handleInputEnd(event) {
-        // event.preventDefault()
+        if (event.type === 'touchend') {event.preventDefault()}
 
         // if (!insideBufferDisplay) {return}
         if (event.keyCode === 188 || event.target.id === "left") {
@@ -329,7 +329,6 @@ function useElectronicKey() {
 
             clearInterval(depressSyncTimer)
             clearInterval(gapTimer)
-            // clearHistory()
         }
         // eslint-disable-next-line
     }, [wpm, gameMode, frequency])

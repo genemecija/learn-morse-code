@@ -51,7 +51,7 @@ export default React.memo(function WordsPerMinute(props) {
                 <button id='wpm-down' onClick={decrement}><i className="ri-arrow-down-s-line"></i></button>
                 <input type="number" name="wpm" id='wpm-input' min="5" max="30" value={wpm} onChange={handleChange}></input>
                 <button id='wpm-up' onClick={increment}><i className="ri-arrow-up-s-line"></i></button>
-                Test Speed&nbsp;<i className="ri-volume-up-fill" onClick={() => playMorseWord('.....')}></i>
+                Test&nbsp;<i className="ri-volume-up-fill" onClick={() => playMorseWord('.....')}></i>
             </div>
         </div>
     )

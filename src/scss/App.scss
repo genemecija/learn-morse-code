@@ -1,12 +1,10 @@
-// $main-bg-color-dark: #2c2c2c;
-@import url('https://fonts.googleapis.com/css?family=Courier+Prime:700|Asap|Roboto:700|Roboto&display=swap');
-// $main-font: 'Asap', sans-serif;
+@import url('https://fonts.googleapis.com/css?family=Courier+Prime:700|Roboto:700|Roboto&display=swap');
 $main-font: 'Roboto', sans-serif;
-// $main-font-bold: 'Roboto', sans-serif;
 $buffer-font: 'Courier Prime', Courier, monospace;
-// $buffer-font: 'Courier', monospace;
 $ditDah-font: 'Courier', monospace;
 
+
+// $main-bg-color-dark: #2c2c2c;
 // $main-bg-color-light: #f1f1f1;
 $main-bg-color-light: #eee;
 $main-font-color-light: #333;
@@ -20,16 +18,14 @@ $main-box-shadow-dark-selected: inset 0px 2px 2px rgba(0, 0, 0, 0.2), inset 0px 
 
 $main-border-radius: 3px;
 
-$border-radius-neumorphic: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.15);
-$border-radius-neumorphic-dark: 0px -10px 20px rgba(255, 255, 255, 0.1), 0px 10px 10px rgba(0, 0, 0, 0.4);
-$border-radius-neumorphic-active: 0 15px 20px rgba(0, 0, 0, 0.015), inset 0px -2px 5px rgb(255, 255, 255), inset 0px 2px 5px rgba(0, 0, 0, 0.15);
-
 
 * {
     box-sizing: border-box;
     margin: 0px;
     padding: 0px;
     cursor: default;
+    touch-action: manipulation; // Disable double-tap to zoom on mobile devices
+    user-select: none;
 }
 button {
     font-family: $main-font;
@@ -37,21 +33,20 @@ button {
 }
 html, body {
     height: 100%;
-    width: 100%;
+    // width: 100%;
+    width: 100vw;
     background: $main-bg-color-light;
-    // background: #444;
 }
 #root {
     height: 100%;
     display: flex;
     flex-direction: column;
-    // justify-content: center;
     align-items: center;
-    width: 100%;
+    // width: 100%;
+    width: 100vw;
     // border: 3px solid green;
 }
 #header {
-    // margin-top: 50px;
     min-height: 50px;
     min-height: 50px;
     width: 100%;
@@ -61,20 +56,17 @@ html, body {
     background: #333;
     font-family: $main-font;
     font-size: 2.5em;
-    // font-weight: bold;
-    // color: $main-bg-color-light;
     color: rgb(218, 184, 32);
     color: $main-bg-color-light;
     z-index: 1000;
     box-shadow: 0px 2px 2px rgba(0,0,0,0.45);
 }
 #main-content {
+    // border: 1px solid red;
     display: flex;
     height: 95vh;
     min-width: fit-content;
-    width: 100%;
-    // border: 1px solid red;
-    // justify-content: center;
+    width: 100vw;
     align-items: center;
     align-self: center;
     overflow-x: hidden;
@@ -83,7 +75,6 @@ html, body {
 
     .sidebar#left {
         // border: 1px solid blue;
-        // background: $main-bg-color-light;
         background: $main-bg-color-light;
         box-shadow: 3px 0px 3px rgba(0,0,0,0.25);
         
@@ -96,9 +87,10 @@ html, body {
         align-items: center;
         
         width: 40%;
+        // width: 40vw;
         height: calc(100% - 5.1em);
         max-width: 100%;
-        min-width: 455px;
+        // min-width: 455px;
         overflow-y: scroll;
 
         position: fixed;
@@ -126,32 +118,22 @@ html, body {
 
             .navbar {
                 // border-bottom: 1px solid #ccc;
-                // margin-top: 200px;
                 font-size: 1em;
                 line-height: 1em;
-                // height: 100px;
                 width: 100%;
                 height: 35px;
                 display: flex;
                 justify-content: center;
                 text-transform: uppercase;
                 font-weight: 550;
-                // color: #fff;
-                // background: #888;
-                // margin-top: 450px;
-                // box-shadow: inset 0px 3px 3px rgba(0,0,0,0.3);
-    
                 
                 .nav-item {
                     // border: 1px solid black;
                     padding: 10px;
-                    // margin: 10px;
                     width: 30%;
                     height: 100%;
                     display: flex;
                     justify-content: center;
-                    // position: relative;
-                    // overflow: hidden;
                     transition: all 150ms ease-in-out;
                     border-bottom: 2px solid transparent;
                     // border-bottom: 2px;
@@ -231,7 +213,6 @@ html, body {
     
                     h1, h2 {
                         margin-bottom: 0.3em;
-                        // text-transform: uppercase;
                     }
                     .bold {
                         display: inline-block;
@@ -259,20 +240,14 @@ html, body {
     #main-interface {
         // border: 1px solid red;
         
-        background: white;
+        background: rgb(245, 245, 245);
         display: flex;
         flex-direction: column;
         align-items: center;
-        // justify-content: flex-start;
-        // flex-grow: 1;
         height: 100%;
-        // min-width: 600px;
         width: 60%;
 
-        // padding-top: 5em;
-        // width: 100%;
         position: relative;
-        // padding-top: 30px;
         left: 40%;
         transition: all 500ms ease-in-out;
         &.expandLeft {
@@ -286,9 +261,9 @@ html, body {
             display: flex;
             flex-direction: row;
             justify-content: flex-start;
-            // align-items: flex-start;
             
-            height: 6em;
+            // height: 6em;
+            overflow-x: scroll;
             width: 100%;
             padding: 10px;
             background: rgba(112, 128, 144,0.3);
@@ -408,6 +383,7 @@ html, body {
     color: $main-bg-color-light;
     z-index: 1000;
     a {
+        color: $main-bg-color-light;
         text-decoration: none;
     }
     a:visited {
@@ -588,9 +564,8 @@ i[class*="ri-"] {
 
 $button-diameter: 100px;
 $button-radius: 50px;
+$morse-button-color: lightgray;
 #morseButton {
-    
-    touch-action: manipulation; // Disable double-tap to zoom on mobile devices
 
     width: $button-diameter;
     height: $button-diameter;
@@ -603,7 +578,7 @@ $button-radius: 50px;
     align-items: center;
     box-shadow: $main-box-shadow-light;
     transition: transform 40ms ease-out, box-shadow 40ms ease-out, width 500ms ease-out, background 500ms ease-out;
-    
+    background: $morse-button-color;
 
     &.active {
         transform: translateY(3px);
@@ -618,8 +593,7 @@ $button-radius: 50px;
         color: transparent;
         width: $button-radius;
         height: $button-diameter;
-        // background: yellow;
-        background: #f4f4f4;
+        background: $morse-button-color;
         margin: 0px;
         border: 0px;
         // transition: all 20ms ease-out;
@@ -637,8 +611,10 @@ $button-radius: 50px;
             border-radius: $button-radius 0 0 $button-radius;
             width: 50%;
             transition: all 500ms ease-out;
+            display: none;
             // background: red;
             &.showPaddles{
+                display: inline-block;
                 margin-right: 7px;
                 border-radius: 20px;
             }
@@ -647,8 +623,10 @@ $button-radius: 50px;
             border-radius: 0 $button-radius $button-radius 0;
             width: 50%;
             transition: all 500ms ease-out;
+            display: none;
             // background: blue;
             &.showPaddles{
+                display: inline-block;
                 margin-left: 7px;
                 border-radius: 20px;
             }
@@ -675,72 +653,6 @@ $button-radius: 50px;
     display: flex;
     justify-content: space-around;
 }
-// #morseButton.mobile {
-//     width: 100px;
-//     height: 100px;
-//     margin-top: 30px;
-//     margin-bottom: 10px;
-//     // background: goldenrod;
-//     border-radius: 50px;
-//     align-self: center;
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     transition: all 500ms ease-in-out;
-//     box-shadow: $main-box-shadow-light;
-// }
-// #morseButton.showPaddles.mobile {
-//     width: 239px;
-//     background: transparent;
-//     box-shadow: 0px 0px 0px transparent;
-// }
-// #morseButtonText.mobile {
-//     font-weight: bold;
-//     color: #bbb;
-//     font-size: 0.7rem;
-//     margin-bottom: 40px;
-// }
-// #paddleText.mobile {
-//     width: 150px;
-//     display: flex;
-//     justify-content: space-between;
-// }
-
-// .paddle.mobile {
-//     font-size: 1rem;
-//     color: transparent;
-//     width: 100px;
-//     height: 100px;
-//     background: goldenrod;
-//     margin: 0px;
-//     border: 0px;
-//     transition: all 500ms ease-in-out;
-    
-//     &#left {
-//         border-radius: 50px 0 0 50px;
-        
-//         &.showPaddles{
-//             margin-right: 7px;
-//             border-radius: 20px 0 0 20px;
-//         }
-//     }
-//     &#right {
-//         border-radius: 0 50px 50px 0;
-
-//         &.showPaddles{
-//             margin-left: 7px;
-//             border-radius: 0 20px 20px 0;
-//         }
-//     }
-//     &.showPaddles {
-//         color: #000;
-//         font-size: 2.5rem;
-//         font-weight: bold;
-//         width: 250px;
-//         height: 100px;
-//         box-shadow: $main-box-shadow-light;
-//     }
-// }
 
 @keyframes hideOverlay {
     0% { 
@@ -785,11 +697,12 @@ $button-radius: 50px;
         align-items: center;
 
         width: 45%;
+        max-width: 600px;
         padding: 1.7em;
         height: 35%;
         background: $main-bg-color-light;
         // background: #fefefe;
-        margin-top: 25%;
+        margin-top: 10rem;
         border-radius: 5px;
         box-shadow: 0px 5px 15px rgba(0,0,0,0.5);
         border: 3px solid #666;
@@ -911,30 +824,6 @@ $button-radius: 50px;
                         // padding: 5px;
                         font-size: 1rem;
                     }
-
-                    // input {
-                    //     width: 50px;
-                    //     appearance: textfield;
-                    //     text-align: center;
-                    //     border-radius: 3px;
-                    //     border: 1px solid #ddd;
-                    //     height: 1.3rem;
-                    //     font-size: 0.75em;
-                    // }
-                    
-                    // button {
-                    //     width: 20px;
-                    //     height: 20px;
-                    //     border-radius: 3px;
-                    //     // line-height: 10px;
-                    //     i {
-                    //         position: relative;
-                    //         left: -1px;
-                    //         // top: -2px;
-                    //         font-size: 1.1em;
-                    //         font-weight: bold;
-                    //     }
-                    // }
                 }
             }
         }
@@ -1034,13 +923,13 @@ $button-radius: 50px;
 
     #overlay {
         // background: blue;
-        box-shadow: inset 20px 0px 20px -5px #fff;
+        box-shadow: inset 20px 0px 20px -5px rgb(245, 245, 245); //this
         position: absolute;
         display: inline-block;
         top:0;
         left: calc(50% - 37.5%);
         width: 600px;
-        height: 100%;
+        height: 5rem;
         z-index: 40;
     }
 
@@ -1074,31 +963,21 @@ $button-radius: 50px;
         overflow: hidden;
 
         #ditDahs {
+            // border: 1px solid purple;
             height: 50px;
             padding-right: 5px;
-            // border-right: 2px solid #000;
             display: flex;
             flex-direction: row;
             justify-content: center;
-            // border: 1px solid purple;
             font-size: 3rem;
             font-family: $ditDah-font;
             float: right;
-            // font-weight: bold;
-    
-            // span {
-            //     padding: $main-border-radius;
-            //     transition: background 100ms ease-in-out;
-            //     width: 30px;
-            //     background: blue;
-            // }
     
             .ditDah {
                 background: #fdfdfd;
                 height: 40px;
                 width: 30px !important;
                 margin-left: 3px;
-                // box-shadow: 0px 1px 0px #000;
                 border-radius: $main-border-radius;
                 box-shadow: $main-box-shadow-dark;
                 display: flex;
@@ -1113,102 +992,37 @@ $button-radius: 50px;
 }
 
 #challengeBufferDisplay {
+    // border: 1px solid green;
     display: flex;
     justify-content: center;
-    // border: 1px solid green;
     flex-direction: column;
     align-items: center;
     width: 100%;
-    // height: 150px;
-    // margin-top: 10px;
     font-family: $buffer-font;
     font-weight: bold;
 
-    #alphanumeric-container {
-        // border-left: 2px solid #000;
-        padding-left: 5px;
-        width: 50%;
-        display: flex;
-        justify-content: center;
-        
-        #alphanumeric {
-            // font-size: 40px;
-            // background-color: transparent;
-            // margin-bottom: 10px;
-            
-            height: 50px;
-            // border: 1px solid purple;
-            font-size: 3rem;
-            font-family: $ditDah-font;
-            float: right;
-
-
-            background: #fdfdfd;
-            margin-left: 3px;
-            margin-bottom: 20px;
-            // box-shadow: 0px 1px 0px #000;
-            border-radius: $main-border-radius;
-            box-shadow: $main-box-shadow-dark;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            
-            &:first-child {
-                padding-left: 5px;
-                padding-right: 5px;
-                // box-shadow: $main-box-shadow;
-            }
-
-            span {
-                display: inline-block;
-                padding: 4px;
-                transition: background 100ms ease-in-out;
-            }
-        }
-    }
-
     #ditDahs {
-        // width: 50%;
-        // padding-right: 5px;
-        // // border-right: 2px solid #000;
-        // display: flex;
-        // flex-direction: row;
-        // justify-content: center;
-        // font-size: 25px;
-        // font-family: $ditDah-font;
-        // font-weight: bold;
-
-        height: 50px;
+        // border: 1px solid purple;
+        max-width: 95%;
+        height: 60px;
         padding-right: 5px;
         padding-top: 10px;
-        // border-right: 2px solid #000;
-        display: flex;
+        margin-bottom: 10px;
+        display: inline-flex;
+        overflow: hidden;
         flex-direction: row;
         justify-content: center;
-        // border: 1px solid purple;
         font-size: 3rem;
         font-family: $ditDah-font;
-
+        text-align: center;
+        
         span {
-            // background: #fdfdfd;
-            
-            // height: 40px;
-            // width: 30px !important;
-            // margin-left: 3px;
-            // // box-shadow: 0px 1px 0px #000;
-            // border-radius: $main-border-radius;
-            // box-shadow: $main-box-shadow-light;
-            // display: flex;
-            // justify-content: center;
-            // align-items: center;
-
+            float: right;
             padding: 5px;
             transition: background 100ms ease-in-out; 
             background: #fdfdfd;
             height: 40px;
-            // width: 30px !important;
             margin-left: 3px;
-            // box-shadow: 0px 1px 0px #000;
             border-radius: $main-border-radius;
             box-shadow: $main-box-shadow-dark;
             display: flex;
@@ -1234,14 +1048,6 @@ $button-radius: 50px;
     // text-decoration: line-through;
 }
 
-
-// #morseHistory {
-//     border: 1px solid purple;
-//     padding: 5px;
-//     width: 650px;
-//     font-family: 'Verdana';
-//     font-size: 1.5em;
-// }
 #morse-history {
     // border: 1px solid blue;
     display: flex;
@@ -1252,7 +1058,7 @@ $button-radius: 50px;
     max-width: 500px;
     #morseHistory-textbox {
         // border: 1px solid cyan;
-        background: #f8f8f8;
+        background: #fff;
         border-radius: 5px;
         min-height: 4em;
         width: 100%;
@@ -1262,6 +1068,7 @@ $button-radius: 50px;
         display: flex;
         align-content: flex-start;
         flex-wrap: wrap;
+        
     
         span {
             margin: 5px;
@@ -1274,6 +1081,19 @@ $button-radius: 50px;
             box-shadow: $main-box-shadow-dark;
         }
     }
+    #clear {
+        display: flex;
+        height: fit-content;
+        button {
+            background: #ddd;
+            font-size: 1em;
+            height: 1.5em;
+            border: 0px;
+            border-radius: 3px;
+            padding: 3px;
+            text-transform: uppercase;
+        }
+    }
 }
 
 #morseHistory {
@@ -1284,7 +1104,6 @@ $button-radius: 50px;
     height: 320px;
     position: relative;
     padding-top: 10px;
-    // // padding-bottom: 20px;
 
     #overlay {
         // background: blue;
@@ -1297,38 +1116,6 @@ $button-radius: 50px;
         height: 100%;
         z-index: 100;
     }
-    // #morseCards {
-    //     .morseCard:nth-child(1){
-    //         opacity: 100%;
-    //     }
-    //     .morseCard:nth-child(2){
-    //         opacity: 85%;
-    //     }
-    //     .morseCard:nth-child(3){
-    //         opacity: 70%;
-    //     }
-    //     .morseCard:nth-child(4){
-    //         opacity: 55%;
-    //     }
-    //     .morseCard:nth-child(5){
-    //         opacity: 40%;
-    //     }
-    //     .morseCard:nth-child(6){
-    //         opacity: 20%;
-    //     }
-    //     .morseCard:nth-child(7){
-    //         opacity: 10%;
-    //     }
-        // .morseCard:nth-child(8){
-        //     opacity: 30%;
-        // }
-        // .morseCard:nth-child(9){
-        //     opacity: 20%;
-        // }
-        // .morseCard:nth-child(10){
-        //     opacity: 10%;
-        // }
-    // }
 }
 
 .morseCard {
@@ -1340,27 +1127,26 @@ $button-radius: 50px;
     font-family: $buffer-font;
     
     .ditDahs-container, .alphanumeric-container {
+        // border: 1px solid green;
         display: flex;
         width: 50%;
         font-weight: bold;
-        // border: 1px solid green;
     }
     .alphanumeric-container span {
         // background: blue;
         padding-top: 0.17em;
     }
     .ditDahs-container {
-        justify-content: flex-end;
         // border: 1px solid red;
+        justify-content: flex-end;
         max-width: 50%;
     }
 
     div div {
+        // border: 1px solid cyan;
         padding: 3px;
         margin: 2px;
         background: #fdfdfd;
-        // border: 1px solid cyan;
-        // width: 50%;
         white-space: nowrap;
         border-radius: $main-border-radius;
         box-shadow: $morseCard-shadow-light;
@@ -1370,10 +1156,8 @@ $button-radius: 50px;
         span.morseError {
             background: rgba(255,0,0,0.4);
             height: 1.7rem;
-            // background: blue;
             color: rgb(120, 0, 0);
             border-radius: $main-border-radius;
-            // text-decoration: line-through;
         }
     }
     
@@ -1401,6 +1185,33 @@ $button-radius: 50px;
 
 
 // @media screen and (max-width: 415px) {
+@media only screen and (max-width: 1024px) {
+    #root {
+        #main-content {
+            .sidebar#left {
+                #sidebar-container{
+                    #sidebar-content {
+                        #info {
+                            padding: 1em;
+                        }
+                        #playerAndLegend {
+                            padding: 0;
+                            #legend #legend-items button {
+                                width: 20%;
+                            }
+                        }
+                    }
+                }
+            }
+            #main-interface {
+                #mainOptions {
+                    flex-direction: column;
+                    align-items: center;
+                }
+            }
+        }
+    }
+}
 @media only screen and (max-width: 415px) {
 
     html, body, #root, #main-interface {
@@ -1408,315 +1219,167 @@ $button-radius: 50px;
         overflow: hidden;
     }
     #header {
-        font-size: 2.1em;
-        line-height: 1.2em;
-        height: auto;
-    }
-    #playerAndLegend {
-        // border: 1px solid blue;
-        padding: 0 !important;
-        overflow-x: hidden;
         width: 100vw;
-        #legend {
-            // margin-left: 2em;
-            width: 100vw;
-        }
+        font-size: 1.5em;
+        height: 1.5em;
+        min-height: 1.5em;
+        max-height: 1.5em;
     }
+    #root {
+        #main-content {
+            height: calc(100vh - 4.1em);
 
-    #legend {
-        margin-top: 0px;
-        // width: 100%;
-        // border: 1px solid orange;
-        
-        background: $main-bg-color-light;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-    
-        #legend-title {
-            // border: 1px solid purple;
-            margin-left: 0em;
-            font-size: 1.5em;
-            font-weight: bold;
-            margin-bottom: 0.3em;
-        }
-        #legend-items {
-            // border: 1px solid blue;
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            justify-content: center;
-            width: fit-content;
-            height: fit-content;
-            margin-bottom: 10px;
-            .item, span {
-                cursor: pointer;
-            }
-            
-            // &#letters .item {
-            //     width: 17%;
-            // }
-            // &#numbers .item {
-            //     width: 18%;
-            // }
-            // &#special .item {
-            //     width: 20%;
-            // }
-    
-            .item {
-                font-family: $ditDah-font;
-                font-size: 0.7em;
-                // height: 2em;
-                // height: 2em;
-                display: flex;
-                align-items: center;
-                // justify-content: space-between;
-                width: 20%;
-    
-                margin: 5px;
-                padding: 0.3em;
-                border: 1px solid #ccc;
-                border-radius: 3px;
-                transition: all 50ms ease-in-out;
-                background: #ddd;
-    
-                border: 0px;
-                background: $main-bg-color-light;
-                box-shadow: $main-box-shadow-light;
-                span {
-                    transition: all 50ms ease-in-out;
-                }
-                &:active {
-                    transform: scale(0.95);
-                    border-color: rgba(112, 128, 144,0.6);
-                    background: #ddd;
-                    span:first-child {
-                        background: rgba(112, 128, 144,0.6);
-                    }
-                }
-                &:hover {
-                    border-color: rgba(112, 128, 144,0.6);
-                    background: #ddd;
-                    span:first-child {
-                        background: rgba(112, 128, 144,0.6);
-                    }
-                }
-    
-                // button {
-                //     width: 20px;
-                //     height: 20px;
-                //     margin: 4px;
-                //     border: 0px;
-                //     border-radius: 2px;
-                //     box-shadow: $main-box-shadow-light;
-                //     &:active {
-                //         transform: translateY(3px);
-                //         box-shadow: 0px 0px 2px rgba(0,0,0,0.3);
-                //     }
-                // }
-                
-                span:first-child {
-                    display: inline-block;
-                    padding: 1px;
-                    width: 1.5em;
-                    background: #d6d6d6;
-                    border-radius: 2px;
-                    font-size: 1.5em;
-    
-                    transition: all 75ms ease-in-out;
-                }
-                span:last-child {
-                    // background: #08c;
-                    // font-family: $ditDah-font;
-                    font-weight: bold;
-                    font-size: 1em;
-                    display: inline-block;
-                    padding-left: 5px;
-                    width: 100%;
-                }
-            }
-        }
-    }
-
-    #main-content {
-        top: 2.5em;
-        width: 100vw;
-        .sidebar#left {
-            min-width: 100vw;
-            // z-index: -5;
-            transition: all 500ms ease-in-out;
-
-            &.hide {
-                left: calc(-100vw + 40px);
-                top: 50px;
-                overflow-y: hidden;
-                background: transparent;
-                box-shadow: 0px 0px 0px transparent;
-                
-                #sidebar-container {
-                    
-                    #sidebar-content #info {
-                        opacity: 0%;
-                        overflow-y: hidden;
-                    }
-                    #info-icon {
-                        // top: calc(100vh - 7em);
-                        background: white;
-                        &::after {
-                            content: ">";
-                        }
-                    }
-                } 
-            }
             
 
-            #sidebar-container {
-                width: 100%;
-                padding: 0em;
+            .sidebar#left {
+                top: 2.2em;
+                width: 100vw;
+                min-width: 40%;
+                max-width: 100vw;
+                height: calc(100vh - 4.1em);
 
-                .navbar {
-                    width: 100%;
-                    // z-index: 11000;
-                    
-                    .nav-item {
-                        width: 25%;
-                        // z-index: 11000;
-
-                        &#nav-play {
-                            display: flex;
-                            justify-content: center;
-                        }
+                &.hide {
+                    left: calc(-100% + 40px);
+                    background: transparent;
+                    box-shadow: 0px 0px 0px transparent;
+                    z-index: 600;
+                    #sidebar-content {
+                        display: none;
                     }
-                }
-                #info-icon {
-                    display: none;
                 }
 
                 #sidebar-content {
                     #info {
-                        width: 100%;
                         padding: 1em;
                     }
-                }
-            }
-        }
-        #main-interface {
-            width: 100vw;
-            left: 0;
-            #morseBufferDisplay {
-                // background: white;
-                margin-bottom: 0px;
-                height: fit-content;
-                #overlay {
-                    // background: blue;
-                    box-shadow: inset 20px 0px 20px -5px $main-bg-color-light;
-                }
-                #alphanumeric-container {
-                    // border: 1px solid red;
-                    text-align: center;
-                    max-width: 75%;
-                    display: inline-block;
-                    overflow: hidden;
-                    padding-top: 0px;
-                    
-                    #alphanumeric {
+                    #playerAndLegend {
                         // border: 1px solid blue;
-            
-                        height: 4rem;
-                        padding-top: 0.45rem;
-                        font-size: 3rem;
-                        margin-bottom: 0px;
-                        border-radius: $main-border-radius;
-                        // box-shadow: $main-box-shadow-light;
-                        float: right;
+                        padding: 0px;
+                        #legend #legend-items button {
+                            width: 20%;
+                        }
                     }
                 }
             }
-            * {
-                z-index: 1000;
-            }
 
-            &.expandLeft {
-                left: 0;
-                width: 100vw;
-            }
-
-            #morse-history {
-                // border: 1px solid blue;
-                width: 95%;
-                display: flex;
-                justify-content: flex-end;
-                #morseHistory-textbox {
-                    // border: 1px solid blue;
-                    width: 100%;
-                    overflow-y: scroll;
-                    padding: 5px;
-                    margin: 0px;
-                    min-height: 2.3em;
+            #main-interface {
+                border: 1px solid red;
+                max-width: 100vw;
+                position: relative;
+                left: 100%;
+                &.expandLeft {
+                    left: 0%;
+                    width: 100vw;
                 }
-                #clear-history {
-                    border: 0px;
-                }
-            }
-            #morseButton {
-                margin-top: 5px;
-            }
 
-
-            #mainOptions {
-                // border: 1px solid red;
-                flex-direction: column;
-                height: 10em;
-                width: 100vw;
-    
-                #options-left, #options-right {
-    
-                    .mode-picker {
-
-                        #title {
-                            // border: 1px solid red;
-                            justify-content: flex-end;
-                            width: 5em;
-                            font-weight: bold;
-                            font-size: 1em;
-                            span#range {
-                                display: none;
+                #mainOptions {
+                    height: fit-content;
+                    min-height: fit-content;
+                    width: 100vw;
+                    padding: 3px;
+                    flex-direction: column;
+                    align-items: center;
+                    z-index: 500;
+                    div .mode-picker {
+                        // border: 1px solid red;
+                        margin-left: 15px;
+                        width: 100%;
+                        max-width: 100vw;
+                        min-width: 50px;
+                        height: fit-content;
+                        div {
+                            &#title {
+                                // border: 1px solid red;
+                                width: fit-content;
+                                font-size: 1em;
                             }
+                            &#buttons, &#input {
+                                font-size: 1em;
+                            }
+                            // border: 1px solid green;
+                            max-width: 100vw;
                         }
-                        #buttons {
-                            button {
-                                margin: 5px;
-                            }
+                        button, #input button {
+                            font-size: 0.8em;
                         }
                         #input {
-                            font-size: 0.8em;
-                            input {
-                                height: 1.1rem;
-                                font-size: 0.8rem;
-                            }
-                            select {
-                                height: 1.4rem;
-                            }
-                            button {
-                                width: 1.2em;
-                                height: 1.2em;
-                                border-radius: 3px;
-                                font-size: 1em;
-                                
-                                i {
-                                    left: -7px;
-                                    top: -3px;
-                                    font-size: 1rem;
-                                }
-                            }
-                        }
-                        button {
-                            font-size: 0.8em;
-                            color: $main-font-color-light;
+                            width: fit-content;
                         }
                     }
                 }
+
+                #challenge-overlay {
+                    #challengeReady, #challengeComplete {
+                        height: 60%;
+                        max-height: 600px;
+                        padding: 0px;
+                        width: 90%;
+                        #notify-title {
+                            font-size: 1.5em;
+                        }
+                        div .mode-picker {
+                            // border: 1px solid orange;
+                            width: 95%;
+                            #title {
+                                // border: 1px solid red;
+                                font-size: 1em;
+                            }
+                            #info, #input, #buttons {
+                                font-size: 1em;
+                            }
+                        }
+                        #startChallenge {
+                            font-size: 1.3em;
+                            line-height: 2em;
+                        }
+                        
+                    }
+                }
+
+                #morseBufferDisplay {
+                    // background: green;
+                    // border: 1px solid black;
+                    justify-content: flex-end;
+                    margin-bottom: 0px;
+                    height: fit-content;
+                    #alphanumeric-container {
+                        // background: blue;
+                        #alphanumeric {
+                            // background: red;
+                            height: 3.5rem;
+                            // font-size: 3rem;
+                            font-size: 3rem;
+                        }
+                    }
+                }
+                #morse-history {
+                    height: 3rem;
+                    #morseHistory-textbox {
+                        background: #fff;
+                    }
+                    
+                }
+                #challenge-header {
+                    padding: 5px;
+                    #gameClock {
+                        font-size: 0.8em;
+                    }
+                    #challengeControls button {
+                        font-size: 1em;
+                    }
+                }
+
+                #challengeWord {
+                    margin-top: 0;
+                    height: 4rem;
+                    font-size: 3rem;
+                    span {
+                        line-height: 2rem;
+                        // font-size: 2.3rem;
+                    }
+                }
             }
+
         }
     }
 }

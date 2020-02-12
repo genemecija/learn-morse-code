@@ -21,13 +21,13 @@ export default React.memo(function KeyTypePicker() {
             document.querySelector('.paddle').classList.add('showPaddles')
             document.querySelector('.paddle#left').classList.add('showPaddles')
             document.querySelector('.paddle#right').classList.add('showPaddles')
-            document.getElementById('morseButtonText').innerHTML = '<div id="paddleText"><div id="comma">COMMA (,)</div><div id="period">PERIOD (.)</div></div>'
+            document.getElementById('morseButtonText').innerHTML = 'TAP/HOLD BUTTONS OR PRESS COMMA / PERIOD'
         } else {
             document.querySelector('#morseButton').classList.remove('showPaddles')
             document.querySelector('.paddle').classList.remove('showPaddles')
             document.querySelector('.paddle#left').classList.remove('showPaddles')
             document.querySelector('.paddle#right').classList.remove('showPaddles')
-            document.getElementById('morseButtonText').innerHTML = 'SPACEBAR'
+            document.getElementById('morseButtonText').innerHTML = 'TAP BUTTON OR PRESS SPACEBAR'
         }
     }
 

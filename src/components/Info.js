@@ -20,9 +20,9 @@ export default React.memo(function Info() {
 
             <h2>Spacing</h2 >
             <p>The spacing between dits and dahs matters in Morse Code. Spacing of various lenghts signify different things.<br/>
-                <span className="bold">Intra-character Spacing</span> <i className="ri-volume-up-fill" onClick={() => playMorseWord('...')}></i> Space between dits and dahs the length of one dit signify the dits and dahs are part of the same character. E.g. three dits separated by one-dit-long spaces is an "S".<br />
-                <span className="bold">Inter-character Spacing</span> <i className="ri-volume-up-fill" onClick={() => playMorseWord('. . .')}></i> Space the length of three dits signify a new letter. A single dit is an "E". Three dits, each separated by three-dit-long spaces, is "EEE".<br />
-                <span className="bold">Inter-word Spacing</span> <i className="ri-volume-up-fill" onClick={() => playMorseWord('././.')}></i> Space the length of seven dits signifies a new word. Three dits, each separated by seven-dit-long spaces, is "E E E".
+                <span className="bold">Intra-character Spacing</span> <i className="ri-volume-up-fill" onClick={() => playMorseWord('...')}></i> Spaces between dits and dahs the length of one dit signify the dits and dahs are part of the same character. E.g. three dits (<span className="ditdah">...</span>) separated by one-dit-long spaces is an "S".<br />
+                <span className="bold">Inter-character Spacing</span> <i className="ri-volume-up-fill" onClick={() => playMorseWord('. . .')}></i> Space the length of three dits signify a new letter. A single dit is an "E". Three dits, each separated by three-dit-long spaces (<span className="ditdah">. . .</span>), is "EEE".<br />
+                <span className="bold">Inter-word Spacing</span> <i className="ri-volume-up-fill" onClick={() => playMorseWord('././.')}></i> Space the length of seven dits signifies a new word. Three dits, each separated by seven-dit-long spaces (denoted by a forward slash in this example: <span className="ditdah">././.</span>), is "E E E".
             </p>
 
             <h2>Speed</h2>
