@@ -54,23 +54,15 @@ export default React.memo(function App() {
                                 <FrequencyPicker />
                             </div>
                         </div>
-                        {gameMode === 'practice' &&
-                            <PracticeMode />
-                        }
-
+                        {gameMode === 'practice' && <PracticeMode />}
                         {gameMode === 'challenge' &&
                             <>
                                 <ChallengeOverlay />
                                 <ChallengeMode />
                             </>
                         }
-
                         <MorseButtons />
                     </div>
-                    {/* <div className="sidebar" id="right">
-                        <div id="settings-icon" onClick={toggleRight}><i class="ri-settings-3-line"></i></div>
-                        
-                    </div> */}
                 </GameClockContextProvider>
                 </ChallengeContextProvider>
                 </WordFeederContextProvider>
@@ -83,5 +75,4 @@ export default React.memo(function App() {
         <Footer />
         </>
     );
-
 })
