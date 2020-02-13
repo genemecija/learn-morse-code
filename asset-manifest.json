@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/learn-morse-code/static/css/main.8d63c56d.chunk.css",
+    "main.js": "/learn-morse-code/static/js/main.d1a1cd6f.chunk.js",
+    "main.js.map": "/learn-morse-code/static/js/main.d1a1cd6f.chunk.js.map",
+    "runtime-main.js": "/learn-morse-code/static/js/runtime-main.aaeeb903.js",
+    "runtime-main.js.map": "/learn-morse-code/static/js/runtime-main.aaeeb903.js.map",
+    "static/js/2.044de1a4.chunk.js": "/learn-morse-code/static/js/2.044de1a4.chunk.js",
+    "static/js/2.044de1a4.chunk.js.map": "/learn-morse-code/static/js/2.044de1a4.chunk.js.map",
+    "index.html": "/learn-morse-code/index.html",
+    "precache-manifest.5236d68f32158cd93b6a3525995070ba.js": "/learn-morse-code/precache-manifest.5236d68f32158cd93b6a3525995070ba.js",
+    "service-worker.js": "/learn-morse-code/service-worker.js",
+    "static/css/main.8d63c56d.chunk.css.map": "/learn-morse-code/static/css/main.8d63c56d.chunk.css.map",
+    "static/js/2.044de1a4.chunk.js.LICENSE": "/learn-morse-code/static/js/2.044de1a4.chunk.js.LICENSE",
+    "static/media/electronic_key.jpg": "/learn-morse-code/static/media/electronic_key.cd2cf560.jpg",
+    "static/media/straight_key.jpg": "/learn-morse-code/static/media/straight_key.f140bc7b.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.aaeeb903.js",
+    "static/js/2.044de1a4.chunk.js",
+    "static/css/main.8d63c56d.chunk.css",
+    "static/js/main.d1a1cd6f.chunk.js"
+  ]
+}
