@@ -48,15 +48,76 @@ html, body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   padding-left: 15px;
   background: #333;
   font-family: "Roboto", sans-serif;
-  font-size: 2.5em;
-  color: #dab820;
   color: #eee;
   z-index: 1000;
   -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.45);
           box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.45);
+  font-size: 2.5em;
+}
+
+#header #title {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+#header #social-links {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #999;
+  margin-right: 10px;
+}
+
+#header #social-links i {
+  color: #ccc;
+  padding-left: 5px;
+  padding-right: 5px;
+  font-size: 2rem;
+}
+
+#header #social-links i:hover {
+  color: goldenrod;
+}
+
+#header #social-links div {
+  height: auto;
+}
+
+#header #social-links div img {
+  width: 40px;
+  height: 40px;
+  opacity: 30%;
+}
+
+#header #social-links div img:hover {
+  -webkit-animation-name: socialLinkHover;
+          animation-name: socialLinkHover;
+  -webkit-animation-duration: 150ms;
+          animation-duration: 150ms;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+}
+
+#header #social-links div#twitter img {
+  -webkit-filter: invert(90%);
+          filter: invert(90%);
 }
 
 #main-content {
@@ -471,6 +532,9 @@ html, body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   background: #333;
   font-family: "Roboto", sans-serif;
   font-size: 1em;
@@ -478,18 +542,13 @@ html, body {
   z-index: 1000;
 }
 
-#footer a {
-  color: #eee;
-  text-decoration: none;
+#footer i {
+  font-size: 1.3em;
+  color: #ccc;
 }
 
-#footer a:visited {
-  color: #eee;
-}
-
-#footer a:hover {
+#footer i:hover {
   color: gold;
-  text-decoration: underline;
 }
 
 h2 {
@@ -1496,16 +1555,25 @@ i[class*="ri-"] {
   }
   #header {
     width: 100vw;
-    font-size: 1.5em;
+    font-size: 1.3em;
     height: 1.5em;
     min-height: 1.5em;
     max-height: 1.5em;
+    padding-left: 5px;
+  }
+  #header #social-links {
+    margin-right: 0px;
+    font-size: 1rem;
+  }
+  #header #social-links i {
+    font-size: 1.5rem;
+    padding-left: 0px;
   }
   #root #main-content {
     height: calc(100vh - 4.1em);
   }
   #root #main-content .sidebar#left {
-    top: 2.2em;
+    top: 2em;
     width: 100vw;
     min-width: 40%;
     max-width: 100vw;

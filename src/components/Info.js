@@ -1,7 +1,7 @@
 import React from "react"
 import useMorsePlayer from "../hooks/useMorsePlayer"
-import straight_key from "../images/straight_key.jpg"
-import electronic_key from "../images/electronic_key.jpg"
+import straight_key from "../media/images/straight_key.jpg"
+import electronic_key from "../media/images/electronic_key.jpg"
 
 export default React.memo(function Info() {
 

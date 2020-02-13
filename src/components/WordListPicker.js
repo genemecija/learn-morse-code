@@ -1,10 +1,11 @@
 import React, {useContext} from "react"
 import { WordListPickerContext } from "../contexts/wordListPickerContext";
 import { WordFeederContext } from "../contexts/wordFeederContext";
+import WordCountPicker from "./WordCountPicker";
 
 export default React.memo(function WordListPicker() {
 
-    const {wordListCategory, setWordListCategory} = useContext(WordListPickerContext)
+    const {wordListCategory, setWordListCategory, metadata} = useContext(WordListPickerContext)
     const {resetFeeder, setOrder} = useContext(WordFeederContext)
 
     const orderOpts = ['sequential', 'random']
@@ -26,17 +27,8 @@ export default React.memo(function WordListPicker() {
         }
     }
 
-    let wordLists = ['alphabet', 'numbers', 'boys', 'girls', 'startrek', 'common100', 'test', 'short']
-    const metadata = {
-        'alphabet': {name: 'Alphabet', description: 'Each letter of the alphabet', count: 26},
-        'numbers': {name: 'Numbers', description: '0-9', count: 10},
-        'boys': {name: 'Boys Names', description: 'Top 20 Boys Names', count: 20},
-        'girls': {name: 'Girls Names', description: 'Top 20 Girls Names', count: 20},
-        'startrek': {name: 'Star Trek', description: 'Word list from the Star Trek universe', count: 20},
-        'common100': {name: 'Common 100', description: '100 most common words', count: 100},
-        'test': {name: 'Test List', description: 'A test list', count: 5},
-        'short': {name: 'Short List', description: 'A short list', count: 1}
-    }
+    let wordLists = Object.keys(metadata)
+    
     let options = wordLists.map((wl, index) => (<option value={wl} key={index}>{metadata[wl]['name']}</option>))
 
     return (
@@ -66,6 +58,8 @@ export default React.memo(function WordListPicker() {
                 </div>
             </div>
 
+            <WordCountPicker />
+
             <div id="wordlist-description" className="mode-picker">
                 <div id="title">
                     Description:
@@ -74,14 +68,14 @@ export default React.memo(function WordListPicker() {
                     {metadata[wordListCategory]['description']}
                 </div>
             </div>
-            <div id="wordlist-count" className="mode-picker">
+            {/* <div id="wordlist-count" className="mode-picker">
                 <div id="title">
                     # of List Items:
                 </div>
                 <div id="info">
                     {metadata[wordListCategory]['count']}
                 </div>
-            </div>
+            </div> */}
         </div>
     )
 })

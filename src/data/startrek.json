@@ -3,13 +3,16 @@
     "dilithium",
     "borg",
     "replicator",
+    "picard",
     "vulcan",
     "ensign",
     "phaser",
+    "kirk",
     "warbird",
     "ferengi",
     "hypospray",
     "tribble",
+    "sisko",
     "starfleet",
     "engage",
     "holodeck",
@@ -18,7 +21,12 @@
     "romulan",
     "quadrant",
     "tricorder",
+    "georgiou",
     "futile",
-    "klingon"
+    "klingon",
+    "janeway",
+    "delta",
+    "assimilate",
+    "energize"
   ]
 }

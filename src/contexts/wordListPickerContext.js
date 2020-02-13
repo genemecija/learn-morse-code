@@ -12,9 +12,12 @@ const WordListPickerContext = React.createContext()
 function WordListPickerContextProvider(props) {
 
     const [wordListCategory, setWordListCategory] = useState('alphabet')
+    const [wordListCount, setWordListCount] = useState(10)
+
     let wordList = []
     const testList = ['gene', 'anya', 'ali', 'liam', 'last']
     const short = ['gene']
+
 
     if (wordListCategory === 'alphabet') {
         wordList = alphabet.words
@@ -32,6 +35,19 @@ function WordListPickerContextProvider(props) {
         wordList = testList
     } else if (wordListCategory === 'short') {
         wordList = short
+    }
+
+    const wordListCountMax = wordList.length
+
+    const metadata = {
+        'alphabet': {name: 'Alphabet', description: 'All letters of the alphabet'},
+        'numbers': {name: 'Numbers', description: '0-9'},
+        'boys': {name: 'Boys Names', description: 'Popular Boys Names'},
+        'girls': {name: 'Girls Names', description: 'Popular Girls Names'},
+        'startrek': {name: 'Star Trek', description: 'Star Trek universe'},
+        'common100': {name: 'Common Words', description: '100 Most Common Words'},
+        'test': {name: 'Test List', description: 'A test list'},
+        'short': {name: 'Short List', description: 'A short list'}
     }
 
 
@@ -56,7 +72,16 @@ function WordListPickerContextProvider(props) {
     }
 
     return (
-        <WordListPickerContext.Provider value={{wordList: wordList, wordListShuffled: randomize(wordList), wordListCategory: wordListCategory, setWordListCategory: setWordListCategory}}>
+        <WordListPickerContext.Provider value={{
+            wordList: wordList.slice(0,wordListCount), 
+            wordListShuffled: randomize(wordList).slice(0,wordListCount), 
+            wordListCategory: wordListCategory, 
+            setWordListCategory: setWordListCategory, 
+            metadata: metadata, 
+            wordListCount: wordListCount, 
+            setWordListCount: setWordListCount,
+            wordListCountMax: wordListCountMax
+        }}>
             {props.children}
         </WordListPickerContext.Provider>
     )

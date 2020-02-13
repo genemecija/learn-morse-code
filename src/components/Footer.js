@@ -2,7 +2,33 @@ import React from "react"
 
 export default (function Footer() {
 
+    const contactLinks = {
+        'email': {
+            name: 'Email',
+            icon: "ri-mail-line",
+            link: 'mailto:gene@genemecija.com?subject='+encodeURIComponent('Hello, Gene!')
+        },
+        'github': {
+            name: 'GitHub',
+            icon: 'ri-github-fill',
+            link: 'https://github.com/genemecija'
+        },
+        'twitter': {
+            name: 'Twitter',
+            icon: 'ri-twitter-fill',
+            link:'https://twitter.com/genemecija'
+        }
+    }
+
+    function handleClick(event) {
+        window.open(contactLinks[event.target.id]['link'])
+    }
+    
     return (
-        <div id="footer">Created by Gene Mecija •&nbsp;<a href='https://github.com/genemecija/learn-morse-code'>View on Github</a>&nbsp;•&nbsp;<a href='https://twitter.com/genemecija'>Twitter</a></div>
+        <div id="footer">
+            App by Gene Mecija •&nbsp; 
+            Code:&nbsp;<span id="contact-icons"><i id="github" onClick={handleClick} className={contactLinks['github']['icon']}></i></span>&nbsp;•
+            Say Hi!&nbsp;<span id="contact-icons"><i id="twitter" onClick={handleClick} className={contactLinks['twitter']['icon']}></i>&nbsp;<i id="email" onClick={handleClick} className={contactLinks['email']['icon']}></i></span>
+        </div>
     )
 })
