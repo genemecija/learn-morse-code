@@ -26,8 +26,6 @@ import FrequencyPicker from './components/FrequencyPicker';
 
 export default React.memo(function App() {
 
-    console.log('App.js rendered')
-
     const {gameMode} = useContext(GameModeContext)
 
     return (
