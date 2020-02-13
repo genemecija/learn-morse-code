@@ -1,7 +1,7 @@
 import React, { useContext } from "react"
+import { MorseBufferContext } from "../contexts/morseBufferContext"
 import DitDahDisplay from "./DitDahDisplay"
 import morseCode from '../data/morse-reverse.json'
-import {MorseBufferContext} from "../contexts/morseBufferContext"
 
 export default React.memo(function MorseBufferDisplay() {
     
@@ -18,7 +18,6 @@ export default React.memo(function MorseBufferDisplay() {
                 alphanumeric += ' '
             } else {
                 if (morseCode[letters[i]] === undefined) {
-                    // alphanumeric += '[?]'
                     alphanumeric += (letters[i] === '' ? '':'[?]')
                 } else {
                     alphanumeric += morseCode[letters[i]]

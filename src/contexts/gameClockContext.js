@@ -19,7 +19,6 @@ function GameClockContextProvider(props) {
                         return
                     }
                     setGameClockTime(prev => prev + 1)
-                    // document.getElementById('gameClock').innerText = Number(gameClockTime) //Number(document.getElementById('gameClock').innerText) + 1
                 }, 1000))
             ])
         }
@@ -31,14 +30,14 @@ function GameClockContextProvider(props) {
         }
     }
 
+    // Clear game clock intervals
     function cleanup() {
-        // clearInterval(gameClockTimer)
-        // setGameClockTimer(0)
         for (let i = 0; i < intervals.length; i++) {
             clearInterval(intervals[i]);
         }
     }
 
+    // Trigger game clock changes on challenge state change
     useEffect(() => {
         switch (challengeState) {
             case 'ready':

@@ -5,8 +5,8 @@ export default React.memo(function FrequencyPicker(props) {
 
     const {frequency, setFrequency} = useContext(FrequencyContext)
 
-    const maxFreq = 1500
     const minFreq = 300
+    const maxFreq = 1500
 
     function handleChange(e) {
         if (Number(e.target.value) > maxFreq) {
@@ -16,10 +16,9 @@ export default React.memo(function FrequencyPicker(props) {
         } else {
             setFrequency(Number(e.target.value))
         }
-        // setFrequency(Number(e.target.value))
     }
+
     function increment() {
-        // setFrequency(prevFreq => prevFreq + 10)
         setFrequency(prevFreq => {
             if (prevFreq + 10 <= maxFreq) {
                 return (prevFreq + 10)
@@ -28,8 +27,8 @@ export default React.memo(function FrequencyPicker(props) {
             }
         })
     }
+
     function decrement() {
-        // setFrequency(prevFreq => prevFreq - 10)
         setFrequency(prevFreq => {
             if (prevFreq - 10 >= minFreq) {
                 return (prevFreq - 10)
@@ -38,7 +37,6 @@ export default React.memo(function FrequencyPicker(props) {
             }
         })
     }
-
     
     return (
         <div id='frequency' className='mode-picker'>

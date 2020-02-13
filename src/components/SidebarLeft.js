@@ -1,16 +1,19 @@
 import React, { useState } from "react"
 import Info from "./Info"
-import PlayMorseInput from "./PlayMorseInput"
 import Legend from "./Legend"
+import PlayMorseInput from "./PlayMorseInput"
 
 export default (function SidebarLeft() {
 
     const [sidebarContent, setSidebarContent] = useState('nav-learn')
 
+    // Hide/show sidebar
     function toggleLeft() {
         document.querySelector('.sidebar#left').classList.toggle('hide')
         document.querySelector('#main-interface').classList.toggle('expandLeft')
     }
+
+    // Handle sidebar navigation selection
     function navClicked(e) {
         if (e.target.id === 'nav-learn') {
             setSidebarContent('nav-learn')
@@ -19,8 +22,8 @@ export default (function SidebarLeft() {
         } else {
             setSidebarContent('nav-play')
         }
+        
         let navItems = document.querySelector(".navbar").childNodes
-
         navItems.forEach(item => {
             if (item.id === e.target.id) {
                 item.classList.add('selected')

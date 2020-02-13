@@ -2,15 +2,15 @@ import React, {useContext} from "react"
 import { WPMContext } from "../contexts/wpmContext";
 import useMorsePlayer from "../hooks/useMorsePlayer";
 
-export default React.memo(function WordsPerMinute(props) {
+export default React.memo(function WordsPerMinute() {
 
     const {wpm, setWPM} = useContext(WPMContext)
     const {playMorseWord} = useMorsePlayer()
-    const maxWPM = 30
+
     const minWPM = 5
+    const maxWPM = 30
 
     function handleChange(e) {
-        // setWPM(Number(e.target.value))
         if (Number(e.target.value) > maxWPM) {
             setWPM(maxWPM)
         } else if (Number(e.target.value) < minWPM) {
@@ -19,8 +19,8 @@ export default React.memo(function WordsPerMinute(props) {
             setWPM(Number(e.target.value))
         }
     }
+
     function increment() {
-        // setWPM(prevWPM => prevWPM + 1)
         setWPM(prevWPM => {
             if (prevWPM + 1 <= maxWPM) {
                 return (prevWPM + 1)
@@ -30,7 +30,6 @@ export default React.memo(function WordsPerMinute(props) {
         })
     }
     function decrement() {
-        // setWPM(prevWPM => prevWPM - 1)
         setWPM(prevWPM => {
             if (prevWPM - 1 >= minWPM) {
                 return (prevWPM - 1)
@@ -39,10 +38,8 @@ export default React.memo(function WordsPerMinute(props) {
             }
         })
     }
-
     
     return (
-        // <input id='wpm-input' type='text' value={wpm} onChange={handleChange} />
         <div id='wpm' className='mode-picker'>
             <div id='title'>
                 WPM <span id="range">({minWPM}-{maxWPM})</span>

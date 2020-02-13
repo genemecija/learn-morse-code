@@ -111,7 +111,7 @@ function ChallengeContextProvider(props) {
     })
 
 
-    // Next word once all correct
+    // Retrieve next word once all characters are correct
     if (correctCharIndexes.length === challengeLetters.length) {
         challengeWordClass = 'correct'
         setTimeout(() => {

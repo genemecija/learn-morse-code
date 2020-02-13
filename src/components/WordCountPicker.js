@@ -2,7 +2,7 @@ import React, {useContext} from "react"
 import { WordListPickerContext } from "../contexts/wordListPickerContext";
 import { WordFeederContext } from "../contexts/wordFeederContext";
 
-export default React.memo(function WordCountPicker(props) {
+export default React.memo(function WordCountPicker() {
 
     const {setWordListCount, wordListCountMax} = useContext(WordListPickerContext)
     const {resetFeeder} = useContext(WordFeederContext)
@@ -12,7 +12,7 @@ export default React.memo(function WordCountPicker(props) {
         setWordListCount(e.target.value)
     }
 
-    // Create Options for Select Input
+    // Create Options for Select element
     let options = []
     for (let i = 0; i < wordListCountMax; i++) {
         options.push(<option value={i+1} key={i}>{i+1}</option>)

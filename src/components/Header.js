@@ -59,13 +59,11 @@ export default (function Header () {
         )
     })
 
-
     return (
         <div id="header">
             <div id="title">
                 Learn Morse Code
             </div>
-
             <div id="social-links">
                 Share: <span id="share-icons">{contacts}</span>
             </div>

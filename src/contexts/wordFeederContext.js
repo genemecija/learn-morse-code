@@ -4,15 +4,14 @@ const WordFeederContext = React.createContext()
 
 function WordFeederContextProvider(props) {
 
-    // let wordList = ['hi', 'morse', 'code', 'hello', 'gene']
     const {wordList, wordListShuffled} = useContext(WordListPickerContext)
 
     const [wordIndex, setWordIndex] = useState(0)
     const [order, setOrder] = useState('sequential')
     let word 
 
+    // Set word list ordered appropriately
     if (order === 'sequential') {
-        // word = wordList[wordIndex]
         if (wordList[wordIndex] === undefined) {
             word = [wordList[0]]
         }
@@ -21,7 +20,6 @@ function WordFeederContextProvider(props) {
         }
     }
     else if (order === 'random') {
-        // word = wordListShuffled[wordIndex]
         if (wordListShuffled[wordIndex] === undefined) {
             word = [wordListShuffled[0]]
         }
@@ -36,20 +34,8 @@ function WordFeederContextProvider(props) {
     
     function getNextWord() {
         setWordIndex(prev => prev + 1)
-        // if (order === 'sequential') {
-        // } else if (order === 'random') {
-        //     setWordIndex(prev => prev + 1)
-        //     if (wordListShuffled[wordIndex] === undefined) {
-        //         alert('NULL2')
-        //         word = '!end'
-        //     }
-        //     else {
-        //         word = wordListShuffled[wordIndex]
-        //     }
-        // }
     }
     
-
     return (
         <WordFeederContext.Provider value={{word: word, getNextWord: getNextWord, resetFeeder: resetFeeder, setOrder: setOrder}}>
             {props.children}

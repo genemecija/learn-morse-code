@@ -26,9 +26,9 @@ export default (function Footer() {
     
     return (
         <div id="footer">
-            App by Gene Mecija •&nbsp; 
-            Code:&nbsp;<span id="contact-icons"><i id="github" onClick={handleClick} className={contactLinks['github']['icon']}></i></span>&nbsp;•
-            Say Hi!&nbsp;<span id="contact-icons"><i id="twitter" onClick={handleClick} className={contactLinks['twitter']['icon']}></i>&nbsp;<i id="email" onClick={handleClick} className={contactLinks['email']['icon']}></i></span>
+            app by @genemecija •
+            contact&nbsp;<span id="contact-icons"><i id="twitter" onClick={handleClick} className={contactLinks['twitter']['icon']}></i>&nbsp;<i id="email" onClick={handleClick} className={contactLinks['email']['icon']}></i></span>&nbsp;•
+            code&nbsp;<span id="contact-icons"><i id="github" onClick={handleClick} className={contactLinks['github']['icon']}></i></span>
         </div>
     )
 })

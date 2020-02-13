@@ -1,42 +1,40 @@
 import {useEffect, useContext} from 'react'
-import {MorseBufferContext} from '../contexts/morseBufferContext'
-import config from '../config.json'
-import { WPMContext } from '../contexts/wpmContext'
-import { GameModeContext } from '../contexts/gameModeContext'
 import { FrequencyContext } from '../contexts/frequencyContext'
+import { GameModeContext } from '../contexts/gameModeContext'
+import { MorseBufferContext } from '../contexts/morseBufferContext'
+import { WPMContext } from '../contexts/wpmContext'
+import config from '../config.json'
 
 // ELECTRONIC KEY TELEGRAPH - Iambic A
 
-function useElectronicKey() {
+export default (function useElectronicKey() {
 
     const {morseCharBuffer, setMorseCharBuffer, morseWords, setMorseWords} = useContext(MorseBufferContext)
     const {wpm} = useContext(WPMContext)
     const {gameMode} = useContext(GameModeContext)
     const {frequency} = useContext(FrequencyContext)
 
+    // DitDah length setup
     let ditMaxTime = 1200/wpm
-    
-
-    const timingUnit = config.timingUnit
-    
     let ratio = .2
-    const letterGapMinTime = ditMaxTime*ratio*3 //config.practiceSpeed.normal*3
-    const wordGapMaxTime = ditMaxTime*ratio*7 // config.practiceSpeed.normal*7
+    const letterGapMinTime = ditMaxTime*ratio*3
+    const wordGapMaxTime = ditMaxTime*ratio*7
+
     const morseHistorySize = config.historySize
     
-
     let leftIsPressed = false
     let rightIsPressed = false
     let queueRunning = false
     let queue = []
     let pressedFirst = null
 
+    // Timers setup
     let depressSyncTime
     let depressSyncTimer
     let depressSyncTimerRunning = false
     let gapTime = 0
     let gapTimer = 0
-    // let gapTimerRunning = false
+
     let paddlesReleasedSimultaneously = false
 
     let currentPromise = Promise.resolve()
@@ -80,14 +78,11 @@ function useElectronicKey() {
             setTimeout(() => {
                 g.gain.setTargetAtTime(0.0001, context.currentTime, 0.001)
                 o.stop(context.currentTime + 0.05)
-                
-                // start = getTime()
             }, playDuration)
-            // g.gain.setTargetAtTime(0.0001, startTime + playDuration/1000, 0.001)
-            // o.stop(startTime + playDuration/1000 + 0.05)
         })
     }
 
+    // Play dit or dah with trailing space (silence)
     function playWithSpaces(ditDah) {
         let delay = (ditDah === '.') ? ditMaxTime + ditMaxTime : ditMaxTime*3 + ditMaxTime
 
@@ -97,13 +92,6 @@ function useElectronicKey() {
                 clearInterval(gapTimer)
                 checkGapBetweenInputs()
                 setMorseCharBuffer(prev => prev + ditDah)
-
-                // // for troubleshooting ditDah length in milliseconds
-                // toneTimer = setInterval(() => {
-                //     toneTime += 1
-                // }, 1);
-                // start = toneTime
-
                 
                 play(ditDah)
                 .then(setTimeout(() => {
@@ -124,7 +112,7 @@ function useElectronicKey() {
                             gapTimer = 0
                             gapTime = 0
                         }
-                    }, timingUnit)
+                    }, 1)
                     
                     resolve();
                 }, delay)
@@ -165,7 +153,7 @@ function useElectronicKey() {
         // Execute queue
         queueRunning = true
         for (let i = 0; i < localQueue.length; i++) {
-            if (paddlesReleasedSimultaneously === true) {
+            if (paddlesReleasedSimultaneously) {
                 localQueue.pop()
                 clearTimeout(clear)
                 cleanup()
@@ -176,12 +164,12 @@ function useElectronicKey() {
         }
     }
 
+    // Determine which paddles are pressed, add to queue, and execute
     function sendPressedToQueue() {
         if (leftIsPressed && rightIsPressed) {
             if (pressedFirst === 'left') {
                 queue.push('-')
                 pressedFirst = null
-
             } else {
                 queue.push('.')
                 queue.push('-')
@@ -203,7 +191,7 @@ function useElectronicKey() {
         if (event.type === 'touchstart') {
             event.preventDefault()
         }
-        
+
         paddlesReleasedSimultaneously = false
 
         if (event.keyCode === 188 || event.keyCode === 190) {
@@ -241,9 +229,10 @@ function useElectronicKey() {
     }
 
     function handleInputEnd(event) {
-        if (event.type === 'touchend') {event.preventDefault()}
+        if (event.type === 'touchend') {
+            event.preventDefault()
+        }
 
-        // if (!insideBufferDisplay) {return}
         if (event.keyCode === 188 || event.target.id === "left") {
             document.querySelector('.paddle#left').classList.remove('active')
 
@@ -265,6 +254,8 @@ function useElectronicKey() {
         }
     }
     
+    // Timer used to determine if both paddles are released within 10ms
+    // Need to know this to stop Iambic tones at correct time
     function startDepressSyncTimer() {
         depressSyncTimerRunning = true
         // Reset depressSyncTime
@@ -288,10 +279,11 @@ function useElectronicKey() {
         }
         depressSyncTime = 0
     }
+
+
+    // Check gap between letters to determin if new character or new word
     function checkGapBetweenInputs() {
-        // Check Gap between letters
         if (gapTime >= letterGapMinTime && gapTime < wordGapMaxTime) {
-            // setMorseCharBuffer(prev => prev + ' ')
             if (gameMode === 'practice') {
                 setMorseCharBuffer(prev => prev + ' ')
             } else if (gameMode === 'challenge') {
@@ -303,6 +295,8 @@ function useElectronicKey() {
         }
     }
 
+    // Add paddle event listeners and update on WPM, Game Mode, or Frequency change
+    // Not updating on these state changes prevents change from taking effect
     useEffect(() => {
         document.addEventListener('keydown', handleInputStart)
         document.addEventListener('keyup', handleInputEnd)
@@ -335,28 +329,20 @@ function useElectronicKey() {
         // eslint-disable-next-line
     }, [wpm, gameMode, frequency])
 
+    // Remove forward slash and move buffer contents to morse words array
     useEffect(() => {
-        // PRACTICE MODE
-        // if (morseCharBuffer.slice(-1) === '/') {
         if (morseCharBuffer.slice(-1) === '/' && gameMode === 'practice') {
-            // Remove forward slash
             let val = morseCharBuffer.slice(0,morseCharBuffer.length-1)
-
             setMorseWords(prev => [val, ...prev])
 
+            // Limit history to configured history size
             if (morseWords.length >= morseHistorySize) {
                 setMorseWords(prev => prev.slice(0,prev.length-1))
             }
             setMorseCharBuffer('')
         }
-        // CHALLENGE MODE: leave forward slash there; to be parsed by ChallengeDisplay.js
-        // else if (morseCharBuffer.slice(-1) === '/' && mode === 'challenge') {
-            
-        // }
 
         // eslint-disable-next-line
     }, [morseCharBuffer])
 
-}
-
-export default useElectronicKey
+})

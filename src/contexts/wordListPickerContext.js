@@ -15,9 +15,6 @@ function WordListPickerContextProvider(props) {
     const [wordListCount, setWordListCount] = useState(10)
 
     let wordList = []
-    const testList = ['gene', 'anya', 'ali', 'liam', 'last']
-    const short = ['gene']
-
 
     if (wordListCategory === 'alphabet') {
         wordList = alphabet.words
@@ -31,10 +28,6 @@ function WordListPickerContextProvider(props) {
         wordList = trek.words
     } else if (wordListCategory === 'common100') {
         wordList = common100.words
-    } else if (wordListCategory === 'test') {
-        wordList = testList
-    } else if (wordListCategory === 'short') {
-        wordList = short
     }
 
     const wordListCountMax = wordList.length
@@ -45,12 +38,10 @@ function WordListPickerContextProvider(props) {
         'boys': {name: 'Boys Names', description: 'Popular Boys Names'},
         'girls': {name: 'Girls Names', description: 'Popular Girls Names'},
         'startrek': {name: 'Star Trek', description: 'Star Trek universe'},
-        'common100': {name: 'Common Words', description: '100 Most Common Words'},
-        'test': {name: 'Test List', description: 'A test list'},
-        'short': {name: 'Short List', description: 'A short list'}
+        'common100': {name: 'Common Words', description: '100 Most Common Words'}
     }
 
-
+    // Shuffle input array and return
     function randomize(arr) {
         let array = [...arr]
         let currentIndex = array.length, temporaryValue, randomIndex;
@@ -67,7 +58,6 @@ function WordListPickerContextProvider(props) {
             array[currentIndex] = array[randomIndex];
             array[randomIndex] = temporaryValue;
         }
-        
         return array;
     }
 

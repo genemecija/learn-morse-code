@@ -24,6 +24,7 @@ html, body {
 }
 
 #root {
+  width: 100vw;
   height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -35,7 +36,6 @@ html, body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 100vw;
 }
 
 #header {
@@ -91,7 +91,7 @@ html, body {
 }
 
 #header #social-links i:hover {
-  color: goldenrod;
+  color: gold;
 }
 
 #header #social-links div {
@@ -340,16 +340,17 @@ html, body {
   image-rendering: optimizeSpeed;
 }
 
-#main-content .sidebar#left #sidebar-container #sidebar-content #info i:hover {
-  color: goldenrod;
-}
-
 #main-content .sidebar#left #sidebar-container #sidebar-content #info a:visited {
   color: #333;
 }
 
-#main-content .sidebar#left #sidebar-container #sidebar-content #info a:hover {
+#main-content .sidebar#left #sidebar-container #sidebar-content #info a:hover, #main-content .sidebar#left #sidebar-container #sidebar-content #info i:hover {
   color: goldenrod;
+}
+
+#main-content .sidebar#left #sidebar-container #sidebar-content #info i {
+  font-size: 1.2rem;
+  line-height: 1rem;
 }
 
 #main-content #main-interface {
@@ -821,6 +822,7 @@ i[class*="ri-"] {
 }
 
 #morseButtonText {
+  font-family: "Roboto", sans-serif;
   font-weight: bold;
   color: #aaa;
   font-size: 0.9rem;
@@ -1146,11 +1148,6 @@ i[class*="ri-"] {
   background: #5ae65a;
 }
 
-#tip {
-  font-size: 2rem;
-  color: #aaa;
-}
-
 #morseBufferDisplay {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1232,8 +1229,8 @@ i[class*="ri-"] {
   width: 30px !important;
   margin-left: 3px;
   border-radius: 3px;
-  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px rgba(255, 255, 255, 0.1);
-          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px rgba(255, 255, 255, 0.1);
+  -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.35), 0px -1px 1px white;
+          box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.35), 0px -1px 1px white;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1297,8 +1294,8 @@ i[class*="ri-"] {
   height: 40px;
   margin-left: 3px;
   border-radius: 3px;
-  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px rgba(255, 255, 255, 0.1);
-          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px rgba(255, 255, 255, 0.1);
+  -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.35), 0px -1px 1px white;
+          box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.35), 0px -1px 1px white;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1314,17 +1311,6 @@ i[class*="ri-"] {
 
 .space {
   font-size: 20px;
-}
-
-.strike {
-  text-decoration: line-through;
-  opacity: 30%;
-}
-
-.morseError {
-  background: rgba(255, 0, 0, 0.4);
-  color: #780000;
-  border-radius: 3px;
 }
 
 #morse-history {
@@ -1372,8 +1358,8 @@ i[class*="ri-"] {
   padding-top: 0px;
   padding-bottom: 0px;
   border-radius: 3px;
-  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px rgba(255, 255, 255, 0.1);
-          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px rgba(255, 255, 255, 0.1);
+  -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.35), 0px -1px 1px white;
+          box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.35), 0px -1px 1px white;
 }
 
 #morse-history #clear {
@@ -1390,6 +1376,7 @@ i[class*="ri-"] {
 }
 
 #morse-history #clear #message {
+  font-family: "Roboto", sans-serif;
   padding: 0.3em;
   font-size: 0.9em;
   color: #777;
@@ -1445,99 +1432,17 @@ i[class*="ri-"] {
   z-index: 100;
 }
 
-.morseCard {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal !important;
-  -webkit-box-direction: normal !important;
-      -ms-flex-direction: row !important;
-          flex-direction: row !important;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  margin-bottom: 4px;
-  font-size: 1.6rem;
-  font-family: "Courier Prime", Courier, monospace;
-}
-
-.morseCard .ditDahs-container, .morseCard .alphanumeric-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  width: 50%;
-  font-weight: bold;
-}
-
-.morseCard .alphanumeric-container span {
-  padding-top: 0.17em;
-}
-
-.morseCard .ditDahs-container {
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-  max-width: 50%;
-}
-
-.morseCard div div {
-  padding: 3px;
-  margin: 2px;
-  background: #fdfdfd;
-  white-space: nowrap;
-  border-radius: 3px;
-  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
-          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
-  line-height: 1em;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.morseCard div div span.morseError {
-  background: rgba(255, 0, 0, 0.4);
-  height: 1.7rem;
-  color: #780000;
-  border-radius: 3px;
-}
-
-.morseCard .ditDahs {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  overflow-wrap: break-word;
-  font-family: "Courier", monospace;
-  font-weight: bold;
-  max-width: 100%;
-  overflow-x: hidden;
-}
-
-.morseCard .ditDahs span.space {
-  border-radius: 3px;
-  background: #eee;
-  opacity: 0.5;
-  width: 3px;
-  margin-left: 4px;
-  margin-right: 4px;
-}
-
 @media only screen and (max-width: 1024px) {
-  #root #main-content .sidebar#left #sidebar-container #sidebar-content #info {
+  #sidebar-content #info {
     padding: 1em;
   }
-  #root #main-content .sidebar#left #sidebar-container #sidebar-content #playerAndLegend {
+  #sidebar-content #playerAndLegend {
     padding: 0;
   }
-  #root #main-content .sidebar#left #sidebar-container #sidebar-content #playerAndLegend #legend #legend-items button {
+  #sidebar-content #playerAndLegend #legend #legend-items button {
     width: 20%;
   }
-  #root #main-content #main-interface #mainOptions {
+  #mainOptions {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
@@ -1720,6 +1625,11 @@ i[class*="ri-"] {
     min-height: 2em;
     max-height: 2em;
   }
+  #root #main-content #main-interface #morse-history #clear button {
+    padding: 0px;
+    padding-left: 3px;
+    padding-right: 3px;
+  }
   #root #main-content #main-interface #challenge-header {
     padding: 5px;
   }
@@ -1736,6 +1646,11 @@ i[class*="ri-"] {
   }
   #root #main-content #main-interface #challengeWord span {
     line-height: 2rem;
+  }
+  #root #main-content #main-interface #morseButton {
+    margin-top: 0;
+    -webkit-transform: scale(0.85);
+            transform: scale(0.85);
   }
 }
 /*# sourceMappingURL=App.css.map */

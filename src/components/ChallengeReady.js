@@ -1,6 +1,6 @@
 import React, { useContext } from "react"
-import WordListPicker from "./WordListPicker"
 import { ChallengeContext } from "../contexts/challengeContext"
+import WordListPicker from "./WordListPicker"
 
 export default (function ChallengeReady() {
 

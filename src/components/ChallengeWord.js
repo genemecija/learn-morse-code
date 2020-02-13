@@ -13,11 +13,7 @@ export default React.memo(function ChallengeWord(props) {
         challengeLetters = word.split('')
     }
 
-    let spannedWord = challengeLetters.map((letter,index) => {
-        return (
-            <span key={index} className='cLetter'>{letter}</span>
-        )
-    })
+    let spannedWord = challengeLetters.map((letter,index) => <span key={index} className='cLetter'>{letter}</span>)
 
     return (
         <div id="challengeWord" className={props.challengeWordClass}>{spannedWord}</div>

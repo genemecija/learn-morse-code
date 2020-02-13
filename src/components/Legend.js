@@ -3,7 +3,7 @@ import React from "react"
 import morseCode from '../data/morse-code.json'
 import useMorsePlayer from "../hooks/useMorsePlayer";
 
-function Legend() {
+export default React.memo(function Legend() {
 
     const { playMorseWord } = useMorsePlayer()
 
@@ -15,10 +15,6 @@ function Legend() {
         if (e.target.className === 'alpha') {
             word = convertWordToMorse(word)
         }
-        if (e.target.id === 'test') {
-            word = convertWordToMorse(e.target.innerText)
-        }
-
         playMorseWord(word)
     }
 
@@ -69,17 +65,15 @@ function Legend() {
     )
 
     return (
-            <div id="legend">
-                <div id="legend-title">
-                    Legend
-                </div>
-                <div id="legend-items">
-                    {letters}
-                    {numbers}
-                    {special}
-                </div>
+        <div id="legend">
+            <div id="legend-title">
+                Legend
             </div>
+            <div id="legend-items">
+                {letters}
+                {numbers}
+                {special}
+            </div>
+        </div>
     )
-}
-
-export default React.memo(Legend)
+})

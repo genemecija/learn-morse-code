@@ -13,6 +13,7 @@ export default React.memo(function WordListPicker() {
     function handleClick(e) {
         resetFeeder()
 
+        // Handle Word List Order selection
         if (orderOpts.includes(e.target.id)) {
             let buttons = document.querySelector(".mode-picker#wordOrderPicker #buttons").childNodes
             buttons.forEach(button => {
@@ -20,15 +21,16 @@ export default React.memo(function WordListPicker() {
                     button.classList.add('selected')
                 } else { button.classList.remove('selected')}
             })
-
             setOrder(e.target.id)
-        } else {
+        }
+        // Handle Word List Category selection
+        else {
             setWordListCategory(e.target.value)
         }
     }
 
     let wordLists = Object.keys(metadata)
-    
+    // Create Option elements for Select element
     let options = wordLists.map((wl, index) => (<option value={wl} key={index}>{metadata[wl]['name']}</option>))
 
     return (
@@ -68,14 +70,6 @@ export default React.memo(function WordListPicker() {
                     {metadata[wordListCategory]['description']}
                 </div>
             </div>
-            {/* <div id="wordlist-count" className="mode-picker">
-                <div id="title">
-                    # of List Items:
-                </div>
-                <div id="info">
-                    {metadata[wordListCategory]['count']}
-                </div>
-            </div> */}
         </div>
     )
 })

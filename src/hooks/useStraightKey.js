@@ -1,31 +1,30 @@
-import {useEffect, useContext} from 'react'
-import {MorseBufferContext} from '../contexts/morseBufferContext'
-import config from '../config.json'
-import { WPMContext } from '../contexts/wpmContext'
-import { GameModeContext } from '../contexts/gameModeContext'
+import { useEffect, useContext } from 'react'
 import { FrequencyContext } from '../contexts/frequencyContext'
+import { GameModeContext } from '../contexts/gameModeContext'
+import { MorseBufferContext } from '../contexts/morseBufferContext'
+import { WPMContext } from '../contexts/wpmContext'
+import config from '../config.json'
 
 // STRAIGHT KEY TELEGRAPH
-function useStraightKey() {
+export default (function useStraightKey() {
     
     const {morseCharBuffer, setMorseCharBuffer, morseWords, setMorseWords} = useContext(MorseBufferContext)
     const {wpm} = useContext(WPMContext)
     const {gameMode} = useContext(GameModeContext)
     const {frequency} = useContext(FrequencyContext)
 
+    // Spacing time and timer setup
     let charTimer = 0
     let charTime = 0
     let gapTimer = 0
     let gapTime = 0
     
-    const timingUnit = config.timingUnit
-    
+    // DitDah Length
     const ditMaxTime = 1200/wpm * 0.3
-    
     const letterGapMinTime = ditMaxTime*3
     const wordGapMaxTime = ditMaxTime*7
+
     const morseHistorySize = config.historySize
-    
 
     // Tone Setup
     let AudioContext = window.AudioContext || window.webkitAudioContext || false
@@ -100,7 +99,7 @@ function useStraightKey() {
         // Start Character Timer
         charTimer = setInterval(() => {
             charTime += 1
-        }, timingUnit);
+        }, 1);
     }
 
     function handleInputEnd(event) {
@@ -160,11 +159,11 @@ function useStraightKey() {
                 gapTimer = 0
                 gapTime = 0
             }
-        }, timingUnit);
+        }, 1);
     }
 
+    // Check gap between letters to determin if new character or new word
     function checkGapBetweenInputs() {
-        // Check Gap between letters
         if (gapTime >= letterGapMinTime && gapTime < wordGapMaxTime) {
             if (gameMode === 'practice') {
                 setMorseCharBuffer(prev => prev + ' ')
@@ -176,19 +175,18 @@ function useStraightKey() {
         }
     }
     
-
+    // Add paddle event listeners and update on WPM, Game Mode, or Frequency change
+    // Not updating on these state changes prevents change from taking effect
     useEffect(() => {
         document.addEventListener('keydown', handleInputStart)
         document.addEventListener('keyup', handleInputEnd)
 
         const morseButton = document.getElementById('morseButton')
-        // paddles.forEach(paddle => {
-            morseButton.addEventListener('touchstart', handleInputStart)
-            morseButton.addEventListener('touchend', handleInputEnd)
-            morseButton.addEventListener('mousedown', handleInputStart)
-            morseButton.addEventListener('mouseout', handleInputEnd)
-            morseButton.addEventListener('mouseup', handleInputEnd)
-        // })
+        morseButton.addEventListener('touchstart', handleInputStart)
+        morseButton.addEventListener('touchend', handleInputEnd)
+        morseButton.addEventListener('mousedown', handleInputStart)
+        morseButton.addEventListener('mouseout', handleInputEnd)
+        morseButton.addEventListener('mouseup', handleInputEnd)
 
         return function cleanup() {
             document.removeEventListener('keydown', handleInputStart)
@@ -201,42 +199,30 @@ function useStraightKey() {
             morseButton.removeEventListener('mouseout', handleInputEnd)
             morseButton.removeEventListener('mouseup', handleInputEnd)
 
-            // const paddles = document.querySelectorAll('.paddle')
-            // paddles.forEach(paddle => {
-            //     paddle.removeEventListener('mousedown', handleInputStart)
-            //     paddle.removeEventListener('touchstart', handleInputStart)
-            //     paddle.removeEventListener('mouseout', handleInputEnd)
-            //     paddle.removeEventListener('mouseup', handleInputEnd)
-            //     // paddle.removeEventListener('touchend', handleInputEnd)
-            // })
-
             clearInterval(charTimer)
             clearInterval(gapTimer)
         }
         // eslint-disable-next-line
     }, [wpm, gameMode, frequency])
 
+    // Remove forward slash and move buffer contents to morse words array
     useEffect(() => {
-        // PRACTICE MODE
         if (morseCharBuffer.slice(-1) === '/' && gameMode === 'practice') {
-            // Remove forward slash
             let val = morseCharBuffer.slice(0,morseCharBuffer.length-1)
-
             setMorseWords(prev => [val, ...prev])
 
+            // Limit history to configured history size
             if (morseWords.length >= morseHistorySize) {
                 setMorseWords(prev => prev.slice(0,prev.length-1))
             }
             setMorseCharBuffer('')
+
+            // Scroll morse history textbox to bottom (scrolling enabled on mobile screens)
+            let morseHistory = document.getElementById("morseHistory-textbox");
+            morseHistory.scrollTop = morseHistory.scrollHeight;
         }
-        // CHALLENGE MODE: leave forward slash there; to be parsed by ChallengeDisplay.js
-        // else if (morseCharBuffer.slice(-1) === '/' && mode === 'challenge') {
-            
-        // }
 
         // eslint-disable-next-line
     }, [morseCharBuffer])
 
-}
-
-export default useStraightKey
+})

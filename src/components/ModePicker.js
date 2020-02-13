@@ -1,11 +1,11 @@
 import React, {useContext} from "react"
-import {GameModeContext} from "../contexts/gameModeContext"
+import { ChallengeContext } from "../contexts/challengeContext"
+import { GameClockContext } from "../contexts/gameClockContext"
+import { GameModeContext } from "../contexts/gameModeContext"
 import { MorseBufferContext } from "../contexts/morseBufferContext"
 import { WordFeederContext } from "../contexts/wordFeederContext"
-import { GameClockContext } from "../contexts/gameClockContext"
-import { ChallengeContext } from "../contexts/challengeContext"
 
-function ModePicker() {
+export default React.memo(function ModePicker() {
 
     const {setGameMode} = useContext(GameModeContext)
     const {setMorseCharBuffer} = useContext(MorseBufferContext)
@@ -34,20 +34,18 @@ function ModePicker() {
     }
 
     return (
-            <div id="gameMode" className="mode-picker">
-                <div id="title">
-                    Mode
-                </div>
-                <div id='buttons'>
-                    <button id="practice" className="selected" onClick={handleClick}>
-                        Practice Mode
-                    </button>
-                    <button id="challenge" onClick={handleClick}>
-                        Challenge Mode
-                    </button>
-                </div>
+        <div id="gameMode" className="mode-picker">
+            <div id="title">
+                Mode
             </div>
+            <div id='buttons'>
+                <button id="practice" className="selected" onClick={handleClick}>
+                    Practice Mode
+                </button>
+                <button id="challenge" onClick={handleClick}>
+                    Challenge Mode
+                </button>
+            </div>
+        </div>
     )
-}
-
-export default React.memo(ModePicker)
+})

@@ -3,7 +3,7 @@ import { GameClockContext } from "../contexts/gameClockContext"
 import { ChallengeContext } from "../contexts/challengeContext"
 import { WordListPickerContext } from "../contexts/wordListPickerContext"
 
-export default (function ChallengeComplete(props) {
+export default (function ChallengeComplete() {
 
     const {gameClockTime} = useContext(GameClockContext)
     const {setChallengeState} = useContext(ChallengeContext)

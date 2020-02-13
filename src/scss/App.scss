@@ -2,20 +2,11 @@
 $main-font: 'Roboto', sans-serif;
 $buffer-font: 'Courier Prime', Courier, monospace;
 $ditDah-font: 'Courier', monospace;
-
-
-// $main-bg-color-dark: #2c2c2c;
-// $main-bg-color-light: #f1f1f1;
 $main-bg-color-light: #eee;
 $main-font-color-light: #333;
 $correct-bg-color: rgba(90,230,90,1);
-
-$morseCard-shadow-light: 0px 3px 3px rgba(0, 0, 0, 0.2);
 $main-box-shadow-light: 0px 2px 2px rgba(0, 0, 0, 0.35), 0px -1px 1px rgba(255, 255, 255, 1);
 $main-box-shadow-light-selected: inset 0px 2px 2px rgba(0, 0, 0, 0.3), inset 0px -1px 1px rgba(255, 255, 255, 1);
-$main-box-shadow-dark: 0px 3px 3px rgba(0, 0, 0, 0.2), 0px -1px 1px rgba(255, 255, 255, 0.1);
-$main-box-shadow-dark-selected: inset 0px 2px 2px rgba(0, 0, 0, 0.2), inset 0px -1px 1px rgba(255, 255, 255, 0.1);
-
 $main-border-radius: 3px;
 
 
@@ -32,18 +23,16 @@ button {
 }
 html, body {
     height: 100%;
-    // width: 100%;
     width: 100vw;
     background: $main-bg-color-light;
 }
 #root {
+    // border: 3px solid green;
+    width: 100vw;
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    // width: 100%;
-    width: 100vw;
-    // border: 3px solid green;
 }
 #header {
     min-height: 50px;
@@ -66,6 +55,7 @@ html, body {
 
     }
     #social-links {
+        // border: 1px solid red;
         display: flex;
         justify-content: space-evenly;
         align-items: center;
@@ -74,18 +64,15 @@ html, body {
         text-transform: uppercase;
         color: #999;
         margin-right: 10px;
-        // border: 1px solid red;
-     
         i {
             color: #ccc;
             padding-left: 5px;
             padding-right: 5px;
             font-size: 2rem;
             &:hover {
-                color: goldenrod;
+                color: gold;
             }
         }
-        // border: 1px solid orange;
         div {
             // border: 1px solid red;
             height: auto;
@@ -93,7 +80,6 @@ html, body {
                 width: 40px;
                 height: 40px;
                 opacity: 30%;
-                // filter: contrast(100%)
                 &:hover {
                     animation-name: socialLinkHover;
                     animation-duration: 150ms;
@@ -133,10 +119,8 @@ html, body {
         align-items: center;
         
         width: 40%;
-        // width: 40vw;
         height: calc(100% - 5.1em);
         max-width: 100%;
-        // min-width: 455px;
         overflow-y: scroll;
 
         position: fixed;
@@ -188,7 +172,6 @@ html, body {
                     justify-content: center;
                     transition: all 150ms ease-in-out;
                     border-bottom: 2px solid transparent;
-                    // border-bottom: 2px;
     
                     &:hover {
                         background: rgba(0, 0, 0, 0.1);
@@ -280,14 +263,15 @@ html, body {
                         width: 50%;
                         image-rendering: optimizeSpeed;
                     }
-                    i:hover {
-                        color: goldenrod;
-                    }
                     a:visited {
                         color: #333;
                     }
-                    a:hover {
+                    a:hover, i:hover {
                         color: goldenrod;
+                    }
+                    i {
+                        font-size: 1.2rem;
+                        line-height: 1rem;
                     }
                 }
             }
@@ -302,10 +286,10 @@ html, body {
         align-items: center;
         height: 100%;
         width: 60%;
-
         position: relative;
         left: 40%;
         transition: all 500ms ease-in-out;
+
         &.expandLeft {
             left: 40px;
             width: calc(100% - 40px);
@@ -317,8 +301,6 @@ html, body {
             display: flex;
             flex-direction: row;
             justify-content: flex-start;
-            
-            // height: 6em;
             overflow-x: scroll;
             width: 100%;
             padding: 10px;
@@ -367,7 +349,6 @@ html, body {
                     #buttons {
                         // border: 1px solid blue;
                         justify-content: space-evenly;
-                        // margin-bottom: 20px;
                     }
                     #input {
                         input {
@@ -387,7 +368,6 @@ html, body {
                             height: 1.4em;
                             border-radius: 3px;
                             font-size: 1em;
-                            // line-height: 10px;
                             i {
                                 position: relative;
                                 left: -6px;
@@ -436,7 +416,6 @@ html, body {
     background: #333;
     font-family: $main-font;
     font-size: 1em;
-    // font-weight: bold;
     color: $main-bg-color-light;
     z-index: 1000;
 
@@ -452,7 +431,6 @@ h2 {
     margin-bottom: 0.5em;
 }
 i[class*="ri-"] {
-    // cursor: pointer;
     font-weight: normal;
     font-size: 0.9rem;
     color: #777;
@@ -469,10 +447,7 @@ i[class*="ri-"] {
     display: flex;
     flex-direction: column;
     align-items: center;
-    // justify-content: center;
     margin-bottom: 45px;
-    // overflow: hidden;
-
     
     #input {
         // border: 1px solid red;
@@ -528,25 +503,12 @@ i[class*="ri-"] {
         width: fit-content;
         height: fit-content;
         margin-bottom: 10px;
-        
-        // &#letters .item {
-        //     width: 17%;
-        // }
-        // &#numbers .item {
-        //     width: 18%;
-        // }
-        // &#special .item {
-        //     width: 20%;
-        // }
 
         .item {
             font-family: $ditDah-font;
             font-size: 0.85em;
-            // height: 2em;
-            // height: 2em;
             display: flex;
             align-items: center;
-            // justify-content: space-between;
             width: 15%;
 
             margin: 5px;
@@ -577,19 +539,6 @@ i[class*="ri-"] {
                     background: rgba(112, 128, 144,0.6);
                 }
             }
-
-            // button {
-            //     width: 20px;
-            //     height: 20px;
-            //     margin: 4px;
-            //     border: 0px;
-            //     border-radius: 2px;
-            //     box-shadow: $main-box-shadow-light;
-            //     &:active {
-            //         transform: translateY(3px);
-            //         box-shadow: 0px 0px 2px rgba(0,0,0,0.3);
-            //     }
-            // }
             
             span:first-child {
                 display: inline-block;
@@ -617,8 +566,8 @@ i[class*="ri-"] {
 $button-diameter: 100px;
 $button-radius: 50px;
 $morse-button-color: rgba(112, 138, 144,0.5);
-#morseButton {
 
+#morseButton {
     width: $button-diameter;
     height: $button-diameter;
     margin-top: 30px;
@@ -636,9 +585,6 @@ $morse-button-color: rgba(112, 138, 144,0.5);
         transform: translateY(3px);
         box-shadow: 0px 0px 2px rgba(0,0,0,0.3);
     }
-    // &:active > button, &.active > button {
-    //     transform: translateY(1px);
-    // }
     
     button {
         font-size: 1rem;
@@ -648,7 +594,6 @@ $morse-button-color: rgba(112, 138, 144,0.5);
         background: $morse-button-color;
         margin: 0px;
         border: 0px;
-        // transition: all 20ms ease-out;
         transition: transform 40ms ease-out, box-shadow 40ms ease-out, width 500ms ease-out, background 500ms ease-out, color 500ms ease-out;
         
         &.showPaddles {
@@ -659,11 +604,11 @@ $morse-button-color: rgba(112, 138, 144,0.5);
             box-shadow: $main-box-shadow-light;
         }
         &#left {
+            // background: red;
             width: 50%;
             border-radius: $button-radius 0px 0px $button-radius;
-            // transition: all 500ms ease-out;
             display: none;
-            // background: red;
+
             &.showPaddles{
                 border-radius: $button-radius 0 0 $button-radius;
                 display: inline-block;
@@ -672,11 +617,11 @@ $morse-button-color: rgba(112, 138, 144,0.5);
             }
         }
         &#right {
+            // background: blue;
             border-radius: 0 $button-radius $button-radius 0;
             width: 50%;
-            // transition: all 500ms ease-out;
             display: none;
-            // background: blue;
+
             &.showPaddles{
                 border-radius: 0 $button-radius $button-radius 0;
                 display: inline-block;
@@ -698,6 +643,7 @@ $morse-button-color: rgba(112, 138, 144,0.5);
     }
 }
 #morseButtonText {
+    font-family: $main-font;
     font-weight: bold;
     color: #aaa;
     font-size: 0.9rem;
@@ -725,26 +671,18 @@ $morse-button-color: rgba(112, 138, 144,0.5);
     width: 100%;
     height: 100%;
     z-index: 50;
-    // background-color: rgba(0,0,0,0.4);
     background: rgba(255,255,255,0.75);
-    // background-image: linear-gradient(0deg, transparent, rgba(1,1,1,1));
     display: flex;
     justify-content: center;
-    // align-items: center;
-    
-    
     &.fade {
-        // animation: hideOverlay 2000ms 1 ease-out forwards;
         animation: hideOverlay 1s ease-out forwards;
     }
     &.hide {
-        // animation: hideOverlay 2000ms 1 ease-out forwards;
         z-index: -100;
     }
     
     #challengeReady, #challengeComplete {
         position: relative;
-        // width: 400px;
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
@@ -755,7 +693,6 @@ $morse-button-color: rgba(112, 138, 144,0.5);
         padding: 1.7em;
         height: 35%;
         background: $main-bg-color-light;
-        // background: #fefefe;
         margin-top: 10rem;
         border-radius: 5px;
         box-shadow: 0px 5px 15px rgba(0,0,0,0.5);
@@ -788,7 +725,7 @@ $morse-button-color: rgba(112, 138, 144,0.5);
     
             font-size: 0.75em;
             color: $main-font-color-light;
-            // max-width: 250px;
+            
             &#startChallenge, &#continue {
                 width: 100%;
                 font-size: 1.7em;
@@ -799,9 +736,6 @@ $morse-button-color: rgba(112, 138, 144,0.5);
                 text-transform: uppercase;
                 letter-spacing: 0.3rem;
                 
-                // &:hover {
-                //     text-shadow: 0px 0px 7px rgba(255,255,255,0.3);
-                // }
                 &:active {
                     transform: translateY(3px);
                     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
@@ -836,7 +770,6 @@ $morse-button-color: rgba(112, 138, 144,0.5);
                     font-weight: bold;
                     font-size: 1.4em;
                     height: 100%;
-                    // width: 40%;
                     display: flex;
                     padding-left: 0px;
                     justify-content: flex-start;
@@ -851,12 +784,6 @@ $morse-button-color: rgba(112, 138, 144,0.5);
 
                     button {
                         font-size: 1rem;
-                        // &:hover {
-                        //     color: goldenrod;
-                        // }
-                        // &:active {
-                        //     box-shadow: $main-box-shadow-light-selected;
-                        // }
                     }
                 }
                 div#info {
@@ -909,6 +836,7 @@ $morse-button-color: rgba(112, 138, 144,0.5);
 }
 
 #challengeWord {
+    // border: 1px solid green;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -921,7 +849,6 @@ $morse-button-color: rgba(112, 138, 144,0.5);
     margin-bottom: 10px;
     margin-top: 25px;
 
-    // border: 1px solid green;
     border-radius: $main-border-radius;
     box-shadow: $main-box-shadow-light;
     
@@ -951,18 +878,11 @@ $morse-button-color: rgba(112, 138, 144,0.5);
     }
     &.correct {
         background: $correct-bg-color;
-    }
-    
-}
-
-#tip {
-    font-size: 2rem;
-    color: #aaa;
+    }   
 }
 
 #morseBufferDisplay {
     // border: 1px solid green;
-    // background: #eee;
     display: flex;
     justify-content: center;
     flex-direction: column-reverse;
@@ -972,8 +892,6 @@ $morse-button-color: rgba(112, 138, 144,0.5);
     margin-bottom: 20px;
     font-family: $buffer-font;
     position: relative;
-    // box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
-    // border-bottom: 2px solid rgba(0,0,0,0.1);
 
     #overlay {
         // background: blue;
@@ -989,8 +907,6 @@ $morse-button-color: rgba(112, 138, 144,0.5);
 
     #alphanumeric-container {
         // border: 1px solid red;
-        // max-width: 100%;
-        // min-width: 300px;
         text-align: center;
         max-width: 75%;
         display: inline-block;
@@ -1033,7 +949,7 @@ $morse-button-color: rgba(112, 138, 144,0.5);
                 width: 30px !important;
                 margin-left: 3px;
                 border-radius: $main-border-radius;
-                box-shadow: $main-box-shadow-dark;
+                box-shadow: $main-box-shadow-light;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -1078,7 +994,7 @@ $morse-button-color: rgba(112, 138, 144,0.5);
             height: 40px;
             margin-left: 3px;
             border-radius: $main-border-radius;
-            box-shadow: $main-box-shadow-dark;
+            box-shadow: $main-box-shadow-light;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -1090,16 +1006,6 @@ $morse-button-color: rgba(112, 138, 144,0.5);
 
 .space {
     font-size: 20px;
-}
-.strike {
-    text-decoration: line-through;
-    opacity: 30%;
-}
-.morseError {
-    background: rgba(255,0,0,0.4);
-    color: rgb(120, 0, 0);
-    border-radius: $main-border-radius;
-    // text-decoration: line-through;
 }
 
 #morse-history {
@@ -1133,7 +1039,7 @@ $morse-button-color: rgba(112, 138, 144,0.5);
             padding-top: 0px;
             padding-bottom: 0px;
             border-radius: $main-border-radius;
-            box-shadow: $main-box-shadow-dark;
+            box-shadow: $main-box-shadow-light;
         }
     }
     #clear {
@@ -1142,6 +1048,7 @@ $morse-button-color: rgba(112, 138, 144,0.5);
         height: fit-content;
         justify-content: space-between;
         #message {
+            font-family: $main-font;
             padding: 0.3em;
             font-size: 0.9em;
             color: #777;
@@ -1155,11 +1062,9 @@ $morse-button-color: rgba(112, 138, 144,0.5);
             font-size: 1em;
             height: 1.5em;
             border: 0px;
-            // border-radius: 3px;
             padding: 0.7em;
             display: flex;
             align-items: center;
-            // text-transform: uppercase;
             &:hover {
                 color: maroon;
             }
@@ -1189,98 +1094,22 @@ $morse-button-color: rgba(112, 138, 144,0.5);
     }
 }
 
-.morseCard {
-    display: flex;
-    flex-direction: row !important;
-    justify-content: center;
-    margin-bottom: 4px;
-    font-size: 1.6rem;
-    font-family: $buffer-font;
-    
-    .ditDahs-container, .alphanumeric-container {
-        // border: 1px solid green;
-        display: flex;
-        width: 50%;
-        font-weight: bold;
-    }
-    .alphanumeric-container span {
-        // background: blue;
-        padding-top: 0.17em;
-    }
-    .ditDahs-container {
-        // border: 1px solid red;
-        justify-content: flex-end;
-        max-width: 50%;
-    }
-
-    div div {
-        // border: 1px solid cyan;
-        padding: 3px;
-        margin: 2px;
-        background: #fdfdfd;
-        white-space: nowrap;
-        border-radius: $main-border-radius;
-        box-shadow: $morseCard-shadow-light;
-        line-height: 1em;
-        display: flex;
-        
-        span.morseError {
-            background: rgba(255,0,0,0.4);
-            height: 1.7rem;
-            color: rgb(120, 0, 0);
-            border-radius: $main-border-radius;
-        }
-    }
-    
-    .ditDahs {
-        // border: 1px solid red;
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        overflow-wrap: break-word;
-        font-family: $ditDah-font;
-        font-weight: bold;
-        max-width: 100%;
-        overflow-x: hidden;
-
-        span.space {
-            border-radius: $main-border-radius;
-            background: $main-bg-color-light;
-            opacity: 0.5;
-            width: 3px;
-            margin-left: 4px;
-            margin-right: 4px;
-        }
-    }
-}
-
-
-// @media screen and (max-width: 415px) {
 @media only screen and (max-width: 1024px) {
-    #root {
-        #main-content {
-            .sidebar#left {
-                #sidebar-container{
-                    #sidebar-content {
-                        #info {
-                            padding: 1em;
-                        }
-                        #playerAndLegend {
-                            padding: 0;
-                            #legend #legend-items button {
-                                width: 20%;
-                            }
-                        }
-                    }
-                }
-            }
-            #main-interface {
-                #mainOptions {
-                    flex-direction: column;
-                    align-items: center;
-                }
+
+    #sidebar-content {
+        #info {
+            padding: 1em;
+        }
+        #playerAndLegend {
+            padding: 0;
+            #legend #legend-items button {
+                width: 20%;
             }
         }
+    }
+    #mainOptions {
+        flex-direction: column;
+        align-items: center;
     }
 }
 @media only screen and (max-width: 415px) {
@@ -1450,9 +1279,6 @@ $morse-button-color: rgba(112, 138, 144,0.5);
                                 min-width: 1.7rem;
                                 max-width: 1.7rem;
                                 font-size: 2rem;
-                                // font-size: 1rem;
-                                // height: 1em;
-                                // width: 0.7em;
                             }
                         }
                     }
@@ -1460,11 +1286,17 @@ $morse-button-color: rgba(112, 138, 144,0.5);
                 #morse-history {
                     // border: 2px solid cyan;
                     margin-top: 0px;
+
                     #morseHistory-textbox {
                         // border: 2px solid cyan;
                         background: #fff;
                         min-height: 2em;
                         max-height: 2em;
+                    }
+                    #clear button {
+                        padding: 0px;
+                        padding-left: 3px;
+                        padding-right: 3px;
                     }
                 }
                 #challenge-header {
@@ -1485,6 +1317,10 @@ $morse-button-color: rgba(112, 138, 144,0.5);
                         line-height: 2rem;
                         // font-size: 2.3rem;
                     }
+                }
+                #morseButton {
+                    margin-top: 0;
+                    transform: scale(0.85);
                 }
             }
 

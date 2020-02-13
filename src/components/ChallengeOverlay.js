@@ -1,6 +1,6 @@
 import React, { useContext } from "react"
-import ChallengeReady from "./ChallengeReady"
 import { ChallengeContext } from "../contexts/challengeContext"
+import ChallengeReady from "./ChallengeReady"
 import ChallengeComplete from "./ChallengeComplete"
 
 export default (function ChallengeOverlay() {

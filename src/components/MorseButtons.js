@@ -9,7 +9,7 @@ export default React.memo(function MorseButtons() {
                 <button className="paddle" id="right"></button>
             </div>
             <div id="morseButtonText">
-                TAP OR PRESS SPACEBAR
+                TAP BUTTON OR PRESS SPACEBAR
             </div>
         </>
     )

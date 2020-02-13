@@ -37,18 +37,18 @@ export default React.memo(function KeyTypePicker() {
     }, [])
 
     return (
-            <div id="keyType" className="mode-picker">
-                <div id="title">
-                    Key Type
-                </div>
-                <div id="buttons">
-                    <button id="straight" onClick={handleClick}>
-                        Straight Key
-                    </button>
-                    <button id="electronic" onClick={handleClick}>
-                        Electronic Key
-                    </button>
-                </div>
+        <div id="keyType" className="mode-picker">
+            <div id="title">
+                Key Type
             </div>
+            <div id="buttons">
+                <button id="straight" onClick={handleClick}>
+                    Straight Key
+                </button>
+                <button id="electronic" onClick={handleClick}>
+                    Electronic Key
+                </button>
+            </div>
+        </div>
     )
 })
