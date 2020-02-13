@@ -7,10 +7,6 @@
   cursor: default;
   -ms-touch-action: manipulation;
       touch-action: manipulation;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
 }
 
 button {
@@ -725,6 +721,10 @@ i[class*="ri-"] {
 }
 
 #morseButton {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   width: 100px;
   height: 100px;
   margin-top: 30px;
@@ -1649,8 +1649,6 @@ i[class*="ri-"] {
   }
   #root #main-content #main-interface #morseButton {
     margin-top: 0;
-    -webkit-transform: scale(0.85);
-            transform: scale(0.85);
   }
 }
 /*# sourceMappingURL=App.css.map */

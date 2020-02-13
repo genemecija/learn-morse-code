@@ -16,7 +16,6 @@ $main-border-radius: 3px;
     padding: 0px;
     cursor: default;
     touch-action: manipulation; // Disable double-tap to zoom on mobile devices
-    user-select: none;
 }
 button {
     font-family: $main-font;
@@ -568,6 +567,7 @@ $button-radius: 50px;
 $morse-button-color: rgba(112, 138, 144,0.5);
 
 #morseButton {
+    user-select: none;
     width: $button-diameter;
     height: $button-diameter;
     margin-top: 30px;
@@ -1315,12 +1315,10 @@ $morse-button-color: rgba(112, 138, 144,0.5);
                     font-size: 3rem;
                     span {
                         line-height: 2rem;
-                        // font-size: 2.3rem;
                     }
                 }
                 #morseButton {
                     margin-top: 0;
-                    transform: scale(0.85);
                 }
             }
 
