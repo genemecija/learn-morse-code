@@ -24,7 +24,7 @@ const contactLinks = {
     'github': {
         name: 'GitHub',
         icon: 'ri-github-fill',
-        link: 'https://github.com/genemecija'
+        link: 'https://github.com/genemecija/learn-morse-code/'
     },
     'twitter': {
         name: 'Twitter',
