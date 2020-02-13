@@ -72,24 +72,6 @@ html, body {
                 color: gold;
             }
         }
-        div {
-            // border: 1px solid red;
-            height: auto;
-            img {
-                width: 40px;
-                height: 40px;
-                opacity: 30%;
-                &:hover {
-                    animation-name: socialLinkHover;
-                    animation-duration: 150ms;
-                    animation-fill-mode: forwards;
-                    animation-timing-function: ease-in-out;
-                }
-            }
-            &#twitter img {
-                filter: invert(90%)
-            }
-        }
     }
 }
 #main-content {
@@ -137,7 +119,7 @@ html, body {
 
             #sidebar-container {
                 #sidebar-content #info {
-                    opacity: 0%;
+                    opacity: 0;
                     overflow-y: hidden;
                 }
                 #info-icon {
@@ -239,7 +221,7 @@ html, body {
                     font-family: $main-font;
                     font-size: 1.2rem;
                     line-height: 1.5em;
-                    opacity: 100%;
+                    opacity: 1;
                     
                     transition: all 500ms ease-in-out;
     
@@ -656,10 +638,10 @@ $morse-button-color: rgba(112, 138, 144,0.5);
 
 @keyframes hideOverlay {
     0% { 
-        opacity: 100%;
+        opacity: 1;
     }
     100% {
-        opacity: 0%;
+        opacity: 0;
     }
 }
 
