@@ -1,13 +1,13 @@
 # Learn Morse Code
 
 [LearnMorseCode.net](http://learnmorsecode.net) helps beginners learn Morse code through several features, the main of which is a telegraph with live translation.
-
-
 <table><tr><td>
     <img src="telegraph.gif"
         width=325px
         shadow=10px>
 </td></tr></table>
+
+Watch the video demo [here](https://www.youtube.com/embed/OuL-Z8h4gBQ).
 
 ## Features
 * **Telegraph**\

@@ -16,18 +16,27 @@ function WordListPickerContextProvider(props) {
 
     let wordList = []
 
-    if (wordListCategory === 'alphabet') {
-        wordList = alphabet.words
-    } else if (wordListCategory === 'numbers') {
-        wordList = numbers.words
-    } else if (wordListCategory === 'boys') {
-        wordList = boys.words
-    } else if (wordListCategory === 'girls') {
-        wordList = girls.words
-    } else if (wordListCategory === 'startrek') {
-        wordList = trek.words
-    } else if (wordListCategory === 'common100') {
-        wordList = common100.words
+    switch (wordListCategory) {
+        case "alphabet":
+            wordList = alphabet.words
+            break
+        case "numbers":
+            wordList = numbers.words
+            break
+        case "boys":
+            wordList = boys.words
+            break
+        case "girls":
+            wordList = girls.words
+            break
+        case "startrek":
+            wordList = trek.words
+            break
+        case "common100":
+            wordList = common100.words
+            break
+        default:
+            wordList = alphabet.words
     }
 
     const wordListCountMax = wordList.length
