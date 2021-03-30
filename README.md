@@ -1,6 +1,6 @@
 # Learn Morse Code
 
-[LearnMorseCode.net](http://learnmorsecode.net) helps beginners learn Morse code through several features, the main of which is a telegraph with live translation.
+This web app helps beginners learn Morse code through several features, the main of which is a telegraph with live translation.
 <table><tr><td>
     <img src="telegraph.gif"
         width=325px
@@ -28,4 +28,4 @@ Type in the translator below the legend and see/listen to the Morse translation.
 ## App Info
 This web app was built using HTML, CSS, and ReactJS. It utilizes React hooks to manage state and component lifecycle.
 
-See it live here: [LearnMorseCode.net](http://learnmorsecode.net)
+See it live here: https://genemecija.github.io/learn-morse-code/
