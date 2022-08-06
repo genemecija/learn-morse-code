@@ -39,7 +39,7 @@ export default React.memo(function Info() {
             <center><img src={straight_key} alt="Straight Key" /></center>
             <p><b>Straight Keys</b> use a single button and generate tones when pressed down. Straight keys require greater accuracy as the length of dits, dahs, and spacing is completely under manual control.</p>
             <center><img src={electronic_key} alt="Electronic Key"></img></center>
-            <p><b>Electronic Keys</b> use paddles that automatically generate dits and dahs when pressed. The Electronic Keyer used here is an Iambic keyer that uses two paddles–left paddle for dits, right paddle for dahs. Pressing both paddles simultaneously automatically alternates between dit and dah. Switch between the two paddles at the appropriate times to build letters in Morse code.</p>
+            <p><b>Electronic Keys</b> use paddles that automatically generate dits and dahs when pressed. The Electronic Keyer used here is an Iambic keyer that uses two paddles–left paddle for dits, right paddle for dahs. Pressing both paddles simultaneously automatically alternates between dit and dah. Mode B automatically adds an extra alternate dit or dah. Switch between the two paddles at the appropriate times to build letters in Morse code.</p>
 
             <p>Check out <a href='https://www.youtube.com/watch?v=uEy4Wvy6uUg' target='_blank' rel="noopener noreferrer">this video</a> for a demonstration of the difference between Straight and Electronic keys.</p>
         </div>

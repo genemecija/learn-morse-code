@@ -27,6 +27,7 @@ export default (function useElectronicKey() {
     let queueRunning = false
     let queue = []
     let pressedFirst = null
+    let lastPlayed = ''
 
     // Timers setup
     let depressSyncTime
@@ -51,6 +52,7 @@ export default (function useElectronicKey() {
 
     // Promisify playing Dits and Dahs
     function play(ditDah) {
+        lastPlayed = ditDah
         let playDuration = ((ditDah === '.') ? ditMaxTime : ditMaxTime*3)
 
         return new Promise((resolve, reject) => {
@@ -159,7 +161,11 @@ export default (function useElectronicKey() {
                 cleanup()
             }
             currentPromise = currentPromise.then(() => {
-                return playWithSpaces(localQueue[i])
+                var ditDah = localQueue[i]
+                if (ditDah)
+                {
+                    return playWithSpaces(ditDah)
+                }
             });
         }
     }
@@ -237,7 +243,6 @@ export default (function useElectronicKey() {
             document.querySelector('.paddle#left').classList.remove('active')
 
             leftIsPressed = false
-            
             if (pressedFirst === 'left') { pressedFirst = null }
 
             if (!depressSyncTimerRunning) { startDepressSyncTimer() }
@@ -251,6 +256,13 @@ export default (function useElectronicKey() {
 
             if (!depressSyncTimerRunning) { startDepressSyncTimer() }
             else { stopDepressSyncTimer() }
+        }
+
+        if (paddlesReleasedSimultaneously && document.getElementById('modeB').classList.contains('selected'))
+        {
+            currentPromise = currentPromise.then(() => {
+                return playWithSpaces(lastPlayed == '.' ? '-' : '.')
+            });
         }
     }
     
