@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "ad8714da240879127edb9f9f836af4bd",
+    "revision": "ec3d966f17d818f51990abe1ee1edd4d",
     "url": "/learn-morse-code/index.html"
   },
   {
-    "revision": "f79dd160cf35317f7227",
-    "url": "/learn-morse-code/static/css/main.8d63c56d.chunk.css"
+    "revision": "df5406eb89f1b8ba2e87",
+    "url": "/learn-morse-code/static/css/main.2db8c091.chunk.css"
   },
   {
-    "revision": "d66e36cb8b59b341bc2d",
-    "url": "/learn-morse-code/static/js/2.044de1a4.chunk.js"
+    "revision": "b420660782789fba18df",
+    "url": "/learn-morse-code/static/js/2.cb350622.chunk.js"
   },
   {
     "revision": "d705cb622423d72c5defbf368ca70dcc",
-    "url": "/learn-morse-code/static/js/2.044de1a4.chunk.js.LICENSE"
+    "url": "/learn-morse-code/static/js/2.cb350622.chunk.js.LICENSE"
   },
   {
-    "revision": "f79dd160cf35317f7227",
-    "url": "/learn-morse-code/static/js/main.d1a1cd6f.chunk.js"
+    "revision": "df5406eb89f1b8ba2e87",
+    "url": "/learn-morse-code/static/js/main.3ab0d3fb.chunk.js"
   },
   {
     "revision": "0e971160995cca59fc3b",
