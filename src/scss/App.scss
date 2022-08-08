@@ -221,7 +221,7 @@ html, body {
                     font-family: $main-font;
                     font-size: 1.2rem;
                     line-height: 1.5em;
-                    opacity: 1;
+                    opacity: 100%;
                     
                     transition: all 500ms ease-in-out;
     
@@ -638,7 +638,7 @@ $morse-button-color: rgba(112, 138, 144,0.5);
 
 @keyframes hideOverlay {
     0% { 
-        opacity: 1;
+        opacity: 100%;
     }
     100% {
         opacity: 0;
