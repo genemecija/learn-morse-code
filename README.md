@@ -29,3 +29,13 @@ Type in the translator below the legend and see/listen to the Morse translation.
 This web app was built using HTML, CSS, and ReactJS. It utilizes React hooks to manage state and component lifecycle.
 
 See it live here: https://genemecija.github.io/learn-morse-code/
+
+## Build Instructions
+
+To build and run the project:
+
+```bash
+cd src/
+npm install
+npm start
+```

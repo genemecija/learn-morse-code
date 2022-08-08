@@ -13,6 +13,23 @@ button {
   font-family: "Roboto", sans-serif;
 }
 
+legend {
+  font-family: "Roboto", sans-serif;
+  font-size: x-small;
+  font-weight: bold;
+  margin: 0.3em;
+}
+
+fieldset {
+  border: 1px solid darkgray;
+  padding-bottom: 0.3em;
+  margin-top: -0.5em;
+}
+
+#paddle-mode-buttons {
+  visibility: hidden;
+}
+
 html, body {
   height: 100%;
   width: 100vw;
