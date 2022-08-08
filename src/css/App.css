@@ -114,7 +114,7 @@ html, body {
 #header #social-links div img {
   width: 40px;
   height: 40px;
-  opacity: 30%;
+  opacity: 0.3;
 }
 
 #header #social-links div img:hover {
@@ -324,7 +324,7 @@ html, body {
   font-family: "Roboto", sans-serif;
   font-size: 1.2rem;
   line-height: 1.5em;
-  opacity: 100%;
+  opacity: 1;
   -webkit-transition: all 500ms ease-in-out;
   transition: all 500ms ease-in-out;
 }
@@ -856,7 +856,7 @@ i[class*="ri-"] {
 
 @-webkit-keyframes hideOverlay {
   0% {
-    opacity: 100%;
+    opacity: 1;
   }
   100% {
     opacity: 0%;
@@ -865,7 +865,7 @@ i[class*="ri-"] {
 
 @keyframes hideOverlay {
   0% {
-    opacity: 100%;
+    opacity: 1;
   }
   100% {
     opacity: 0%;
