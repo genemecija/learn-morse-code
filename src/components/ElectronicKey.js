@@ -3,4 +3,5 @@ import useElectronicKey from '../hooks/useElectronicKey';
 
 export default React.memo(function ElectronicKey() {
     useElectronicKey()
+    return null
 })

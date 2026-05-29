@@ -53,7 +53,7 @@ export default React.memo(function Legend() {
     )
     const special = Object.keys(morseCode).map((morse, index) =>
         {
-            if (index > 36) {
+            if (index >= 36) {
                 return (
                     <button key={"legend_item_"+index} className="item" onClick={handleClick}>
                         <span className="alpha" key={"legend_btn_"+index}>{morse.toUpperCase()}</span>
