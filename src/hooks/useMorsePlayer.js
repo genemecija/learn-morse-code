@@ -2,45 +2,38 @@ import { useContext } from 'react';
 import config from '../config.json'
 import { WPMContext } from '../contexts/wpmContext.js';
 import { FrequencyContext } from '../contexts/frequencyContext.js';
+import { getAudioContext } from '../audio/audioContext';
 
 export default (function useMorsePlayer() {
 
     const {wpm} = useContext(WPMContext)
     const {frequency} = useContext(FrequencyContext)
-    // const ditMaxTime = 85 //config.ditMaxTime
     const ditMaxTime = 1200/wpm
 
-    // Tone Setup
-    let AudioContext = window.AudioContext || window.webkitAudioContext
-    window.AudioContext = window.AudioContext || window.webkitAudioContext;
-    let context
-    if (AudioContext) {
-        context = new AudioContext()
-    } else {
-        context = null
-    }
+    const context = getAudioContext()
 
     // Play dit or dah
     function play(ditDah) {
+        if (!context) return
         let length = ((ditDah === '.') ? ditMaxTime : ditMaxTime*3)
-        
-        if (context.state === 'interrupted') {
+
+        if (context.state !== 'running') {
             context.resume()
         }
         let o
         o = context.createOscillator()
         o.frequency.value = frequency
         o.type = "sine"
-        
+
         let startTime = context.currentTime;
 
         let g = context.createGain()
-        g.gain.exponentialRampToValueAtTime(config.mainVolume, startTime)
-        g.gain.setValueAtTime(config.mainVolume, startTime)
+        g.gain.setValueAtTime(0.0001, startTime)
+        g.gain.exponentialRampToValueAtTime(config.mainVolume, startTime + 0.01)
         o.connect(g)
         g.connect(context.destination)
         o.start(startTime)
-        
+
         setTimeout(() => {
             g.gain.setTargetAtTime(0.0001, context.currentTime, 0.009)
             o.stop(context.currentTime + 0.05)
@@ -49,7 +42,7 @@ export default (function useMorsePlayer() {
 
     let queue = []
     let timeouts = []
-    
+
     function playMorseWord(morse) {
         // Empty morse queue and cancel all sounds (timeouts)
         queue = []
@@ -90,12 +83,12 @@ export default (function useMorsePlayer() {
                 delay += ditMaxTime*4
             } else if (char === ' ') {
                 timeouts.push(setTimeout(() => {
-                    
+
                 }, delay))
                 delay += ditMaxTime*2
             } else if (char === '/') {
                 timeouts.push(setTimeout(() => {
-                    
+
                 }, delay))
                 delay += ditMaxTime*6
             }

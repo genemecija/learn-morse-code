@@ -3,4 +3,5 @@ import useStraightKey from '../hooks/useStraightKey';
 
 export default React.memo(function StraightKey() {
     useStraightKey()
+    return null
 })

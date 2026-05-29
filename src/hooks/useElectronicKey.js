@@ -3,6 +3,7 @@ import { FrequencyContext } from '../contexts/frequencyContext'
 import { GameModeContext } from '../contexts/gameModeContext'
 import { MorseBufferContext } from '../contexts/morseBufferContext'
 import { WPMContext } from '../contexts/wpmContext'
+import { getAudioContext } from '../audio/audioContext'
 import config from '../config.json'
 
 // ELECTRONIC KEY TELEGRAPH - Iambic A
@@ -21,7 +22,7 @@ export default (function useElectronicKey() {
     const wordGapMaxTime = ditMaxTime*ratio*7
 
     const morseHistorySize = config.historySize
-    
+
     let leftIsPressed = false
     let rightIsPressed = false
     let queueRunning = false
@@ -40,15 +41,7 @@ export default (function useElectronicKey() {
 
     let currentPromise = Promise.resolve()
 
-    // Audio Setup
-    let AudioContext = window.AudioContext || window.webkitAudioContext || false
-    let context
-    window.AudioContext = window.AudioContext || window.webkitAudioContext;
-    if (AudioContext) {
-        context = new AudioContext()
-    } else {
-        context = null
-    }
+    const context = getAudioContext()
 
     // Promisify playing Dits and Dahs
     function play(ditDah) {
@@ -56,27 +49,29 @@ export default (function useElectronicKey() {
         let playDuration = ((ditDah === '.') ? ditMaxTime : ditMaxTime*3)
 
         return new Promise((resolve, reject) => {
-            if (context.state === 'interrupted') {
+            if (!context) { resolve(); return }
+
+            if (context.state !== 'running') {
                 context.resume()
             }
-            
+
             let o = context.createOscillator()
             o.frequency.value = frequency
             o.type = "sine"
             o.onended = () => {
                 resolve()
             }
-            
+
             let startTime = context.currentTime;
-    
+
             let g = context.createGain()
-            g.gain.exponentialRampToValueAtTime(config.mainVolume, startTime)
-            g.gain.setValueAtTime(config.mainVolume, startTime)
+            g.gain.setValueAtTime(0.0001, startTime)
+            g.gain.exponentialRampToValueAtTime(config.mainVolume, startTime + 0.01)
             o.connect(g)
             g.connect(context.destination)
-            
+
             o.start(startTime)
-            
+
             setTimeout(() => {
                 g.gain.setTargetAtTime(0.0001, context.currentTime, 0.001)
                 o.stop(context.currentTime + 0.05)
@@ -86,38 +81,35 @@ export default (function useElectronicKey() {
 
     // Play dit or dah with trailing space (silence)
     function playWithSpaces(ditDah) {
-        let delay = (ditDah === '.') ? ditMaxTime + ditMaxTime : ditMaxTime*3 + ditMaxTime
-
         return new Promise(function(resolve) {
             if (ditDah === '.' || ditDah === '-') {
 
                 clearInterval(gapTimer)
                 checkGapBetweenInputs()
                 setMorseCharBuffer(prev => prev + ditDah)
-                
-                play(ditDah)
-                .then(setTimeout(() => {
-                    // START GAP TIMER
-                    gapTimer = setInterval(() => {
-                        gapTime += 1
-    
-                        // if (gapTime >= wordGapMaxTime) {
-                        if (gameMode === 'practice' && gapTime >= wordGapMaxTime) {
-                            setMorseCharBuffer(prev => prev + '/')
-                            clearInterval(gapTimer)
-                            gapTimer = 0
-                            gapTime = 0
-                        }
-                        else if (gameMode === 'challenge' && gapTime >= letterGapMinTime) {
-                            setMorseCharBuffer(prev => prev + '_')
-                            clearInterval(gapTimer)
-                            gapTimer = 0
-                            gapTime = 0
-                        }
-                    }, 1)
-                    
-                    resolve();
-                }, delay)
+
+                play(ditDah).then(() =>
+                    setTimeout(() => {
+                        // START GAP TIMER
+                        gapTimer = setInterval(() => {
+                            gapTime += 1
+
+                            if (gameMode === 'practice' && gapTime >= wordGapMaxTime) {
+                                setMorseCharBuffer(prev => prev + '/')
+                                clearInterval(gapTimer)
+                                gapTimer = 0
+                                gapTime = 0
+                            }
+                            else if (gameMode === 'challenge' && gapTime >= letterGapMinTime) {
+                                setMorseCharBuffer(prev => prev + '_')
+                                clearInterval(gapTimer)
+                                gapTimer = 0
+                                gapTime = 0
+                            }
+                        }, 1)
+
+                        resolve();
+                    }, ditMaxTime)
                 )
             } else {
                 setTimeout(() => {
@@ -129,7 +121,7 @@ export default (function useElectronicKey() {
 
     function executeQueue() {
         let localQueue = queue
-        
+
         // Set waitTime to completion of queue (ditDah time + following silences)
         let waitTime = 0
         for (let i in localQueue) {
@@ -139,19 +131,19 @@ export default (function useElectronicKey() {
                 waitTime += ditMaxTime*4
             }
         }
-        
+
         // Cleanup
         function cleanup() {
             queueRunning = false
             queue = []
             sendPressedToQueue() // Check if anything still pressed down on queue finish
         }
-        
+
         // Wait till completion of queue to execute
         const clear = setTimeout(() => {
             cleanup()
         }, waitTime)
-        
+
         // Execute queue
         queueRunning = true
         for (let i = 0; i < localQueue.length; i++) {
@@ -212,7 +204,7 @@ export default (function useElectronicKey() {
 
         if (event.keyCode === 188 || event.target.id === "left") {
             document.querySelector('.paddle#left').classList.add('active')
-            
+
             leftIsPressed = true
             if (!rightIsPressed) { pressedFirst = 'left'}
 
@@ -261,11 +253,11 @@ export default (function useElectronicKey() {
         if (paddlesReleasedSimultaneously && document.getElementById('modeB').classList.contains('selected'))
         {
             currentPromise = currentPromise.then(() => {
-                return playWithSpaces(lastPlayed == '.' ? '-' : '.')
+                return playWithSpaces(lastPlayed === '.' ? '-' : '.')
             });
         }
     }
-    
+
     // Timer used to determine if both paddles are released within 10ms
     // Need to know this to stop Iambic tones at correct time
     function startDepressSyncTimer() {
@@ -293,7 +285,7 @@ export default (function useElectronicKey() {
     }
 
 
-    // Check gap between letters to determin if new character or new word
+    // Check gap between letters to determine if new character or new word
     function checkGapBetweenInputs() {
         if (gapTime >= letterGapMinTime && gapTime < wordGapMaxTime) {
             if (gameMode === 'practice') {
@@ -317,7 +309,7 @@ export default (function useElectronicKey() {
         paddles.forEach(paddle => {
             paddle.addEventListener('mousedown', handleInputStart)
             paddle.addEventListener('touchstart', handleInputStart)
-            paddle.addEventListener('mouseout', handleInputEnd)
+            paddle.addEventListener('mouseleave', handleInputEnd)
             paddle.addEventListener('mouseup', handleInputEnd)
             paddle.addEventListener('touchend', handleInputEnd)
         })
@@ -330,7 +322,7 @@ export default (function useElectronicKey() {
             paddles.forEach(paddle => {
                 paddle.removeEventListener('mousedown', handleInputStart)
                 paddle.removeEventListener('touchstart', handleInputStart)
-                paddle.removeEventListener('mouseout', handleInputEnd)
+                paddle.removeEventListener('mouseleave', handleInputEnd)
                 paddle.removeEventListener('mouseup', handleInputEnd)
                 paddle.removeEventListener('touchend', handleInputEnd)
             })

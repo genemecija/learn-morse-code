@@ -1,4 +1,4 @@
-import React, {useState, useContext} from "react"
+import React, {useState, useContext, useEffect} from "react"
 import { WordFeederContext } from "./wordFeederContext"
 import { MorseBufferContext } from "./morseBufferContext";
 import morseCode from '../data/morse-reverse.json'
@@ -9,19 +9,12 @@ const ChallengeContext = React.createContext()
 function ChallengeContextProvider(props) {
 
     const [challengeState, setChallengeState] = useState('ready')
-    const {resetFeeder} = useContext(WordFeederContext)
-    const {word, getNextWord} = useContext(WordFeederContext)
+    const [challengeWordClass, setChallengeWordClass] = useState('')
+    const {resetFeeder, word, getNextWord} = useContext(WordFeederContext)
     const {morseCharBuffer, setMorseCharBuffer} = useContext(MorseBufferContext)
-    
-    
-    let morseArray = morseCharBuffer.split('_').filter(l => l !== '')
-    let challengeWordClass = ''
-    
-    let correctCharIndexes = [] // Indexes of correct letters in Challenge Word
-    let incorrectMorseIndexes = [] // Indexes of incorrect morse characters in morse character buffer
-    
-    let offset = 0
-    let challengeLetters
+
+    const morseArray = morseCharBuffer.split('_').filter(l => l !== '')
+    const challengeLetters = (typeof word === 'object' ? word[0] : word).split('')
 
 
     function startChallenge() {
@@ -71,69 +64,78 @@ function ChallengeContextProvider(props) {
         challengeOverlay.classList.remove('hide')
     }
 
+    // Complete the challenge when the word list is exhausted
+    useEffect(() => {
+        if (typeof word === 'object') {
+            completeChallenge()
+        }
+        // eslint-disable-next-line
+    }, [word])
 
-    // If no more words in wordlist, feeder returns first word in an array
-    if (typeof word === 'object') {
-        completeChallenge()
-        challengeLetters = word[0].split('')
-    }
-    else {
-        challengeLetters = word.split('')
-    }
+    // Process the morse buffer against the current challenge word
+    useEffect(() => {
+        if (challengeState !== 'started') return
+        if (typeof word === 'object') return
+        if (morseCharBuffer.slice(-1) !== '_') return
 
-    // Iterate through the morse character buffer and compare with each letter of challenge word
-    morseArray.forEach((item, index) => {        
-        if (morseCharBuffer.slice(-1) === '_') { // If end of morse character
-            
-            let morseLetter = morseCode[morseArray[index]] || '[?]'
-            let challengeLetter = challengeLetters[index-offset].toLowerCase()
-            
-            if (morseLetter === challengeLetter) {
-                correctCharIndexes.push(index-offset)
-                
-                document.getElementById('challengeWord').childNodes[index-offset].classList.add('correct')
+        const arr = morseCharBuffer.split('_').filter(l => l !== '')
+        if (arr.length === 0) return
+
+        const letters = challengeLetters
+        let correctIndexes = []
+
+        for (let index = 0; index < arr.length; index++) {
+            // Guard against more entries than letters in the word
+            if (index >= letters.length) {
+                setMorseCharBuffer(prev => {
+                    const parts = prev.split('_').filter(l => l !== '')
+                    parts.splice(index, 1)
+                    return parts.join('_') + '_'
+                })
+                return
             }
-            else {
-                incorrectMorseIndexes.push(index)
-                if (incorrectMorseIndexes.length > 0) {
-                    setMorseCharBuffer(prev => {
-                        let newState = prev.split('_').filter(l => l !== '')
-                        newState.splice(incorrectMorseIndexes[0], 1)
-                        newState = newState.join('_') + '_'
-                        
-                        return newState
-                    })
-                    incorrectMorseIndexes.splice(1,incorrectMorseIndexes.length)
+
+            const morseLetter = morseCode[arr[index]] || '[?]'
+            const challengeLetter = letters[index].toLowerCase()
+
+            if (morseLetter === challengeLetter) {
+                correctIndexes.push(index)
+                const challengeWordEl = document.getElementById('challengeWord')
+                if (challengeWordEl && challengeWordEl.childNodes[index]) {
+                    challengeWordEl.childNodes[index].classList.add('correct')
                 }
-                offset = incorrectMorseIndexes.length
+            } else {
+                // Remove the incorrect entry and let the user retry
+                setMorseCharBuffer(prev => {
+                    const parts = prev.split('_').filter(l => l !== '')
+                    parts.splice(index, 1)
+                    return parts.join('_') + '_'
+                })
+                return
             }
         }
-    })
 
-
-    // Retrieve next word once all characters are correct
-    if (correctCharIndexes.length === challengeLetters.length) {
-        challengeWordClass = 'correct'
-        setTimeout(() => {
-            setMorseCharBuffer('')
-            morseArray = []
-            incorrectMorseIndexes = []
-            offset = 0
-            if (document.getElementById('challengeWord') !== null) {
-                document.getElementById('challengeWord').childNodes.forEach(node => {
-                    node.classList = "cLetter"
-                })
-            }
-        }, 800)
-        setTimeout(() => {
-            if (correctCharIndexes.length > 0) {
-                correctCharIndexes = []
+        // All letters correct — advance to next word
+        if (correctIndexes.length === letters.length) {
+            setChallengeWordClass('correct')
+            setTimeout(() => {
+                setMorseCharBuffer('')
+                setChallengeWordClass('')
+                const challengeWordEl = document.getElementById('challengeWord')
+                if (challengeWordEl) {
+                    challengeWordEl.childNodes.forEach(node => {
+                        node.classList = 'cLetter'
+                    })
+                }
+            }, 800)
+            setTimeout(() => {
                 getNextWord()
-            }
-        }, 1000)
-    }
+            }, 1000)
+        }
+        // eslint-disable-next-line
+    }, [morseCharBuffer, challengeState, word])
 
-    
+
     return (
         <ChallengeContext.Provider value={{
             challengeState: challengeState,
@@ -143,7 +145,7 @@ function ChallengeContextProvider(props) {
             cancelChallenge: cancelChallenge,
             challengeWordClass: challengeWordClass,
             morseArray: morseArray,
-            incorrectMorseIndexes: incorrectMorseIndexes
+            incorrectMorseIndexes: []
             }}>
             {props.children}
         </ChallengeContext.Provider>

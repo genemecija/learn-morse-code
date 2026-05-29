@@ -3,11 +3,12 @@ import { FrequencyContext } from '../contexts/frequencyContext'
 import { GameModeContext } from '../contexts/gameModeContext'
 import { MorseBufferContext } from '../contexts/morseBufferContext'
 import { WPMContext } from '../contexts/wpmContext'
+import { getAudioContext } from '../audio/audioContext'
 import config from '../config.json'
 
 // STRAIGHT KEY TELEGRAPH
 export default (function useStraightKey() {
-    
+
     const {morseCharBuffer, setMorseCharBuffer, morseWords, setMorseWords} = useContext(MorseBufferContext)
     const {wpm} = useContext(WPMContext)
     const {gameMode} = useContext(GameModeContext)
@@ -18,7 +19,7 @@ export default (function useStraightKey() {
     let charTime = 0
     let gapTimer = 0
     let gapTime = 0
-    
+
     // DitDah Length
     const ditMaxTime = 1200/wpm * 0.3
     const letterGapMinTime = ditMaxTime*3
@@ -26,15 +27,7 @@ export default (function useStraightKey() {
 
     const morseHistorySize = config.historySize
 
-    // Tone Setup
-    let AudioContext = window.AudioContext || window.webkitAudioContext || false
-    let context
-    window.AudioContext = window.AudioContext || window.webkitAudioContext;
-    if (AudioContext) {
-        context = new AudioContext()
-    } else {
-        context = null
-    }
+    const context = getAudioContext()
 
     let o // Oscillator Node
     let g // Gain Node
@@ -69,32 +62,33 @@ export default (function useStraightKey() {
             }
             else {
                 document.getElementById('morseButton').classList.add('active')
-    
-                // isRunning = true
-    
-                if (context.state === 'interrupted') {
+
+                if (!context) return
+
+                if (context.state !== 'running') {
                     context.resume()
                 }
-                
+
                 o = context.createOscillator()
                 o.frequency.value = frequency
                 o.type = "sine"
-                
+
                 g = context.createGain()
-                g.gain.exponentialRampToValueAtTime(config.mainVolume, context.currentTime)
+                g.gain.setValueAtTime(0.0001, context.currentTime)
+                g.gain.exponentialRampToValueAtTime(config.mainVolume, context.currentTime + 0.01)
                 o.connect(g)
                 g.connect(context.destination)
                 o.start()
-                 
+
                 checkGapBetweenInputs()
                 clearInterval(gapTimer)
-    
+
                 startCharTimer()
             }
         }
-        
+
     }
-    
+
     function startCharTimer() {
         // Start Character Timer
         charTimer = setInterval(() => {
@@ -114,18 +108,18 @@ export default (function useStraightKey() {
             document.getElementById('morseButton').classList.remove('active')
 
             isRunning = false
-            
+
             if (charTime <= ditMaxTime) {
                 setMorseCharBuffer(prev => prev + '.')
             } else {
                 setMorseCharBuffer(prev => prev + '-')
             }
-    
+
             stopCharTimer()
             startGapTimer()
-            
+
             // Account for bug triggered when pressing paddle button (e.g.) outside of body, then clicking into body, and depressing key
-            if (o === undefined) { 
+            if (o === undefined) {
                 return
             }
             if (o.context.state === 'running') {
@@ -135,7 +129,7 @@ export default (function useStraightKey() {
         } else { return }
     }
 
-    function stopCharTimer() {    
+    function stopCharTimer() {
         clearInterval(charTimer)
         charTimer = 0
         charTime = 0
@@ -143,15 +137,26 @@ export default (function useStraightKey() {
 
     function startGapTimer() {
         gapTime = 0
+        let letterSpaceInserted = false
         gapTimer = setInterval(() => {
             gapTime += 1
 
-            // Gap between words
-            if (gameMode === 'practice' && gapTime >= wordGapMaxTime) {
-                setMorseCharBuffer(prev => prev + '/')
-                clearInterval(gapTimer)
-                gapTimer = 0
-                gapTime = 0
+            if (gameMode === 'practice') {
+                // Insert letter boundary once silence reaches letter-gap threshold
+                if (!letterSpaceInserted && gapTime >= letterGapMinTime) {
+                    setMorseCharBuffer(prev => prev + ' ')
+                    letterSpaceInserted = true
+                }
+                // Promote letter space to word break at word-gap threshold
+                if (gapTime >= wordGapMaxTime) {
+                    setMorseCharBuffer(prev =>
+                        prev.slice(-1) === ' ' ? prev.slice(0, -1) + '/' : prev + '/'
+                    )
+                    clearInterval(gapTimer)
+                    gapTimer = 0
+                    gapTime = 0
+                    letterSpaceInserted = false
+                }
             }
             else if (gameMode === 'challenge' && gapTime >= letterGapMinTime) {
                 setMorseCharBuffer(prev => prev + '_')
@@ -162,19 +167,18 @@ export default (function useStraightKey() {
         }, 1);
     }
 
-    // Check gap between letters to determin if new character or new word
+    // Check gap between letters to determine if new character or new word
     function checkGapBetweenInputs() {
         if (gapTime >= letterGapMinTime && gapTime < wordGapMaxTime) {
-            if (gameMode === 'practice') {
-                setMorseCharBuffer(prev => prev + ' ')
-            } else if (gameMode === 'challenge') {
+            // Practice mode: letter space already inserted by gap timer
+            if (gameMode === 'challenge') {
                 setMorseCharBuffer(prev => prev + '_')
             }
             clearInterval(gapTimer)
             gapTimer = 0
         }
     }
-    
+
     // Add paddle event listeners and update on WPM, Game Mode, or Frequency change
     // Not updating on these state changes prevents change from taking effect
     useEffect(() => {
@@ -185,7 +189,7 @@ export default (function useStraightKey() {
         morseButton.addEventListener('touchstart', handleInputStart)
         morseButton.addEventListener('touchend', handleInputEnd)
         morseButton.addEventListener('mousedown', handleInputStart)
-        morseButton.addEventListener('mouseout', handleInputEnd)
+        morseButton.addEventListener('mouseleave', handleInputEnd)
         morseButton.addEventListener('mouseup', handleInputEnd)
 
         return function cleanup() {
@@ -196,7 +200,7 @@ export default (function useStraightKey() {
             morseButton.removeEventListener('touchstart', handleInputStart)
             morseButton.removeEventListener('touchend', handleInputEnd)
             morseButton.removeEventListener('mousedown', handleInputStart)
-            morseButton.removeEventListener('mouseout', handleInputEnd)
+            morseButton.removeEventListener('mouseleave', handleInputEnd)
             morseButton.removeEventListener('mouseup', handleInputEnd)
 
             clearInterval(charTimer)

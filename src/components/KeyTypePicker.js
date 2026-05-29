@@ -62,7 +62,7 @@ export default React.memo(function KeyTypePicker() {
             <div id="paddle-mode-buttons">
                 <fieldset id="paddle-mode">
                     <legend>Paddle Mode</legend>
-                    <button id="modeA" class="selected" onClick={handleClick}>
+                    <button id="modeA" className="selected" onClick={handleClick}>
                         A
                     </button>
                     <button id="modeB" onClick={handleClick}>
