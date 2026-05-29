@@ -170,8 +170,10 @@ export default (function useStraightKey() {
     // Check gap between letters to determine if new character or new word
     function checkGapBetweenInputs() {
         if (gapTime >= letterGapMinTime && gapTime < wordGapMaxTime) {
-            // Practice mode: letter space already inserted by gap timer
-            if (gameMode === 'challenge') {
+            if (gameMode === 'practice') {
+                // If the timer hasn't already inserted the space, insert it now
+                setMorseCharBuffer(prev => prev.slice(-1) === ' ' ? prev : prev + ' ')
+            } else if (gameMode === 'challenge') {
                 setMorseCharBuffer(prev => prev + '_')
             }
             clearInterval(gapTimer)

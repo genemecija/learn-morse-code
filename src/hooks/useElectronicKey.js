@@ -48,7 +48,7 @@ export default (function useElectronicKey() {
         lastPlayed = ditDah
         let playDuration = ((ditDah === '.') ? ditMaxTime : ditMaxTime*3)
 
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             if (!context) { resolve(); return }
 
             if (context.state !== 'running') {
@@ -58,9 +58,6 @@ export default (function useElectronicKey() {
             let o = context.createOscillator()
             o.frequency.value = frequency
             o.type = "sine"
-            o.onended = () => {
-                resolve()
-            }
 
             let startTime = context.currentTime;
 
@@ -72,9 +69,12 @@ export default (function useElectronicKey() {
 
             o.start(startTime)
 
+            // Resolve when the tone is done (not when the oscillator finishes its
+            // 50ms fade — that would add 50ms of dead time to every element)
             setTimeout(() => {
                 g.gain.setTargetAtTime(0.0001, context.currentTime, 0.001)
                 o.stop(context.currentTime + 0.05)
+                resolve()
             }, playDuration)
         })
     }
